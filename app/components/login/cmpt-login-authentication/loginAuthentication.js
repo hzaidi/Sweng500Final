@@ -9,7 +9,7 @@ templateUrl: '/components/login/cmpt-login-authentication/loginAuthentication.ht
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-login-authentication) ----# //
-controller: function ($scope, authSvc) {
+controller: function ($scope, authSvc, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -23,6 +23,8 @@ controller: function ($scope, authSvc) {
 		login: function () {
 			authSvc.login(vm.username, vm.password).then(function(firebaseUser){
 				 console.log("Signed in as:", firebaseUser.uid);
+			}, function(e){
+				toastHelp.error(e, 'Error');
 			})
 		}
 	};
