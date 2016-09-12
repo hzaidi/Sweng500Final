@@ -10,7 +10,6 @@ Then run the following from your command line:
 
 `npm install`
 
+Then run
 
-Davin
-
-seba
+`grunt dev`
