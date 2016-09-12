@@ -13,10 +13,14 @@
   color: #fafafa;
   font-size: 45px;
   text-shadow: #e0e0e0 1px 1px 0px;
+  margin: auto 0;
 }
 .cmpt-login-authentication .content .auth-section .label,
 .cmpt-login-authentication .content .auth-section .forgot-password {
   color: #fafafa;
+}
+.cmpt-login-authentication .content .auth-section input {
+  width: 170px;
 }
 .cmpt-login-logo {
   position: relative;
@@ -35,7 +39,7 @@
 }
 .cmpt-login-logo .fa-group.one {
   top: 95px;
-  left: 50%;
+  text-align: center;
 }
 .cmpt-login-sign-up {
   background: #132a3b;
