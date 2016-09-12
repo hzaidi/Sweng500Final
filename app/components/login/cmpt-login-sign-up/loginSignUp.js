@@ -9,18 +9,18 @@ templateUrl: '/components/login/cmpt-login-sign-up/loginSignUp.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-login-sign-up) ----# //
-controller: function ($scope) {
+controller: function ($scope, userSvc) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		user: userSvc.userObj()
 	};
 
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		createUser: function () {
+			userSvc.createUser(vm.user);
 		}
 	};
 }

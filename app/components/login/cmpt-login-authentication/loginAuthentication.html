@@ -8,9 +8,15 @@
 					<div class="-u-4-24"></div>
 				</div>
 				<div class="-g">
-					<div class="-u-10-24"><input class="input" type="text" name="name" value=""></div>
-					<div class="-u-10-24"><input class="input" type="password" name="name" value=""></div>
-					<div class="-u-4-24"><button class="button button-parimary"type="button" name="button">Login</button></div>
+					<div class="-u-10-24">
+						<input class="input" type="text" name="name" value="" ng-model="vm.username">
+					</div>
+					<div class="-u-10-24">
+						<input class="input" type="password" name="name" value="" ng-model="vm.password">
+					</div>
+					<div class="-u-4-24">
+						<button class="button button-parimary"type="button" name="button" ng-click="go.login()">Login</button>
+					</div>
 				</div>
 				<div class="-g forgot-password">
 					<div class="-u-10-24"></div>

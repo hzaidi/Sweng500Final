@@ -8,15 +8,7 @@
 
 		$stateProvider.state('default', {
 			url: '',
-			resolve: {
-				currentAuth: function currentAuth(authSvc) {
-					return authSvc.$waitForSignIn();
-				}
-			},
-			templateUrl: '/routes/login/login.html',
-			controller: function controller($scope, currentAuth) {
-				$scope.currentAuth = 'Hamza';
-			}
+			templateUrl: '/routes/login/login.html'
 		});
 		// ========================================================== //
 	});

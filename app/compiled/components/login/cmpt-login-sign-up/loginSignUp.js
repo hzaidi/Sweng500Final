@@ -12,17 +12,17 @@
 
 			// #----------------------------------------# //
 			// #---- Component (cmpt-login-sign-up) ----# //
-			controller: function controller($scope) {
+			controller: function controller($scope, userSvc) {
 
 				// View Model properties
 				var vm = $scope.vm = {
-					property: 'initial value'
+					user: userSvc.userObj()
 				};
 
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
-					someAction: function someAction() {
-						vm.property = 'something';
+					createUser: function createUser() {
+						userSvc.createUser(vm.user);
 					}
 				};
 			}

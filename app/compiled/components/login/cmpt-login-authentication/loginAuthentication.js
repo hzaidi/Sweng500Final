@@ -12,17 +12,20 @@
 
 			// #-----------------------------------------------# //
 			// #---- Component (cmpt-login-authentication) ----# //
-			controller: function controller($scope) {
+			controller: function controller($scope, authSvc) {
 
 				// View Model properties
 				var vm = $scope.vm = {
-					property: 'initial value'
+					username: '',
+					password: ''
 				};
 
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
-					someAction: function someAction() {
-						vm.property = 'something';
+					login: function login() {
+						authSvc.login(vm.username, vm.password).then(function (firebaseUser) {
+							console.log("Signed in as:", firebaseUser.uid);
+						});
 					}
 				};
 			}

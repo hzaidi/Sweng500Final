@@ -9,18 +9,21 @@ templateUrl: '/components/login/cmpt-login-authentication/loginAuthentication.ht
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-login-authentication) ----# //
-controller: function ($scope) {
+controller: function ($scope, authSvc) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		username: '',
+		password: ''
 	};
 
-	
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		login: function () {
+			authSvc.login(vm.username, vm.password).then(function(firebaseUser){
+				 console.log("Signed in as:", firebaseUser.uid);
+			})
 		}
 	};
 }
