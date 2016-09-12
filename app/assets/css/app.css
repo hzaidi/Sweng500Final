@@ -1,0 +1,123 @@
+.cmpt-login-authentication {
+  background-color: #113148;
+  border-bottom: 1px solid #001322;
+  min-height: 100px;
+}
+.cmpt-login-authentication .content {
+  margin: 0 auto;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  width: 980px;
+}
+.cmpt-login-authentication .content .app-title {
+  color: #fafafa;
+  font-size: 45px;
+  text-shadow: #e0e0e0 1px 1px 0px;
+}
+.cmpt-login-authentication .content .auth-section .label,
+.cmpt-login-authentication .content .auth-section .forgot-password {
+  color: #fafafa;
+}
+.cmpt-login-sign-up {
+  background: #132a3b;
+  height: calc(100vh - 40px);
+}
+.cmpt-login-sign-up .content {
+  margin: 0 auto;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  width: 980px;
+}
+.cmpt-login-sign-up .content .logo {
+  margin: 80px 0;
+}
+.cmpt-login-sign-up .content .logo img {
+  width: 450px;
+}
+.cmpt-login-sign-up .content .sign-up-form > div {
+  margin: 5px 0;
+}
+.cmpt-login-sign-up .content .sign-up-form .title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+}
+.cmpt-login-sign-up .content .sign-up-form .button {
+  font-size: 25px;
+  width: 200px;
+}
+.cmpt-login-sign-up .content .sign-up-form .input {
+  font-size: 25px;
+  width: 454px;
+}
+.cmpt-login-sign-up .content .sign-up-form .two-side-by-side .input {
+  width: 210px;
+}
+body {
+  margin: 0;
+  font-family: 'Ropa Sans';
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+.input {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,27,42,0.8);
+  box-shadow: 1px 1px 3px rgba(0,27,42,0.8);
+  border: 1px solid #08496a;
+  background: rgba(0,66,85,0.2);
+  color: #fff;
+  border-radius: 2px;
+}
+.button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  background-color: #28597b;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: none;
+  border-radius: 4px;
+}
+.button:hover {
+  background-color: #24506f;
+}
+.button.button-positive {
+  background-color: #00c7c3;
+}
+.button.button-positive:hover {
+  background-color: #00bdb9;
+}
+.button.button-primary {
+  background-color: #0af;
+}
+.button.button-primary:hover {
+  background-color: #0099e6;
+}
+.button.button-negative {
+  background-color: #d95b5b;
+}
+.button.button-negative:hover {
+  background-color: #d64e4e;
+}
