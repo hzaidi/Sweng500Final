@@ -9,5 +9,3 @@ Then run the following from your command line:
 `cd myProjectFolderPath`
 
 `npm install`
-
-`npm install -g karma-jasmine karma-chrome-launcher karma-ng-html2js-preprocessor karma-notify-reporter`
