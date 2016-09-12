@@ -18,6 +18,25 @@
 .cmpt-login-authentication .content .auth-section .forgot-password {
   color: #fafafa;
 }
+.cmpt-login-logo {
+  position: relative;
+}
+.cmpt-login-logo i {
+  width: 100%;
+  position: absolute;
+  font-size: 100px;
+  color: #113148;
+  background-color: transparent;
+  text-shadow: 0px 1px 0px rgba(111,111,111,0.5); /* 50% white from bottom */
+}
+.cmpt-login-logo .fa-circle-thin {
+  font-size: 300px;
+  text-align: center;
+}
+.cmpt-login-logo .fa-group.one {
+  top: 95px;
+  left: 50%;
+}
 .cmpt-login-sign-up {
   background: #132a3b;
   height: calc(100vh - 40px);
@@ -30,9 +49,6 @@
 }
 .cmpt-login-sign-up .content .logo {
   margin: 80px 0;
-}
-.cmpt-login-sign-up .content .logo img {
-  width: 450px;
 }
 .cmpt-login-sign-up .content .sign-up-form > div {
   margin: 5px 0;
