@@ -6,9 +6,13 @@
 		$stateProvider
       .state('default', {
 				url: '',
-				templateUrl: function(params){
-          return '/routes/login/login.html';
-        }
+				resolve:{
+				 	currentAuth: function(authSvc){	return authSvc.$waitForSignIn();	}
+				},
+				templateUrl: '/routes/login/login.html',
+				controller: function($scope,currentAuth){
+					$scope.currentAuth = 'Hamza';
+				}
 			})
 			// ========================================================== //
 

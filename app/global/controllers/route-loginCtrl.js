@@ -1,8 +1,10 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('LoginCtrl', function () {
+.controller('LoginCtrl', function ($scope) {
 // #-------------------------# //
 // #------- LoginCtrl -------# //
 
+
+	
 	// this is a route controller
 	var route = this;
 
