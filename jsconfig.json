@@ -1,7 +1,0 @@
-{
-	"compilerOptions": {
-		"target": "ES6",
-		"module": "commonjs"
-	},
-	"comment": "Visual Studio Code ES6 compilation config file. -btulig https://github.com/jrieken/es6-vscode-sample/tree/master/src"
-}
