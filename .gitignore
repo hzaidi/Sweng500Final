@@ -1,0 +1,10 @@
+node_modules
+*.DS_Store
+*.sublime-workspace
+build
+.tmp
+mocks
+app/assets/css/*.css
+app/config/preloaded-templates.js
+app/compiled
+*.bak
