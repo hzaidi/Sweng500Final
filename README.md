@@ -9,3 +9,5 @@ Then run the following from your command line:
 `cd myProjectFolderPath`
 
 `npm install`
+
+Davin
