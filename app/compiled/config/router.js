@@ -9,6 +9,14 @@
 		$stateProvider.state('default', {
 			url: '',
 			templateUrl: '/routes/login/login.html'
+		}).state('home', {
+			url: '/home',
+			templateUrl: '/routes/home/home.html',
+			resolve: {
+				currentAuth: function currentAuth(authSvc) {
+					return authSvc.auth().$requireSignIn();
+				}
+			}
 		});
 		// ========================================================== //
 	});

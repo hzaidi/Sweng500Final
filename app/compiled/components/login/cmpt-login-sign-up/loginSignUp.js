@@ -22,10 +22,13 @@
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
 					createUser: function createUser() {
-						userSvc.createUser(vm.user).then(function (user) {
+						userSvc.createUserAuthentication(vm.user).then(function (user) {
+							var newUser = Object.assign({}, vm.user, { uid: user.uid });
+							userSvc.createUser(newUser).then(function (ref) {
+								var id = ref.key;
+								console.log("added record with id " + id);
+							});
 							toastHelp.success('User created successfully');
-							vm.user = userSvc.userObj();
-							console.log("User " + user.uid + " created successfully!");
 						})['catch'](function (error) {
 							toastHelp.error(error.message, 'Error');
 						});

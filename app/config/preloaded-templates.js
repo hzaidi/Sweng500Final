@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/routes/login/login.html', '/global/modals/alert-html.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/routes/home/home.html', '/routes/login/login.html', '/global/modals/alert-html.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -13,6 +13,11 @@ angular.module("/components/login/cmpt-login-logo/loginLogo.html", []).run(["$te
 angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-sign-up/loginSignUp.html",
     "<div class=cmpt-login-sign-up><div class=\"content -g\"><div class=\"-u-12-24 logo\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"-u-12-24 sign-up-form\"><div class=title>Sign Up</div><div class=\"-g two-side-by-side\"><div class=-u-12-24><input class=input placeholder=\"First Name\" name=name ng-model=vm.user.firstName></div><div class=-u-12-24><input class=input placeholder=\"Last Name\" name=name ng-model=vm.user.lastName></div></div><div><input class=input placeholder=Email name=name ng-model=vm.user.email></div><div><input type=password class=input placeholder=Password name=name ng-model=vm.user.password></div><div><input type=password class=input placeholder=Re-Password name=name ng-model=vm.user.password></div><div><button class=\"button button-positive\" ng-click=go.createUser()>Sign Up</button></div></div></div></div>");
+}]);
+
+angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/routes/home/home.html",
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\">Home Page <button ng-click=route.go.logout()>Logout</button></div>");
 }]);
 
 angular.module("/routes/login/login.html", []).run(["$templateCache", function($templateCache) {
