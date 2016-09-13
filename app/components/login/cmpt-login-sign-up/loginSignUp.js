@@ -22,7 +22,8 @@ controller: function ($scope, userSvc, toastHelp) {
 		createUser: function () {
 			userSvc.createUser(vm.user).then(function(user){
 				toastHelp.success('User created successfully');
-				console.log("User " + firebaseUser.uid + " created successfully!");
+				vm.user = userSvc.userObj();
+				console.log("User " + user.uid + " created successfully!");
 			}).catch(function(error){
 				toastHelp.error(error.message, 'Error');
 			});
