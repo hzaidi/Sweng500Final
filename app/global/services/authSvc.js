@@ -11,7 +11,7 @@
 
 
 		const createUser = function(user){
-				console.log('User', user);
+			return $firebaseAuth().$createUserWithEmailAndPassword(user.email, user.password);
 		}
 
 		return {

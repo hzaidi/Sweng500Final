@@ -4,18 +4,24 @@
 	// #----- Service (userSvc) -----# //
 	app.factory('userSvc', function ($q, authSvc) {
 
-		var user = function(){
+		var _user = function(){
 			this.firstName = '';
 			this.lastName = '';
 			this.email = '';
-			this.userId = '';
 			this.password = '';
 			return this;
 		}
 
+		function _createUser(user){
+			return authSvc.createUser(user);
+		}
+
+
+
+
 		return {
-			userObj: () => { new user(); },
-			createUser: (user) => { authSvc.createUser(user); }
+			userObj: () => { new _user(); },
+			createUser: _createUser
 		};
 
 	});

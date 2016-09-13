@@ -12,7 +12,7 @@
 
 			// #----------------------------------------# //
 			// #---- Component (cmpt-login-sign-up) ----# //
-			controller: function controller($scope, userSvc) {
+			controller: function controller($scope, userSvc, toastHelp) {
 
 				// View Model properties
 				var vm = $scope.vm = {
@@ -22,7 +22,12 @@
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
 					createUser: function createUser() {
-						userSvc.createUser(vm.user);
+						userSvc.createUser(vm.user).then(function (user) {
+							toastHelp.success('User created successfully');
+							console.log("User " + firebaseUser.uid + " created successfully!");
+						})['catch'](function (error) {
+							toastHelp.error(error.message, 'Error');
+						});
 					}
 				};
 			}

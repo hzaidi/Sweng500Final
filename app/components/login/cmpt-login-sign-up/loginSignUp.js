@@ -9,7 +9,7 @@ templateUrl: '/components/login/cmpt-login-sign-up/loginSignUp.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-login-sign-up) ----# //
-controller: function ($scope, userSvc) {
+controller: function ($scope, userSvc, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -20,7 +20,12 @@ controller: function ($scope, userSvc) {
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		createUser: function () {
-			userSvc.createUser(vm.user);
+			userSvc.createUser(vm.user).then(function(user){
+				toastHelp.success('User created successfully');
+				console.log("User " + firebaseUser.uid + " created successfully!");
+			}).catch(function(error){
+				toastHelp.error(error.message, 'Error');
+			});
 		}
 	};
 }
