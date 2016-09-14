@@ -18,11 +18,20 @@
 			}
 		});
 		// ========================================================== //
-	}).run(function ($rootScope, $state, toastHelp) {
+	}).run(function ($rootScope, $state, authSvc, toastHelp) {
 		$rootScope.$on('$stateChangeError', function (e, toState, toParams, fromState, fromParams, error) {
 			if (error === "AUTH_REQUIRED") {
 				toastHelp.error('Login again to use the application', 'Error');
 				$state.go('default');
+			}
+		});
+
+		$rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams, error) {
+			if (toState.name === 'default') {
+				var user = authSvc.auth().$getAuth();
+				if (user) {
+					$state.go('home');
+				}
 			}
 		});
 	});

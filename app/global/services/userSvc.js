@@ -36,7 +36,7 @@
 		function getByKey(key) {
 			var _defer = $q.defer();
 			if(user) {
-				return _defer.resolve(user);
+				return $q.when(user);
 			}else{
 				var data = $firebaseObject(_userRef().child(key));
 				data.$loaded().then(function(user){
