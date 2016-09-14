@@ -19,7 +19,7 @@
 	// Actions that can be bound to from the view
 	route.go = {
 		logout: function () {
-			authSvc.auth().$signOut();
+			authSvc.logout();
 		}
 	};
 

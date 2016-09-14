@@ -12,7 +12,7 @@
 
 			// #-----------------------------------------------# //
 			// #---- Component (cmpt-login-authentication) ----# //
-			controller: function controller($scope, $state, authSvc, toastHelp) {
+			controller: function controller($scope, $state, authSvc, userSvc, toastHelp) {
 
 				// View Model properties
 				var vm = $scope.vm = {
@@ -23,8 +23,12 @@
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
 					login: function login() {
-						authSvc.login(vm.username, vm.password).then(function (firebaseUser) {
-							$state.go('home');
+						authSvc.login(vm.username, vm.password).then(function (user) {
+							userSvc.getByKey(user.uid).then(function () {
+								$state.go('home');
+							}, function (error) {
+								toastHelp.error(error.message, 'Error');
+							});
 						}, function (error) {
 							toastHelp.error(error.message, 'Error');
 						});

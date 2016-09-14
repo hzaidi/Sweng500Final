@@ -12,7 +12,7 @@
 
 			// #----------------------------------------# //
 			// #---- Component (cmpt-login-sign-up) ----# //
-			controller: function controller($scope, userSvc, toastHelp) {
+			controller: function controller($scope, $state, userSvc, storageSvc, toastHelp) {
 
 				// View Model properties
 				var vm = $scope.vm = {
@@ -23,12 +23,18 @@
 				var go = $scope.go = {
 					createUser: function createUser() {
 						userSvc.createUserAuthentication(vm.user).then(function (user) {
-							var newUser = Object.assign({}, vm.user, { uid: user.uid });
+							var uid = angular.copy(user.uid);
+							var newUser = Object.assign({}, vm.user, { uid: uid, userType: 1 });
 							userSvc.createUser(newUser).then(function (ref) {
-								var id = ref.key;
-								console.log("added record with id " + id);
+								toastHelp.success('User created successfully');
+								userSvc.getByKey(uid).then(function () {
+									$state.go('home');
+								}, function (error) {
+									toastHelp.error(error.message, 'Error');
+								});
+							}, function (error) {
+								toastHelp.error(error.message, 'Error');
 							});
-							toastHelp.success('User created successfully');
 						})['catch'](function (error) {
 							toastHelp.error(error.message, 'Error');
 						});

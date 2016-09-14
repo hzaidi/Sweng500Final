@@ -9,7 +9,7 @@ templateUrl: '/components/login/cmpt-login-sign-up/loginSignUp.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-login-sign-up) ----# //
-controller: function ($scope, userSvc, toastHelp) {
+controller: function ($scope, $state, userSvc, storageSvc, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -17,16 +17,23 @@ controller: function ($scope, userSvc, toastHelp) {
 	};
 
 
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		createUser: function () {
 			userSvc.createUserAuthentication(vm.user).then(function(user){
-				var newUser = Object.assign({}, vm.user, { uid: user.uid });
+				var uid = angular.copy(user.uid);
+				var newUser = Object.assign({}, vm.user, { uid: uid, userType: 1 });
 				userSvc.createUser(newUser).then(function(ref) {
-				  var id = ref.key;
-				  console.log("added record with id " + id);				  
+					toastHelp.success('User created successfully');
+					userSvc.getByKey(uid).then(function(){
+						$state.go('home');
+					}, function(error){
+						toastHelp.error(error.message, 'Error');
+					})
+				}, function(error){
+					toastHelp.error(error.message, 'Error');
 				});
-				toastHelp.success('User created successfully');
 			}).catch(function(error){
 				toastHelp.error(error.message, 'Error');
 			});
