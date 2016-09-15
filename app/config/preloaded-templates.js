@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/routes/home/home.html', '/routes/login/login.html', '/global/modals/alert-html.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/routes/home/home.html', '/routes/login/login.html', '/global/modals/alert-html.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -15,9 +15,14 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
     "<div class=cmpt-login-sign-up><div class=\"content -g\"><div class=\"-u-12-24 logo\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"-u-12-24 sign-up-form\"><div class=title>Sign Up</div><div class=\"-g two-side-by-side\"><div class=-u-12-24><input class=input placeholder=\"First Name\" name=name ng-model=vm.user.firstName></div><div class=-u-12-24><input class=input placeholder=\"Last Name\" name=name ng-model=vm.user.lastName></div></div><div><input class=input placeholder=Email name=name ng-model=vm.user.email></div><div><input type=password class=input placeholder=Password name=name ng-model=vm.user.password></div><div><input type=password class=input placeholder=Re-Password name=name ng-model=vm.user.password></div><div><button class=\"button button-positive\" ng-click=go.createUser()>Sign Up</button></div></div></div></div>");
 }]);
 
+angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/topbar/cmpt-topbar-header/topbarHeader.html",
+    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>Administrator</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
+}]);
+
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
-    "<div class=route-home-home ng-controller=\"HomeCtrl as route\">Home Page <button ng-click=route.go.logout()>Logout</button></div>");
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header></div>");
 }]);
 
 angular.module("/routes/login/login.html", []).run(["$templateCache", function($templateCache) {

@@ -1,7 +1,7 @@
 .cmpt-login-authentication {
   background-color: #113148;
   border-bottom: 1px solid #001322;
-  min-height: 100px;
+  min-height: 70px;
 }
 .cmpt-login-authentication .content {
   margin: 0 auto;
@@ -72,6 +72,55 @@
 }
 .cmpt-login-sign-up .content .sign-up-form .two-side-by-side .input {
   width: 210px;
+}
+.cmpt-topbar-header {
+  background-color: #113148;
+  border-bottom: 1px solid #001322;
+  min-height: 70px;
+}
+.cmpt-topbar-header .left-content {
+  text-align: left;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo {
+  padding: 0 10px;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo i {
+  color: #19486a;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo .fa-circle-thin {
+  font-size: 70px;
+  text-align: left;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo .fa-group.one {
+  font-size: 35px;
+  top: 18px;
+  text-align: left;
+  left: 22px;
+}
+.cmpt-topbar-header .right-content {
+  text-align: right;
+}
+.cmpt-topbar-header .right-content > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+.cmpt-topbar-header .right-content > div .name {
+  padding: 0 12px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+.cmpt-topbar-header .right-content > div .type {
+  padding: 0 12px;
+  color: #fff;
+  font-size: 15px;
+}
+.cmpt-topbar-header .right-content button {
+  margin: 0;
+  background-color: transparent;
+  height: 70px;
+  border-left: 1px solid #fff;
+  border-radius: 0;
 }
 body {
   margin: 0;

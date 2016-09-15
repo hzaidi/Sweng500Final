@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('HomeCtrl', function ($state, authSvc) {
+.controller('HomeCtrl', function () {
 // #------------------------# //
 // #------- HomeCtrl -------# //
 
@@ -12,15 +12,9 @@
 	};
 
 
-	authSvc.auth().$onAuthStateChanged(function(user){
-		if(!user) { $state.go('default'); }
-	})
-
 	// Actions that can be bound to from the view
 	route.go = {
-		logout: function () {
-			authSvc.logout();
-		}
+
 	};
 
 // #----- END HomeCtrl -----# //
