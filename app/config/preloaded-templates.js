@@ -17,7 +17,7 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
 
 angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/topbar/cmpt-topbar-header/topbarHeader.html",
-    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>Administrator</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
+    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userType }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
 }]);
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {

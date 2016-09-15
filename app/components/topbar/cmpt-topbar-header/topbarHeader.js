@@ -9,11 +9,12 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, storageSvc) {
+controller: function ($scope, $state, authSvc, storageSvc, userRoleVal) {
 
+	var user = storageSvc.load({key: 'user'});
 	// View Model properties
 	var vm = $scope.vm = {
-		user: storageSvc.load({key: 'user'})
+		user: Object.assign({} , user, { userType: userRoleVal[user.userType] })
 	};
 
 	authSvc.auth().$onAuthStateChanged(function(user){

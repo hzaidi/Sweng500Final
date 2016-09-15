@@ -6,7 +6,7 @@
 		<div class="right-content -u-12-24">
 			<div>
 				<div class="name">{{ vm.user.firstName }} {{ vm.user.lastName }}</div>
-				<div class="type">Administrator</div>
+				<div class="type">{{ vm.user.userType }}</div>
 			</div>
 			<button class="button" ng-click="go.logout()">Logout</button>
 		</div>

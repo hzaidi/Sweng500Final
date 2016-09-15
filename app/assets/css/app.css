@@ -42,7 +42,6 @@
   text-align: center;
 }
 .cmpt-login-sign-up {
-  background: #132a3b;
   height: calc(100vh - 40px);
 }
 .cmpt-login-sign-up .content {
@@ -128,6 +127,7 @@ body {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
+  background: #132a3b;
 }
 .input {
   display: inline-block;
