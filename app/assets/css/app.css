@@ -121,6 +121,11 @@
   border-left: 1px solid #fff;
   border-radius: 0;
 }
+.modal-create-org input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
+}
 body {
   margin: 0;
   font-family: 'Ropa Sans';
@@ -189,4 +194,38 @@ body {
 }
 .button.button-negative:hover {
   background-color: #d64e4e;
+}
+.dialog-popup .ngdialog-message > div {
+  margin: 0 1rem 1rem 1rem;
+}
+.dialog-popup .ngdialog-message .header {
+  font-size: 1.2rem;
+  color: #fff;
+  background: none repeat scroll 0% 0% #28597b;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0 0 1rem 0;
+  padding: 0.7rem 2.7rem 0.7rem 1rem;
+}
+.dialog-popup .ngdialog-message .content {
+  font-size: 1rem;
+}
+.dialog-popup .ngdialog-buttons a {
+  float: right;
+  margin-left: 5px;
+}
+.dialog-popup .ngdialog-buttons a.fl-link {
+  font-size: 14px;
+  margin: 6px 24px;
+  color: #404040;
+  cursor: pointer;
+}
+.dialog-popup .ngdialog-buttons a i {
+  margin-right: 5px;
+}
+.ngdialog-overlay {
+  background: rgba(0,0,0,0.6);
+}
+.ngdialog-close {
+  content: '\f05c';
 }

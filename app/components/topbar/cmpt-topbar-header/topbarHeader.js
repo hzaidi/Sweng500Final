@@ -9,13 +9,23 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, storageSvc, userRoleVal) {
+controller: function ($scope, $state, authSvc, storageSvc, organizationSvc, userRoleVal) {
 
 	var user = storageSvc.load({key: 'user'});
 	// View Model properties
 	var vm = $scope.vm = {
-		user: Object.assign({} , user, { userType: userRoleVal[user.userType] })
+		user: Object.assign({} , user, { userRole: userRoleVal[user.userRole] })
 	};
+
+
+	if(!vm.user.org){
+		organizationSvc.createOrgDialog().then(function(org){
+			console.log(org); 
+		},function(error){
+			toastHelp.error(error.message, 'Error');
+		});
+	}
+
 
 	authSvc.auth().$onAuthStateChanged(function(user){
 		if(!user) { $state.go('default'); }

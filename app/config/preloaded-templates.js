@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/routes/home/home.html', '/routes/login/login.html', '/global/modals/alert-html.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/routes/home/home.html', '/routes/login/login.html', '/global/modals/alert-html.html', '/global/modals/create-org.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -17,7 +17,7 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
 
 angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/topbar/cmpt-topbar-header/topbarHeader.html",
-    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userType }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
+    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userRole }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
 }]);
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
@@ -33,4 +33,9 @@ angular.module("/routes/login/login.html", []).run(["$templateCache", function($
 angular.module("/global/modals/alert-html.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/global/modals/alert-html.html",
     "<div class=\"dialog-popup modal-absr-alert-html\"><div class=ngdialog-message><div class=header>{{ngDialogData.header}}</div><div class=content ap-bind-html=ngDialogData.body></div></div><div class=ngdialog-buttons><a class=\"{{ button.cls }}\" ng-click=button.action() ng-repeat=\"button in ngDialogData.buttons\"><i class=\"fa fa-spinner fa-spin\" ng-if=!!button.loading></i>{{ button.title }}</a></div></div>");
+}]);
+
+angular.module("/global/modals/create-org.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/global/modals/create-org.html",
+    "<div class=\"dialog-popup modal-create-org\"><div class=ngdialog-message><div class=header>{{ngDialogData.header}}</div><div class=content><div><input class=input placeholder=Name ng-model=ngDialogData.org.orgName></div></div></div><div class=ngdialog-buttons><a class=\"fl-button {{ button.cls }}\" ng-click=button.action(ngDialogData.selectedId) ng-repeat=\"button in ngDialogData.buttons\"><i class=\"fa {{ button.icon }}\"></i> {{ button.title }}</a></div></div>");
 }]);

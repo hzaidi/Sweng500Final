@@ -14,10 +14,12 @@
 
 		var _user = function(user = null){
 			return {
+				id: (user === null) ? null : user.$id,
 				firstName: (user === null) ? null : user.firstName,
 				lastName: (user === null) ? null : user.lastName,
 				email: (user === null) ? null : user.email,
-				userType: (user === null) ? 0 : user.userType
+				userRole: (user === null) ? 0 : user.userRole,
+				org: (user === null) ? null : user.org
 			}
 		}
 
@@ -54,7 +56,7 @@
 
 
 		return {
-			userObj: () => { new _user(); },
+			userObj: () => { return new _user(); },
 			createUserAuthentication,
 			createUser,
 			getByKey

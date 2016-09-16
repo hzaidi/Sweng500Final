@@ -24,7 +24,7 @@
 					createUser: function createUser() {
 						userSvc.createUserAuthentication(vm.user).then(function (user) {
 							var uid = angular.copy(user.uid);
-							var newUser = Object.assign({}, vm.user, { uid: uid, userType: 1 });
+							var newUser = Object.assign({}, vm.user, { uid: uid, userRole: 1 });
 							userSvc.createUser(newUser).then(function (ref) {
 								toastHelp.success('User created successfully');
 								userSvc.getByKey(uid).then(function () {

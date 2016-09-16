@@ -1,0 +1,15 @@
+<div class="dialog-popup modal-create-org">
+	<div class="ngdialog-message">
+		<div class="header">{{ngDialogData.header}}</div>
+		<div class="content">
+      <div><input type="text" class="input" placeholder="Name" ng-model="ngDialogData.org.orgName"></div>
+		</div>
+	</div>
+	<div class="ngdialog-buttons">
+    <a class="fl-button {{ button.cls }}"
+      ng-click="button.action(ngDialogData.selectedId)"
+      ng-repeat="button in ngDialogData.buttons">
+      <i class="fa {{ button.icon }}"></i>
+    {{ button.title }}</a>
+	</div>
+</div>
