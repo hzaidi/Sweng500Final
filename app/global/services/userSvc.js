@@ -36,30 +36,26 @@
 		}
 
 		function getByKey(key) {
-			var _defer = $q.defer();
-			if(user) {
-				return $q.when(user);
-			}else{
-				var data = $firebaseObject(_userRef().child(key));
-				data.$loaded().then(function(user){
-					storageSvc.save({
-						key: 'user',
-						data: _user(user)
-					});
-					return _defer.resolve(user);
-				},function(error){
-					return _defer.reject(error);
-				});
-			}
-			return _defer.promise;
+			var data = $firebaseObject(_userRef().child(key));
+			return data.$loaded();
+		}
+
+		function updateUser(user) {
+			return user.$save();
+		}
+
+		function getLoggedInUser() {
+			return user;
 		}
 
 
 		return {
-			userObj: () => { return new _user(); },
+			userObj: (user = null) => { return new _user(user); },
 			createUserAuthentication,
 			createUser,
-			getByKey
+			updateUser,
+			getByKey,
+			getLoggedInUser
 		};
 
 	});

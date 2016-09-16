@@ -9,9 +9,9 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, storageSvc, organizationSvc, userRoleVal) {
+controller: function ($scope, $state, authSvc, storageSvc, userSvc, organizationSvc, userRoleVal, toastHelp) {
 
-	var user = storageSvc.load({key: 'user'});
+	var user = userSvc.getLoggedInUser();
 	// View Model properties
 	var vm = $scope.vm = {
 		user: Object.assign({} , user, { userRole: userRoleVal[user.userRole] })
@@ -20,7 +20,17 @@ controller: function ($scope, $state, authSvc, storageSvc, organizationSvc, user
 
 	if(!vm.user.org){
 		organizationSvc.createOrgDialog().then(function(org){
-			console.log(org); 
+			userSvc.getByKey(vm.user.id).then(function(user){
+				user.org = org;
+				userSvc.updateUser(user).then(function(){
+					storageSvc.save({ key: 'user',data: userSvc.userObj(user)	});
+					toastHelp.success('Organizaiton is created', 'Success');
+				},function(error){
+					toastHelp.error(error.message, 'Error');
+				})
+			},function(error){
+				toastHelp.error(error.message, 'Error');
+			})
 		},function(error){
 			toastHelp.error(error.message, 'Error');
 		});
