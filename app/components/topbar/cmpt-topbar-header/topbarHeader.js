@@ -44,6 +44,7 @@ controller: function ($scope, $state, authSvc, storageSvc, userSvc, organization
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		logout: function () {
+			sessionStorage.clear();
 			authSvc.logout();
 		}
 	};
