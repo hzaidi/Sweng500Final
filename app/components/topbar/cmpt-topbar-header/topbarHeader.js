@@ -9,11 +9,12 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, storageSvc, userSvc, organizationSvc, userRoleVal, toastHelp) {
+controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRoleVal, toastHelp) {
 
-	var user = userSvc.getLoggedInUser();
+	var user = userSvc.userObj($scope.user);
 	// View Model properties
 	var vm = $scope.vm = {
+		org: null,
 		user: Object.assign({} , user, { userRole: userRoleVal[user.userRole] })
 	};
 
@@ -23,7 +24,6 @@ controller: function ($scope, $state, authSvc, storageSvc, userSvc, organization
 			userSvc.getByKey(vm.user.id).then(function(user){
 				user.org = org;
 				userSvc.updateUser(user).then(function(){
-					storageSvc.save({ key: 'user',data: userSvc.userObj(user)	});
 					toastHelp.success('Organizaiton is created', 'Success');
 				},function(error){
 					toastHelp.error(error.message, 'Error');
@@ -34,6 +34,8 @@ controller: function ($scope, $state, authSvc, storageSvc, userSvc, organization
 		},function(error){
 			toastHelp.error(error.message, 'Error');
 		});
+	}else{
+		vm.org = vm.user.org;
 	}
 
 
@@ -46,6 +48,9 @@ controller: function ($scope, $state, authSvc, storageSvc, userSvc, organization
 		logout: function () {
 			sessionStorage.clear();
 			authSvc.logout();
+		},
+		home: function(){
+			$state.go('home');
 		}
 	};
 }

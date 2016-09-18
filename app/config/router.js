@@ -11,9 +11,30 @@
 				url: '/home',
 				templateUrl: '/routes/home/home.html',
 				resolve:{
-					currentAuth: function(authSvc){
-						return authSvc.auth().$requireSignIn();
+					currentAuth: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							var user = authSvc.auth().$getAuth();
+							return userSvc.getByKey(user.uid);
+						});
 					}
+				},
+				controller: function($scope, currentAuth){
+					$scope.user = currentAuth;
+				}
+			})
+			.state('organization', {
+				url: '/organization',
+				templateUrl: '/routes/organization/organization.html',
+				resolve:{
+					currentAuth: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							var user = authSvc.auth().$getAuth();
+							return userSvc.getByKey(user.uid);
+						});
+					}
+				},
+				controller: function($scope, currentAuth){
+					$scope.user = currentAuth;
 				}
 			})
 			// ========================================================== //
@@ -29,7 +50,7 @@
 			if(toState.name === 'default'){
 				var user = authSvc.auth().$getAuth();
 				if(user) { $state.go('home'); }
-			}			
+			}
 		});
 
 	})

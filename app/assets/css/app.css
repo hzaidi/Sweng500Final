@@ -72,6 +72,38 @@
 .cmpt-login-sign-up .content .sign-up-form .two-side-by-side .input {
   width: 210px;
 }
+.cmpt-nav-menu {
+  display: inline-block;
+  width: 140px;
+  height: calc(100vh);
+  border-right: 1px solid #001322;
+}
+.cmpt-nav-menu ul a {
+  color: #fff;
+  text-decoration: none;
+}
+.cmpt-nav-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #001322;
+  color: #fff;
+  cursor: pointer;
+}
+.cmpt-nav-menu ul li i {
+  margin-right: 5px;
+}
+.cmpt-nav-menu ul li:hover {
+  background-color: #113148;
+}
+.cmpt-organization-details {
+  padding: 20px;
+}
+.cmpt-organization-details .title {
+  font-size: 20px;
+  color: #fff;
+}
+.cmpt-organization-details input {
+  width: 205px;
+}
 .cmpt-topbar-header {
   background-color: #113148;
   border-bottom: 1px solid #001322;
@@ -89,12 +121,20 @@
 .cmpt-topbar-header .left-content .cmpt-login-logo .fa-circle-thin {
   font-size: 70px;
   text-align: left;
+  width: 60px;
 }
 .cmpt-topbar-header .left-content .cmpt-login-logo .fa-group.one {
   font-size: 35px;
   top: 18px;
   text-align: left;
   left: 22px;
+  width: 40px;
+}
+.cmpt-topbar-header .left-content .org-name {
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  padding: 19px 88px;
 }
 .cmpt-topbar-header .right-content {
   text-align: right;
@@ -120,6 +160,9 @@
   height: 70px;
   border-left: 1px solid #fff;
   border-radius: 0;
+}
+.cmpt-topbar-header .right-content button:hover {
+  background-color: #132a3b;
 }
 .modal-create-org input {
   width: 100%;

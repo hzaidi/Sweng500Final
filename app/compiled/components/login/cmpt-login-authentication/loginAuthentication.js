@@ -12,12 +12,12 @@
 
 			// #-----------------------------------------------# //
 			// #---- Component (cmpt-login-authentication) ----# //
-			controller: function controller($scope, $state, authSvc, userSvc, storageSvc, toastHelp) {
+			controller: function controller($scope, $state, authSvc, userSvc, toastHelp) {
 
 				// View Model properties
 				var vm = $scope.vm = {
-					username: '',
-					password: ''
+					username: 'shumzaz@hotmail.com',
+					password: '123456'
 				};
 
 				// Actions that can be bound to from the view
@@ -25,7 +25,6 @@
 					login: function login() {
 						authSvc.login(vm.username, vm.password).then(function (user) {
 							userSvc.getByKey(user.uid).then(function (user) {
-								storageSvc.save({ key: 'user', data: userSvc.userObj(user) });
 								$state.go('home');
 							}, function (error) {
 								toastHelp.error(error.message, 'Error');

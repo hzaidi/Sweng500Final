@@ -9,12 +9,12 @@ templateUrl: '/components/login/cmpt-login-authentication/loginAuthentication.ht
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-login-authentication) ----# //
-controller: function ($scope, $state, authSvc, userSvc, storageSvc, toastHelp) {
+controller: function ($scope, $state, authSvc, userSvc, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		username: '',
-		password: ''
+		username: 'shumzaz@hotmail.com',
+		password: '123456'
 	};
 
 
@@ -23,7 +23,6 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc, toastHelp) {
 		login: function () {
 			authSvc.login(vm.username, vm.password).then(function(user){
 				userSvc.getByKey(user.uid).then(function(user){
-					storageSvc.save({ key: 'user',data: userSvc.userObj(user)	});
 					$state.go('home');
 				}, function(error){
 					toastHelp.error(error.message, 'Error');

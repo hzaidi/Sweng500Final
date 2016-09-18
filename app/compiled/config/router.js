@@ -12,9 +12,29 @@
 			url: '/home',
 			templateUrl: '/routes/home/home.html',
 			resolve: {
-				currentAuth: function currentAuth(authSvc) {
-					return authSvc.auth().$requireSignIn();
+				currentAuth: function currentAuth(authSvc, userSvc) {
+					return authSvc.auth().$requireSignIn().then(function () {
+						var user = authSvc.auth().$getAuth();
+						return userSvc.getByKey(user.uid);
+					});
 				}
+			},
+			controller: function controller($scope, currentAuth) {
+				$scope.user = currentAuth;
+			}
+		}).state('organization', {
+			url: '/organization',
+			templateUrl: '/routes/organization/organization.html',
+			resolve: {
+				currentAuth: function currentAuth(authSvc, userSvc) {
+					return authSvc.auth().$requireSignIn().then(function () {
+						var user = authSvc.auth().$getAuth();
+						return userSvc.getByKey(user.uid);
+					});
+				}
+			},
+			controller: function controller($scope, currentAuth) {
+				$scope.user = currentAuth;
 			}
 		});
 		// ========================================================== //

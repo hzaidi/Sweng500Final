@@ -5,7 +5,6 @@
 	app.factory('userSvc', function ($q, authSvc, storageSvc,$firebaseArray, $firebaseObject, toastHelp) {
 
 		var userRef = firebase.database().ref('/users');
-		var user = storageSvc.load({key: 'user'});
 
 		function _userRef(uid = null) {
 			if (uid === null) { return userRef; }
@@ -44,9 +43,6 @@
 			return user.$save();
 		}
 
-		function getLoggedInUser() {
-			return user;
-		}
 
 
 		return {
@@ -54,8 +50,7 @@
 			createUserAuthentication,
 			createUser,
 			updateUser,
-			getByKey,
-			getLoggedInUser
+			getByKey
 		};
 
 	});
