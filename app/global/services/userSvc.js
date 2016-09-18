@@ -43,6 +43,10 @@
 			return user.$save();
 		}
 
+		function getLoggedInUser(){
+			var user = authSvc.auth().$getAuth();
+			return getByKey(user.uid);
+		}
 
 
 		return {
@@ -50,7 +54,8 @@
 			createUserAuthentication,
 			createUser,
 			updateUser,
-			getByKey
+			getByKey,
+			getLoggedInUser
 		};
 
 	});

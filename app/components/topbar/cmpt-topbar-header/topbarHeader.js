@@ -21,7 +21,7 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 
 	if(!vm.user.org){
 		organizationSvc.createOrgDialog().then(function(org){
-			userSvc.getByKey(vm.user.id).then(function(user){
+			userSvc.getLoggedInUser().then(function(user){
 				user.org = org;
 				userSvc.updateUser(user).then(function(){
 					toastHelp.success('Organizaiton is created', 'Success');

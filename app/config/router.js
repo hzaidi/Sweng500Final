@@ -13,8 +13,7 @@
 				resolve:{
 					currentAuth: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
-							var user = authSvc.auth().$getAuth();
-							return userSvc.getByKey(user.uid);
+							return userSvc.getLoggedInUser();
 						});
 					}
 				},
@@ -28,8 +27,21 @@
 				resolve:{
 					currentAuth: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
-							var user = authSvc.auth().$getAuth();
-							return userSvc.getByKey(user.uid);
+							return userSvc.getLoggedInUser();
+						});
+					}
+				},
+				controller: function($scope, currentAuth){
+					$scope.user = currentAuth;
+				}
+			})
+			.state('team-list', {
+				url: '/team/list',
+				templateUrl: '/routes/team/list.html',
+				resolve:{
+					currentAuth: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							return userSvc.getLoggedInUser();
 						});
 					}
 				},

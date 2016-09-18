@@ -104,6 +104,17 @@
 .cmpt-organization-details input {
   width: 205px;
 }
+.cmpt-team-list {
+  padding: 20px;
+}
+.cmpt-team-list .no-data {
+  border: 2px dashed #0af;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  color: #0af;
+  font-weight: bold;
+}
 .cmpt-topbar-header {
   background-color: #113148;
   border-bottom: 1px solid #001322;
@@ -164,7 +175,19 @@
 .cmpt-topbar-header .right-content button:hover {
   background-color: #132a3b;
 }
+.cmpt-ui-loader {
+  color: #fff;
+  font-size: 20px;
+}
+.cmpt-ui-loader i {
+  margin-right: 5px;
+}
 .modal-create-org input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
+}
+.modal-team-org input {
   width: 100%;
   background: #fff;
   color: #113148;

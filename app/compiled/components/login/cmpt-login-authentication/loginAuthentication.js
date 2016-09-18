@@ -24,7 +24,7 @@
 				var go = $scope.go = {
 					login: function login() {
 						authSvc.login(vm.username, vm.password).then(function (user) {
-							userSvc.getByKey(user.uid).then(function (user) {
+							userSvc.getLoggedInUser().then(function (user) {
 								$state.go('home');
 							}, function (error) {
 								toastHelp.error(error.message, 'Error');

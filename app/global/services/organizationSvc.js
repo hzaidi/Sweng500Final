@@ -2,7 +2,7 @@
 
 	// #-------------------------------------# //
 	// #----- Service (organizationSvc) -----# //
-	app.factory('organizationSvc', function ($q,$firebaseArray, ngDialog, toastHelp) {
+	app.factory('organizationSvc', function ($q, $firebaseArray, $firebaseObject, userSvc, ngDialog, toastHelp) {
 
 		var orgRef = firebase.database().ref('/organizations');
 
@@ -21,6 +21,21 @@
 		function createOrg(org) {
 			var orgs = $firebaseArray(_orgRef());
 			return orgs.$add(org);
+		}
+
+		function getOrg() {
+			var _defer = $q.defer();
+			var user = userSvc.getLoggedInUser();
+			user.then(function(user){
+				var org = $firebaseObject(_orgRef(user.org.id));
+				org.$loaded().then(function(org){
+					_defer.resolve(org);
+				})
+			},function(error){
+				_defer.reject(error);
+			})
+
+			return _defer.promise;
 		}
 
 
@@ -57,7 +72,9 @@
 		}
 
 		return {
-			createOrgDialog
+			orgObj: (org = null) => { return new _org(org); },
+			createOrgDialog,
+			getOrg
 		};
 
 	});
