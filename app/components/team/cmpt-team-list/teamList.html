@@ -12,7 +12,14 @@
 				</thead>
 				<tbody ng-repeat="team in vm.teams">
 					<tr>
-						<td>{{ team.teamName }}</td>
+						<td>
+							<div>
+								{{ team.teamName }}
+							</div>
+							<div>
+								<input type="text" class="input" ng-model="team.teamName">
+							</div>
+						</td>
 						<td>
 							<button class="button button-positive"><i class="fa fa-pencil"></i></button>
 							<button class="button button-negative"><i class="fa fa-trash" aria-hidden="true"></i></button>

@@ -16,7 +16,8 @@
 
 				// View Model properties
 				var vm = $scope.vm = {
-					user: userSvc.userObj()
+					user: userSvc.userObj(),
+					confirmPassword: ''
 				};
 
 				// Actions that can be bound to from the view

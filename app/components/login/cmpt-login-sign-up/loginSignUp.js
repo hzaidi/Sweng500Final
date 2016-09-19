@@ -13,7 +13,8 @@ controller: function ($scope, $state, userSvc, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		user: userSvc.userObj()
+		user: userSvc.userObj(),
+		confirmPassword: ''
 	};
 
 
@@ -26,7 +27,7 @@ controller: function ($scope, $state, userSvc, toastHelp) {
 				var newUser = Object.assign({}, vm.user, { uid: uid, userRole: 1 });
 				userSvc.createUser(newUser).then(function(ref) {
 					toastHelp.success('User created successfully');
-					$state.go('home');					
+					$state.go('home');
 				}, function(error){
 					toastHelp.error(error.message, 'Error');
 				});
