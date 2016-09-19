@@ -1,0 +1,35 @@
+<div class="cmpt-team-list">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div><button class="button button-positive" ng-click="go.addTeam()">Add Team</button></div>
+		<div class="team-list" ng-show="vm.teams.length > 0">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="team in vm.teams">
+					<tr>
+						<td>
+							<div>
+								{{ team.teamName }}
+							</div>
+							<div>
+								<input type="text" class="input" ng-model="team.teamName">
+							</div>
+						</td>
+						<td>
+							<button class="button button-positive"><i class="fa fa-pencil"></i></button>
+							<button class="button button-negative"><i class="fa fa-trash" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="no-data" ng-show="vm.teams.length <= 0">
+			Create Teams
+		</div>
+	</div>
+</div>

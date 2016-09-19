@@ -3,8 +3,6 @@
 // #-------------------------# //
 // #------- LoginCtrl -------# //
 
-
-	
 	// this is a route controller
 	var route = this;
 

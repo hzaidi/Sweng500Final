@@ -10,4 +10,6 @@ Then run the following from your command line:
 
 `npm install`
 
-This is Sultan
+Then run
+
+`grunt dev`

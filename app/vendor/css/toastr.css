@@ -109,7 +109,7 @@ button.toast-close-button {
   border: 1px solid #E7E4E4;
 }
 #toast-container > div:before {
-  font-family: 'FL-Icons';
+  font-family: 'FontAwesome';
   font-size: 24px;
   font-weight: normal;
   font-style: normal;
@@ -239,4 +239,3 @@ button.toast-close-button {
     width: 25em;
   }
 }
-

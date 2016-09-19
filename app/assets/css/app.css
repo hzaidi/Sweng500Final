@@ -1,7 +1,7 @@
 .cmpt-login-authentication {
   background-color: #113148;
   border-bottom: 1px solid #001322;
-  min-height: 100px;
+  min-height: 70px;
 }
 .cmpt-login-authentication .content {
   margin: 0 auto;
@@ -42,7 +42,6 @@
   text-align: center;
 }
 .cmpt-login-sign-up {
-  background: #132a3b;
   height: calc(100vh - 40px);
 }
 .cmpt-login-sign-up .content {
@@ -52,7 +51,7 @@
   width: 980px;
 }
 .cmpt-login-sign-up .content .logo {
-  margin: 80px 0;
+  margin: 20px 0;
 }
 .cmpt-login-sign-up .content .sign-up-form > div {
   margin: 5px 0;
@@ -73,12 +72,158 @@
 .cmpt-login-sign-up .content .sign-up-form .two-side-by-side .input {
   width: 210px;
 }
+.cmpt-nav-menu {
+  display: inline-block;
+  width: 140px;
+  height: calc(100vh);
+  border-right: 1px solid #001322;
+}
+.cmpt-nav-menu ul a {
+  color: #fff;
+  text-decoration: none;
+}
+.cmpt-nav-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #001322;
+  color: #fff;
+  cursor: pointer;
+}
+.cmpt-nav-menu ul li i {
+  margin-right: 5px;
+}
+.cmpt-nav-menu ul li:hover {
+  background-color: #113148;
+}
+.cmpt-organization-details {
+  padding: 20px;
+}
+.cmpt-organization-details .title {
+  font-size: 20px;
+  color: #fff;
+}
+.cmpt-organization-details input {
+  width: 205px;
+}
+.cmpt-team-list {
+  padding: 20px;
+}
+.cmpt-team-list .no-data {
+  border: 2px dashed #0af;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  color: #0af;
+  font-weight: bold;
+}
+.cmpt-topbar-header {
+  background-color: #113148;
+  border-bottom: 1px solid #001322;
+  min-height: 70px;
+}
+.cmpt-topbar-header .left-content {
+  text-align: left;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo {
+  padding: 0 10px;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo i {
+  color: #19486a;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo .fa-circle-thin {
+  font-size: 70px;
+  text-align: left;
+  width: 60px;
+}
+.cmpt-topbar-header .left-content .cmpt-login-logo .fa-group.one {
+  font-size: 35px;
+  top: 18px;
+  text-align: left;
+  left: 22px;
+  width: 40px;
+}
+.cmpt-topbar-header .left-content .org-name {
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  padding: 19px 88px;
+}
+.cmpt-topbar-header .right-content {
+  text-align: right;
+}
+.cmpt-topbar-header .right-content > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+.cmpt-topbar-header .right-content > div .name {
+  padding: 0 12px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+.cmpt-topbar-header .right-content > div .type {
+  padding: 0 12px;
+  color: #fff;
+  font-size: 15px;
+}
+.cmpt-topbar-header .right-content button {
+  margin: 0;
+  background-color: transparent;
+  height: 70px;
+  border-left: 1px solid #fff;
+  border-radius: 0;
+}
+.cmpt-topbar-header .right-content button:hover {
+  background-color: #132a3b;
+}
+.cmpt-ui-loader {
+  color: #fff;
+  font-size: 20px;
+}
+.cmpt-ui-loader i {
+  margin-right: 5px;
+}
+.modal-create-org input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
+}
+.modal-team-org input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
+}
 body {
   margin: 0;
   font-family: 'Ropa Sans';
   height: 100%;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
+  background: #132a3b;
+}
+.table {
+  width: 100%;
+  color: #fff;
+  border: 1px solid #24506f;
+}
+.table th {
+  padding: 10px;
+  text-align: left;
+}
+.table td {
+  padding: 2px 10px;
+  text-align: left;
+}
+.table thead tr {
+  border: 1px solid #24506f;
+}
+.table thead tr th {
+  background-color: #28597b;
+}
+.table tbody tr {
+  border: 1px solid #24506f;
+}
+.table tbody tr:hover {
+  background-color: #1d3444;
 }
 .input {
   display: inline-block;
@@ -140,4 +285,38 @@ body {
 }
 .button.button-negative:hover {
   background-color: #d64e4e;
+}
+.dialog-popup .ngdialog-message > div {
+  margin: 0 1rem 1rem 1rem;
+}
+.dialog-popup .ngdialog-message .header {
+  font-size: 1.2rem;
+  color: #fff;
+  background: none repeat scroll 0% 0% #28597b;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0 0 1rem 0;
+  padding: 0.7rem 2.7rem 0.7rem 1rem;
+}
+.dialog-popup .ngdialog-message .content {
+  font-size: 1rem;
+}
+.dialog-popup .ngdialog-buttons a {
+  float: right;
+  margin-left: 5px;
+}
+.dialog-popup .ngdialog-buttons a.fl-link {
+  font-size: 14px;
+  margin: 6px 24px;
+  color: #404040;
+  cursor: pointer;
+}
+.dialog-popup .ngdialog-buttons a i {
+  margin-right: 5px;
+}
+.ngdialog-overlay {
+  background: rgba(0,0,0,0.6);
+}
+.ngdialog-close {
+  content: '\f05c';
 }
