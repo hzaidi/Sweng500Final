@@ -205,9 +205,12 @@ body {
   color: #fff;
   border: 1px solid #24506f;
 }
-.table th,
-.table td {
+.table th {
   padding: 10px;
+  text-align: left;
+}
+.table td {
+  padding: 2px 10px;
   text-align: left;
 }
 .table thead tr {
