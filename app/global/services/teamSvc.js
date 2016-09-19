@@ -5,6 +5,7 @@
 	app.factory('teamSvc', function ($q, $firebaseArray, organizationSvc, ngDialog) {
 
 		var teamRef = firebase.database().ref('/teams');
+		//var teamRefByOrg = teamRef.orderByChild('orgId');
 
 		function _teamRef(orgId = null) {
 			if (orgId === null) { return teamRef; }
@@ -24,7 +25,7 @@
 		}
 
 		function teamList(orgId) {
-			var teams = $firebaseArray(_teamRef(orgId));
+			var teams = $firebaseArray(_teamRef());
 			return teams.$loaded();
 		}
 
@@ -47,7 +48,7 @@
 						loading: false,
 						action: function(){
 							organizationSvc.getOrg().then(function(org){
-								team.org = organizationSvc.orgObj(org);
+								team.orgId = organizationSvc.orgObj(org).id;
 								createTeam(team).then(function(ref) {
 									ngDialog.close(dialog.id);
 									team.id = ref.key;

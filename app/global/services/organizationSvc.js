@@ -27,7 +27,7 @@
 			var _defer = $q.defer();
 			var user = userSvc.getLoggedInUser();
 			user.then(function(user){
-				var org = $firebaseObject(_orgRef(user.org.id));
+				var org = $firebaseObject(_orgRef(user.orgId));
 				org.$loaded().then(function(org){
 					_defer.resolve(org);
 				})
@@ -36,6 +36,11 @@
 			})
 
 			return _defer.promise;
+		}
+
+		function getByKey(key) {
+			var data = $firebaseObject(_orgRef().child(key));
+			return data.$loaded();
 		}
 
 
@@ -74,7 +79,8 @@
 		return {
 			orgObj: (org = null) => { return new _org(org); },
 			createOrgDialog,
-			getOrg
+			getOrg,
+			getByKey
 		};
 
 	});

@@ -14,15 +14,15 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 	var user = userSvc.userObj($scope.user);
 	// View Model properties
 	var vm = $scope.vm = {
-		org: null,
+		orgName: null,
 		user: Object.assign({} , user, { userRole: userRoleVal[user.userRole] })
 	};
 
 
-	if(!vm.user.org){
+	if(!vm.user.orgId){
 		organizationSvc.createOrgDialog().then(function(org){
 			userSvc.getLoggedInUser().then(function(user){
-				user.org = org;
+				user.orgId = org.id;
 				userSvc.updateUser(user).then(function(){
 					toastHelp.success('Organizaiton is created', 'Success');
 				},function(error){
@@ -35,7 +35,11 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 			toastHelp.error(error.message, 'Error');
 		});
 	}else{
-		vm.org = vm.user.org;
+		organizationSvc.getByKey(vm.user.orgId).then(function(org){
+			vm.orgName = organizationSvc.orgObj(org).orgName;			
+		},function(error){
+			toastHelp.error(error.message, 'Error');
+		})
 	}
 
 
