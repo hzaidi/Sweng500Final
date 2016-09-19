@@ -200,6 +200,28 @@ body {
   overflow: hidden;
   background: #132a3b;
 }
+.table {
+  width: 100%;
+  color: #fff;
+  border: 1px solid #24506f;
+}
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+}
+.table thead tr {
+  border: 1px solid #24506f;
+}
+.table thead tr th {
+  background-color: #28597b;
+}
+.table tbody tr {
+  border: 1px solid #24506f;
+}
+.table tbody tr:hover {
+  background-color: #1d3444;
+}
 .input {
   display: inline-block;
   padding: 6px 12px;

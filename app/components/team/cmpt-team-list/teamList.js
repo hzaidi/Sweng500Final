@@ -9,7 +9,7 @@ templateUrl: '/components/team/cmpt-team-list/teamList.html',
 
 // #------------------------------------# //
 // #---- Component (cmpt-team-list) ----# //
-controller: function ($scope, teamSvc, toastHelp) {
+controller: function ($scope, teamSvc, userSvc, toastHelp) {
 
 
 
@@ -19,14 +19,18 @@ controller: function ($scope, teamSvc, toastHelp) {
 		teams: []
 	};
 
-
-	teamSvc.teamList().then(function(teams){
-		vm.isLoading = false;
-		vm.teams = teams;
-		console.log(teams);
+	userSvc.getLoggedInUser().then(function(user){
+		teamSvc.teamList(user.orgId).then(function(teams){
+			vm.isLoading = false;
+			vm.teams = teams;
+			console.log(teams);
+		}, function(error){
+			toastHelp.error(error.message,'Error');
+		});
 	}, function(error){
 		toastHelp.error(error.message,'Error');
 	})
+
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {

@@ -16,6 +16,36 @@ body {
 }
 
 
+.table{
+	width: 100%;
+	color:$ap-light-grey-4;
+	border: 1px solid darken($default-button-bg,10%);
+	th, td{
+		padding: 10px;
+		text-align: left;
+	}
+	thead{
+		tr{
+			border: 1px solid darken($default-button-bg,10%);
+			th{
+				background-color: $default-button-bg;
+			}
+		}
+	}
+	tbody{
+		tr{
+			border: 1px solid darken($default-button-bg,10%);
+
+				&:hover{
+					background-color: #1d3444;
+				}
+
+		}
+	}
+
+}
+
+
 .input{
 	display: inline-block;
 	padding: 6px 12px;
