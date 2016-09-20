@@ -41,6 +41,12 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 			}, function(error){
 				toastHelp.error(error.message,'Error');
 			})
+		},
+		toggleMode: function(team){
+			team.isEditing = !team.isEditing;
+		},
+		save: function(team){
+			vm.teams.$save(team);
 		}
 	};
 }

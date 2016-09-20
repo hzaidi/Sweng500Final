@@ -13,16 +13,18 @@
 				<tbody ng-repeat="team in vm.teams">
 					<tr>
 						<td>
-							<div>
+							<div class="team-name" ng-show="!team.isEditing">
 								{{ team.teamName }}
 							</div>
-							<div>
+							<div  class="team-name" ng-show="team.isEditing">
 								<input type="text" class="input" ng-model="team.teamName">
 							</div>
 						</td>
 						<td>
-							<button class="button button-positive"><i class="fa fa-pencil"></i></button>
-							<button class="button button-negative"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							<button ng-show="!team.isEditing" class="button button-positive" ng-click="go.toggleMode(team)"><i class="fa fa-pencil"></i></button>
+							<button ng-show="!team.isEditing" class="button button-negative"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							<button ng-show="team.isEditing" class="button button-positive" ng-click="go.save(team)"><i class="fa fa-check"></i></button>
+							<button ng-show="team.isEditing" class="button button-negative" ng-click="go.toggleMode(team)"><i class="fa fa-times" aria-hidden="true"></i></button>
 						</td>
 					</tr>
 				</tbody>

@@ -115,6 +115,13 @@
   color: #0af;
   font-weight: bold;
 }
+.cmpt-team-list .table .team-name {
+  display: inline-block;
+  width: 400px;
+}
+.cmpt-team-list .table .team-name input {
+  width: 400px;
+}
 .cmpt-topbar-header {
   background-color: #113148;
   border-bottom: 1px solid #001322;

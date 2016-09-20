@@ -24,6 +24,7 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 			userSvc.getLoggedInUser().then(function(user){
 				user.orgId = org.id;
 				userSvc.updateUser(user).then(function(){
+					updateOrgName(org.orgName);
 					toastHelp.success('Organizaiton is created', 'Success');
 				},function(error){
 					toastHelp.error(error.message, 'Error');
@@ -36,10 +37,15 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 		});
 	}else{
 		organizationSvc.getByKey(vm.user.orgId).then(function(org){
-			vm.orgName = organizationSvc.orgObj(org).orgName;			
+			updateOrgName(organizationSvc.orgObj(org).orgName);
 		},function(error){
 			toastHelp.error(error.message, 'Error');
 		})
+	}
+
+
+	function updateOrgName(orgName) {
+		vm.orgName = orgName;
 	}
 
 
