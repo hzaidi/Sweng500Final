@@ -23,7 +23,6 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 		teamSvc.teamList(user.orgId).then(function(teams){
 			vm.isLoading = false;
 			vm.teams = teams;
-			console.log(teams);
 		}, function(error){
 			toastHelp.error(error.message,'Error');
 		});
@@ -35,7 +34,6 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		addTeam: function () {
-			console.log('clicked');
 			teamSvc.createTeamDialog().then(function(team){
 				console.log(team);
 			}, function(error){
@@ -45,8 +43,22 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 		toggleMode: function(team){
 			team.isEditing = !team.isEditing;
 		},
+		cancel: function(team){
+			teamSvc.getByKey(team.$id).then(function(teamData){
+				team.teamName = teamData.teamName;
+				go.toggleMode(team);
+			},function(error){
+				toastHelp.error(error.message,'Error');
+			})
+		},
 		save: function(team){
+			go.toggleMode(team);
+			delete team.isEditing;
 			vm.teams.$save(team);
+		},
+		delete: function(team){
+			toastHelp.success(`${team.teamName} team has been removed`,'Success');
+			vm.teams.$remove(team);
 		}
 	};
 }

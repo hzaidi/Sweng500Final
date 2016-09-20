@@ -2,13 +2,14 @@
 
 	// #-----------------------------# //
 	// #----- Service (teamSvc) -----# //
-	app.factory('teamSvc', function ($q, $firebaseArray, organizationSvc, ngDialog) {
+	app.factory('teamSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, ngDialog) {
 
 		var teamRef = firebase.database().ref('/teams');
 		var teamRefByOrg = teamRef.orderByChild('orgId');
 
-		function _teamRef() {
-			return teamRef;
+		function _teamRef(uid) {
+			if (uid === null) { return teamRef; }
+			return teamRef.child(uid);
 		}
 
 		function _teamRefByOrg(orgId) {
@@ -30,6 +31,11 @@
 		function teamList(orgId) {
 			var teams = $firebaseArray(_teamRefByOrg(orgId));
 			return teams.$loaded();
+		}
+
+		function getByKey(key) {
+			var data = $firebaseObject(_teamRef(key));
+			return data.$loaded();
 		}
 
 		function createTeamDialog() {
@@ -73,7 +79,8 @@
 		return {
 			createTeam,
 			teamList,
-			createTeamDialog
+			createTeamDialog,
+			getByKey
 		};
 
 	});

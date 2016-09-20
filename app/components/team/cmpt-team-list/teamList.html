@@ -22,9 +22,9 @@
 						</td>
 						<td>
 							<button ng-show="!team.isEditing" class="button button-positive" ng-click="go.toggleMode(team)"><i class="fa fa-pencil"></i></button>
-							<button ng-show="!team.isEditing" class="button button-negative"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							<button ng-show="!team.isEditing" class="button button-negative" ng-click="go.delete(team)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 							<button ng-show="team.isEditing" class="button button-positive" ng-click="go.save(team)"><i class="fa fa-check"></i></button>
-							<button ng-show="team.isEditing" class="button button-negative" ng-click="go.toggleMode(team)"><i class="fa fa-times" aria-hidden="true"></i></button>
+							<button ng-show="team.isEditing" class="button button-negative" ng-click="go.cancel(team)"><i class="fa fa-times" aria-hidden="true"></i></button>
 						</td>
 					</tr>
 				</tbody>
