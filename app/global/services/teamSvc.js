@@ -7,7 +7,7 @@
 		var teamRef = firebase.database().ref('/teams');
 		var teamRefByOrg = teamRef.orderByChild('orgId');
 
-		function _teamRef(uid) {
+		function _teamRef(uid = null) {
 			if (uid === null) { return teamRef; }
 			return teamRef.child(uid);
 		}

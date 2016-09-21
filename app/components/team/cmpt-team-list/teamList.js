@@ -35,7 +35,6 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 	var go = $scope.go = {
 		addTeam: function () {
 			teamSvc.createTeamDialog().then(function(team){
-				console.log(team);
 			}, function(error){
 				toastHelp.error(error.message,'Error');
 			})
