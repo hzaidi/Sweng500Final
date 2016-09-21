@@ -49,6 +49,20 @@
 					$scope.user = currentAuth;
 				}
 			})
+			.state('scrum-master-list', {
+				url: '/users/list',
+				templateUrl: '/routes/users/scrum-masters.html',
+				resolve:{
+					currentAuth: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							return userSvc.getLoggedInUser();
+						});
+					}
+				},
+				controller: function($scope, currentAuth){
+					$scope.user = currentAuth;
+				}
+			})
 			// ========================================================== //
 	}).run(function($rootScope, $state, authSvc, toastHelp){
 		$rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error){

@@ -1,0 +1,29 @@
+<div class="cmpt-users-list">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div><button class="button button-positive" ng-click="go.addUser()"><i class="fa fa-plus" aria-hidden="true"></i>Add User</button></div>
+		<div class="team-list" ng-show="vm.users.length > 0">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="user in vm.users">
+					<tr>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="no-data" ng-show="vm.users.length <= 0">
+			Create Users
+		</div>
+	</div>
+</div>

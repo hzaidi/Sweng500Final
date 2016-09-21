@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/routes/home/home.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/team/list.html', '/global/modals/alert-html.html', '/global/modals/create-org.html', '/global/modals/create-team.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/users/cmpt-users-list/usersList.html', '/routes/home/home.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-org.html', '/global/modals/create-team.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -17,17 +17,17 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
 
 angular.module("/components/nav/cmpt-nav-menu/navMenu.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/nav/cmpt-nav-menu/navMenu.html",
-    "<div class=cmpt-nav-menu><ul><a href=/#/organization><li><i class=\"fa fa-sitemap\" aria-hidden=true></i>Organization</li></a> <a href=/#/team/list><li><i class=\"fa fa-users\" aria-hidden=true></i>Teams</li></a></ul></div>");
+    "<div class=cmpt-nav-menu><ul><a href=/#/organization><li><i class=\"fa fa-sitemap\" aria-hidden=true></i>Organization</li></a> <a href=/#/team/list><li><i class=\"fa fa-users\" aria-hidden=true></i>Teams</li></a> <a href=/#/users/list><li><i class=\"fa fa-user\" aria-hidden=true></i>Users</li></a></ul></div>");
 }]);
 
 angular.module("/components/organization/cmpt-organization-details/organizationDetails.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/organization/cmpt-organization-details/organizationDetails.html",
-    "<div class=cmpt-organization-details><div class=title>Organization Detail</div><div><input class=input placeholder=Name name=name ng-model=vm.org.orgName></div><div><button class=\"button button-positive\" ng-click=go.updateOrg()>Update</button></div></div>");
+    "<div class=cmpt-organization-details><div class=title>Organization Detail</div><div><input class=input placeholder=Name name=name ng-model=vm.org.orgName></div><div><button class=\"button button-positive\" ng-click=go.updateOrg()><i class=\"fa fa-check\" aria-hidden=true></i>Update</button></div></div>");
 }]);
 
 angular.module("/components/team/cmpt-team-list/teamList.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/team/cmpt-team-list/teamList.html",
-    "<div class=cmpt-team-list><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><div><button class=\"button button-positive\" ng-click=go.addTeam()>Add Team</button></div><div class=team-list ng-show=\"vm.teams.length > 0\"><table class=table><thead><tr><th>Name</th><th>Action</th></tr></thead><tbody ng-repeat=\"team in vm.teams\"><tr><td><div class=team-name ng-show=!team.isEditing>{{ team.teamName }}</div><div class=team-name ng-show=team.isEditing><input class=input ng-model=team.teamName></div></td><td><button ng-show=!team.isEditing class=\"button button-positive\" ng-click=go.toggleMode(team)><i class=\"fa fa-pencil\"></i></button> <button ng-show=!team.isEditing class=\"button button-negative\" ng-click=go.delete(team)><i class=\"fa fa-trash\" aria-hidden=true></i></button> <button ng-show=team.isEditing class=\"button button-positive\" ng-click=go.save(team)><i class=\"fa fa-check\"></i></button> <button ng-show=team.isEditing class=\"button button-negative\" ng-click=go.cancel(team)><i class=\"fa fa-times\" aria-hidden=true></i></button></td></tr></tbody></table></div><div class=no-data ng-show=\"vm.teams.length <= 0\">Create Teams</div></div></div>");
+    "<div class=cmpt-team-list><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><div><button class=\"button button-primary\" ng-click=go.addTeam()><i class=\"fa fa-plus\" aria-hidden=true></i>Add Team</button></div><div class=team-list ng-show=\"vm.teams.length > 0\"><table class=table><thead><tr><th>Name</th><th>Action</th></tr></thead><tbody ng-repeat=\"team in vm.teams\"><tr><td><div class=team-name ng-show=!team.isEditing>{{ team.teamName }}</div><div class=team-name ng-show=team.isEditing><input class=input ng-model=team.teamName></div></td><td><button ng-show=!team.isEditing class=\"button button-positive\" ng-click=go.toggleMode(team)><i class=\"fa fa-pencil\"></i></button> <button ng-show=!team.isEditing class=\"button button-negative\" ng-click=go.delete(team)><i class=\"fa fa-trash\" aria-hidden=true></i></button> <button ng-show=team.isEditing class=\"button button-positive\" ng-click=go.save(team)><i class=\"fa fa-check\"></i></button> <button ng-show=team.isEditing class=\"button button-negative\" ng-click=go.cancel(team)><i class=\"fa fa-times\" aria-hidden=true></i></button></td></tr></tbody></table></div><div class=no-data ng-show=\"vm.teams.length <= 0\">Create Teams</div></div></div>");
 }]);
 
 angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
@@ -38,6 +38,11 @@ angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).ru
 angular.module("/components/ui/cmpt-ui-loader/uiLoader.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-loader/uiLoader.html",
     "<div class=cmpt-ui-loader><div class=loader><i class=\"fa fa-spinner fa-spin\" aria-hidden=true></i>Loading...</div></div>");
+}]);
+
+angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/users/cmpt-users-list/usersList.html",
+    "<div class=cmpt-users-list><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><div><button class=\"button button-positive\" ng-click=go.addUser()><i class=\"fa fa-plus\" aria-hidden=true></i>Add User</button></div><div class=team-list ng-show=\"vm.users.length > 0\"><table class=table><thead><tr><th>Name</th><th>Action</th></tr></thead><tbody ng-repeat=\"user in vm.users\"><tr><td></td><td></td></tr></tbody></table></div><div class=no-data ng-show=\"vm.users.length <= 0\">Create Users</div></div></div>");
 }]);
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
@@ -58,6 +63,11 @@ angular.module("/routes/organization/organization.html", []).run(["$templateCach
 angular.module("/routes/team/list.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/team/list.html",
     "<div class=route-team-list ng-controller=\"ListCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu></cmpt-nav-menu><cmpt-team-list class=-u-12-24></cmpt-team-list></div></div>");
+}]);
+
+angular.module("/routes/users/scrum-masters.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/routes/users/scrum-masters.html",
+    "<div class=route-users-scrum-masters ng-controller=\"ScrumMastersCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu></cmpt-nav-menu><cmpt-users-list class=-u-12-24></cmpt-users-list></div></div>");
 }]);
 
 angular.module("/global/modals/alert-html.html", []).run(["$templateCache", function($templateCache) {

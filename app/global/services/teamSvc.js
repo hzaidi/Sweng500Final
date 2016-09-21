@@ -69,6 +69,14 @@
 								return _defer.reject(error);
 							})
 						}
+					},{
+						title: 'Cancel',
+						cls: 'button button-default',
+						icon: 'fa-times',
+						loading: false,
+						action: function(){
+							ngDialog.close(dialog.id);
+						}
 					}]
 				}
 			});
