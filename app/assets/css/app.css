@@ -218,6 +218,9 @@ body {
   overflow: hidden;
   background: #132a3b;
 }
+*:focus {
+  outline: none;
+}
 .table {
   width: 100%;
   color: #fff;
@@ -289,6 +292,11 @@ body {
 .button:hover {
   background-color: #24506f;
 }
+.button:disabled {
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+}
 .button.button-positive {
   background-color: #00c7c3;
 }
@@ -346,4 +354,90 @@ body {
 }
 .ngdialog-close {
   content: '\f05c';
+}
+.input-container {
+  position: relative;
+}
+.input-container input.ng-invalid.ng-touched {
+  border: 1px solid #d95b5b;
+}
+.input-container input[disabled] {
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+}
+.input-container .validation-messages {
+  font-size: 13px;
+  font-weight: 600;
+  background: #d95b5b;
+  color: #fff;
+  padding: 10px;
+  margin-top: 1px;
+  position: absolute;
+  z-index: 1;
+  -webkit-box-shadow: 0 2px 4px boxShadow;
+  box-shadow: 0 2px 4px boxShadow;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  text-align: left;
+  border-radius: 2px;
+  -webkit-transition: all 160ms ease-in-out;
+  -moz-transition: all 160ms ease-in-out;
+  -o-transition: all 160ms ease-in-out;
+  -ms-transition: all 160ms ease-in-out;
+  transition: all 160ms ease-in-out;
+  -webkit-transition: all 160ms ease-in-out;
+  pointer-events: none; /* This will probably go away */
+}
+.input-container .validation-messages.ng-active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  overflow: visible;
+}
+.input-container .validation-messages .placeholder {
+  display: block;
+}
+.input-container .validation-messages.between {
+  position: absolute;
+  top: -35px;
+  right: -233px;
+}
+.input-container .validation-messages.between.invalid {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  right: -233px;
+}
+.input-container .validation-messages::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  top: 3px;
+  left: -10px;
+  -webkit-filter: blur(0.4px);
+  -moz-filter: blur(0.4px);
+  -ms-filter: blur(0.4px);
+  -o-filter: blur(0.4px);
+  filter: blur(0.4px);
+}
+.input-container .validation-messages::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-bottom: 12px solid #d95b5b;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  top: -7px;
+  left: 1px;
 }

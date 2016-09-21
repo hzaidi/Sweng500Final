@@ -15,6 +15,9 @@ body {
 	background: $baseColorLight;
 }
 
+*:focus {
+    outline: none;
+}
 
 .table{
 	width: 100%;
@@ -92,6 +95,10 @@ body {
 	}
 	&:hover {
 		background-color: darken($default-button-bg, 10%);
+	}
+
+	&:disabled{
+		opacity: 0.3;
 	}
 
 	&.button-positive {

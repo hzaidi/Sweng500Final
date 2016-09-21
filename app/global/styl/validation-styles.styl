@@ -1,0 +1,77 @@
+@import "variables.styl"
+.input-container{
+  position:relative;
+  input.ng-invalid.ng-touched {
+    border:1px solid $mediumRed;
+	}
+  input[disabled] {
+      opacity:0.3;
+  }
+  .validation-messages {
+    font-size: 13px;
+    font-weight: 600;
+    background: $mediumRed;
+    color: $ap-light-grey-4;
+    padding: 10px;
+    margin-top:1px;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 2px 4px boxShadow;
+    opacity: 0;
+    text-align: left;
+    border-radius: 2px;
+    transition: all 160ms ease-in-out;
+    -webkit-transition: all 160ms ease-in-out;
+    pointer-events: none;  /* This will probably go away */
+  }
+  .validation-messages.ng-active {
+    opacity: 1;
+    overflow: visible;
+  }
+  .validation-messages .placeholder {
+    display: block;
+  }
+
+  .validation-messages.between {
+    position: absolute;
+    top: -35px;
+    right: -233px;
+  }
+
+  .validation-messages.between.invalid {
+      opacity: 1;
+      right: -233px;
+  }
+
+  .validation-messages::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 17px solid transparent;
+      border-bottom: 17px solid transparent;
+      opacity: .4;
+      top: 3px;
+      left: -10px;
+      -webkit-filter: blur(.4px);
+      -moz-filter: blur(.4px);
+      -ms-filter: blur(.4px);
+      -o-filter: blur(.4px);
+      filter: blur(.4px);
+  }
+
+  .validation-messages::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-bottom: 12px solid $mediumRed;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      top: -7px;
+      left: 1px;
+  }
+
+}
