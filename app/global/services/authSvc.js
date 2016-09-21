@@ -21,12 +21,16 @@
 			return $firebaseAuth().$signOut();
 		}
 
+		const passwordResetEmail = function(email){
+			return $firebaseAuth().$sendPasswordResetEmail(email);
+		}
 
 		return {
 			auth: () => { return $firebaseAuth(); },
 			login,
 			logout,
-			createUser
+			createUser,
+			passwordResetEmail
 		}
 
 	});

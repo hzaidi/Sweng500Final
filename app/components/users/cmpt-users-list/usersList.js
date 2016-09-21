@@ -20,7 +20,10 @@ controller: function ($scope, userSvc, toastHelp) {
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		addUser: function () {
-			vm.property = 'something';
+			userSvc.createUserDialog().then(function(user){
+			}, function(error){
+				toastHelp.error(error.message,'Error');
+			})
 		},
 		toggleMode: function(team){
 

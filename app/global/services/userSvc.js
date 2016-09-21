@@ -2,7 +2,7 @@
 
 	// #-----------------------------# //
 	// #----- Service (userSvc) -----# //
-	app.factory('userSvc', function ($q, authSvc, storageSvc,$firebaseArray, $firebaseObject, toastHelp) {
+	app.factory('userSvc', function ($q, ngDialog, authSvc, storageSvc,$firebaseArray, $firebaseObject, toastHelp) {
 
 		var userRef = firebase.database().ref('/users');
 
@@ -49,13 +49,63 @@
 		}
 
 
+
+
+		function createUserDialog() {
+			var _defer = $q.defer();
+
+			var userModel = 	Object.assign({}, new _user(), { password: '123456'});
+
+			var dialog = ngDialog.open({
+				template: '/global/modals/create-user.html',
+				closeByDocument: false,
+				showClose: false,
+				closeByEscape: false,
+				closeByNavigation: false,
+				data: {
+					header: 'User Details',
+					user: userModel,
+					buttons: [{
+						title: 'Send Invitation',
+						cls: 'button',
+						icon: 'fa fa-check',
+						loading: false,
+						action: function(){
+							createUserAuthentication(userModel).then(function(user){
+								authSvc.passwordResetEmail(userModel.email).then(function(){
+									var uid = angular.copy(user.uid);
+									var newUser = Object.assign({}, userModel, { uid: uid, userRole: 2 });
+									createUser(newUser).then(function(ref){
+										ngDialog.close(dialog.id);
+										_defer.resolve();
+									}, function(error){
+										ngDialog.close(dialog.id);
+										_defer.reject(error)
+									})
+								}, function(error){
+									ngDialog.close(dialog.id);
+									_defer.reject(error)
+								})
+							},function(error){
+								ngDialog.close(dialog.id);
+								_defer.reject(error)
+							});
+						}
+					}]
+				}
+			});
+			return _defer.promise;
+		}
+
+
 		return {
 			userObj: (user = null) => { return new _user(user); },
 			createUserAuthentication,
 			createUser,
 			updateUser,
 			getByKey,
-			getLoggedInUser
+			getLoggedInUser,
+			createUserDialog
 		};
 
 	});
