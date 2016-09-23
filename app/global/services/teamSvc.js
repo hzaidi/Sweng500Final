@@ -2,7 +2,7 @@
 
 	// #-----------------------------# //
 	// #----- Service (teamSvc) -----# //
-	app.factory('teamSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, storageSvc, ngDialog) {
+	app.factory('teamSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, storageSvc, userSvc, ngDialog) {
 
 		var teamRef = firebase.database().ref('/teams');
 		var teamRefByOrg = teamRef.orderByChild('orgId');
@@ -25,7 +25,8 @@
 		var _team = function(team = null){
 			return {
 				id: (team === null) ? null : team.$id,
-				teamName: (team === null) ? null : team.teamName
+				teamName: (team === null) ? null : team.teamName,
+				ownerId:  (team === null) ? null : team.ownerId,
 			}
 		}
 
@@ -55,41 +56,47 @@
 		function createTeamDialog() {
 			var _defer = $q.defer();
 			var team = new _team();
-			var dialog = ngDialog.open({
-				template: '/global/modals/create-team.html',
-				closeByDocument: false,
-				showClose: false,
-				closeByEscape: false,
-				closeByNavigation: false,
-				data: {
-					header: 'Team Details',
-					team: team,
-					buttons: [{
-						title: 'Save',
-						cls: 'button',
-						icon: 'fa fa-check',
-						loading: false,
-						action: function(){
-							team.orgId = ctx.orgId;
-							createTeam(team).then(function(ref) {
+			var users = userSvc.userList().then(function(users){
+				console.log(users);
+				var dialog = ngDialog.open({
+					template: '/global/modals/create-team.html',
+					closeByDocument: false,
+					showClose: false,
+					closeByEscape: false,
+					closeByNavigation: false,
+					data: {
+						header: 'Team Details',
+						team: team,
+						users: users,
+						buttons: [{
+							title: 'Save',
+							cls: 'button',
+							icon: 'fa fa-check',
+							loading: false,
+							action: function(){
+								team.orgId = ctx.orgId;
+								createTeam(team).then(function(ref) {
+									ngDialog.close(dialog.id);
+									team.id = ref.key;
+									return _defer.resolve(team);
+								},function(error) {
+									return _defer.reject(error);
+								});
+							}
+						},{
+							title: 'Cancel',
+							cls: 'button button-default',
+							icon: 'fa-times',
+							loading: false,
+							action: function(){
 								ngDialog.close(dialog.id);
-								team.id = ref.key;
-								return _defer.resolve(team);
-							},function(error) {
-								return _defer.reject(error);
-							});
-						}
-					},{
-						title: 'Cancel',
-						cls: 'button button-default',
-						icon: 'fa-times',
-						loading: false,
-						action: function(){
-							ngDialog.close(dialog.id);
-						}
-					}]
-				}
-			});
+							}
+						}]
+					}
+				});
+			}).catch(function(error) {
+				_defer.reject(error);
+			})
 			return _defer.promise;
 		}
 

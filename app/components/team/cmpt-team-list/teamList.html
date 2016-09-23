@@ -23,14 +23,7 @@
 							</div>
 						</td>
 						<td>
-							<div class="dropdown dropdown-dark">
-								<select class="dropdown-select">
-									<option value="volvo">Volvo</option>
-									<option value="saab">Saab</option>
-									<option value="mercedes">Mercedes</option>
-									<option value="audi">Audi</option>
-								</select>
-							</div>
+							Owner Id:: {{ team.ownerId }}
 						</td>
 						<td>
 							<button ng-show="!team.isEditing" class="button button-positive" ng-click="go.toggleMode(team)"><i class="fa fa-pencil"></i></button>

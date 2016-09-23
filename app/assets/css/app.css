@@ -348,7 +348,7 @@ h1 {
   position: relative;
   overflow: hidden;
   height: 28px;
-  width: 150px;
+  width: 100%;
   background: #c8c8c8;
   border: 1px solid;
   border-color: #bababa #a7a7a7 #959595;
@@ -401,7 +401,7 @@ h1 {
 }
 .dropdown-select {
   position: relative;
-  width: 130%;
+  width: 100%;
   margin: 0;
   padding: 6px 8px 6px 10px;
   height: 28px;

@@ -4,11 +4,8 @@
     <div class="content">
       <div><input type="text" class="input" placeholder="Name" ng-model="ngDialogData.team.teamName"></div>
 			<div class="dropdown">
-				<select class="dropdown-select">
-				  <option value="volvo">Volvo</option>
-				  <option value="saab">Saab</option>
-				  <option value="mercedes">Mercedes</option>
-				  <option value="audi">Audi</option>
+				<select class="dropdown-select" ng-options="user.$id as user.firstName + ',' + user.lastName for user in ngDialogData.users" ng-model="ngDialogData.team.ownerId">
+				  <option value="">Please select Team Owner</option>
 				</select>
 			</div>
 		</div>
