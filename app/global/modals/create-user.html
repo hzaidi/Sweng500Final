@@ -2,25 +2,16 @@
 	<div class="ngdialog-message">
 		<div class="header">{{ngDialogData.header}}</div>
     <div class="content">
-      <div class="-g">
-        <div class="label -u-8-24">First Name</div>
-        <div class="-u-16-24"><input type="text" class="input" ng-model="ngDialogData.user.firstName"></div>
-      </div>
-      <div class="-g">
-        <div class="label -u-8-24">Last Name</div>
-        <div class="-u-16-24"><input type="text" class="input" ng-model="ngDialogData.user.lastName"></div>
-      </div>
-      <div class="-g">
-        <div class="label -u-8-24">Email</div>
-        <div class="-u-16-24"><input type="text" class="input" ng-model="ngDialogData.user.email"></div>
-      </div>
+      <div><input type="text" class="input" ng-model="ngDialogData.user.firstName" placeholder="Enter First Name"></div>
+      <div><input type="text" class="input" ng-model="ngDialogData.user.lastName" placeholder="Enter Last Name"></div>
+      <div><input type="text" class="input" ng-model="ngDialogData.user.email" placeholder="Enter Email"></div>
     </div>
 	</div>
 	<div class="ngdialog-buttons">
     <a class="fl-button {{ button.cls }}"
       ng-click="button.action(ngDialogData.selectedId)"
       ng-repeat="button in ngDialogData.buttons">
-      <i class="fa {{ button.icon }}"></i>
+      <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>
     {{ button.title }}</a>
 	</div>
 </div>

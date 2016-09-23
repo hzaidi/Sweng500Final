@@ -4,7 +4,10 @@
 	'use strict';
 	var app = angular.module('piStatus');
 
-	app.config(function ($stateProvider, $urlRouterProvider) {
+	app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+		// use the HTML5 History API
+		$locationProvider.html5Mode(true);
+
 		$stateProvider.state('default', {
 			url: '/',
 			templateUrl: '/routes/login/login.html'

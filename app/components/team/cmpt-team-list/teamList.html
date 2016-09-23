@@ -8,6 +8,7 @@
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th>Owner</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -19,6 +20,16 @@
 							</div>
 							<div  class="team-name" ng-show="team.isEditing">
 								<input type="text" class="input" ng-model="team.teamName">
+							</div>
+						</td>
+						<td>
+							<div class="dropdown dropdown-dark">
+								<select class="dropdown-select">
+									<option value="volvo">Volvo</option>
+									<option value="saab">Saab</option>
+									<option value="mercedes">Mercedes</option>
+									<option value="audi">Audi</option>
+								</select>
 							</div>
 						</td>
 						<td>

@@ -103,6 +103,8 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
+							var button = this;
+							button.loading = true;
 							//Call to create team Owner
 							createTeamOwner(userModel)
 							.then(function(user){
@@ -116,13 +118,24 @@
 								return createUser(userModel);
 							})
 							.finally(function(){
+							button.loading = false;
 								ngDialog.close(dialog.id);
 								_defer.resolve();
 							})
 							.catch(function(error){
+							button.loading = false;
 								ngDialog.close(dialog.id);
 								_defer.reject(error)
 							})
+						}
+					},{
+						title: 'Cancel',
+						cls: 'button button-default',
+						icon: 'fa fa-times',
+						loading: false,
+						action: function(){
+							ngDialog.close(dialog.id);
+							_defer.resolve();
 						}
 					}]
 				}
