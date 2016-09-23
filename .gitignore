@@ -9,3 +9,4 @@ app/assets/css/*.css
 app/config/preloaded-templates.js
 app/compiled
 *.bak
+firebase.config.json
