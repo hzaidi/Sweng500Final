@@ -13,22 +13,19 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 
 
 
+
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: true,
 		teams: []
 	};
 
-	userSvc.getLoggedInUser().then(function(user){
-		teamSvc.teamList(user.orgId).then(function(teams){
-			vm.isLoading = false;
-			vm.teams = teams;
-		}, function(error){
-			toastHelp.error(error.message,'Error');
-		});
+	teamSvc.teamList().then(function(teams){
+		vm.isLoading = false;
+		vm.teams = teams;
 	}, function(error){
 		toastHelp.error(error.message,'Error');
-	})
+	});
 
 
 	// Actions that can be bound to from the view
@@ -53,11 +50,11 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 		save: function(team){
 			go.toggleMode(team);
 			delete team.isEditing;
-			vm.teams.$save(team);
+			teamSvc.updateTeam(vm.teams, team);
 		},
 		delete: function(team){
 			toastHelp.success(`${team.teamName} team has been removed`,'Success');
-			vm.teams.$remove(team);
+			teamSvc.deleteTeam(vm.teams, team);
 		}
 	};
 }

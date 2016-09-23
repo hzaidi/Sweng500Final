@@ -2,13 +2,21 @@
 
 	// #-----------------------------# //
 	// #----- Service (userSvc) -----# //
-	app.factory('userSvc', function ($q, ngDialog, authSvc, storageSvc,$firebaseArray, $firebaseObject, toastHelp) {
+	app.factory('userSvc', function ($q, ngDialog, authSvc, storageSvc, $firebaseArray, $firebaseObject, toastHelp) {
 
 		var userRef = firebase.database().ref('/users');
+		var userRefByOrg = userRef.orderByChild('orgId');
+
+		var ctx = storageSvc.load({ key: 'user' });
+
 
 		function _userRef(uid = null) {
 			if (uid === null) { return userRef; }
 			return userRef.child(uid);
+		}
+
+		function _userRefByOrg() {
+			return userRefByOrg.equalTo(ctx.orgId);
 		}
 
 		var _user = function(user = null){
@@ -26,6 +34,15 @@
 			return authSvc.createUser(user);
 		}
 
+		function createTeamOwner(user){
+			return authSvc.createTeamOwners(user);
+		}
+
+		function userList() {
+			var users = $firebaseArray(_userRefByOrg());
+			return users.$loaded();
+		}
+
 		function createUser(user) {
 			var users = $firebaseArray(_userRef());
 			var ref = users.$ref().child(user.uid);
@@ -33,6 +50,16 @@
 			delete user.password;
 			return ref.set(user);
 		}
+
+		function updateTeamOwner(ref, user) {
+			return ref.$save(user);
+		}
+
+		function deleteTeamOwner(ref, user) {
+			return ref.$remove(user)
+		}
+
+
 
 		function getByKey(key) {
 			var data = $firebaseObject(_userRef().child(key));
@@ -51,11 +78,16 @@
 
 
 
-		function createUserDialog() {
+		function passwordResetEmail() {
 			var _defer = $q.defer();
 
-			var userModel = 	Object.assign({}, new _user(), { password: '123456'});
+			return _defer.promise;
+		}
 
+		function createTeamOwnerDialog() {
+			var _defer = $q.defer();
+			var uid = null;
+			var userModel = 	Object.assign({}, new _user(), { password: '123456'});
 			var dialog = ngDialog.open({
 				template: '/global/modals/create-user.html',
 				closeByDocument: false,
@@ -71,25 +103,26 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
-							createUserAuthentication(userModel).then(function(user){
-								authSvc.passwordResetEmail(userModel.email).then(function(){
-									var uid = angular.copy(user.uid);
-									var newUser = Object.assign({}, userModel, { uid: uid, userRole: 2 });
-									createUser(newUser).then(function(ref){
-										ngDialog.close(dialog.id);
-										_defer.resolve();
-									}, function(error){
-										ngDialog.close(dialog.id);
-										_defer.reject(error)
-									})
-								}, function(error){
-									ngDialog.close(dialog.id);
-									_defer.reject(error)
-								})
-							},function(error){
+							//Call to create team Owner
+							createTeamOwner(userModel)
+							.then(function(user){
+								uid = user.uid;
+								// Call to send email for password reset
+								return authSvc.passwordResetEmail(userModel.email);
+							})
+							.then(function(){
+								userModel = Object.assign({}, userModel, { uid: uid, userRole: 2, orgId: ctx.orgId });
+								//create team owner in the user table.
+								return createUser(userModel);
+							})
+							.finally(function(){
+								ngDialog.close(dialog.id);
+								_defer.resolve();
+							})
+							.catch(function(error){
 								ngDialog.close(dialog.id);
 								_defer.reject(error)
-							});
+							})
 						}
 					}]
 				}
@@ -105,7 +138,10 @@
 			updateUser,
 			getByKey,
 			getLoggedInUser,
-			createUserDialog
+			createTeamOwnerDialog,
+			updateTeamOwner,
+			deleteTeamOwner,
+			userList
 		};
 
 	});

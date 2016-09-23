@@ -115,13 +115,6 @@
   color: #0af;
   font-weight: bold;
 }
-.cmpt-team-list .table .team-name {
-  display: inline-block;
-  width: 400px;
-}
-.cmpt-team-list .table .team-name input {
-  width: 400px;
-}
 .cmpt-topbar-header {
   background-color: #113148;
   border-bottom: 1px solid #001322;
@@ -221,8 +214,12 @@ body {
 *:focus {
   outline: none;
 }
+h1 {
+  color: #fff;
+  font-weight: bold;
+  margin: 0.2em 0;
+}
 .table {
-  width: 100%;
   color: #fff;
   border: 1px solid #24506f;
 }
@@ -286,8 +283,8 @@ body {
   border: none;
   border-radius: 4px;
 }
-.button i {
-  margin-right: 5px;
+.button span {
+  margin-left: 5px;
 }
 .button:hover {
   background-color: #24506f;

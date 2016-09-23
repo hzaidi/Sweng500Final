@@ -13,14 +13,7 @@
 	]);
 
 	app.config(function() {
-		// Initialize Firebase
-		var config = {
-		 apiKey: "AIzaSyCzoIPR3fidWvJgb0PBHygSBASS4eRizw0",
-		 authDomain: "safetracker-e51c7.firebaseapp.com",
-		 databaseURL: "https://safetracker-e51c7.firebaseio.com",
-		 storageBucket: "",
-	 };
-	  firebase.initializeApp(config);
+	  firebase.initializeApp(window.siteConfig);		
 	});
 
 

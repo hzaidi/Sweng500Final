@@ -2,19 +2,25 @@
 
 	// #-----------------------------# //
 	// #----- Service (teamSvc) -----# //
-	app.factory('teamSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, ngDialog) {
+	app.factory('teamSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, storageSvc, ngDialog) {
 
 		var teamRef = firebase.database().ref('/teams');
 		var teamRefByOrg = teamRef.orderByChild('orgId');
+
+
+		var ctx = storageSvc.load({ key: 'user' });
+
+
 
 		function _teamRef(uid = null) {
 			if (uid === null) { return teamRef; }
 			return teamRef.child(uid);
 		}
 
-		function _teamRefByOrg(orgId) {
-			return teamRefByOrg.equalTo(orgId);
+		function _teamRefByOrg() {
+			return teamRefByOrg.equalTo(ctx.orgId);
 		}
+
 
 		var _team = function(team = null){
 			return {
@@ -28,14 +34,22 @@
 			return teams.$add(team);
 		}
 
-		function teamList(orgId) {
-			var teams = $firebaseArray(_teamRefByOrg(orgId));
+		function teamList() {
+			var teams = $firebaseArray(_teamRefByOrg());
 			return teams.$loaded();
 		}
 
 		function getByKey(key) {
 			var data = $firebaseObject(_teamRef(key));
 			return data.$loaded();
+		}
+
+		function updateTeam(ref, team) {
+			return ref.$save(team);
+		}
+
+		function deleteTeam(ref, team) {
+			return ref.$remove(team)
 		}
 
 		function createTeamDialog() {
@@ -56,18 +70,14 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
-							organizationSvc.getOrg().then(function(org){
-								team.orgId = organizationSvc.orgObj(org).id;
-								createTeam(team).then(function(ref) {
-									ngDialog.close(dialog.id);
-									team.id = ref.key;
-									return _defer.resolve(team);
-								},function(error) {
-									return _defer.reject(error);
-								});
-							}, function(error){
+							team.orgId = ctx.orgId;
+							createTeam(team).then(function(ref) {
+								ngDialog.close(dialog.id);
+								team.id = ref.key;
+								return _defer.resolve(team);
+							},function(error) {
 								return _defer.reject(error);
-							})
+							});
 						}
 					},{
 						title: 'Cancel',
@@ -86,6 +96,8 @@
 
 		return {
 			createTeam,
+			updateTeam,
+			deleteTeam,
 			teamList,
 			createTeamDialog,
 			getByKey

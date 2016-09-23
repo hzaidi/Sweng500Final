@@ -2,7 +2,7 @@
 
 	// #-----------------------------# //
 	// #----- Service (authSvc) -----# //
-	app.factory('authSvc', function ($firebaseAuth) {
+	app.factory('authSvc', function ($q, $firebaseAuth) {
 
 
 		const login = function(username,password) {
@@ -25,12 +25,24 @@
 			return $firebaseAuth().$sendPasswordResetEmail(email);
 		}
 
+		const createTeamOwners = function(user){
+			var _defer = $q.defer();
+			var secondaryAuthInstance = firebase.initializeApp(window.siteConfig,'secondary');
+			secondaryAuthInstance.auth().createUserWithEmailAndPassword(user.email,user.password).then(function(user){
+				secondaryAuthInstance.auth().signOut();
+				_defer.resolve(user);
+			});
+			return _defer.promise;
+		}
+
+
 		return {
 			auth: () => { return $firebaseAuth(); },
 			login,
 			logout,
 			createUser,
-			passwordResetEmail
+			passwordResetEmail,
+			createTeamOwners
 		}
 
 	});
