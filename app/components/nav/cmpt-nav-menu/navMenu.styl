@@ -1,19 +1,24 @@
 @import "variables.styl"
 .cmpt-nav-menu {
 	display: inline-block;
-	width: 140px;
+	min-width: 140px;
 	height: calc(100vh);
 	border-right: 1px solid $augmentedColorDark;
 	ul {
 		a {
 			color: $ap-light-grey-4;
 			text-decoration: none;
+			&.selected{
+				li{
+					background-color: $augmentedColorLight;
+				}
+			}
 		}
 		li {
 			padding: 10px;
 			border-bottom: 1px solid $augmentedColorDark;
 			color: $ap-light-grey-4;
-			cursor: pointer;		
+			cursor: pointer;
 			i {
 				margin-right: 5px;
 			}

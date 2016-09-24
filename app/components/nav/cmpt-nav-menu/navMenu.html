@@ -1,18 +1,8 @@
 <div class="cmpt-nav-menu">
 	<ul>
-		<a href="/#/organization">
+		<a href="{{ menu.url }}" ng-class="{ 'selected': go.isSelected(menu.url) }" ng-repeat="menu in vm.menuData">
 			<li>
-				<i class="fa fa-sitemap" aria-hidden="true"></i>Organization
-			</li>
-		</a>
-		<a href="/#/team/list">
-			<li>
-				<i class="fa fa-users" aria-hidden="true"></i>Teams
-			</li>
-		</a>
-		<a href="/#/users/list">
-			<li>
-				<i class="fa fa-user" aria-hidden="true"></i>Team Owner
+				<i class="fa {{ menu.icon }}" aria-hidden="true"></i>{{ menu.title }}
 			</li>
 		</a>
 	</ul>

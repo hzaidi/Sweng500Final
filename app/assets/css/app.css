@@ -74,13 +74,16 @@
 }
 .cmpt-nav-menu {
   display: inline-block;
-  width: 140px;
+  min-width: 140px;
   height: calc(100vh);
   border-right: 1px solid #001322;
 }
 .cmpt-nav-menu ul a {
   color: #fff;
   text-decoration: none;
+}
+.cmpt-nav-menu ul a.selected li {
+  background-color: #113148;
 }
 .cmpt-nav-menu ul li {
   padding: 10px;

@@ -9,17 +9,35 @@ templateUrl: '/components/nav/cmpt-nav-menu/navMenu.html',
 
 // #-----------------------------------# //
 // #---- Component (cmpt-nav-menu) ----# //
-controller: function ($scope) {
+controller: function ($scope, $location) {
+
+	var adminMenu = [{
+		icon: 'fa-sitemap',
+		url: '/organization',
+		title: 'Organization'
+	},{
+		icon: 'fa-users',
+		url: '/team/list',
+		title: 'Teams'
+	},{
+		icon: 'fa-user',
+		url: '/users/list',
+		title: 'Team Owners'
+	},{
+		icon: 'fa-train',
+		url: '/programincrement/list',
+		title: 'Program Increment Setup'
+	}]
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		menuData: adminMenu
 	};
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		isSelected: function (path) {
+			return $location.url() === path
 		}
 	};
 }

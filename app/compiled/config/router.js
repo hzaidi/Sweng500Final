@@ -64,6 +64,19 @@
 			controller: function controller($scope, user) {
 				$scope.user = user;
 			}
+		}).state('program-increment-list', {
+			url: '/programincrement/list',
+			templateUrl: '/routes/setup/programincrement.html',
+			resolve: {
+				user: function user(authSvc, userSvc) {
+					return authSvc.auth().$requireSignIn().then(function () {
+						return userSvc.getLoggedInUser();
+					});
+				}
+			},
+			controller: function controller($scope, user) {
+				$scope.user = user;
+			}
 		});
 		// ========================================================== //
 	}).run(function ($rootScope, $state, authSvc, toastHelp) {

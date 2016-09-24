@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/users/cmpt-users-list/usersList.html', '/routes/home/home.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/users/cmpt-users-list/usersList.html', '/routes/home/home.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/setup/programincrement.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -17,7 +17,7 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
 
 angular.module("/components/nav/cmpt-nav-menu/navMenu.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/nav/cmpt-nav-menu/navMenu.html",
-    "<div class=cmpt-nav-menu><ul><a href=/#/organization><li><i class=\"fa fa-sitemap\" aria-hidden=true></i>Organization</li></a> <a href=/#/team/list><li><i class=\"fa fa-users\" aria-hidden=true></i>Teams</li></a> <a href=/#/users/list><li><i class=\"fa fa-user\" aria-hidden=true></i>Team Owner</li></a></ul></div>");
+    "<div class=cmpt-nav-menu><ul><a href=\"{{ menu.url }}\" ng-class=\"{ 'selected': go.isSelected(menu.url) }\" ng-repeat=\"menu in vm.menuData\"><li><i class=\"fa {{ menu.icon }}\" aria-hidden=true></i>{{ menu.title }}</li></a></ul></div>");
 }]);
 
 angular.module("/components/organization/cmpt-organization-details/organizationDetails.html", []).run(["$templateCache", function($templateCache) {
@@ -58,6 +58,11 @@ angular.module("/routes/login/login.html", []).run(["$templateCache", function($
 angular.module("/routes/organization/organization.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/organization/organization.html",
     "<div class=route-organization-organization ng-controller=\"OrganizationCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu></cmpt-nav-menu><cmpt-organization-details class=-u-12-24></cmpt-organization-details></div></div>");
+}]);
+
+angular.module("/routes/setup/programincrement.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/routes/setup/programincrement.html",
+    "<div class=route-setup-programincrement ng-controller=\"ProgramincrementCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><cmpt-nav-menu></cmpt-nav-menu></div>");
 }]);
 
 angular.module("/routes/team/list.html", []).run(["$templateCache", function($templateCache) {
