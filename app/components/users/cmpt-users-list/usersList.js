@@ -50,11 +50,10 @@ controller: function ($scope, userSvc, storageSvc, toastHelp) {
 		},
 		save: function(user){
 			go.toggleMode(user);
-			delete user.isEditing;
 			userSvc.updateTeamOwner(vm.users, user);
 		},
 		delete: function(user){
-
+			userSvc.deleteTeamOwner(vm.users, user);
 		}
 	};
 }

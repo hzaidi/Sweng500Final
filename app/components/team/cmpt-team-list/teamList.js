@@ -9,7 +9,7 @@ templateUrl: '/components/team/cmpt-team-list/teamList.html',
 
 // #------------------------------------# //
 // #---- Component (cmpt-team-list) ----# //
-controller: function ($scope, teamSvc, userSvc, toastHelp) {
+controller: function ($q, $scope, teamSvc, userSvc, toastHelp) {
 
 
 
@@ -17,16 +17,20 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: true,
-		teams: []
+		teams: [],
+		users: []
 	};
 
-	teamSvc.teamList().then(function(teams){
-		vm.isLoading = false;
-		vm.teams = teams;
-	}, function(error){
-		toastHelp.error(error.message,'Error');
-	});
 
+
+	$q.all([teamSvc.teamList(), userSvc.userList()])
+	.then(function (dtl) {
+		[ vm.teams, vm.users ] = dtl;
+		vm.isLoading = false;
+	})
+	.catch(function(error){
+		toastHelp.error(error.message,'Error');
+	})
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
@@ -48,13 +52,16 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 			})
 		},
 		save: function(team){
-			go.toggleMode(team);
-			delete team.isEditing;
+			go.toggleMode(team);			
 			teamSvc.updateTeam(vm.teams, team);
 		},
 		delete: function(team){
 			toastHelp.success(`${team.teamName} team has been removed`,'Success');
 			teamSvc.deleteTeam(vm.teams, team);
+		},
+		ownerName: function(id){
+			var owner = vm.users.filter((x) => x.$id === id)[0];
+			return `${owner.firstName}, ${owner.lastName}`;
 		}
 	};
 }

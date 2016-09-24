@@ -510,6 +510,8 @@ h1 {
 }
 .input-container input.ng-invalid.ng-touched {
   border: 1px solid #d95b5b;
+  -webkit-box-shadow: 0px 0px 5px #d95b5b;
+  box-shadow: 0px 0px 5px #d95b5b;
 }
 .input-container input[disabled] {
   opacity: 0.3;

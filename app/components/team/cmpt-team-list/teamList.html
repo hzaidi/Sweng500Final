@@ -23,7 +23,14 @@
 							</div>
 						</td>
 						<td>
-							Owner Id:: {{ team.ownerId }}
+							<div ng-show="!team.isEditing">
+								{{ go.ownerName(team.ownerId) }}
+							</div>
+							<div class="dropdown dropdown-dark" ng-show="team.isEditing">
+								<select class="dropdown-select" ng-options="user.$id as user.firstName + ',' + user.lastName for user in vm.users" ng-model="team.ownerId">
+									<option value="">Please select Team Owner</option>
+								</select>
+							</div>
 						</td>
 						<td>
 							<button ng-show="!team.isEditing" class="button button-positive" ng-click="go.toggleMode(team)"><i class="fa fa-pencil"></i></button>

@@ -8,7 +8,6 @@
 		var teamRefByOrg = teamRef.orderByChild('orgId');
 
 
-		var ctx = storageSvc.load({ key: 'user' });
 
 
 
@@ -18,6 +17,7 @@
 		}
 
 		function _teamRefByOrg() {
+			var ctx = storageSvc.load({ key: 'user' });
 			return teamRefByOrg.equalTo(ctx.orgId);
 		}
 
@@ -45,12 +45,13 @@
 			return data.$loaded();
 		}
 
-		function updateTeam(ref, team) {
-			return ref.$save(team);
+		function updateTeam(fbArray, team) {
+			delete team.isEditing;
+			return fbArray.$save(team);
 		}
 
-		function deleteTeam(ref, team) {
-			return ref.$remove(team)
+		function deleteTeam(fbArray, team) {
+			return fbArray.$remove(team)
 		}
 
 		function createTeamDialog() {
@@ -74,6 +75,7 @@
 							icon: 'fa fa-check',
 							loading: false,
 							action: function(){
+								var ctx = storageSvc.load({ key: 'user' });
 								team.orgId = ctx.orgId;
 								createTeam(team).then(function(ref) {
 									ngDialog.close(dialog.id);

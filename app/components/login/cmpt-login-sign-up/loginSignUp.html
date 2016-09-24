@@ -35,7 +35,7 @@
 				</div>
 				<div>
 					<div class="input-container">
-						<input type="password" name="password" class="input" placeholder="Password" name="name" value="" ng-model="vm.user.password" equals="{{ vm.confirmPassword }}" required ng-minlength="6">
+						<input type="password" name="password" class="input" placeholder="Password" name="name" value="" ng-model="vm.user.password" required ng-minlength="6">
 						<div ng-messages="myForm.password.$touched && myForm.password.$error" role="alert"  class="validation-messages">
 							<div ng-message="required">Password is required</div>
 							<div ng-message="minlength">Length of password should be atleast 6 characters long</div>

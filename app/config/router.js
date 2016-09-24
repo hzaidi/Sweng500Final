@@ -14,56 +14,57 @@
 				url: '/home',
 				templateUrl: '/routes/home/home.html',
 				resolve:{
-					currentAuth: function(authSvc, userSvc){
+					user: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
 							return userSvc.getLoggedInUser();
 						});
 					}
 				},
-				controller: function($scope, currentAuth){
-					$scope.user = currentAuth;
+				controller: function($scope, user, storageSvc){
+					$scope.user = user;
+					storageSvc.save({ key: 'user', data: { uid: user.$id, orgId: user.orgId } })
 				}
 			})
 			.state('organization', {
 				url: '/organization',
 				templateUrl: '/routes/organization/organization.html',
 				resolve:{
-					currentAuth: function(authSvc, userSvc){
+					user: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
 							return userSvc.getLoggedInUser();
 						});
 					}
 				},
-				controller: function($scope, currentAuth){
-					$scope.user = currentAuth;
+				controller: function($scope, user){
+					$scope.user = user;
 				}
 			})
 			.state('team-list', {
 				url: '/team/list',
 				templateUrl: '/routes/team/list.html',
 				resolve:{
-					currentAuth: function(authSvc, userSvc){
+					user: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
 							return userSvc.getLoggedInUser();
 						});
 					}
 				},
-				controller: function($scope, currentAuth){
-					$scope.user = currentAuth;
+				controller: function($scope, user){
+					$scope.user = user;
 				}
 			})
 			.state('scrum-master-list', {
 				url: '/users/list',
 				templateUrl: '/routes/users/scrum-masters.html',
 				resolve:{
-					currentAuth: function(authSvc, userSvc){
+					user: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){
 							return userSvc.getLoggedInUser();
 						});
 					}
 				},
-				controller: function($scope, currentAuth){
-					$scope.user = currentAuth;
+				controller: function($scope, user){
+					$scope.user = user;
 				}
 			})
 			// ========================================================== //
@@ -73,6 +74,12 @@
 				toastHelp.error('Login again to use the application', 'Error');
       	$state.go('default');
     	}
+			if (error === "USER_DELETED") {
+				toastHelp.error('There is no user record corresponding to this identifier. The user may have been deleted.', 'Error');
+				authSvc.deleteUser().then(function(){
+					$state.go('default');
+				});
+			}
 		});
 
 		$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, error){

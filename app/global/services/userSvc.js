@@ -7,7 +7,6 @@
 		var userRef = firebase.database().ref('/users');
 		var userRefByOrg = userRef.orderByChild('orgId');
 
-		var ctx = storageSvc.load({ key: 'user' });
 
 
 		function _userRef(uid = null) {
@@ -16,6 +15,7 @@
 		}
 
 		function _userRefByOrg() {
+			var ctx = storageSvc.load({ key: 'user' });
 			return userRefByOrg.equalTo(ctx.orgId);
 		}
 
@@ -51,19 +51,31 @@
 			return ref.set(user);
 		}
 
-		function updateTeamOwner(ref, user) {
-			return ref.$save(user);
+		function updateTeamOwner(fbArray, user) {
+			delete user.isEditing;
+			return fbArray.$save(user);
 		}
 
-		function deleteTeamOwner(ref, user) {
-			return ref.$remove(user)
+		function deleteTeamOwner(fbArray, user) {
+			return fbArray.$remove(user)
 		}
 
 
 
 		function getByKey(key) {
+			var _defer = $q.defer();
 			var data = $firebaseObject(_userRef().child(key));
-			return data.$loaded();
+			data.$loaded()
+			.then(function(user){
+				if(!user.userRole && !user.email) {
+					_defer.reject('USER_DELETED')
+				}else{
+					_defer.resolve(user);
+				}
+			}).catch(function(error){
+				_defer.reject(error);
+			})
+			return _defer.promise;
 		}
 
 		function updateUser(user) {
@@ -78,11 +90,6 @@
 
 
 
-		function passwordResetEmail() {
-			var _defer = $q.defer();
-
-			return _defer.promise;
-		}
 
 		function createTeamOwnerDialog() {
 			var _defer = $q.defer();
@@ -113,6 +120,7 @@
 								return authSvc.passwordResetEmail(userModel.email);
 							})
 							.then(function(){
+								var ctx = storageSvc.load({ key: 'user' });
 								userModel = Object.assign({}, userModel, { uid: uid, userRole: 2, orgId: ctx.orgId });
 								//create team owner in the user table.
 								return createUser(userModel);

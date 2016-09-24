@@ -21,6 +21,10 @@
 			return $firebaseAuth().$signOut();
 		}
 
+		const deleteUser = function(){
+			return $firebaseAuth().$deleteUser();
+		}
+
 		const passwordResetEmail = function(email){
 			return $firebaseAuth().$sendPasswordResetEmail(email);
 		}
@@ -41,6 +45,7 @@
 			login,
 			logout,
 			createUser,
+			deleteUser,
 			passwordResetEmail,
 			createTeamOwners
 		}

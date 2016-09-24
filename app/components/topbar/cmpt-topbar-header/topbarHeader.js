@@ -9,7 +9,7 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRoleVal, toastHelp) {
+controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationSvc, userRoleVal, toastHelp) {
 
 	var user = userSvc.userObj($scope.user);
 	// View Model properties
@@ -24,6 +24,7 @@ controller: function ($scope, $state, authSvc, userSvc, organizationSvc, userRol
 			userSvc.getLoggedInUser().then(function(user){
 				user.orgId = org.id;
 				userSvc.updateUser(user).then(function(){
+					storageSvc.save({ key: 'user', data: { uid: user.$id, orgId: user.orgId } })
 					updateOrgName(org.orgName);
 					toastHelp.success('Organizaiton is created', 'Success');
 				},function(error){
