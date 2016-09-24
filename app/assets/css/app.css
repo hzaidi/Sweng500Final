@@ -107,6 +107,9 @@
 .cmpt-organization-details input {
   width: 205px;
 }
+.cmpt-program-increment-details {
+  padding: 20px;
+}
 .cmpt-team-list {
   padding: 20px;
 }
