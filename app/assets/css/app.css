@@ -110,6 +110,14 @@
 .cmpt-program-increment-details {
   padding: 20px;
 }
+.cmpt-program-increment-details .no-data {
+  border: 2px dashed #0af;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  color: #0af;
+  font-weight: bold;
+}
 .cmpt-team-list {
   padding: 20px;
 }
@@ -210,6 +218,11 @@
   color: #113148;
 }
 .modal-create-user input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
+}
+.modal-programIncrement-setup input {
   width: 100%;
   background: #fff;
   color: #113148;

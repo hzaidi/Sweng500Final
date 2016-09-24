@@ -24,7 +24,7 @@ controller: function ($scope, $location) {
 		url: '/users/list',
 		title: 'Team Owners'
 	},{
-		icon: 'fa-train',
+		icon: 'fa-cogs',
 		url: '/programincrement/list',
 		title: 'Program Increment Setup'
 	}]

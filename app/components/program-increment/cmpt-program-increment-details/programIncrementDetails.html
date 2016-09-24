@@ -1,3 +1,74 @@
 <div class="cmpt-program-increment-details">
 	<h1>Program Increment Details</h1>
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div><button class="button button-primary" ng-click="go.addPi()"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Program Increment</span></button></div>
+		<div class="pi-list" ng-show="vm.pis.length > 0">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Date</th>
+						<th>Number of Sprints</th>
+						<th>Sprint duration</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="pi in vm.pis">
+					<tr>
+						<td>
+							<div ng-show="!pi.isEditing">
+								{{ pi.title }}
+							</div>
+							<div ng-show="pi.isEditing">
+								<input type="text" class="input" ng-model="pi.title">
+							</div>
+						</td>
+						<td>
+							<div ng-show="!pi.isEditing">
+								{{ pi.description }}
+							</div>
+							<div ng-show="pi.isEditing">
+								<input type="text" class="input" ng-model="pi.description">
+							</div>
+						</td>
+						<td>
+							<div ng-show="!pi.isEditing">
+								{{ pi.startDate }}
+							</div>
+							<div ng-show="pi.isEditing">
+								<input type="text" class="input" ng-model="pi.startDate">
+							</div>
+						</td>
+						<td>
+							<div ng-show="!pi.isEditing">
+								{{ pi.numberOfSprints }}
+							</div>
+							<div ng-show="pi.isEditing">
+								<input type="number" class="input" ng-model="pi.numberOfSprints">
+							</div>
+						</td>
+						<td>
+							<div ng-show="!pi.isEditing">
+								{{ pi.lengthOfSprint }}
+							</div>
+							<div ng-show="pi.isEditing">
+								<input type="number" class="input" ng-model="pi.lengthOfSprint">
+							</div>
+						</td>
+						<td>
+							<button ng-show="!pi.isEditing" class="button button-positive" ng-click="go.toggleMode(pi)"><i class="fa fa-pencil"></i></button>
+							<button ng-show="!pi.isEditing" class="button button-negative" ng-click="go.delete(pi)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							<button ng-show="pi.isEditing" class="button button-positive" ng-click="go.save(pi)"><i class="fa fa-check"></i></button>
+							<button ng-show="pi.isEditing" class="button button-negative" ng-click="go.cancel(pi)"><i class="fa fa-times" aria-hidden="true"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="no-data" ng-show="vm.pis.length <= 0">
+			Create Program Increment
+		</div>
+	</div>
 </div>

@@ -2,19 +2,108 @@
 
 	// #-----------------------------------------# //
 	// #----- Service (programIncrementSvc) -----# //
-	app.factory('programIncrementSvc', function ($q) {
+	app.factory('programIncrementSvc', function ($q, $firebaseArray, $firebaseObject,organizationSvc, storageSvc, userSvc, ngDialog) {
 
-		var total = 0,
-			_defer = $q.defer();
+		var piRef = firebase.database().ref('/programIncrements');
+		var piRefByOrg = piRef.orderByChild('orgId');
 
-		function addToTotal(num) {
-			return total += num;
+		function _piRef(uid = null) {
+			if (uid === null) { return piRef; }
+			return piRef.child(uid);
 		}
 
+		function _piRefByOrg() {
+			var ctx = storageSvc.load({ key: 'user' });
+			return piRefByOrg.equalTo(ctx.orgId);
+		}
+
+
+
+		var _programIncrementSetup = function(pi = null){
+			return {
+				id: (pi === null) ? null : pi.$id,
+				title: (pi === null) ? null : pi.title,
+				description: (pi === null) ? null : pi.description,
+				startDate: (pi === null) ? null : pi.startDate,
+				numberOfSprints: (pi === null) ? null : pi.numberOfSprints,
+				lengthOfSprint: (pi === null) ? null : pi.lengthOfSprint,
+			}
+		}
+
+		function createPi(pi) {
+			var pis = $firebaseArray(_piRef());
+			return pis.$add(pi);
+		}
+
+		function piList() {
+			var pis = $firebaseArray(_piRefByOrg());
+			return pis.$loaded();
+		}
+
+		function getByKey(key) {
+			var data = $firebaseObject(_piRef(key));
+			return data.$loaded();
+		}
+
+		function updatePi(fbArray, pi) {
+			delete pi.isEditing;
+			return fbArray.$save(pi);
+		}
+
+		function deletePi(fbArray, pi) {
+			return fbArray.$remove(pi)
+		}
+
+		function programIncrementSetupDialog() {
+			var _defer = $q.defer();
+			var pi = new _programIncrementSetup();
+			var dialog = ngDialog.open({
+				template: '/global/modals/programIncrement-setup.html',
+				closeByDocument: false,
+				showClose: false,
+				closeByEscape: false,
+				closeByNavigation: false,
+				data: {
+					header: 'Program Increment Details',
+					pi:pi,
+					buttons: [{
+						title: 'Save',
+						cls: 'button',
+						icon: 'fa fa-check',
+						loading: false,
+						action: function(){
+							var ctx = storageSvc.load({ key: 'user' });
+							pi.orgId = ctx.orgId;
+							createPi(pi).then(function(ref) {
+								ngDialog.close(dialog.id);
+								pi.id = ref.key;
+								return _defer.resolve(pi);
+							},function(error) {
+								return _defer.reject(error);
+							});
+						}
+					},{
+						title: 'Cancel',
+						cls: 'button button-default',
+						icon: 'fa-times',
+						loading: false,
+						action: function(){
+							ngDialog.close(dialog.id);
+							_defer.resolve();
+						}
+					}]
+				}
+			});
+			return _defer.promise;
+		}
+
+
 		return {
-			// exposedMethodName: internalMethodName
-			addSome: addToTotal,
-			ready: _defer.promise
+			programIncrementSetupDialog,
+			piList,
+			getByKey,
+			updatePi,
+			deletePi
 		};
 
 	});

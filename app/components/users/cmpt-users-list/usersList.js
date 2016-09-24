@@ -39,8 +39,7 @@ controller: function ($scope, userSvc, storageSvc, toastHelp) {
 		},
 		cancel: function(user){
 			userSvc.getByKey(user.$id).then(function(userData){
-				user.firstName = userData.firstName;
-				user.lastName = userData.lastName;
+				objectHelp.assign(user, userData, ['orgId', 'isEditing']);
 				go.toggleMode(user);
 			},function(error){
 				toastHelp.error(error.message,'Error');

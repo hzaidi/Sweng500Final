@@ -1,0 +1,19 @@
+<div class="dialog-popup modal-programIncrement-setup">
+	<div class="ngdialog-message">
+		<div class="header">{{ngDialogData.header}}</div>
+    <div class="content">
+			<div><input type="text" class="input" ng-model="ngDialogData.pi.title" placeholder="Enter Title"></div>
+			<div><input type="text" class="input" ng-model="ngDialogData.pi.description" placeholder="Enter Description"></div>
+			<div><input type="text" class="input" ng-model="ngDialogData.pi.startDate" placeholder="Enter Start date"></div>
+			<div><input type="number" class="input" ng-model="ngDialogData.pi.numberOfSprints" placeholder="Enter number of sprints"></div>
+			<div><input type="number" class="input" ng-model="ngDialogData.pi.lengthOfSprint" placeholder="Enter length of spring (weeks)"></div>
+    </div>
+	</div>
+	<div class="ngdialog-buttons">
+    <a class="fl-button {{ button.cls }}"
+      ng-click="button.action(ngDialogData.selectedId)"
+      ng-repeat="button in ngDialogData.buttons">
+      <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>
+    {{ button.title }}</a>
+	</div>
+</div>

@@ -45,14 +45,14 @@ controller: function ($q, $scope, teamSvc, userSvc, toastHelp) {
 		},
 		cancel: function(team){
 			teamSvc.getByKey(team.$id).then(function(teamData){
-				team.teamName = teamData.teamName;
+				objectHelp.assign(team, teamData, ['orgId', 'isEditing']);
 				go.toggleMode(team);
 			},function(error){
 				toastHelp.error(error.message,'Error');
 			})
 		},
 		save: function(team){
-			go.toggleMode(team);			
+			go.toggleMode(team);
 			teamSvc.updateTeam(vm.teams, team);
 		},
 		delete: function(team){

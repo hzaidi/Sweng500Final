@@ -9,17 +9,47 @@ templateUrl: '/components/program-increment/cmpt-program-increment-details/progr
 
 // #----------------------------------------------------# //
 // #---- Component (cmpt-program-increment-details) ----# //
-controller: function ($scope) {
+controller: function ($scope, programIncrementSvc, objectHelp, toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		isLoading: true,
+		pis:[]
 	};
+
+	programIncrementSvc.piList().then(function(pis){
+		vm.isLoading = false;
+		vm.pis = pis;
+	}, function(error){
+
+	});
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		addPi: function () {
+			programIncrementSvc.programIncrementSetupDialog().then(function(team){
+			}, function(error){
+				toastHelp.error(error.message,'Error');
+			})
+		},
+		toggleMode: function(pi){
+			pi.isEditing = !pi.isEditing;
+		},
+		cancel: function(pi){
+			programIncrementSvc.getByKey(pi.$id).then(function(piData){
+				objectHelp.assign(pi, piData, ['orgId', 'isEditing']);
+				go.toggleMode(pi);
+			},function(error){
+				toastHelp.error(error.message,'Error');
+			})
+		},
+		save: function(pi){
+			go.toggleMode(pi);
+			programIncrementSvc.updatePi(vm.pis, pi);
+		},
+		delete: function(pi){
+			toastHelp.success(`${pi.title} team has been removed`,'Success');
+			programIncrementSvc.deletePi(vm.pis, pi);
 		}
 	};
 }
