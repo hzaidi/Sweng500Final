@@ -13,7 +13,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="user in vm.users" ng-if="user.$id !== vm.ctx.uid">
+					<tr ng-repeat="user in vm.users">
 						<td>
 							<div class="user-name" ng-show="!user.isEditing">
 								{{ user.firstName }}, {{ user.lastName }}

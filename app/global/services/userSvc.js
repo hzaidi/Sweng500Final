@@ -5,7 +5,7 @@
 	app.factory('userSvc', function ($q, ngDialog, authSvc, storageSvc, $firebaseArray, $firebaseObject, toastHelp) {
 
 		var userRef = firebase.database().ref('/users');
-		var userRefByOrg = userRef.orderByChild('orgId');
+		var userRefByOrg = userRef.orderByChild('organdrole');
 
 
 
@@ -16,7 +16,7 @@
 
 		function _userRefByOrg() {
 			var ctx = storageSvc.load({ key: 'user' });
-			return userRefByOrg.equalTo(ctx.orgId);
+			return userRefByOrg.equalTo(`${ctx.orgId}~~2`);
 		}
 
 		var _user = function(user = null){
@@ -121,7 +121,7 @@
 							})
 							.then(function(){
 								var ctx = storageSvc.load({ key: 'user' });
-								userModel = Object.assign({}, userModel, { uid: uid, userRole: 2, orgId: ctx.orgId });
+								userModel = Object.assign({}, userModel, { uid: uid, userRole: 2, orgId: ctx.orgId, organdrole:`${ctx.orgId}~~2` });
 								//create team owner in the user table.
 								return createUser(userModel);
 							})

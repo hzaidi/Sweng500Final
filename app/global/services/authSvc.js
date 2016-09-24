@@ -4,6 +4,7 @@
 	// #----- Service (authSvc) -----# //
 	app.factory('authSvc', function ($q, $firebaseAuth) {
 
+		const secondaryAuthInstance = firebase.initializeApp(window.siteConfig,'secondary');
 
 		const login = function(username,password) {
 			sessionStorage.clear();
@@ -31,7 +32,6 @@
 
 		const createTeamOwners = function(user){
 			var _defer = $q.defer();
-			var secondaryAuthInstance = firebase.initializeApp(window.siteConfig,'secondary');
 			secondaryAuthInstance.auth().createUserWithEmailAndPassword(user.email,user.password).then(function(user){
 				secondaryAuthInstance.auth().signOut();
 				_defer.resolve(user);

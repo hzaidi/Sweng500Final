@@ -11,11 +11,9 @@ templateUrl: '/components/users/cmpt-users-list/usersList.html',
 // #---- Component (cmpt-users-list) ----# //
 controller: function ($scope, userSvc, storageSvc, toastHelp) {
 
-	var ctx = storageSvc.load({ key: 'user' });
 
 	// View Model properties
 	var vm = $scope.vm = {
-		ctx,
 		isLoading: true,
 		users: []
 	};

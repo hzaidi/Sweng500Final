@@ -23,6 +23,7 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationS
 		organizationSvc.createOrgDialog().then(function(org){
 			userSvc.getLoggedInUser().then(function(user){
 				user.orgId = org.id;
+				user.organdrole = `${org.id}~~${user.userRole}`;
 				userSvc.updateUser(user).then(function(){
 					storageSvc.save({ key: 'user', data: { uid: user.$id, orgId: user.orgId } })
 					updateOrgName(org.orgName);
