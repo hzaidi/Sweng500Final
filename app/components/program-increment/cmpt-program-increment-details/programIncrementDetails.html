@@ -33,7 +33,7 @@
 					</div>
 					<div class="grid-cell -u-4-24">
 						<div ng-show="!pi.isEditing">
-							{{ pi.startDate }}
+							{{ pi.startDate }} - {{ go.calEndDate(pi) }}
 						</div>
 						<div ng-show="pi.isEditing">
 							<input type="text" class="input" ng-model="pi.startDate" placeholder="Enter Start date">

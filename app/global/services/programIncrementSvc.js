@@ -97,13 +97,21 @@
 			return _defer.promise;
 		}
 
+		function calcEndDate(pi) {
+			var tDate = new Date(pi.startDate);
+			var date = moment(tDate);
+			var numberOfDays = pi.numberOfSprints * (pi.lengthOfSprint * 7);
+			var endDate = date.add(numberOfDays,'days');
+			return endDate.format('MM/DD/YYYY');
+		}
 
 		return {
 			programIncrementSetupDialog,
 			piList,
 			getByKey,
 			updatePi,
-			deletePi
+			deletePi,
+			calcEndDate
 		};
 
 	});

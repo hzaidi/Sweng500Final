@@ -74,7 +74,6 @@
 }
 .cmpt-nav-menu {
   display: inline-block;
-  min-width: 140px;
   height: calc(100vh);
   border-right: 1px solid #001322;
 }
