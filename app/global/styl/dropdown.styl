@@ -1,9 +1,8 @@
 @import "variables.styl"
 .dropdown {
-  display: inline-block;
   position: relative;
   overflow: hidden;
-  height: 28px;
+  height: 31px;
   width: 100%;
   background: lighten($ap-dark-grey-4,20%);
   border: 1px solid;
@@ -15,6 +14,7 @@
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.20));
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  margin: 5px 0;
 }
 
 .dropdown:before, .dropdown:after {
@@ -46,9 +46,9 @@
   width: 100%;
   margin: 0;
   padding: 6px 8px 6px 10px;
-  height: 28px;
+  height: 31px;
   line-height: 14px;
-  font-size: 12px;
+  font-size: 16px;
   color: $ap-dark-grey-1;
   text-shadow: 0 1px $ap-dark-grey-4;
   background: #f2f2f2; /* Fallback for IE 8 */
@@ -56,6 +56,7 @@
   border: 0;
   border-radius: 0;
   -webkit-appearance: none;
+  vertical-align: top;
 }
 
 

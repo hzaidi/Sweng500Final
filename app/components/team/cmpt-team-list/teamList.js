@@ -9,7 +9,7 @@ templateUrl: '/components/team/cmpt-team-list/teamList.html',
 
 // #------------------------------------# //
 // #---- Component (cmpt-team-list) ----# //
-controller: function ($q, $scope, teamSvc, userSvc, toastHelp) {
+controller: function ($q, $scope, teamSvc, userSvc, toastHelp, objectHelp) {
 
 
 
