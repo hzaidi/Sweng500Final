@@ -242,31 +242,8 @@ h1 {
   font-weight: bold;
   margin: 0.2em 0;
 }
-.table {
-  color: #fff;
-  border: 1px solid #24506f;
-}
-.table th {
-  padding: 10px;
-  text-align: left;
-}
-.table td {
-  padding: 2px 10px;
-  text-align: left;
-}
-.table thead tr {
-  border: 1px solid #24506f;
-}
-.table thead tr th {
-  background-color: #28597b;
-}
-.table tbody tr {
-  border: 1px solid #24506f;
-}
-.table tbody tr:hover {
-  background-color: #1d3444;
-}
 .grid {
+  margin: 10px 0;
   color: #fff;
   border: 1px solid #24506f;
 }
