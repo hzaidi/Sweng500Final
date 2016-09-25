@@ -61,6 +61,9 @@ h1{
 	border: 1px solid darken($default-button-bg,10%);
 	.grid-header{
 		background-color: $default-button-bg;
+		.grid-cell{
+			line-height: 25px;			
+		}
 	}
 	.grid-body{
 		.grid-content{
@@ -72,11 +75,13 @@ h1{
 				border-bottom: 0;
 			}
 		}
+		.grid-cell{
+			line-height: 43px;
+		}
 	}
 	.grid-cell{
 		padding: 10px;
 		box-sizing: border-box;
-		line-height: 33px;
 	}
 }
 
@@ -102,7 +107,7 @@ h1{
 	user-select: none;
 	background-image: none;
 	border: none;
-	border-radius: 4px;	
+	border-radius: 4px;
 	span {
 		margin-left: 5px;
 	}

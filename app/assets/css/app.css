@@ -274,6 +274,9 @@ h1 {
 .grid .grid-header {
   background-color: #28597b;
 }
+.grid .grid-header .grid-cell {
+  line-height: 25px;
+}
 .grid .grid-body .grid-content {
   border-bottom: 1px solid #24506f;
 }
@@ -283,12 +286,14 @@ h1 {
 .grid .grid-body .grid-content:last-child {
   border-bottom: 0;
 }
+.grid .grid-body .grid-cell {
+  line-height: 43px;
+}
 .grid .grid-cell {
   padding: 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  line-height: 33px;
 }
 .button {
   display: inline-block;
