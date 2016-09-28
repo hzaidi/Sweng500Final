@@ -1,15 +1,19 @@
 <div class="cmpt-objectives-pi-selector">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
 	<div class="selector">
-		<div class="arrow">
-			<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+		<div class="dropdown dropdown-dark" ng-if="vm.pis.length > 1">
+			<select class="dropdown-select"
+							ng-options="pi.$id as pi.title + '  (' + go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) + ')' for pi in vm.pis"
+							ng-model="selected"
+							ng-change="go.change()">
+				<option value="">Please select Program Increment</option>
+			</select>
 		</div>
-		<div class="info">
-			<div class="title">{{ vm.selected.title }}</div>
-			<div class="description">{{ vm.selected.description }}</div>
-			<div class="dates">{{ go.parseDate(vm.selected.startDate) | date: 'MMM d yyyy' }}  -  {{ go.calcEndDate(vm.selected) | date: 'MMM d yyyy' }}</div>
+		<div ng-if="vm.pis.length === 1">
+			{{ vm.pis[0].title }} ({{ go.parseDate(vm.pis[0].startDate) }} - {{ go.calcEndDate(vm.pis[0]) }})
 		</div>
-		<div class="arrow disabled">
-			<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+		<div class="details" ng-show="!!vm.details">
+			{{ vm.details }}
 		</div>
 	</div>
 </div>

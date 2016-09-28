@@ -8,7 +8,8 @@
 
 	// View Model properties
 	route.vm = {
-		property: 'initial value'
+		selectedPi: null,
+		selectedTeam: null
 	};
 
 	// Actions that can be bound to from the view

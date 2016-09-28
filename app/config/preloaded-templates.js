@@ -1,4 +1,4 @@
-angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/program-increment/cmpt-program-increment-details/programIncrementDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/users/cmpt-users-list/usersList.html', '/routes/home/home.html', '/routes/list-objectives/objectives.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/setup/programincrement.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html', '/global/modals/programIncrement-setup.html']);
+angular.module('templates-preload', ['/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html', '/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html', '/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/program-increment/cmpt-program-increment-details/programIncrementDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/users/cmpt-users-list/usersList.html', '/routes/home/home.html', '/routes/list-objectives/objectives.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/setup/programincrement.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-objective.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html', '/global/modals/programIncrement-setup.html']);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
@@ -20,9 +20,19 @@ angular.module("/components/nav/cmpt-nav-menu/navMenu.html", []).run(["$template
     "<div class=cmpt-nav-menu><ul><a href=\"{{ menu.url }}\" ng-class=\"{ 'selected': go.isSelected(menu.url) }\" ng-repeat=\"menu in vm.menuData\"><li><i class=\"fa {{ menu.icon }}\" aria-hidden=true></i>{{ menu.title }}</li></a></ul></div>");
 }]);
 
+angular.module("/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html",
+    "<div class=cmpt-objectives-manage-objectives ng-class=\"{'container-green' : type === 1, 'container-blue': type !== 1}\"><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><div><button class=\"button button-default\" ng-click=go.objective()><i class=\"fa fa-plus\" aria-hidden=true></i><span>Add {{ vm.type }}</span></button></div></div></div>");
+}]);
+
 angular.module("/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html",
-    "<div class=cmpt-objectives-pi-selector><div class=selector><div class=arrow><i class=\"fa fa-arrow-circle-o-left\" aria-hidden=true></i></div><div class=info><div class=title>{{ vm.selected.title }}</div><div class=description>{{ vm.selected.description }}</div><div class=dates>{{ go.parseDate(vm.selected.startDate) | date: 'MMM d yyyy' }} - {{ go.calcEndDate(vm.selected) | date: 'MMM d yyyy' }}</div></div><div class=\"arrow disabled\"><i class=\"fa fa-arrow-circle-o-right\" aria-hidden=true></i></div></div></div>");
+    "<div class=cmpt-objectives-pi-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.pis.length > 1\"><select class=dropdown-select ng-options=\"pi.$id as pi.title + '  (' + go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) + ')' for pi in vm.pis\" ng-model=selected ng-change=go.change()><option value=\"\">Please select Program Increment</option></select></div><div ng-if=\"vm.pis.length === 1\">{{ vm.pis[0].title }} ({{ go.parseDate(vm.pis[0].startDate) }} - {{ go.calcEndDate(vm.pis[0]) }})</div><div class=details ng-show=!!vm.details>{{ vm.details }}</div></div></div>");
+}]);
+
+angular.module("/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html",
+    "<div class=cmpt-objectives-team-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.teams.length > 1\"><select class=dropdown-select ng-options=\"team.$id as team.teamName for team in vm.teams\" ng-model=selected><option value=\"\">Please select Team</option></select></div><div ng-if=\"vm.teams.length === 1\">{{ vm.teams[0].teamName }}</div></div></div>");
 }]);
 
 angular.module("/components/organization/cmpt-organization-details/organizationDetails.html", []).run(["$templateCache", function($templateCache) {
@@ -62,7 +72,7 @@ angular.module("/routes/home/home.html", []).run(["$templateCache", function($te
 
 angular.module("/routes/list-objectives/objectives.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/list-objectives/objectives.html",
-    "<div class=route-list-objectives-objectives ng-controller=\"ObjectivesCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><cmpt-objectives-pi-selector></cmpt-objectives-pi-selector></div></div></div>");
+    "<div class=route-list-objectives-objectives ng-controller=\"ObjectivesCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-team-selector selected=route.vm.selectedTeam></cmpt-objectives-team-selector><cmpt-objectives-manage-objectives selected-pi=route.vm.selectedPi selected-team=route.vm.selectedTeam type=1></cmpt-objectives-manage-objectives></div></div></div>");
 }]);
 
 angular.module("/routes/login/login.html", []).run(["$templateCache", function($templateCache) {
@@ -93,6 +103,11 @@ angular.module("/routes/users/scrum-masters.html", []).run(["$templateCache", fu
 angular.module("/global/modals/alert-html.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/global/modals/alert-html.html",
     "<div class=\"dialog-popup modal-alert-html\"><div class=ngdialog-message><div class=header>{{ngDialogData.header}}</div><div class=content ap-bind-html=ngDialogData.body></div></div><div class=ngdialog-buttons><a class=\"{{ button.cls }}\" ng-click=button.action() ng-repeat=\"button in ngDialogData.buttons\"><i class=\"fa fa-spinner fa-spin\" ng-if=!!button.loading></i>{{ button.title }}</a></div></div>");
+}]);
+
+angular.module("/global/modals/create-objective.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/global/modals/create-objective.html",
+    "<div class=\"dialog-popup modal-objective\"><div class=ngdialog-message><div class=header>{{ngDialogData.header}}</div><div class=content><div><input class=input ng-model=ngDialogData.objective.title placeholder=\"Enter objective\"></div></div></div><div class=ngdialog-buttons><a class=\"fl-button {{ button.cls }}\" ng-click=button.action(ngDialogData.selectedId) ng-repeat=\"button in ngDialogData.buttons\"><i class=\"fa {{ button.icon }}\" ng-class=\"{ 'fa-spinner fa-spin': button.loading }\"></i> {{ button.title }}</a></div></div>");
 }]);
 
 angular.module("/global/modals/create-org.html", []).run(["$templateCache", function($templateCache) {

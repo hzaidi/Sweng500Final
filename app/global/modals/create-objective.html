@@ -1,0 +1,15 @@
+<div class="dialog-popup modal-objective">
+	<div class="ngdialog-message">
+		<div class="header">{{ngDialogData.header}}</div>
+    <div class="content">
+      <div><input type="text" class="input" ng-model="ngDialogData.objective.title" placeholder="Enter objective"></div>      
+    </div>
+	</div>
+	<div class="ngdialog-buttons">
+    <a class="fl-button {{ button.cls }}"
+      ng-click="button.action(ngDialogData.selectedId)"
+      ng-repeat="button in ngDialogData.buttons">
+      <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>
+    {{ button.title }}</a>
+	</div>
+</div>

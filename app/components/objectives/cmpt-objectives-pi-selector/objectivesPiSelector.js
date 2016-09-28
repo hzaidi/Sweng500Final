@@ -3,23 +3,30 @@
 
 // directive options
 restrict: 'E',
-scope: true,
+scope: {
+	selected: '='
+},
 replace: true,
 templateUrl: '/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html',
 
 // #-------------------------------------------------# //
 // #---- Component (cmpt-objectives-pi-selector) ----# //
-controller: function ($scope, programIncrementSvc, toastHelp, dateHelp) {
+controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
+		isLoading: true,
 		pis: [],
-		selected: null
+		details: null
 	};
 
 	programIncrementSvc.piList().then(function(pis){
+		vm.isLoading = false;
+		if(pis.length === 1) {
+			$scope.selected = pis[0].$id;
+			vm.details = pis[0].description;
+		}
 		vm.pis = pis;
-		vm.selected = pis[0];
 	}, function(error){
 		toastHelp.error(error.message, 'Error')
 	})
@@ -32,13 +39,13 @@ controller: function ($scope, programIncrementSvc, toastHelp, dateHelp) {
 		},
 		parseDate: function(date){
 			if(date == null) { return; }
-			return new Date(date);
+			var newDate = new Date(date);
+			return $filter('date')(newDate,'MMM d yyyy');
 		},
-		next: function(){
-
-		},
-		previous: function(){
-
+		change: function(){
+			if($scope.selected == null) { vm.details = null; }
+			var pi = vm.pis.filter((a) => a.$id === $scope.selected)[0]
+			vm.details = pi.description;
 		}
 	};
 }

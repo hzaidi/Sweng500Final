@@ -6,7 +6,7 @@
 
 		var teamRef = firebase.database().ref('/teams');
 		var teamRefByOrg = teamRef.orderByChild('orgId');
-
+		var teamRefByOwner = teamRef.orderByChild('ownerId');
 
 
 
@@ -20,6 +20,10 @@
 			var ctx = userSvc.context().get();
 			return teamRefByOrg.equalTo(ctx.orgId);
 		}
+		function _teamRefByOwner(id) {
+			return teamRefByOwner.equalTo(id);
+		}
+
 
 
 		var _team = function(team = null){
@@ -52,6 +56,12 @@
 
 		function deleteTeam(fbArray, team) {
 			return fbArray.$remove(team)
+		}
+
+
+		function teamListByOwner(id) {
+			var teams = $firebaseArray(_teamRefByOwner(id))
+			return teams.$loaded();
 		}
 
 		function createTeamDialog() {
@@ -109,7 +119,8 @@
 			deleteTeam,
 			teamList,
 			createTeamDialog,
-			getByKey
+			getByKey,
+			teamListByOwner
 		};
 
 	});
