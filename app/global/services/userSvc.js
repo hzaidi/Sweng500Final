@@ -15,7 +15,7 @@
 		}
 
 		function _userRefByOrg() {
-			var ctx = storageSvc.load({ key: 'user' });
+			var ctx = context().get();
 			return userRefByOrg.equalTo(`${ctx.orgId}~~2`);
 		}
 
@@ -120,7 +120,7 @@
 								return authSvc.passwordResetEmail(userModel.email);
 							})
 							.then(function(){
-								var ctx = storageSvc.load({ key: 'user' });
+								var ctx = context().get();
 								userModel = Object.assign({}, userModel, { uid: uid, userRole: 2, orgId: ctx.orgId, organdrole:`${ctx.orgId}~~2` });
 								//create team owner in the user table.
 								return createUser(userModel);
@@ -151,9 +151,22 @@
 			return _defer.promise;
 		}
 
+		function context() {
+			function get() {
+				return storageSvc.load({ key: 'user' });
+			}
+			function set(user) {
+				storageSvc.save({ key: 'user', data: { uid: user.$id, orgId: user.orgId, userRole: user.userRole } });
+			}
+			return {
+				get,
+				set
+			}
+		}
 
 		return {
 			userObj: (user = null) => { return new _user(user); },
+			context,
 			createUserAuthentication,
 			createUser,
 			updateUser,

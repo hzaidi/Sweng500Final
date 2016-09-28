@@ -17,7 +17,7 @@
 		}
 
 		function _teamRefByOrg() {
-			var ctx = storageSvc.load({ key: 'user' });
+			var ctx = userSvc.context().get();
 			return teamRefByOrg.equalTo(ctx.orgId);
 		}
 
@@ -75,7 +75,7 @@
 							icon: 'fa fa-check',
 							loading: false,
 							action: function(){
-								var ctx = storageSvc.load({ key: 'user' });
+								var ctx = userSvc.context().get();
 								team.orgId = ctx.orgId;
 								createTeam(team).then(function(ref) {
 									ngDialog.close(dialog.id);

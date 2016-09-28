@@ -51,7 +51,7 @@ controller: function ($scope, programIncrementSvc, objectHelp, toastHelp) {
 			toastHelp.success(`${pi.title} team has been removed`,'Success');
 			programIncrementSvc.deletePi(vm.pis, pi);
 		},
-		calEndDate: function(pi){
+		calcEndDate: function(pi){
 			return programIncrementSvc.calcEndDate(pi);
 		}
 	};

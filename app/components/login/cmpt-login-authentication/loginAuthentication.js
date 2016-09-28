@@ -13,7 +13,7 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		username: 'shumzaz@hotmail.com',
+		username: 'dkim@gmail.com',
 		password: '123456'
 	};
 
@@ -22,7 +22,7 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,toastHelp) {
 	var go = $scope.go = {
 		login: function () {
 			authSvc.login(vm.username, vm.password).then(function(){
-					$state.go('home');				
+					$state.go('home');
 			}, function(error){
 				toastHelp.error(error.message, 'Error');
 			})

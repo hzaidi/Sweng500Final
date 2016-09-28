@@ -7,7 +7,6 @@
 		var orgRef = firebase.database().ref('/organizations');
 
 
-		var ctx = storageSvc.load({ key: 'user' });
 
 
 		function _orgRef(uid = null) {
@@ -28,6 +27,7 @@
 		}
 
 		function getOrg() {
+			var ctx = userSvc.context().get();
 			var org = $firebaseObject(_orgRef(ctx.orgId));
 			return org.$loaded();
 		}

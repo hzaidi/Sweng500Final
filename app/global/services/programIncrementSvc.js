@@ -13,7 +13,7 @@
 		}
 
 		function _piRefByOrg() {
-			var ctx = storageSvc.load({ key: 'user' });
+			var ctx = userSvc.context().get();
 			return piRefByOrg.equalTo(ctx.orgId);
 		}
 
@@ -72,7 +72,7 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
-							var ctx = storageSvc.load({ key: 'user' });
+							var ctx = userSvc.context().get();
 							pi.orgId = ctx.orgId;
 							createPi(pi).then(function(ref) {
 								ngDialog.close(dialog.id);

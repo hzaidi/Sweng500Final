@@ -20,9 +20,9 @@
 						});
 					}
 				},
-				controller: function($scope, user, storageSvc){
+				controller: function($scope, user, storageSvc, userSvc){
 					$scope.user = user;
-					storageSvc.save({ key: 'user', data: { uid: user.$id, orgId: user.orgId } })
+					userSvc.context().set(user);
 				}
 			})
 			.state('organization', {
@@ -70,6 +70,20 @@
 			.state('program-increment-list', {
 				url: '/programincrement/list',
 				templateUrl: '/routes/setup/programincrement.html',
+				resolve:{
+					user: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							return userSvc.getLoggedInUser();
+						});
+					}
+				},
+				controller: function($scope, user){
+					$scope.user = user;
+				}
+			})
+			.state('objectives-list', {
+				url: '/objectives/list',
+				templateUrl: '/routes/list-objectives/objectives.html',
 				resolve:{
 					user: function(authSvc, userSvc){
 						return authSvc.auth().$requireSignIn().then(function(){

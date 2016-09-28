@@ -9,7 +9,7 @@ templateUrl: '/components/nav/cmpt-nav-menu/navMenu.html',
 
 // #-----------------------------------# //
 // #---- Component (cmpt-nav-menu) ----# //
-controller: function ($scope, $location) {
+controller: function ($scope, $location, userSvc) {
 
 	var adminMenu = [{
 		icon: 'fa-sitemap',
@@ -29,9 +29,15 @@ controller: function ($scope, $location) {
 		title: 'Program Increment Setup'
 	}]
 
+	var scrumMasterMenu = [{
+		icon: 'fa-cogs',
+		url: '/objectives/list',
+		title: 'Objectives'
+	}]
+
 	// View Model properties
 	var vm = $scope.vm = {
-		menuData: adminMenu
+		menuData: (userSvc.context().get().userRole === 1) ? adminMenu : scrumMasterMenu
 	};
 
 	// Actions that can be bound to from the view

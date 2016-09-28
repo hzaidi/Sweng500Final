@@ -1,0 +1,15 @@
+<div class="cmpt-objectives-pi-selector">
+	<div class="selector">
+		<div class="arrow">
+			<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+		</div>
+		<div class="info">
+			<div class="title">{{ vm.selected.title }}</div>
+			<div class="description">{{ vm.selected.description }}</div>
+			<div class="dates">{{ go.parseDate(vm.selected.startDate) | date: 'MMM d yyyy' }}  -  {{ go.calcEndDate(vm.selected) | date: 'MMM d yyyy' }}</div>
+		</div>
+		<div class="arrow disabled">
+			<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+		</div>
+	</div>
+</div>
