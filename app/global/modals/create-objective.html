@@ -2,7 +2,10 @@
 	<div class="ngdialog-message">
 		<div class="header">{{ngDialogData.header}}</div>
     <div class="content">
-      <div><input type="text" class="input" ng-model="ngDialogData.objective.title" placeholder="Enter objective"></div>      
+      <div><input type="text" class="input" ng-model="ngDialogData.objective.title" placeholder="Enter objective"></div>
+      <div>
+        <cmpt-ui-state-selector selected="ngDialogData.objective.state"></cmpt-ui-state-selector>
+      </div>
     </div>
 	</div>
 	<div class="ngdialog-buttons">

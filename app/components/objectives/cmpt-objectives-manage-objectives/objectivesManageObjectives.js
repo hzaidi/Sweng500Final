@@ -21,10 +21,23 @@ controller: function ($scope, objectiveSvc, objectiveTypeVal, toastHelp) {
 		type: objectiveTypeVal[$scope.type]
 	};
 
+
+	// objectiveSvc.objectiveList().then(function(users){
+	// 	vm.isLoading = false;
+	// 	vm.users = users;
+	// }, function(error){
+	// 	toastHelp.error(error.message,'Error');
+	// });
+
+
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		objective: function () {
-			objectiveSvc.createObjectiveDialog().then(function(){				
+			var selectedPi = $scope.selectedPi;
+			var selectedTeam = $scope.selectedTeam;
+			var type = parseInt($scope.type);
+			objectiveSvc.createObjectiveDialog(selectedPi, selectedTeam, type).then(function(){
 			}, function(){
 				toastHelp.error(error.message,'Error')
 			})

@@ -2,7 +2,7 @@
 
 	// #----------------------------------# //
 	// #----- Service (objectiveSvc) -----# //
-	app.factory('objectiveSvc', function ($q, userSvc,ngDialog) {
+	app.factory('objectiveSvc', function ($q, $firebaseArray, userSvc, ngDialog) {
 
 		var objectiveRef = firebase.database().ref('/objectives');
 
@@ -38,7 +38,7 @@
 
 
 
-		function createObjectiveDialog() {
+		function createObjectiveDialog(selectedPi, selectedTeam, type) {
 			var _defer = $q.defer();
 			var objective = new _objective();
 			var dialog = ngDialog.open({
@@ -56,19 +56,24 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
-							var ctx = userSvc.contex().get();
+							var ctx = userSvc.context().get();
 							objective = Object.assign({},
 													objective,{
-														type: $scope.type,
-														piId: $scope.selectedPi,
-														teamId: $scope.selectedTeam,
+														type: type,
+														piId: selectedPi,
+														teamId: selectedTeam,
 														orgId: ctx.orgId,
-														piandorg: `${$scope.selectedPi}~~${ctx.orgId}`,
-														piandteam: `${$scope.selectedPi}~~${$scope.selectedTeam}`
+														piandorg: `${selectedPi}~~${ctx.orgId}`,
+														piandteam: `${selectedPi}~~${selectedTeam}`
 													});
-							console.log(objective);
-							_defer.resolve();
-							ngDialog.close(dialog.id);
+							createObjective(objective).then(function(ref){
+								console.log(ref);
+								objective.id = ref.key;
+								_defer.resolve(objective);
+								ngDialog.close(dialog.id);
+							}, function(error){
+								_defer.rejet(error);
+							})
 						}
 					},{
 						title: 'Cancel',

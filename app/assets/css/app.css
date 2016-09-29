@@ -200,6 +200,57 @@
 .cmpt-ui-loader i {
   margin-right: 5px;
 }
+.cmpt-ui-state-selector {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  height: 34px;
+  margin: 5px;
+}
+.cmpt-ui-state-selector .option {
+  text-transform: uppercase;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  padding: 9px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1;
+}
+.cmpt-ui-state-selector .option:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.cmpt-ui-state-selector .option:active {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.cmpt-ui-state-selector .option.active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.cmpt-ui-state-selector .option:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.cmpt-ui-state-selector .option:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .cmpt-users-list .no-data {
   border: 2px dashed #00c7c3;
   border-radius: 5px;
@@ -207,6 +258,11 @@
   text-align: center;
   color: #00c7c3;
   font-weight: bold;
+}
+.modal-objective input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
 }
 .modal-create-org input {
   width: 100%;
