@@ -16,7 +16,8 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: true,
-		teams: []
+		teams: [],
+		val: $scope.selected
 	};
 
 	var ctx = userSvc.context().get();
@@ -32,7 +33,13 @@ controller: function ($scope, teamSvc, userSvc, toastHelp) {
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
+			change: function(){
+				if(vm.val == null) {
+					vm.details = null;
+				}
+				$scope.selected = vm.val;
 
+			}
 	};
 }
 

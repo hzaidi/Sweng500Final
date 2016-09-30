@@ -15,9 +15,7 @@ templateUrl: '/components/objectives/cmpt-objectives-manage-objectives/objective
 // #---- Component (cmpt-objectives-manage-objectives) ----# //
 controller: function ($scope, objectiveSvc, userSvc, objectiveTypeVal, toastHelp, objectHelp) {
 
-	var selectedPi = $scope.selectedPi;
-	var selectedTeam = $scope.selectedTeam;
-	var type = parseInt($scope.type);
+
 	var context = userSvc.context().get();
 
 	// View Model properties
@@ -29,19 +27,30 @@ controller: function ($scope, objectiveSvc, userSvc, objectiveTypeVal, toastHelp
 	};
 
 
-	objectiveSvc.objectiveList(selectedPi, selectedTeam, type).then(function(objectives){
-		vm.isLoading = false;
-		vm.objectives = objectives;
-	}, function(error){
-		toastHelp.error(error.message,'Error');
+	$scope.$watchGroup(['selectedPi', 'selectedTeam'], function (newValues) {
+		getObjectives(newValues[0], newValues[1]);
 	});
+
+
+	function getObjectives(selectedPi, selectedTeam) {
+		if(selectedPi === null || selectedTeam === null){
+			vm.objectives = [];
+		}else{
+			objectiveSvc.objectiveList(selectedPi, selectedTeam, parseInt($scope.type)).then(function(objectives){
+				vm.isLoading = false;
+				vm.objectives = objectives;
+			}, function(error){
+				toastHelp.error(error.message,'Error');
+			});
+		}
+	}
 
 
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		objective: function () {
-			objectiveSvc.createObjectiveDialog(selectedPi, selectedTeam, type).then(function(){
+			objectiveSvc.createObjectiveDialog($scope.selectedPi, $scope.selectedTeam, parseInt($scope.type)).then(function(){
 			}, function(){
 				toastHelp.error(error.message,'Error')
 			})

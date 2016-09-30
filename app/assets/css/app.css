@@ -163,6 +163,9 @@
 .cmpt-objectives-pi-selector .selector {
   color: #fff;
 }
+.cmpt-objectives-pi-selector .selector .dropdown {
+  width: 400px;
+}
 .cmpt-objectives-pi-selector .selector .details {
   font-size: 30px;
   font-weight: bold;
@@ -177,6 +180,9 @@
 }
 .cmpt-objectives-team-selector .selector {
   color: #fff;
+}
+.cmpt-objectives-team-selector .selector .dropdown {
+  width: 400px;
 }
 .cmpt-organization-details .title {
   font-size: 20px;
