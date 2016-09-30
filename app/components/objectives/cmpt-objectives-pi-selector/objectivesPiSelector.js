@@ -17,7 +17,8 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 	var vm = $scope.vm = {
 		isLoading: true,
 		pis: [],
-		details: null
+		details: null,
+		val: $scope.selected
 	};
 
 	programIncrementSvc.piList().then(function(pis){
@@ -43,9 +44,13 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 			return $filter('date')(newDate,'MMM d yyyy');
 		},
 		change: function(){
-			if($scope.selected == null) { vm.details = null; }
-			var pi = vm.pis.filter((a) => a.$id === $scope.selected)[0]
-			vm.details = pi.description;
+			if(vm.val == null) {
+				vm.details = null;
+			} else {
+				var pi = vm.pis.filter((a) => a.$id === vm.val)[0]
+				vm.details = pi.description;
+			}
+			$scope.selected = vm.val;
 		}
 	};
 }

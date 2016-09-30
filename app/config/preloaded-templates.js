@@ -27,12 +27,12 @@ angular.module("/components/objectives/cmpt-objectives-manage-objectives/objecti
 
 angular.module("/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html",
-    "<div class=cmpt-objectives-pi-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.pis.length > 1\"><select class=dropdown-select ng-options=\"pi.$id as pi.title + '  (' + go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) + ')' for pi in vm.pis\" ng-model=selected ng-change=go.change()><option value=\"\">Please select Program Increment</option></select></div><div ng-if=\"vm.pis.length === 1\">{{ vm.pis[0].title }} ({{ go.parseDate(vm.pis[0].startDate) }} - {{ go.calcEndDate(vm.pis[0]) }})</div><div class=details ng-show=!!vm.details>{{ vm.details }}</div></div></div>");
+    "<div class=cmpt-objectives-pi-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.pis.length > 1\"><select class=dropdown-select ng-options=\"pi.$id as pi.title + '  (' + go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) + ')' for pi in vm.pis\" ng-model=vm.val ng-change=go.change()><option value=\"\">Please select Program Increment</option></select></div><div ng-if=\"vm.pis.length === 1\">{{ vm.pis[0].title }} ({{ go.parseDate(vm.pis[0].startDate) }} - {{ go.calcEndDate(vm.pis[0]) }})</div><div class=details ng-show=!!vm.details>{{ vm.details }}</div></div></div>");
 }]);
 
 angular.module("/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html",
-    "<div class=cmpt-objectives-team-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.teams.length > 1\"><select class=dropdown-select ng-options=\"team.$id as team.teamName for team in vm.teams\" ng-model=selected><option value=\"\">Please select Team</option></select></div><div ng-if=\"vm.teams.length === 1\">Team: {{ vm.teams[0].teamName }}</div></div></div>");
+    "<div class=cmpt-objectives-team-selector><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=selector><div class=\"dropdown dropdown-dark\" ng-if=\"vm.teams.length > 1\"><select class=dropdown-select ng-options=\"team.$id as team.teamName for team in vm.teams\" ng-model=vm.val ng-change=go.change()><option value=\"\">Please select Team</option></select></div><div ng-if=\"vm.teams.length === 1\">Team: {{ vm.teams[0].teamName }}</div></div></div>");
 }]);
 
 angular.module("/components/organization/cmpt-organization-details/organizationDetails.html", []).run(["$templateCache", function($templateCache) {
@@ -72,7 +72,7 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
-    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><cmpt-nav-menu></cmpt-nav-menu></div>");
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/objectives.html", []).run(["$templateCache", function($templateCache) {
