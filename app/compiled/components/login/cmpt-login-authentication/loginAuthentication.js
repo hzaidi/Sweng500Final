@@ -28,6 +28,9 @@
 						}, function (error) {
 							toastHelp.error(error.message, 'Error');
 						});
+					},
+					forgotPass: function forgotPass() {
+						$state.go('forgotpassword');
 					}
 				};
 			}

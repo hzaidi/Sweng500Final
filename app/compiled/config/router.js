@@ -11,6 +11,9 @@
 		$stateProvider.state('default', {
 			url: '/',
 			templateUrl: '/routes/login/login.html'
+		}).state('forgotpassword', {
+			url: '/forgotpassword',
+			templateUrl: '/routes/forgotpassword/forgotpassword.html'
 		}).state('home', {
 			url: '/home',
 			templateUrl: '/routes/home/home.html',

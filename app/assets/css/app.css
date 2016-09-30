@@ -1,3 +1,13 @@
+.cmpt-reset-password {
+  padding: 20px;
+}
+.cmpt-reset-password .title {
+  font-size: 20px;
+  color: #fff;
+}
+.cmpt-reset-password input {
+  width: 205px;
+}
 .cmpt-login-authentication {
   background-color: #113148;
   border-bottom: 1px solid #001322;
