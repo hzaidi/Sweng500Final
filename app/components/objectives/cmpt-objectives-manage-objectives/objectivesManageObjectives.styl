@@ -1,3 +1,70 @@
+@import "variables.styl"
 .cmpt-objectives-manage-objectives {
-	
+		&.container-blue{
+			.button-default{
+				background-color: $darkBlue;
+				&:hover {
+			    	background-color: darken($darkBlue, 5%);
+				}
+			}
+			.grid{
+				.grid-header{
+					background-color: $darkBlue;
+					border-left: 8px solid $darkBlue;
+				}
+				.grid-body{
+					.grid-content{
+						border: 1px solid $darkBlue;
+						border-left: 8px solid $darkBlue;
+						border-bottom: 0;
+						&:last-child{
+							border-bottom: 1px solid $darkBlue;
+						}
+					}
+				}
+			}
+			.no-data{
+				border: 2px dashed $darkBlue;
+				color: $darkBlue;
+			}
+		}
+		&.container-green{
+			.button-default{
+				background-color: $mediumGreen;
+				&:hover {
+			    	background-color: darken($mediumGreen, 5%);
+				}
+			}
+			.grid{
+				.grid-header{
+					background-color: $mediumGreen;
+					border-left: 8px solid $mediumGreen;
+				}
+				.grid-body{
+					.grid-content{
+						border: 1px solid $mediumGreen;
+						border-left: 8px solid $mediumGreen;
+						border-bottom: 0;
+						&:last-child{
+							border-bottom: 1px solid $mediumGreen;
+						}
+					}
+				}
+			}
+			.no-data{
+				border: 2px dashed $mediumGreen;
+				color: $mediumGreen;
+			}
+		}
+
+		.grid{
+			border:0;
+		}
+		.no-data{
+			margin: 10px 0;
+			border-radius: 5px;
+			padding: 50px;
+			text-align: center;
+			font-weight: bold;
+		}
 }

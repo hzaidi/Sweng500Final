@@ -4,20 +4,25 @@
 // directive options
 restrict: 'E',
 scope: {
-	selected: '='
+	selected: '=',
+	updateState: '&'
 },
 replace: true,
 templateUrl: '/components/ui/cmpt-ui-state-selector/uiStateSelector.html',
 
 // #--------------------------------------------# //
 // #---- Component (cmpt-ui-state-selector) ----# //
-controller: function ($scope, stateVal) {
+controller: function ($scope, $timeout, stateVal) {
 
-	console.log(stateVal);
+	if($scope.updateState == null) { $scope.updateState = function(){}; }
+	var options = angular.copy(stateVal);
 
 	// View Model properties
 	var vm = $scope.vm = {
-		options: stateVal.map(function(a){ a.isSelected = false; return a; })
+		options: options.map(function(a){
+			a.isSelected = a.id === $scope.selected;
+			return a;
+		})
 	};
 
 	// Actions that can be bound to from the view
@@ -27,6 +32,7 @@ controller: function ($scope, stateVal) {
 			$scope.selected = item.id;
 			var filtered = vm.options.filter(function(a){ return a !== item; });
 			filtered.forEach((a)=> { a.isSelected = false; })
+			$timeout(function(){$scope.updateState()},10);
 		}
 	};
 }
