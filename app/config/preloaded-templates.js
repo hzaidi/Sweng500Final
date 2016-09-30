@@ -2,7 +2,7 @@ angular.module('templates-preload', ['/components/forgotpassword/cmpt-reset-pass
 
 angular.module("/components/forgotpassword/cmpt-reset-password/resetPassword.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/forgotpassword/cmpt-reset-password/resetPassword.html",
-    "<div class=cmpt-reset-password><div class=title>Find Your SAFe Password</div><div><input class=input placeholder=mail@mail.com name=email ng-model=vm.username></div><div><button class=\"button button-positive\" ng-click=go.reset()><i aria-hidden=true></i>Search</button></div></div>");
+    "<div class=cmpt-reset-password><div class=title>Find Your SAFe Password</div><div><input class=input placeholder=mail@mail.com name=email ng-model=vm.username></div><div><button class=\"button button-parimary\" ng-click=go.reset()><i aria-hidden=true></i>Search</button></div></div>");
 }]);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
@@ -77,7 +77,7 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
 
 angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/forgotpassword/forgotpassword.html",
-    "<div class=route-forgotpassword-forgotpassword ng-controller=\"ForgotPasswordCtrl as route\"><div class=top-bar><cmpt-login-authentication></cmpt-login-authentication></div><div class=-g><cmpt-reset-password class=-u-12-24></cmpt-reset-password></div></div>");
+    "<div class=route-forgotpassword-forgotpassword ng-controller=\"ForgotPasswordCtrl as route\"><div class=top-bar><cmpt-login-authentication></cmpt-login-authentication></div><div class=-u-10-24></div><div class=-u-10-24><cmpt-reset-password></cmpt-reset-password></div><div class=-u-4-24></div></div>");
 }]);
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
