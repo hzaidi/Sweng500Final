@@ -96,6 +96,60 @@
 .cmpt-nav-menu ul li:hover {
   background-color: #113148;
 }
+.cmpt-objectives-manage-objectives.container-blue .button-default {
+  background-color: #0076ff;
+}
+.cmpt-objectives-manage-objectives.container-blue .button-default:hover {
+  background-color: #0070f2;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-header {
+  background-color: #0076ff;
+  border-left: 8px solid #0076ff;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content {
+  border: 1px solid #0076ff;
+  border-left: 8px solid #0076ff;
+  border-bottom: 0;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content:last-child {
+  border-bottom: 1px solid #0076ff;
+}
+.cmpt-objectives-manage-objectives.container-blue .no-data {
+  border: 2px dashed #0076ff;
+  color: #0076ff;
+}
+.cmpt-objectives-manage-objectives.container-green .button-default {
+  background-color: #00c7c3;
+}
+.cmpt-objectives-manage-objectives.container-green .button-default:hover {
+  background-color: #00bdb9;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-header {
+  background-color: #00c7c3;
+  border-left: 8px solid #00c7c3;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content {
+  border: 1px solid #00c7c3;
+  border-left: 8px solid #00c7c3;
+  border-bottom: 0;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content:last-child {
+  border-bottom: 1px solid #00c7c3;
+}
+.cmpt-objectives-manage-objectives.container-green .no-data {
+  border: 2px dashed #00c7c3;
+  color: #00c7c3;
+}
+.cmpt-objectives-manage-objectives .grid {
+  border: 0;
+}
+.cmpt-objectives-manage-objectives .no-data {
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  font-weight: bold;
+}
 .cmpt-objectives-pi-selector .selector {
   color: #fff;
 }
@@ -106,6 +160,10 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   margin: 10px 0;
+}
+.cmpt-objectives-team-selector {
+  margin: 20px 0;
+  font-size: 20px;
 }
 .cmpt-objectives-team-selector .selector {
   color: #fff;
@@ -324,7 +382,7 @@ h1 {
   line-height: 43px;
 }
 .grid .grid-cell {
-  padding: 10px;
+  padding: 5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

@@ -2,9 +2,10 @@
 
 	// #----------------------------------# //
 	// #----- Service (objectiveSvc) -----# //
-	app.factory('objectiveSvc', function ($q, $firebaseArray, userSvc, ngDialog) {
+	app.factory('objectiveSvc', function ($q, $firebaseArray, $firebaseObject, userSvc, ngDialog) {
 
 		var objectiveRef = firebase.database().ref('/objectives');
+		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
 
 
 
@@ -14,13 +15,17 @@
 			return objectiveRef.child(uid);
 		}
 
+		function _objectiveRefByPiAndTeamAndType(pi,team,type) {
+			return objectiveRefByPiAndTeamAndType.equalTo(`${pi}~~${team}~~${type}`);
+		}
+
 
 
 		var _objective = function(objective = null){
 			return {
 				id: (objective === null) ? null : objective.$id,
 				title: (objective === null) ? null : objective.title,
-				businessValue:  (objective === null) ? null : objective.businessValue,
+				businessValue:  (objective === null) ? 0 : objective.businessValue,
 				state:  (objective === null) ? null : objective.state,
 				type:  (objective === null) ? null : objective.type,
 				piId:  (objective === null) ? null : objective.piId,
@@ -36,7 +41,24 @@
 			return objectives.$add(objective);
 		}
 
+		function objectiveList(pi,team, type) {
+			var objectives = $firebaseArray(_objectiveRefByPiAndTeamAndType(pi, team, type));
+			return objectives.$loaded();
+		}
 
+		function updateObjective(fbArray, objective) {
+			delete objective.isEditing;
+			return fbArray.$save(objective);
+		}
+
+		function deleteObjective(fbArray, objective) {
+			return fbArray.$remove(objective)
+		}
+
+		function getByKey(key) {
+			var data = $firebaseObject(_objectiveRef(key));
+			return data.$loaded();
+		}
 
 		function createObjectiveDialog(selectedPi, selectedTeam, type) {
 			var _defer = $q.defer();
@@ -64,10 +86,9 @@
 														teamId: selectedTeam,
 														orgId: ctx.orgId,
 														piandorg: `${selectedPi}~~${ctx.orgId}`,
-														piandteam: `${selectedPi}~~${selectedTeam}`
+														piandteamandtype: `${selectedPi}~~${selectedTeam}~~${type}`
 													});
 							createObjective(objective).then(function(ref){
-								console.log(ref);
 								objective.id = ref.key;
 								_defer.resolve(objective);
 								ngDialog.close(dialog.id);
@@ -93,7 +114,11 @@
 
 
 		return {
-			createObjectiveDialog
+			createObjectiveDialog,
+			objectiveList,
+			updateObjective,
+			deleteObjective,
+			getByKey
 		};
 
 	});
