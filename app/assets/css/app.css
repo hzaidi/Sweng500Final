@@ -96,49 +96,88 @@
 .cmpt-nav-menu ul li:hover {
   background-color: #113148;
 }
+.cmpt-objectives-by-team .input-search {
+  position: relative;
+}
+.cmpt-objectives-by-team .input-search .input.ico-search {
+  padding-left: 40px;
+  font-size: 25px;
+}
+.cmpt-objectives-by-team .input-search i {
+  color: #fff;
+  top: 23px;
+  left: 15px;
+  position: absolute;
+}
+.cmpt-objectives-by-team .team-container {
+  background: #113148;
+  margin: 10px 0;
+}
+.cmpt-objectives-by-team .team-container .team-name {
+  position: relative;
+  color: #fff;
+  background: #102d42;
+  padding: 15px;
+}
+.cmpt-objectives-by-team .team-container .team-name i {
+  cursor: pointer;
+  background: #0e2a3d;
+  position: absolute;
+  right: 0;
+  line-height: 3;
+  top: 0;
+  width: 50px;
+  text-align: center;
+}
+.cmpt-objectives-by-team .team-container .team-name i:hover {
+  background: #0e273a;
+}
+.cmpt-objectives-by-team .team-container .objective-container .cmpt-objectives-manage-objectives {
+  padding: 10px;
+}
 .cmpt-objectives-manage-objectives.container-blue .button-default {
   background-color: #0076ff;
 }
 .cmpt-objectives-manage-objectives.container-blue .button-default:hover {
-  background-color: #0070f2;
+  background-color: #004799;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-header {
-  background-color: #0076ff;
-  border-left: 8px solid #0076ff;
+  background-color: #0058bf;
+  border-left: 8px solid #0058bf;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content {
-  border: 1px solid #0076ff;
-  border-left: 8px solid #0076ff;
+  border: 1px solid #0058bf;
+  border-left: 8px solid #0058bf;
   border-bottom: 0;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content:last-child {
-  border-bottom: 1px solid #0076ff;
+  border-bottom: 1px solid #0058bf;
 }
 .cmpt-objectives-manage-objectives.container-blue .no-data {
-  border: 2px dashed #0076ff;
-  color: #0076ff;
+  border: 2px dashed #0058bf;
+  color: #0058bf;
 }
 .cmpt-objectives-manage-objectives.container-green .button-default {
-  background-color: #00c7c3;
+  background-color: #009592;
 }
 .cmpt-objectives-manage-objectives.container-green .button-default:hover {
-  background-color: #00bdb9;
+  background-color: #007775;
 }
 .cmpt-objectives-manage-objectives.container-green .grid .grid-header {
-  background-color: #00c7c3;
-  border-left: 8px solid #00c7c3;
+  background-color: #009592;
+  border-left: 8px solid #009592;
 }
 .cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content {
-  border: 1px solid #00c7c3;
-  border-left: 8px solid #00c7c3;
+  border: 1px solid #009592;
+  border-left: 8px solid #009592;
   border-bottom: 0;
 }
 .cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content:last-child {
-  border-bottom: 1px solid #00c7c3;
+  border-bottom: 1px solid #009592;
 }
 .cmpt-objectives-manage-objectives.container-green .no-data {
-  border: 2px dashed #00c7c3;
-  color: #00c7c3;
+  border: 2px dashed #009592;
+  color: #009592;
 }
 .cmpt-objectives-manage-objectives .grid {
   border: 0;
@@ -353,7 +392,6 @@ body {
   font-family: 'Ropa Sans';
   height: 100%;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden;
   background: #132a3b;
 }
 *:focus {
@@ -742,6 +780,9 @@ h1 {
   border-right: 16px solid transparent;
   top: -7px;
   left: 1px;
+}
+.route-list-objectives-all-teams .main-content {
+  padding: 20px;
 }
 .route-list-objectives-objectives .main-content {
   padding: 20px;

@@ -25,6 +25,10 @@ controller: function ($scope, $timeout, stateVal) {
 		})
 	};
 
+	$scope.$watch('selected', function(val){
+		vm.options.forEach((a)=> { a.isSelected = a.id === val; })
+	})
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		click: function (item) {

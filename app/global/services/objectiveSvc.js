@@ -85,7 +85,7 @@
 														piId: selectedPi,
 														teamId: selectedTeam,
 														orgId: ctx.orgId,
-														piandorg: `${selectedPi}~~${ctx.orgId}`,
+														piandorgandtype: `${selectedPi}~~${ctx.orgId}~~${type}`,
 														piandteamandtype: `${selectedPi}~~${selectedTeam}~~${type}`
 													});
 							createObjective(objective).then(function(ref){
