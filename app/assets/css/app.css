@@ -25,6 +25,10 @@
   text-shadow: #e0e0e0 1px 1px 0px;
   margin: auto 0;
 }
+.cmpt-login-authentication .content a:hover {
+  text-shadow: #e0e0e0 1px 1px 0px;
+  color: #fafafa;
+}
 .cmpt-login-authentication .content .auth-section .label,
 .cmpt-login-authentication .content .auth-section .forgot-password {
   color: #fafafa;
