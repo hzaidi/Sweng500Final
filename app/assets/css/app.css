@@ -119,7 +119,7 @@
   background: #102d42;
   padding: 15px;
 }
-.cmpt-objectives-by-team .team-container .team-name i {
+.cmpt-objectives-by-team .team-container .team-name span {
   cursor: pointer;
   background: #0e2a3d;
   position: absolute;
@@ -129,8 +129,32 @@
   width: 50px;
   text-align: center;
 }
-.cmpt-objectives-by-team .team-container .team-name i:hover {
+.cmpt-objectives-by-team .team-container .team-name span:hover {
   background: #0e273a;
+}
+.cmpt-objectives-by-team .team-container .team-name i.fa-chevron-down {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 200ms linear;
+  -moz-transition: -moz-transform 200ms linear;
+  -o-transition: -o-transform 200ms linear;
+  -ms-transition: -ms-transform 200ms linear;
+  transition: transform 200ms linear;
+}
+.cmpt-objectives-by-team .team-container .team-name.expanded i.fa-chevron-down {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+  -webkit-transition: -webkit-transform 200ms linear;
+  -moz-transition: -moz-transform 200ms linear;
+  -o-transition: -o-transform 200ms linear;
+  -ms-transition: -ms-transform 200ms linear;
+  transition: transform 200ms linear;
 }
 .cmpt-objectives-by-team .team-container .objective-container .cmpt-objectives-manage-objectives {
   padding: 10px;
