@@ -1,4 +1,14 @@
-angular.module('templates-preload', ['/components/forgotpassword/cmpt-reset-password/resetPassword.html', '/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html', '/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html', '/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/program-increment/cmpt-program-increment-details/programIncrementDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/ui/cmpt-ui-state-selector/uiStateSelector.html', '/components/users/cmpt-users-list/usersList.html', '/routes/forgotpassword/forgotpassword.html', '/routes/home/home.html', '/routes/list-objectives/objectives.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/setup/programincrement.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-objective.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html', '/global/modals/programIncrement-setup.html']);
+angular.module('templates-preload', ['/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html', '/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html', '/components/forgotpassword/cmpt-reset-password/resetPassword.html', '/components/login/cmpt-login-authentication/loginAuthentication.html', '/components/login/cmpt-login-logo/loginLogo.html', '/components/login/cmpt-login-sign-up/loginSignUp.html', '/components/nav/cmpt-nav-menu/navMenu.html', '/components/objectives/cmpt-objectives-by-team/objectivesByTeam.html', '/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html', '/components/objectives/cmpt-objectives-pi-selector/objectivesPiSelector.html', '/components/objectives/cmpt-objectives-team-selector/objectivesTeamSelector.html', '/components/organization/cmpt-organization-details/organizationDetails.html', '/components/program-increment/cmpt-program-increment-details/programIncrementDetails.html', '/components/team/cmpt-team-list/teamList.html', '/components/topbar/cmpt-topbar-header/topbarHeader.html', '/components/ui/cmpt-ui-loader/uiLoader.html', '/components/ui/cmpt-ui-simple-progress-bar/uiSimpleProgressBar.html', '/components/ui/cmpt-ui-state-selector/uiStateSelector.html', '/components/users/cmpt-users-list/usersList.html', '/routes/dashboard/dashboard.html', '/routes/forgotpassword/forgotpassword.html', '/routes/home/home.html', '/routes/list-objectives/all-teams.html', '/routes/list-objectives/objectives.html', '/routes/login/login.html', '/routes/organization/organization.html', '/routes/setup/programincrement.html', '/routes/team/list.html', '/routes/users/scrum-masters.html', '/global/modals/alert-html.html', '/global/modals/create-objective.html', '/global/modals/create-org.html', '/global/modals/create-team.html', '/global/modals/create-user.html', '/global/modals/programIncrement-setup.html']);
+
+angular.module("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html",
+    "<div class=cmpt-dashboard-pi-selector><div class=container ng-class=\"{'opened' : vm.open}\"><div class=pi-tiles ng-repeat=\"pi in vm.pis\" ng-click=go.select(pi) ng-class=\"{'selected': pi.$id === selected}\"><div class=pi-info><div class=title>{{ pi.title }}</div><div class=description>{{ pi.description }}</div><div class=dates>{{ go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) }}</div><div class=check><i class=\"fa fa-check-circle\" aria-hidden=true></i></div></div></div><div class=panel-opener ng-click=go.toggle()><i class=\"fa fa-align-justify\" aria-hidden=true></i></div></div></div>");
+}]);
+
+angular.module("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html",
+    "<div class=cmpt-dashboard-team-progress><div class=team-container><div class=team-name>{{ team.teamName }} - {{ team.owner }}</div><div class=team-commitment><cmpt-ui-simple-progress-bar percentage=team.commitment.percentage cls=green></cmpt-ui-simple-progress-bar></div><div class=team-stretch><cmpt-ui-simple-progress-bar percentage=team.stretch.percentage cls=medium></cmpt-ui-simple-progress-bar></div></div></div>");
+}]);
 
 angular.module("/components/forgotpassword/cmpt-reset-password/resetPassword.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/forgotpassword/cmpt-reset-password/resetPassword.html",
@@ -23,6 +33,11 @@ angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(
 angular.module("/components/nav/cmpt-nav-menu/navMenu.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/nav/cmpt-nav-menu/navMenu.html",
     "<div class=cmpt-nav-menu><ul><a href=\"{{ menu.url }}\" ng-class=\"{ 'selected': go.isSelected(menu.url) }\" ng-repeat=\"menu in vm.menuData\"><li><i class=\"fa {{ menu.icon }}\" aria-hidden=true></i>{{ menu.title }}</li></a></ul></div>");
+}]);
+
+angular.module("/components/objectives/cmpt-objectives-by-team/objectivesByTeam.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/objectives/cmpt-objectives-by-team/objectivesByTeam.html",
+    "<div class=cmpt-objectives-by-team><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=team-list ng-show=\"vm.teams.length > 0\"><form class=form-search><label class=input-search><i class=\"fa fa-search\"></i> <input class=\"input ico-search\" name=name placeholder=\"Search team\" ng-model=vm.search></label><div ng-repeat=\"team in vm.teams | filter: vm.search\"><div class=team-container><div class=team-name slide-toggle=\"#drp-{{ $index }}\">{{ team.teamName }} <span><i class=\"fa fa-chevron-down\"></i></span></div><div class=\"objective-container slideable\" id=\"drp-{{ $index }}\"><cmpt-objectives-manage-objectives ng-if=\"selectedPi && team.$id\" selected-pi=selectedPi selected-team=team.$id type=1></cmpt-objectives-manage-objectives><cmpt-objectives-manage-objectives ng-if=\"selectedPi && team.$id\" selected-pi=selectedPi selected-team=team.$id type=2></cmpt-objectives-manage-objectives></div></div></div></form></div></div>");
 }]);
 
 angular.module("/components/objectives/cmpt-objectives-manage-objectives/objectivesManageObjectives.html", []).run(["$templateCache", function($templateCache) {
@@ -65,6 +80,11 @@ angular.module("/components/ui/cmpt-ui-loader/uiLoader.html", []).run(["$templat
     "<div class=cmpt-ui-loader><div class=loader><i class=\"fa fa-spinner fa-spin\" aria-hidden=true></i>Loading...</div></div>");
 }]);
 
+angular.module("/components/ui/cmpt-ui-simple-progress-bar/uiSimpleProgressBar.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/components/ui/cmpt-ui-simple-progress-bar/uiSimpleProgressBar.html",
+    "<div class=cmpt-ui-simple-progress-bar><div class=progressBar><div class=\"arrow-status {{ cls }}\" style=\"width: {{ percentage }}%\"><span>{{ percentage }}</span><sup>%</sup><ng-transclude></ng-transclude></div></div></div>");
+}]);
+
 angular.module("/components/ui/cmpt-ui-state-selector/uiStateSelector.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-state-selector/uiStateSelector.html",
     "<div class=cmpt-ui-state-selector><div class=option ng-class=\"{'active': item.isSelected}\" ng-repeat=\"item in vm.options\" ng-click=go.click(item)>{{ item.value }}</div></div>");
@@ -75,6 +95,11 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
     "<div class=cmpt-users-list><h1>Team Owners</h1><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><div><button class=\"button button-positive\" ng-click=go.addUser()><i class=\"fa fa-plus\" aria-hidden=true></i><span>Add Owner</span></button></div><div class=team-list ng-show=\"vm.users.length > 0\"><div class=grid><div class=grid-header><div class=\"grid-cell -u-10-24\">Name</div><div class=\"grid-cell -u-10-24\">Email</div><div class=\"grid-cell -u-4-24\">Action</div></div><div class=grid-body><div class=grid-content ng-repeat=\"user in vm.users\"><div class=\"grid-cell -u-10-24\"><div class=user-name ng-show=!user.isEditing>{{ user.firstName }}, {{ user.lastName }}</div><div class=user-name ng-show=user.isEditing><div class=-u-12-24><input class=input ng-model=user.firstName placeholder=\"First Name\"></div><div class=-u-12-24><input class=input ng-model=user.lastName placeholder=\"Last Name\"></div></div></div><div class=\"grid-cell -u-10-24\"><div class=user-email>{{ user.email }}</div></div><div class=\"grid-cell -u-4-24\"><button ng-show=!user.isEditing class=\"button button-positive\" ng-click=go.toggleMode(user)><i class=\"fa fa-pencil\"></i></button> <button ng-show=!user.isEditing class=\"button button-negative\" ng-click=go.delete(user)><i class=\"fa fa-trash\" aria-hidden=true></i></button> <button ng-show=user.isEditing class=\"button button-positive\" ng-click=go.save(user)><i class=\"fa fa-check\"></i></button> <button ng-show=user.isEditing class=\"button button-negative\" ng-click=go.cancel(user)><i class=\"fa fa-times\" aria-hidden=true></i></button></div></div></div></div></div><div class=no-data ng-show=\"vm.users.length <= 0\">Create Users</div></div></div>");
 }]);
 
+angular.module("/routes/dashboard/dashboard.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/routes/dashboard/dashboard.html",
+    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi></cmpt-dashboard-pi-selector><div class=dashboard-body><div class=left-section><h1>Left Section</h1></div><div class=right-section><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
+}]);
+
 angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/forgotpassword/forgotpassword.html",
     "<div class=route-forgotpassword-forgotpassword ng-controller=\"ForgotPasswordCtrl as route\"><div class=top-bar><cmpt-login-authentication></cmpt-login-authentication></div><div class=-u-10-24></div><div class=-u-10-24><cmpt-reset-password></cmpt-reset-password></div><div class=-u-4-24></div></div>");
@@ -83,6 +108,11 @@ angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$template
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
     "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu></div></div>");
+}]);
+
+angular.module("/routes/list-objectives/all-teams.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/routes/list-objectives/all-teams.html",
+    "<div class=route-list-objectives-all-teams ng-controller=\"AllTeamsCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-by-team ng-if=route.vm.selectedPi selected-pi=route.vm.selectedPi></cmpt-objectives-by-team></div></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/objectives.html", []).run(["$templateCache", function($templateCache) {

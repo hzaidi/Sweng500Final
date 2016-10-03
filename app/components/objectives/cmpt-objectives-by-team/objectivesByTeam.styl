@@ -1,0 +1,58 @@
+@import "variables.styl"
+.cmpt-objectives-by-team {
+	.input-search{
+		position: relative;
+		.input{
+			&.ico-search{
+				padding-left: 40px;
+				font-size: 25px;
+			}
+		}
+		i {
+			color: $ap-light-grey-4;
+			top: 23px;
+			left: 15px;
+			position: absolute;
+		}
+	}
+
+	.team-container{
+		background: $augmentedColorLight;
+		margin: 10px 0;
+		.team-name{
+			position: relative;
+			color: $ap-light-grey-4;
+			background: darken($augmentedColorLight,8%);
+			padding: 15px;
+			span {
+				cursor: pointer;
+				background: darken($augmentedColorLight,15%);
+				position: absolute;
+				right: 0;
+		    line-height: 3;
+		    top: 0;
+		    width: 50px;
+		    text-align: center;
+				&:hover{
+					background: darken($augmentedColorLight,20%);
+				}
+			}
+			i.fa-chevron-down {
+				transform: rotate(0deg);
+  			transition: transform 200ms linear;
+			}
+			&.expanded{
+				i.fa-chevron-down{
+					transform: rotate(-180deg);
+  				transition: transform 200ms linear;
+				}
+			}
+		}
+		.objective-container{
+			.cmpt-objectives-manage-objectives{
+				padding: 10px;
+			}
+		}
+	}
+
+}

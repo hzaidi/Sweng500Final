@@ -1,0 +1,13 @@
+<div class="cmpt-dashboard-pi-selector">
+	<div class="container" ng-class="{'opened' : vm.open}">
+		<div class="pi-tiles" ng-repeat="pi in vm.pis" ng-click="go.select(pi)" ng-class="{'selected': pi.$id === selected}">
+			<div class="pi-info">
+				<div class="title">{{ pi.title }}</div>
+				<div class="description">{{ pi.description }}</div>
+				<div class="dates">{{ go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) }}</div>
+				<div class="check"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+			</div>
+		</div>
+		<div class="panel-opener" ng-click="go.toggle()"><i class="fa fa-align-justify" aria-hidden="true"></i></div>
+	</div>
+</div>
