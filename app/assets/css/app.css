@@ -846,7 +846,7 @@ h1 {
   87.5% {
     -webkit-transform: translateX(2px) rotateY(1deg);
     -moz-transform: translateX(2px) rotateY(1deg);
-    -o-transform: translateX(2px) rotateY(1deg);
+    -o-transform: translateX(2px)  rotateY(1deg);
     -ms-transform: translateX(2px) rotateY(1deg);
     transform: translateX(2px) rotateY(1deg);
   }
