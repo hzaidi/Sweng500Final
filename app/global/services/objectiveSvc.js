@@ -6,6 +6,7 @@
 
 		var objectiveRef = firebase.database().ref('/objectives');
 		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
+		var objectiveRefByPi = objectiveRef.orderByChild('piId');
 
 
 
@@ -19,6 +20,9 @@
 			return objectiveRefByPiAndTeamAndType.equalTo(`${pi}~~${team}~~${type}`);
 		}
 
+		function _objectiveRefByPi(pi) {
+			return objectiveRefByPi.equalTo(pi);
+		}
 
 
 		var _objective = function(objective = null){
@@ -43,6 +47,11 @@
 
 		function objectiveList(pi,team, type) {
 			var objectives = $firebaseArray(_objectiveRefByPiAndTeamAndType(pi, team, type));
+			return objectives.$loaded();
+		}
+
+		function objectiveListByPI(pi) {
+			var objectives = $firebaseArray(_objectiveRefByPi(pi));
 			return objectives.$loaded();
 		}
 
@@ -116,6 +125,7 @@
 		return {
 			createObjectiveDialog,
 			objectiveList,
+			objectiveListByPI,
 			updateObjective,
 			deleteObjective,
 			getByKey

@@ -109,6 +109,20 @@
 					$scope.user = user;
 				}
 			})
+			.state('dashboard', {
+				url: '/dashboard',
+				templateUrl: '/routes/dashboard/dashboard.html',
+				resolve:{
+					user: function(authSvc, userSvc){
+						return authSvc.auth().$requireSignIn().then(function(){
+							return userSvc.getLoggedInUser();
+						});
+					}
+				},
+				controller: function($scope, user){
+					$scope.user = user;
+				}
+			})
 			// ========================================================== //
 	}).run(function($rootScope, $state, authSvc, toastHelp){
 		$rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error){
