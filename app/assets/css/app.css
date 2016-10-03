@@ -213,15 +213,45 @@
   background: #fff;
   color: #113148;
 }
+.modal-create-org .ngdialog-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
 .modal-team-org input {
   width: 100%;
   background: #fff;
   color: #113148;
 }
+.modal-team-org .ngdialog-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+.modal-team-org .ngdialog-buttons.disabled a.button-default {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: pointer;
+}
 .modal-create-user input {
   width: 100%;
   background: #fff;
   color: #113148;
+}
+.modal-create-user .ngdialog-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+.modal-create-user .ngdialog-buttons.disabled a.button-default {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: pointer;
 }
 .modal-programIncrement-setup input {
   width: 100%;
@@ -548,6 +578,16 @@ h1 {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
 }
+.input-container select.ng-invalid.ng-touched {
+  border: 1px solid #d95b5b;
+  -webkit-box-shadow: 0px 0px 5px #d95b5b;
+  box-shadow: 0px 0px 5px #d95b5b;
+}
+.input-container select[disabled] {
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+}
 .input-container .validation-messages {
   font-size: 13px;
   font-weight: 600;
@@ -571,6 +611,7 @@ h1 {
   transition: all 160ms ease-in-out;
   -webkit-transition: all 160ms ease-in-out;
   pointer-events: none; /* This will probably go away */
+  line-height: 1;
 }
 .input-container .validation-messages.ng-active {
   opacity: 1;
