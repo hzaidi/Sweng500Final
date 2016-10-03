@@ -477,7 +477,7 @@
   background: #0076ff;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status.green {
-  background: #00c7c3;
+  background: #009592;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status span {
   margin-left: 10px;
@@ -489,7 +489,7 @@
   opacity: 0.6;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
   filter: alpha(opacity=60);
-  line-height: 2.5em;
+  line-height: 3.3em;
   font-size: 0.8vw;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
