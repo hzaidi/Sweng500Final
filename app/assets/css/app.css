@@ -87,6 +87,7 @@
   flex: 1 0 0;
 }
 .cmpt-reset-password {
+  text-align: center;
   padding: 20px;
 }
 .cmpt-reset-password .title {
@@ -94,7 +95,9 @@
   color: #fff;
 }
 .cmpt-reset-password input {
-  width: 205px;
+  text-align: center;
+  font-size: 40px;
+  width: 400px;
 }
 .cmpt-login-authentication {
   background-color: #113148;
@@ -1235,7 +1238,7 @@ h1 {
   87.5% {
     -webkit-transform: translateX(2px) rotateY(1deg);
     -moz-transform: translateX(2px) rotateY(1deg);
-    -o-transform: translateX(2px)  rotateY(1deg);
+    -o-transform: translateX(2px) rotateY(1deg);
     -ms-transform: translateX(2px) rotateY(1deg);
     transform: translateX(2px) rotateY(1deg);
   }
