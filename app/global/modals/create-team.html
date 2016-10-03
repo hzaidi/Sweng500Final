@@ -1,20 +1,43 @@
 <div class="dialog-popup modal-team-org">
-	<div class="ngdialog-message">
-		<div class="header">{{ngDialogData.header}}</div>
-    <div class="content">
-      <div><input type="text" class="input" placeholder="Name" ng-model="ngDialogData.team.teamName"></div>
-			<div class="dropdown">
-				<select class="dropdown-select" ng-options="user.$id as user.firstName + ',' + user.lastName for user in ngDialogData.users" ng-model="ngDialogData.team.ownerId">
-				  <option value="">Please select Team Owner</option>
-				</select>
+	<form name="teamForm">
+		<div class="ngdialog-message">
+			<div class="header">{{ngDialogData.header}}</div>
+	    <div class="content">
+	      <div class="input-container">
+					<input name="teamName"
+								type="text"
+								class="input"
+								placeholder="Name"
+								ng-model="ngDialogData.team.teamName"
+								required
+								ng-minlength="6">
+					<div ng-messages="teamForm.teamName.$touched && teamForm.teamName.$error" role="alert"  class="validation-messages">
+						<div ng-message="required">Enter Team Name</div>
+						<div ng-message="minlength">Length of Team Name should be atleast 6 characters long</div>
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="dropdown">
+						<select class="dropdown-select"
+							name="ownerId"
+							ng-options="user.$id as user.firstName + ', ' + user.lastName for user in ngDialogData.users"
+							ng-model="ngDialogData.team.ownerId"
+							required>
+							<option value="">Please select Team Owner</option>
+						</select>
+					</div>
+					<div ng-messages="teamForm.ownerId.$error && teamForm.ownerId.$touched" role="alert"  class="validation-messages">
+							<div ng-message="required">Team Owner is a required field</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="ngdialog-buttons">
-    <a class="fl-button {{ button.cls }}"
-      ng-click="button.action(ngDialogData.selectedId)"
-      ng-repeat="button in ngDialogData.buttons">
-      <i class="fa {{ button.icon }}"></i>
-    {{ button.title }}</a>
-	</div>
+		<div class="ngdialog-buttons" ng-class="{'disabled' : teamForm.$invalid}">
+	    <a class="fl-button {{ button.cls }}"
+	      ng-click="button.action(teamForm)"
+	      ng-repeat="button in ngDialogData.buttons">
+	      <i class="fa {{ button.icon }}"></i> {{ button.title }}
+			</a>
+		</div>
+	</form>
 </div>

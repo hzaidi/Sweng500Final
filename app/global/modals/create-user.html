@@ -1,17 +1,35 @@
 <div class="dialog-popup modal-create-user">
-	<div class="ngdialog-message">
-		<div class="header">{{ngDialogData.header}}</div>
-    <div class="content">
-      <div><input type="text" class="input" ng-model="ngDialogData.user.firstName" placeholder="Enter First Name"></div>
-      <div><input type="text" class="input" ng-model="ngDialogData.user.lastName" placeholder="Enter Last Name"></div>
-      <div><input type="email" class="input" ng-model="ngDialogData.user.email" placeholder="Enter Email"></div>
-    </div>
-	</div>
-	<div class="ngdialog-buttons">
-    <a class="fl-button {{ button.cls }}"
-      ng-click="button.action(ngDialogData.selectedId)"
-      ng-repeat="button in ngDialogData.buttons">
-      <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>
-    {{ button.title }}</a>
-	</div>
+	<form name="userForm">
+			<div class="ngdialog-message">
+				<div class="header">{{ngDialogData.header}}</div>
+				    <div class="content">
+				      <div class="input-container">
+									<input type="text"  name="firstName" class="input" ng-model="ngDialogData.user.firstName" placeholder="Enter First Name" required ng-minlength="3">
+									<div ng-messages="userForm.firstName.$touched && userForm.firstName.$error" role="alert"  class="validation-messages">
+											<div ng-message="required">Enter First Name</div>
+											<div ng-message="minlength">Length of First Name should be atleast 3 characters long</div>
+									</div>
+
+									<input type="text"  name="lastName"  class="input" ng-model="ngDialogData.user.lastName"  placeholder="Enter Last Name"  required ng-minlength="3">
+									<div ng-messages="userForm.lastName.$touched && userForm.lastName.$error" role="alert"  class="validation-messages">
+											<div ng-message="required">Enter Last Name</div>
+											<div ng-message="minlength">Length of Last Name should be atleast 3 characters long</div>
+									</div>
+
+									<input type="email" name="email"     class="input" ng-model="ngDialogData.user.email"     placeholder="Enter Email"      required>
+									<div ng-messages="userForm.email.$touched && userForm.email.$error" role="alert"  class="validation-messages">
+											<div ng-message="required">Enter email</div>
+											<div ng-message="email">Email format is invalid</div>
+									</div>
+							</div>
+				    </div>
+			</div>
+			<div class="ngdialog-buttons" ng-class="{'disabled' : userForm.$invalid}">
+		    <a class="fl-button {{ button.cls }}"
+		       ng-click="button.action(userForm)"
+		       ng-repeat="button in ngDialogData.buttons">
+		       <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>{{ button.title }}
+				</a>
+			</div>
+	</form>
 </div>

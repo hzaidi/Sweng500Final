@@ -88,10 +88,6 @@
 			return getByKey(user.uid);
 		}
 
-
-
-
-
 		function createTeamOwnerDialog() {
 			var _defer = $q.defer();
 			var uid = null;
@@ -110,7 +106,8 @@
 						cls: 'button',
 						icon: 'fa fa-check',
 						loading: false,
-						action: function(){
+						action: function(form){
+							if(form.$invalid) { return; }
 							var button = this;
 							button.loading = true;
 							//Call to create team Owner

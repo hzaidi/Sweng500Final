@@ -8,6 +8,13 @@
   input[disabled] {
       opacity:0.3;
   }
+  select.ng-invalid.ng-touched {
+    border:1px solid $mediumRed;
+    box-shadow: 0px 0px 5px $mediumRed;
+	}
+  select[disabled] {
+      opacity:0.3;
+  }
   .validation-messages {
     font-size: 13px;
     font-weight: 600;
@@ -24,6 +31,7 @@
     transition: all 160ms ease-in-out;
     -webkit-transition: all 160ms ease-in-out;
     pointer-events: none;  /* This will probably go away */
+    line-height: 1;
   }
   .validation-messages.ng-active {
     opacity: 1;

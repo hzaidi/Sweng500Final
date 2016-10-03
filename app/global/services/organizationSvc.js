@@ -52,10 +52,11 @@
 					org: org,
 					buttons: [{
 						title: 'Save',
-						cls: 'button',
+						cls: 'button button-save',
 						icon: 'fa fa-check',
 						loading: false,
-						action: function(){
+						action: function(form){
+							if(form.$invalid) { return; }
 							createOrg(org).then(function(ref) {
 								ngDialog.close(dialog.id);
 								org.id = ref.key;

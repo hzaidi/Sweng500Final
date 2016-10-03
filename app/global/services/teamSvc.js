@@ -84,7 +84,8 @@
 							cls: 'button',
 							icon: 'fa fa-check',
 							loading: false,
-							action: function(){
+							action: function(form){
+								if(form.$invalid) { return; }
 								var ctx = userSvc.context().get();
 								team.orgId = ctx.orgId;
 								createTeam(team).then(function(ref) {
