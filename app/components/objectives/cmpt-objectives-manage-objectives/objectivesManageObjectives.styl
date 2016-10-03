@@ -1,3 +1,70 @@
+@import "variables.styl"
 .cmpt-objectives-manage-objectives {
-	
+		&.container-blue{
+			.button-default{
+				background-color: darken($darkBlue,25%);
+				&:hover {
+			    	background-color: darken($darkBlue, 40%);
+				}
+			}
+			.grid{
+				.grid-header{
+					background-color: darken($darkBlue,25%);
+					border-left: 8px solid darken($darkBlue,25%);
+				}
+				.grid-body{
+					.grid-content{
+						border: 1px solid darken($darkBlue,25%);
+						border-left: 8px solid darken($darkBlue,25%);
+						border-bottom: 0;
+						&:last-child{
+							border-bottom: 1px solid darken($darkBlue,25%);
+						}
+					}
+				}
+			}
+			.no-data{
+				border: 2px dashed darken($darkBlue,25%);
+				color: darken($darkBlue,25%);
+			}
+		}
+		&.container-green{
+			.button-default{
+				background-color: darken($mediumGreen,25%);
+				&:hover {
+			    	background-color: darken($mediumGreen, 40%);
+				}
+			}
+			.grid{
+				.grid-header{
+					background-color: darken($mediumGreen,25%);
+					border-left: 8px solid darken($mediumGreen,25%);
+				}
+				.grid-body{
+					.grid-content{
+						border: 1px solid darken($mediumGreen,25%);
+						border-left: 8px solid darken($mediumGreen,25%);
+						border-bottom: 0;
+						&:last-child{
+							border-bottom: 1px solid darken($mediumGreen,25%);
+						}
+					}
+				}
+			}
+			.no-data{
+				border: 2px dashed darken($mediumGreen,25%);
+				color: darken($mediumGreen,25%);
+			}
+		}
+
+		.grid{
+			border:0;
+		}
+		.no-data{
+			margin: 10px 0;
+			border-radius: 5px;
+			padding: 50px;
+			text-align: center;
+			font-weight: bold;
+		}
 }

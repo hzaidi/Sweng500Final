@@ -2,9 +2,11 @@
 
 	// #----------------------------------# //
 	// #----- Service (objectiveSvc) -----# //
-	app.factory('objectiveSvc', function ($q, userSvc,ngDialog) {
+	app.factory('objectiveSvc', function ($q, $firebaseArray, $firebaseObject, userSvc, ngDialog) {
 
 		var objectiveRef = firebase.database().ref('/objectives');
+		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
+		var objectiveRefByPi = objectiveRef.orderByChild('piId');
 
 
 
@@ -14,13 +16,20 @@
 			return objectiveRef.child(uid);
 		}
 
+		function _objectiveRefByPiAndTeamAndType(pi,team,type) {
+			return objectiveRefByPiAndTeamAndType.equalTo(`${pi}~~${team}~~${type}`);
+		}
+
+		function _objectiveRefByPi(pi) {
+			return objectiveRefByPi.equalTo(pi);
+		}
 
 
 		var _objective = function(objective = null){
 			return {
 				id: (objective === null) ? null : objective.$id,
 				title: (objective === null) ? null : objective.title,
-				businessValue:  (objective === null) ? null : objective.businessValue,
+				businessValue:  (objective === null) ? 0 : objective.businessValue,
 				state:  (objective === null) ? null : objective.state,
 				type:  (objective === null) ? null : objective.type,
 				piId:  (objective === null) ? null : objective.piId,
@@ -36,9 +45,31 @@
 			return objectives.$add(objective);
 		}
 
+		function objectiveList(pi,team, type) {
+			var objectives = $firebaseArray(_objectiveRefByPiAndTeamAndType(pi, team, type));
+			return objectives.$loaded();
+		}
 
+		function objectiveListByPI(pi) {
+			var objectives = $firebaseArray(_objectiveRefByPi(pi));
+			return objectives.$loaded();
+		}
 
-		function createObjectiveDialog() {
+		function updateObjective(fbArray, objective) {
+			delete objective.isEditing;
+			return fbArray.$save(objective);
+		}
+
+		function deleteObjective(fbArray, objective) {
+			return fbArray.$remove(objective)
+		}
+
+		function getByKey(key) {
+			var data = $firebaseObject(_objectiveRef(key));
+			return data.$loaded();
+		}
+
+		function createObjectiveDialog(selectedPi, selectedTeam, type) {
 			var _defer = $q.defer();
 			var objective = new _objective();
 			var dialog = ngDialog.open({
@@ -56,19 +87,23 @@
 						icon: 'fa fa-check',
 						loading: false,
 						action: function(){
-							var ctx = userSvc.contex().get();
+							var ctx = userSvc.context().get();
 							objective = Object.assign({},
 													objective,{
-														type: $scope.type,
-														piId: $scope.selectedPi,
-														teamId: $scope.selectedTeam,
+														type: type,
+														piId: selectedPi,
+														teamId: selectedTeam,
 														orgId: ctx.orgId,
-														piandorg: `${$scope.selectedPi}~~${ctx.orgId}`,
-														piandteam: `${$scope.selectedPi}~~${$scope.selectedTeam}`
+														piandorgandtype: `${selectedPi}~~${ctx.orgId}~~${type}`,
+														piandteamandtype: `${selectedPi}~~${selectedTeam}~~${type}`
 													});
-							console.log(objective);
-							_defer.resolve();
-							ngDialog.close(dialog.id);
+							createObjective(objective).then(function(ref){
+								objective.id = ref.key;
+								_defer.resolve(objective);
+								ngDialog.close(dialog.id);
+							}, function(error){
+								_defer.rejet(error);
+							})
 						}
 					},{
 						title: 'Cancel',
@@ -88,7 +123,12 @@
 
 
 		return {
-			createObjectiveDialog
+			createObjectiveDialog,
+			objectiveList,
+			objectiveListByPI,
+			updateObjective,
+			deleteObjective,
+			getByKey
 		};
 
 	});

@@ -11,6 +11,9 @@
 		$stateProvider.state('default', {
 			url: '/',
 			templateUrl: '/routes/login/login.html'
+		}).state('forgotpassword', {
+			url: '/forgotpassword',
+			templateUrl: '/routes/forgotpassword/forgotpassword.html'
 		}).state('home', {
 			url: '/home',
 			templateUrl: '/routes/home/home.html',
@@ -80,6 +83,32 @@
 		}).state('objectives-list', {
 			url: '/objectives/list',
 			templateUrl: '/routes/list-objectives/objectives.html',
+			resolve: {
+				user: function user(authSvc, userSvc) {
+					return authSvc.auth().$requireSignIn().then(function () {
+						return userSvc.getLoggedInUser();
+					});
+				}
+			},
+			controller: function controller($scope, user) {
+				$scope.user = user;
+			}
+		}).state('objectives-list-all-teams', {
+			url: '/objectives/all-teams/list',
+			templateUrl: '/routes/list-objectives/all-teams.html',
+			resolve: {
+				user: function user(authSvc, userSvc) {
+					return authSvc.auth().$requireSignIn().then(function () {
+						return userSvc.getLoggedInUser();
+					});
+				}
+			},
+			controller: function controller($scope, user) {
+				$scope.user = user;
+			}
+		}).state('dashboard', {
+			url: '/dashboard',
+			templateUrl: '/routes/dashboard/dashboard.html',
 			resolve: {
 				user: function user(authSvc, userSvc) {
 					return authSvc.auth().$requireSignIn().then(function () {

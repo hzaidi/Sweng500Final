@@ -1,3 +1,101 @@
+.cmpt-dashboard-pi-selector .container {
+  background: #13364f;
+  position: absolute;
+  color: #fff;
+  width: 100%;
+  top: -114px;
+  z-index: 1;
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+  -ms-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles {
+  cursor: pointer;
+  background: #19486a;
+  text-align: center;
+  margin: 10px 10px 10px 0px;
+  padding: 10px;
+  float: left;
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles .title {
+  font-size: 20px;
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles .description {
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles.selected {
+  background: #153d59;
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles.selected .check {
+  color: #00c7c3;
+}
+.cmpt-dashboard-pi-selector .container .pi-tiles:first-child {
+  margin-left: 10px;
+}
+.cmpt-dashboard-pi-selector .container .panel-opener {
+  cursor: pointer;
+  background: #19486a;
+  padding: 5px;
+  clear: both;
+  text-align: center;
+}
+.cmpt-dashboard-pi-selector .container.opened {
+  top: 0px;
+}
+.cmpt-dashboard-team-progress .team-container {
+  color: #fff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.cmpt-dashboard-team-progress .team-container .team-name {
+  line-height: 3;
+  font-size: 1.2vw;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+}
+.cmpt-dashboard-team-progress .team-container .team-commitment {
+  padding: 5px;
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -o-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex: 2 0 0;
+  -ms-flex: 2 0 0;
+  flex: 2 0 0;
+}
+.cmpt-dashboard-team-progress .team-container .team-stretch {
+  padding: 5px;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+}
+.cmpt-reset-password {
+  padding: 20px;
+}
+.cmpt-reset-password .title {
+  font-size: 20px;
+  color: #fff;
+}
+.cmpt-reset-password input {
+  width: 205px;
+}
 .cmpt-login-authentication {
   background-color: #113148;
   border-bottom: 1px solid #001322;
@@ -14,6 +112,10 @@
   font-size: 45px;
   text-shadow: #e0e0e0 1px 1px 0px;
   margin: auto 0;
+}
+.cmpt-login-authentication .content a:hover {
+  text-shadow: #e0e0e0 1px 1px 0px;
+  color: #fafafa;
 }
 .cmpt-login-authentication .content .auth-section .label,
 .cmpt-login-authentication .content .auth-section .forgot-password {
@@ -96,8 +198,128 @@
 .cmpt-nav-menu ul li:hover {
   background-color: #113148;
 }
+.cmpt-objectives-by-team .input-search {
+  position: relative;
+}
+.cmpt-objectives-by-team .input-search .input.ico-search {
+  padding-left: 40px;
+  font-size: 25px;
+}
+.cmpt-objectives-by-team .input-search i {
+  color: #fff;
+  top: 23px;
+  left: 15px;
+  position: absolute;
+}
+.cmpt-objectives-by-team .team-container {
+  background: #113148;
+  margin: 10px 0;
+}
+.cmpt-objectives-by-team .team-container .team-name {
+  position: relative;
+  color: #fff;
+  background: #102d42;
+  padding: 15px;
+}
+.cmpt-objectives-by-team .team-container .team-name span {
+  cursor: pointer;
+  background: #0e2a3d;
+  position: absolute;
+  right: 0;
+  line-height: 3;
+  top: 0;
+  width: 50px;
+  text-align: center;
+}
+.cmpt-objectives-by-team .team-container .team-name span:hover {
+  background: #0e273a;
+}
+.cmpt-objectives-by-team .team-container .team-name i.fa-chevron-down {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 200ms linear;
+  -moz-transition: -moz-transform 200ms linear;
+  -o-transition: -o-transform 200ms linear;
+  -ms-transition: -ms-transform 200ms linear;
+  transition: transform 200ms linear;
+}
+.cmpt-objectives-by-team .team-container .team-name.expanded i.fa-chevron-down {
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+  -webkit-transition: -webkit-transform 200ms linear;
+  -moz-transition: -moz-transform 200ms linear;
+  -o-transition: -o-transform 200ms linear;
+  -ms-transition: -ms-transform 200ms linear;
+  transition: transform 200ms linear;
+}
+.cmpt-objectives-by-team .team-container .objective-container .cmpt-objectives-manage-objectives {
+  padding: 10px;
+}
+.cmpt-objectives-manage-objectives.container-blue .button-default {
+  background-color: #0058bf;
+}
+.cmpt-objectives-manage-objectives.container-blue .button-default:hover {
+  background-color: #004799;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-header {
+  background-color: #0058bf;
+  border-left: 8px solid #0058bf;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content {
+  border: 1px solid #0058bf;
+  border-left: 8px solid #0058bf;
+  border-bottom: 0;
+}
+.cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content:last-child {
+  border-bottom: 1px solid #0058bf;
+}
+.cmpt-objectives-manage-objectives.container-blue .no-data {
+  border: 2px dashed #0058bf;
+  color: #0058bf;
+}
+.cmpt-objectives-manage-objectives.container-green .button-default {
+  background-color: #009592;
+}
+.cmpt-objectives-manage-objectives.container-green .button-default:hover {
+  background-color: #007775;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-header {
+  background-color: #009592;
+  border-left: 8px solid #009592;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content {
+  border: 1px solid #009592;
+  border-left: 8px solid #009592;
+  border-bottom: 0;
+}
+.cmpt-objectives-manage-objectives.container-green .grid .grid-body .grid-content:last-child {
+  border-bottom: 1px solid #009592;
+}
+.cmpt-objectives-manage-objectives.container-green .no-data {
+  border: 2px dashed #009592;
+  color: #009592;
+}
+.cmpt-objectives-manage-objectives .grid {
+  border: 0;
+}
+.cmpt-objectives-manage-objectives .no-data {
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  font-weight: bold;
+}
 .cmpt-objectives-pi-selector .selector {
   color: #fff;
+}
+.cmpt-objectives-pi-selector .selector .dropdown {
+  width: 400px;
 }
 .cmpt-objectives-pi-selector .selector .details {
   font-size: 30px;
@@ -107,8 +329,15 @@
   filter: alpha(opacity=50);
   margin: 10px 0;
 }
+.cmpt-objectives-team-selector {
+  margin: 20px 0;
+  font-size: 20px;
+}
 .cmpt-objectives-team-selector .selector {
   color: #fff;
+}
+.cmpt-objectives-team-selector .selector .dropdown {
+  width: 400px;
 }
 .cmpt-organization-details .title {
   font-size: 20px;
@@ -200,6 +429,123 @@
 .cmpt-ui-loader i {
   margin-right: 5px;
 }
+.cmpt-ui-simple-progress-bar .progressBar {
+  padding: 1px;
+  height: 2.5vw;
+  -webkit-box-shadow: 1px 1px 3px #08496a;
+  box-shadow: 1px 1px 3px #08496a;
+  border: 1px solid #08496a;
+  background: rgba(0,66,85,0.2);
+  margin-bottom: 0.4vw;
+  text-align: center;
+  position: relative;
+  -webkit-transition: all 160ms ease-in-out;
+  -moz-transition: all 160ms ease-in-out;
+  -o-transition: all 160ms ease-in-out;
+  -ms-transition: all 160ms ease-in-out;
+  transition: all 160ms ease-in-out;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: all 160ms ease-in-out;
+  -moz-transition: all 160ms ease-in-out;
+  -o-transition: all 160ms ease-in-out;
+  -ms-transition: all 160ms ease-in-out;
+  transition: all 160ms ease-in-out;
+  font-size: 1.2vw;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status.light {
+  background: #00deff;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status.medium {
+  background: #0af;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status.dark {
+  background: #0076ff;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status.green {
+  background: #009592;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status span {
+  margin-left: 10px;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status span.status {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  opacity: 0.6;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  filter: alpha(opacity=60);
+  line-height: 3.3em;
+  font-size: 0.8vw;
+}
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
+  font-size: 0.8vw;
+}
+.cmpt-ui-state-selector {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  height: 34px;
+  margin: 5px;
+}
+.cmpt-ui-state-selector .option {
+  text-transform: uppercase;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  padding: 9px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1;
+}
+.cmpt-ui-state-selector .option:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.cmpt-ui-state-selector .option:active {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.cmpt-ui-state-selector .option.active {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.cmpt-ui-state-selector .option:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.cmpt-ui-state-selector .option:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .cmpt-users-list .no-data {
   border: 2px dashed #00c7c3;
   border-radius: 5px;
@@ -207,6 +553,11 @@
   text-align: center;
   color: #00c7c3;
   font-weight: bold;
+}
+.modal-objective input {
+  width: 100%;
+  background: #fff;
+  color: #113148;
 }
 .modal-create-org input {
   width: 100%;
@@ -263,7 +614,6 @@ body {
   font-family: 'Ropa Sans';
   height: 100%;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden;
   background: #132a3b;
 }
 *:focus {
@@ -298,7 +648,7 @@ h1 {
   line-height: 43px;
 }
 .grid .grid-cell {
-  padding: 10px;
+  padding: 5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -663,6 +1013,45 @@ h1 {
   border-right: 16px solid transparent;
   top: -7px;
   left: 1px;
+}
+.route-dashboard-dashboard .dashboard-body {
+  margin-top: 28px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.route-dashboard-dashboard .dashboard-body .left-section {
+  padding: 20px;
+  height: calc(100vh - 68px);
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.route-dashboard-dashboard .dashboard-body .right-section {
+  padding: 20px;
+  height: calc(100vh - 68px);
+  background: -webkit-linear-gradient(top, #001322 0, #113148 100%);
+  background: -moz-linear-gradient(top, #001322 0, #113148 100%);
+  background: -o-linear-gradient(top, #001322 0, #113148 100%);
+  background: -ms-linear-gradient(top, #001322 0, #113148 100%);
+  background: linear-gradient(to bottom, #001322 0, #113148 100%);
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.route-list-objectives-all-teams .main-content {
+  padding: 20px;
 }
 .route-list-objectives-objectives .main-content {
   padding: 20px;

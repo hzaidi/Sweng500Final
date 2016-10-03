@@ -26,6 +26,9 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,toastHelp) {
 			}, function(error){
 				toastHelp.error(error.message, 'Error');
 			})
+		},
+		forgotPass: function () {
+			$state.go('forgotpassword');
 		}
 	};
 }

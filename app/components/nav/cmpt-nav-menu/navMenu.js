@@ -27,10 +27,14 @@ controller: function ($scope, $location, userSvc) {
 		icon: 'fa-cogs',
 		url: '/programincrement/list',
 		title: 'Program Increment Setup'
+	},{
+		icon: 'fa-cog',
+		url: '/objectives/all-teams/list',
+		title: 'Objectives'
 	}]
 
 	var scrumMasterMenu = [{
-		icon: 'fa-cogs',
+		icon: 'fa-cog',
 		url: '/objectives/list',
 		title: 'Objectives'
 	}]
