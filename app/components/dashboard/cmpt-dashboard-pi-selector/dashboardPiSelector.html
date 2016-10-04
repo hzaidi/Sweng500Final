@@ -1,6 +1,6 @@
 <div class="cmpt-dashboard-pi-selector">
 	<div class="container" ng-class="{'opened' : open}">
-		<div class="pi-tiles" ng-repeat="pi in vm.pis" ng-click="go.select(pi)" ng-class="{'selected': pi.$id === selected}">
+		<div class="pi-tiles" ng-repeat="pi in vm.pis" ng-click="go.select(pi)" ng-class="{'selected': pi.$id === selected.$id}">
 			<div class="pi-info">
 				<div class="title">{{ pi.title }}</div>
 				<div class="description">{{ pi.description }}</div>

@@ -1,0 +1,45 @@
+@import "variables.styl"
+.cmpt-dashboard-pi-summary {
+	padding: 20px 0;
+	color: $ap-light-grey-4;
+	.programIncrement-header {
+      font-size: 20px;
+  }
+  .programIncrement-title {
+      font-size: 45px
+  }
+  .programIncrement-dates {
+      font-size: 20px;
+  }
+
+	.time-remaining {
+      padding: 20px 0 25px;
+      margin-left: -70px;
+      padding-left: 70px;
+      margin-right: -65px;
+      padding-right: 65px;
+      background: #07121E;
+      border: 1px solid #1F395D;
+      border-left: none;
+      border-right: none;
+      margin-top: 44px;
+      margin-bottom: 45px;
+
+      .box {
+          display: inline-block;
+          margin-right: 1.5vw;
+          color: $lightBlue;
+
+          .number {
+              font-size: 70px;
+              line-height: 0.9em;
+              color: $ap-light-grey-4;
+          }
+
+          .text {
+              font-size: 15px;
+              text-transform: uppercase;
+          }
+      }
+  }
+}

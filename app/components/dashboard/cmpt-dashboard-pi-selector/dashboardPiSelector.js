@@ -22,7 +22,7 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 
 	programIncrementSvc.piList().then(function(pis){
 		vm.isLoading = false;
-		$scope.selected = pis[0].$id;
+		$scope.selected = pis[0];
 		vm.pis = pis;
 	}, function(error){
 		toastHelp.error(error.message, 'Error')
@@ -43,7 +43,7 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 			return $filter('date')(newDate,'MMM d yyyy');
 		},
 		select: function(pi){
-			$scope.selected = pi.$id;
+			$scope.selected = pi;
 			go.toggle();
 		}
 	};

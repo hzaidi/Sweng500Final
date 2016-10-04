@@ -17,12 +17,12 @@
 
 
 	$scope.$watch('selectedPi', function(val){
-		if(val === null) { return; }
-		if($scope.objectives.length) { 	$scope.objectives.$destroy(); }
-		dashboardSvc.getData($scope.selectedPi).then(function(data){
+	if(val === null) { return; }
+	if($scope.objectives.length) { 	$scope.objectives.$destroy(); }
+		dashboardSvc.getData($scope.selectedPi.$id).then(function(data){
 			route.vm.teams = data.processData;
 			addWatch(data.objectives);
-		}, function(error){
+			}, function(error){
 			toastHelp.error(error.message,'Error')
 		});
 	});

@@ -12,9 +12,10 @@
 			cursor: pointer;
 			background: darken($augmentedColorLight,-10%);
 			text-align: center;
-			margin: 10px 10px 10px 0px;
+			margin: 10px 20px 10px 0px;
 			padding: 10px;
 			float: left;
+			transition: all 200ms ease-in-out;
 			.title{
 				font-size: 20px;
 			}
@@ -28,7 +29,10 @@
 				}
 			}
 			&:first-child{
-				margin-left: 10px;
+				margin-left: 20px;
+			}
+			&:hover{
+				transform: scale(1.1);
 			}
 		}
 		.panel-opener{
