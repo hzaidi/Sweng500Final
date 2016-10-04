@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('DashboardCtrl', function ($scope, dashboardSvc) {
+.controller('DashboardCtrl', function ($scope, dashboardSvc,objectHelp) {
 // #-----------------------------# //
 // #------- DashboardCtrl -------# //
 
@@ -29,8 +29,10 @@
 	function addWatch(objectives){
 		$scope.objectives = objectives;
 		$scope.objectives.$watch(function(){
-			Object.assign(route.vm.teams, dashboardSvc.processData($scope.objectives));
-			//route.vm.teams = dashboardSvc.processData($scope.objectives);
+			var newData = dashboardSvc.processData($scope.objectives);
+			route.vm.teams.forEach(function(team,i){
+				objectHelp.assign(team,newData[i]);
+			});			
 		});
 	}
 

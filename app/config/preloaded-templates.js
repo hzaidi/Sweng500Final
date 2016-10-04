@@ -7,7 +7,7 @@ angular.module("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSele
 
 angular.module("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html",
-    "<div class=cmpt-dashboard-team-progress><div class=team-container><div class=team-name>{{ team.teamName }} - {{ team.owner }}</div><div class=team-commitment><cmpt-ui-simple-progress-bar percentage=team.commitment.percentage cls=green><span class=status>({{ team.commitment.done }}/{{ team.commitment.total }} POINTS)</span></cmpt-ui-simple-progress-bar></div><div class=team-stretch><cmpt-ui-simple-progress-bar percentage=team.stretch.percentage cls=medium><span class=status>({{ team.stretch.done }}/{{ team.stretch.total }} POINTS)</span></cmpt-ui-simple-progress-bar></div></div></div>");
+    "<div class=cmpt-dashboard-team-progress><div class=team-container><div class=team-name>{{ team.teamName }} - {{ team.owner }}</div><div class=team-commitment><cmpt-ui-simple-progress-bar percentage=team.commitment.percentage cls=green><span class=status>({{ team.commitment.done }}/{{ team.commitment.total }} POINTS)</span></cmpt-ui-simple-progress-bar></div><div class=team-stretch><cmpt-ui-simple-progress-bar percentage=team.stretch.percentage cls=dark><span class=status>({{ team.stretch.done }}/{{ team.stretch.total }} POINTS)</span></cmpt-ui-simple-progress-bar></div></div></div>");
 }]);
 
 angular.module("/components/forgotpassword/cmpt-reset-password/resetPassword.html", []).run(["$templateCache", function($templateCache) {

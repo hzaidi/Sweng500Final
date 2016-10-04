@@ -1,18 +1,37 @@
 @import "variables.styl";
 .route-dashboard-dashboard {
 	.dashboard-body{
-		margin-top: 28px;
 		display: flex;
 		.left-section{
-			padding: 20px;
+			padding: 28px 20px 0 20px;
 			height: calc(100vh - 68px);
 			flex: 1;
 		}
 		.right-section{
-			padding: 20px;
-			height: calc(100vh - 68px);
+			padding: 28px 20px 0 20px;
+			height: calc(100vh - 28px);
 			background: linear-gradient(to bottom, $augmentedColorDark  0, $augmentedColorLight 100%);
 			flex: 1;
+			.title{
+				color: $darkBlue;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 30px;
+			}
+			.header{
+				display: flex;
+				.empty{
+					flex: 1 0 0;
+				}
+				.commitment{
+					color: $mediumGreen;
+					flex: 2 0 0;
+				}
+				.stretch{
+					color: $darkBlue;
+					flex: 1 0 0;
+				}
+			}
 		}
 	}
 }
