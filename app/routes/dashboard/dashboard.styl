@@ -2,6 +2,8 @@
 .route-dashboard-dashboard {
 	.dashboard-body{
 		display: flex;
+		opacity: 1;
+		transition: opacity 200ms linear;
 		.left-section{
 			padding: 28px 20px 0 20px;
 			height: calc(100vh - 68px);
@@ -32,6 +34,9 @@
 					flex: 1 0 0;
 				}
 			}
+		}
+		&.panel-open{
+			opacity: 0.1;
 		}
 	}
 }

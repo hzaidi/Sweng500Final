@@ -106,6 +106,7 @@
 		}
 
 		return {
+			getObj: (pi) => _programIncrementSetup(pi),
 			programIncrementSetupDialog,
 			piList,
 			getByKey,

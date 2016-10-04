@@ -11,6 +11,7 @@
 	// View Model properties
 	route.vm = {
 		isLoading: false,
+		open: false,
 		teams: []
 	};
 
@@ -32,7 +33,7 @@
 			var newData = dashboardSvc.processData($scope.objectives);
 			route.vm.teams.forEach(function(team,i){
 				objectHelp.assign(team,newData[i]);
-			});			
+			});
 		});
 	}
 

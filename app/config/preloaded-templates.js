@@ -2,7 +2,7 @@ angular.module('templates-preload', ['/components/dashboard/cmpt-dashboard-pi-se
 
 angular.module("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html",
-    "<div class=cmpt-dashboard-pi-selector><div class=container ng-class=\"{'opened' : vm.open}\"><div class=pi-tiles ng-repeat=\"pi in vm.pis\" ng-click=go.select(pi) ng-class=\"{'selected': pi.$id === selected}\"><div class=pi-info><div class=title>{{ pi.title }}</div><div class=description>{{ pi.description }}</div><div class=dates>{{ go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) }}</div><div class=check><i class=\"fa fa-check-circle\" aria-hidden=true></i></div></div></div><div class=panel-opener ng-click=go.toggle()><i class=\"fa fa-align-justify\" aria-hidden=true></i></div></div></div>");
+    "<div class=cmpt-dashboard-pi-selector><div class=container ng-class=\"{'opened' : open}\"><div class=pi-tiles ng-repeat=\"pi in vm.pis\" ng-click=go.select(pi) ng-class=\"{'selected': pi.$id === selected}\"><div class=pi-info><div class=title>{{ pi.title }}</div><div class=description>{{ pi.description }}</div><div class=dates>{{ go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) }}</div><div class=check><i class=\"fa fa-check-circle\" aria-hidden=true></i></div></div></div><div class=panel-opener ng-click=go.toggle()><i class=\"fa fa-align-justify\" aria-hidden=true></i></div></div></div>");
 }]);
 
 angular.module("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html", []).run(["$templateCache", function($templateCache) {
@@ -97,7 +97,7 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
 
 angular.module("/routes/dashboard/dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/dashboard/dashboard.html",
-    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi></cmpt-dashboard-pi-selector><div class=dashboard-body><div class=left-section><h1>Left Section</h1></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
+    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi open=route.vm.open></cmpt-dashboard-pi-selector><div class=dashboard-body ng-class=\"{'panel-open': route.vm.open}\"><div class=left-section><h1>Left Section</h1></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
 }]);
 
 angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$templateCache", function($templateCache) {

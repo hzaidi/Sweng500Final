@@ -4,7 +4,8 @@
 // directive options
 restrict: 'E',
 scope: {
-	selected: '='
+	selected: '=',
+	open: '='
 },
 replace: true,
 templateUrl: '/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html',
@@ -15,7 +16,6 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 
 	// View Model properties
 	var vm = $scope.vm = {
-		open: false,
 		isLoading: true,
 		pis: [],
 	};
@@ -31,7 +31,7 @@ controller: function ($scope, $filter, programIncrementSvc, toastHelp, dateHelp)
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		toggle: function () {
-			vm.open = !vm.open;
+			$scope.open = !$scope.open;
 		},
 		calcEndDate: function(pi){
 			if(pi == null) { return; }

@@ -1,7 +1,7 @@
 <div class="route-dashboard-dashboard" ng-controller="DashboardCtrl as route">
   <cmpt-ui-loader ng-if="route.vm.isLoading"></cmpt-ui-loader>
-  <cmpt-dashboard-pi-selector selected="selectedPi"></cmpt-dashboard-pi-selector>
-  <div class="dashboard-body">
+  <cmpt-dashboard-pi-selector selected="selectedPi" open="route.vm.open"></cmpt-dashboard-pi-selector>
+  <div class="dashboard-body" ng-class="{'panel-open': route.vm.open}">
     <div class="left-section">
       <h1>Left Section</h1>
     </div>

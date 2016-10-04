@@ -439,8 +439,8 @@
 .cmpt-ui-simple-progress-bar .progressBar {
   padding: 1px;
   height: 2.5vw;
-  -webkit-box-shadow: 1px 1px 3px #08496a;
-  box-shadow: 1px 1px 3px #08496a;
+  -webkit-box-shadow: 0px 0px 2px #08496a;
+  box-shadow: 0px 0px 2px #08496a;
   border: 1px solid #08496a;
   background: rgba(0,66,85,0.2);
   margin-bottom: 0.4vw;
@@ -1031,6 +1031,14 @@ h1 {
   display: -ms-flexbox;
   display: box;
   display: flex;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -o-transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
 }
 .route-dashboard-dashboard .dashboard-body .left-section {
   padding: 28px 20px 0 20px;
@@ -1101,6 +1109,11 @@ h1 {
   -webkit-flex: 1 0 0;
   -ms-flex: 1 0 0;
   flex: 1 0 0;
+}
+.route-dashboard-dashboard .dashboard-body.panel-open {
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
 }
 .route-list-objectives-all-teams .main-content {
   padding: 20px;
