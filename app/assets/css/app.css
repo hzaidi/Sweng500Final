@@ -1,9 +1,8 @@
 .cmpt-dashboard-pi-selector .container {
+  margin-top: -114px;
   background: #13364f;
-  position: absolute;
   color: #fff;
   width: 100%;
-  top: -114px;
   z-index: 1;
   -webkit-transition: all 100ms ease-in-out;
   -moz-transition: all 100ms ease-in-out;
@@ -44,7 +43,7 @@
   text-align: center;
 }
 .cmpt-dashboard-pi-selector .container.opened {
-  top: 0px;
+  margin-top: 0px;
 }
 .cmpt-dashboard-team-progress .team-container {
   color: #fff;
@@ -56,6 +55,7 @@
   display: flex;
 }
 .cmpt-dashboard-team-progress .team-container .team-name {
+  color: #bababa;
   line-height: 3;
   font-size: 1.2vw;
   -webkit-box-flex: 1;
@@ -126,6 +126,9 @@
 }
 .cmpt-login-authentication .content .auth-section input {
   width: 170px;
+}
+.cmpt-login-authentication .content .btn-primary {
+  margin: 6px 0;
 }
 .cmpt-login-logo {
   position: relative;
@@ -548,6 +551,9 @@
 .cmpt-ui-state-selector .option:last-child {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.cmpt-users-list .input {
+  width: 285px;
 }
 .cmpt-users-list .no-data {
   border: 2px dashed #00c7c3;
@@ -1018,7 +1024,6 @@ h1 {
   left: 1px;
 }
 .route-dashboard-dashboard .dashboard-body {
-  margin-top: 28px;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -1038,8 +1043,8 @@ h1 {
   flex: 1;
 }
 .route-dashboard-dashboard .dashboard-body .right-section {
-  padding: 20px;
-  height: calc(100vh - 68px);
+  padding: 0 20px;
+  height: calc(100vh - 28px);
   background: -webkit-linear-gradient(top, #001322 0, #113148 100%);
   background: -moz-linear-gradient(top, #001322 0, #113148 100%);
   background: -o-linear-gradient(top, #001322 0, #113148 100%);
@@ -1052,6 +1057,49 @@ h1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+.route-dashboard-dashboard .dashboard-body .right-section .title {
+  color: #0af;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 30px;
+}
+.route-dashboard-dashboard .dashboard-body .right-section .header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.route-dashboard-dashboard .dashboard-body .right-section .header .empty {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+}
+.route-dashboard-dashboard .dashboard-body .right-section .header .commitment {
+  color: #00c7c3;
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -o-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex: 2 0 0;
+  -ms-flex: 2 0 0;
+  flex: 2 0 0;
+}
+.route-dashboard-dashboard .dashboard-body .right-section .header .stretch {
+  color: #0af;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
 }
 .route-list-objectives-all-teams .main-content {
   padding: 20px;

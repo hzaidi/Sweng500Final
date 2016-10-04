@@ -26,7 +26,6 @@
 				lastName: (user === null) ? null : user.lastName,
 				email: (user === null) ? null : user.email,
 				userRole: (user === null) ? 0 : user.userRole,
-				userandrole: (user === null) ? '' : user.userandrole,
 				orgId: (user === null) ? null : user.orgId
 			}
 		}
