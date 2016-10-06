@@ -8,6 +8,16 @@
 			padding: 28px 20px 0 20px;
 			height: calc(100vh - 68px);
 			flex: 1;
+			.objective-bar--timeline{
+				display: flex;
+				.cmpt-ui-time-line{
+					flex: 2 0 0;
+					margin-right: 1%;
+				}
+				.empty{
+					flex: 1 0 0;
+				}
+			}
 		}
 		.right-section{
 			padding: 28px 20px 0 20px;
@@ -23,17 +33,27 @@
 			.header{
 				display: flex;
 				.empty{
-					flex: 1 0 0;
+					flex: 0.8 0 0;
+					margin-right: 5px;
 				}
 				.commitment{
+					margin-bottom: 4px;
+					font-size: 20px;
+					padding: 0 4px;
 					color: $mediumGreen;
 					flex: 2 0 0;
 				}
 				.stretch{
+					margin-bottom: 4px;
+					font-size: 20px;
+					padding: 0 4px;
 					color: $darkBlue;
 					flex: 1 0 0;
 				}
 			}
+
+
+
 		}
 		&.panel-open{
 			opacity: 0.1;
