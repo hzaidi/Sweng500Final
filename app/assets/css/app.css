@@ -672,6 +672,33 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.cmpt-ui-time-line {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.cmpt-ui-time-line .cmpt-ui-simple-progress-bar {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 2px;
+  margin-right: 2px;
+  float: left;
+}
+.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar {
+  height: 1vw;
+}
+.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar .arrow-status span,
+.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
+  display: none;
+}
 .cmpt-users-list .input {
   width: 285px;
 }

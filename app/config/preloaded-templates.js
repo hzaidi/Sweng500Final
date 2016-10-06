@@ -104,7 +104,7 @@ angular.module("/components/ui/cmpt-ui-state-selector/uiStateSelector.html", [])
 
 angular.module("/components/ui/cmpt-ui-time-line/uiTimeLine.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-time-line/uiTimeLine.html",
-    "<div class=cmpt-ui-time-line><cmpt-ui-simple-progress-bar ng-repeat=\"i in go.getNumber(blocks) track by $index\" percentage=25></cmpt-ui-simple-progress-bar></div>");
+    "<div class=cmpt-ui-time-line><cmpt-ui-simple-progress-bar ng-repeat=\"i in go.getNumber(blocks) track by $index\" percentage=25 cls=medium></cmpt-ui-simple-progress-bar></div>");
 }]);
 
 angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$templateCache", function($templateCache) {
@@ -114,7 +114,7 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
 
 angular.module("/routes/dashboard/dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/dashboard/dashboard.html",
-    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi open=route.vm.open></cmpt-dashboard-pi-selector><div class=dashboard-body ng-class=\"{'panel-open': route.vm.open}\"><div class=left-section><cmpt-dashboard-pi-summary selected-pi=selectedPi></cmpt-dashboard-pi-summary><cmpt-dashboard-overall-progress teams=route.vm.teams></cmpt-dashboard-overall-progress><div class=objective-bar--timeline><cmpt-ui-time-line blocks=5></cmpt-ui-time-line><div class=empty>&nbsp;</div></div></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
+    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi open=route.vm.open></cmpt-dashboard-pi-selector><div class=dashboard-body ng-class=\"{'panel-open': route.vm.open}\"><div class=left-section><cmpt-dashboard-pi-summary selected-pi=selectedPi></cmpt-dashboard-pi-summary><cmpt-dashboard-overall-progress teams=route.vm.teams></cmpt-dashboard-overall-progress><div class=objective-bar--timeline><cmpt-ui-time-line blocks=7></cmpt-ui-time-line><div class=empty>&nbsp;</div></div></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
 }]);
 
 angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$templateCache", function($templateCache) {
