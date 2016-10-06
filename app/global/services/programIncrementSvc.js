@@ -71,7 +71,8 @@
 						cls: 'button',
 						icon: 'fa fa-check',
 						loading: false,
-						action: function(){
+						action: function(form){
+							if(form.$invalid) { return; }
 							var ctx = userSvc.context().get();
 							pi.orgId = ctx.orgId;
 							createPi(pi).then(function(ref) {
