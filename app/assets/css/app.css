@@ -738,6 +738,18 @@
   background: #fff;
   color: #113148;
 }
+.modal-programIncrement-setup .ngdialog-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+.modal-programIncrement-setup .ngdialog-buttons.disabled a.button-default {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: pointer;
+}
 body {
   margin: 0;
   font-family: 'Ropa Sans';
