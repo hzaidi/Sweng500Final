@@ -1,0 +1,43 @@
+.cmpt-dashboard-overall-progress {
+
+	.objective-bar--stats{
+    display: flex;
+		.committed, .stretch {
+      flex: 1;
+			.cmpt-ui-simple-progress-bar{
+				.arrow-status{
+					span{
+						font-size: 50px;
+					}
+					sup{
+						font-size: 20px;
+					}
+				}
+			}
+    }
+		.committed, .stretch {
+      .status {
+          float: right;
+          color $ap-light-grey-4;
+      }
+			.title{
+				font-size: 20px;
+				margin-bottom: 5px;
+			}
+    }
+		.committed {
+        flex-grow: 2;
+        margin-right: 1%;
+
+        .title {
+            color: $mediumGreen;
+        }
+    }
+
+    .stretch {
+        .title {
+            color: $darkBlue;
+        }
+    }
+  }
+}

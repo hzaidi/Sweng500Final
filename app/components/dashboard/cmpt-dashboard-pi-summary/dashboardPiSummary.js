@@ -22,9 +22,10 @@ controller: function ($scope, $filter, $interval, programIncrementSvc) {
 	$scope.$watch('selectedPi', function(){
 		if($scope.selectedPi === null) {return;}
 		var endDate = programIncrementSvc.calcEndDate($scope.selectedPi);
+		var lenOfSprint = $scope.selectedPi.lengthOfSprint;
 		$interval(function(){
 			var numDaysLeft = daysLeft(new Date(endDate), new Date());
-			var sprintsLeft = Math.ceil(weeksLeft(new Date(endDate), new Date())/2); // this shold be number of sprints
+			var sprintsLeft = Math.ceil(weeksLeft(new Date(endDate), new Date())/lenOfSprint); 
 			vm.sprintsLeft = sprintsLeft;
 			vm.daysLeft = numDaysLeft;
 		},1000);

@@ -7,9 +7,12 @@
 			</cmpt-ui-simple-progress-bar>
 		</div>
 		<div class="team-stretch">
-			<cmpt-ui-simple-progress-bar percentage="team.stretch.percentage" cls="dark">
-				 <span class="status">({{ team.stretch.done }}/{{ team.stretch.total }} POINTS)</span>
-			</cmpt-ui-simple-progress-bar>
+			<div ng-if="team.stretch !== null">
+				<cmpt-ui-simple-progress-bar percentage="team.stretch.percentage" cls="dark">
+					 <span class="status">({{ team.stretch.done }}/{{ team.stretch.total }} POINTS)</span>
+				</cmpt-ui-simple-progress-bar>
+			</div>
+			<div ng-if="team.stretch === null" class="no-stretch" >NO STRETCH GOALS</div>
 		</div>
 	</div>
 </div>

@@ -1,3 +1,55 @@
+.cmpt-dashboard-overall-progress .objective-bar--stats {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed,
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status span,
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status span {
+  font-size: 50px;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status sup,
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status sup {
+  font-size: 20px;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed .status,
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch .status {
+  float: right;
+  color: #fff;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed .title,
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch .title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -o-box-flex: 2;
+  -ms-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex-grow: 2;
+  flex-grow: 2;
+  margin-right: 1%;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .committed .title {
+  color: #009592;
+}
+.cmpt-dashboard-overall-progress .objective-bar--stats .stretch .title {
+  color: #0076ff;
+}
 .cmpt-dashboard-pi-selector .container {
   position: absolute;
   top: -114px;
@@ -98,6 +150,9 @@
   font-size: 15px;
   text-transform: uppercase;
 }
+.cmpt-dashboard-team-progress {
+  line-height: 68px;
+}
 .cmpt-dashboard-team-progress .team-container {
   color: #fff;
   display: -webkit-box;
@@ -109,15 +164,16 @@
 }
 .cmpt-dashboard-team-progress .team-container .team-name {
   color: #bababa;
-  line-height: 3;
-  font-size: 1.2vw;
+  font-size: 0.9vw;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
   box-flex: 1;
-  -webkit-flex: 1 0 0;
-  -ms-flex: 1 0 0;
-  flex: 1 0 0;
+  -webkit-flex: 0.8 0 0;
+  -ms-flex: 0.8 0 0;
+  flex: 0.8 0 0;
+  margin-right: 5px;
+  text-align: right;
 }
 .cmpt-dashboard-team-progress .team-container .team-commitment {
   padding: 5px;
@@ -138,6 +194,12 @@
   -webkit-flex: 1 0 0;
   -ms-flex: 1 0 0;
   flex: 1 0 0;
+}
+.cmpt-dashboard-team-progress .team-container .team-stretch .no-stretch {
+  color: #00deff;
+  font-size: 0.8vw;
+  text-align: center;
+  line-height: 5vh;
 }
 .cmpt-reset-password {
   text-align: center;
@@ -538,10 +600,14 @@
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status.green {
   background: #009592;
 }
+.cmpt-ui-simple-progress-bar .progressBar .arrow-status > span {
+  color: #fff;
+}
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status span {
   margin-left: 10px;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status span.status {
+  color: #bababa;
   position: absolute;
   right: 10px;
   top: 0;
@@ -552,6 +618,7 @@
   font-size: 0.8vw;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
+  color: #fff;
   font-size: 0.8vw;
 }
 .cmpt-ui-state-selector {

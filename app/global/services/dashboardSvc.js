@@ -46,11 +46,7 @@
 					var total = totalBusinessValue(objectives);
 					var done = totalDone(objectives);
 					var percentage = (done === 0) ? 0 : round((done/total) * 100)
-					obj[objectiveTypeVal[objKey].toLowerCase()] = {
-						total,
-						done,
-						percentage
-					};
+					obj[objectiveTypeVal[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
 				})
 				pTeams.push(obj);
 			});

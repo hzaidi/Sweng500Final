@@ -13,6 +13,8 @@ templateUrl: '/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamPr
 // #---- Component (cmpt-dashboard-team-progress) ----# //
 controller: function ($scope) {
 
+
+	
 	// View Model properties
 	var vm = $scope.vm = {
 		property: 'initial value'

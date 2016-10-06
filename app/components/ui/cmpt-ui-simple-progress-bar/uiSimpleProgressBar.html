@@ -1,7 +1,7 @@
 <div class="cmpt-ui-simple-progress-bar">
 	<div class="progressBar">
     <div class="arrow-status {{ cls }}" style="width: {{ percentage }}%">
-      <span>{{ percentage }}</span><sup>%</sup>
+      <span count-to="{{percentage}}" value="0" duration="3"></span><sup>%</sup>
       <ng-transclude></ng-tranclude>
     </div>
   </div>
