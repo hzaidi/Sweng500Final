@@ -1,0 +1,18 @@
+<div class="cmpt-ui-stacked-progress-bar">
+	<div class="title-bar">
+	 <span>Overall {{ type }} Breakdown</span>
+	 <span>{{ vm.total }} Points Total</span>
+ 	</div>
+ 	<div class="progressBar">
+	 	<div
+		 ng-repeat="item in data"
+		 class="arrow-status {{ item.cls }}"
+		 style="width: {{ item.percentage }}%">
+		</div>
+ 	</div>
+ 	<div class="legend">
+	 <div ng-repeat="item in data">
+		 <span class="{{ item.cls}}"></span>{{ item.total }} Points {{ item.title }}
+	 </div>
+ 	</div>
+</div>

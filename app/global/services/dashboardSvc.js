@@ -2,7 +2,15 @@
 
 	// #----------------------------------# //
 	// #----- Service (dashboardSvc) -----# //
-	app.factory('dashboardSvc', function ($q, objectiveSvc, teamSvc, userSvc, objectiveTypeVal, toastHelp) {
+	app.factory('dashboardSvc', function ($q, objectiveSvc, teamSvc, userSvc, objectiveTypeVal, stateVal, toastHelp) {
+
+
+		const colorPallete = {
+			1: 'green',
+			2: 'dark',
+			3: 'grey',
+			4: 'red'
+		}
 
 		var teams, users, objectives = [];
 		var groupBy = function(xs, key) {
@@ -31,7 +39,7 @@
 		}
 
 
-		function processData(objectives){
+		function processData(){
 			var groups = groupBy(objectives,'teamId');
 			var pTeams = [];
 			Object.keys(groups).forEach(function(key){
@@ -44,7 +52,7 @@
 				Object.keys(objectiveTypeVal).forEach(function(objKey){
 					var objectives = groups[key].filter(x => x.type === parseInt(objKey));
 					var total = totalBusinessValue(objectives);
-					var done = totalDone(objectives);
+					var done = totalByState(objectives, 3);
 					var percentage = (done === 0) ? 0 : round((done/total) * 100)
 					obj[objectiveTypeVal[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
 				})
@@ -54,8 +62,36 @@
 			return pTeams;
 		}
 
-		function totalDone(objectives){
-			return objectives.filter(x => x.state === 3).reduce(function(prev,cur){
+
+		function processPercentages() {
+			var percentages = {	commitment: [],	stretch: []	};
+			Object.keys(objectiveTypeVal).forEach(function(objKey){
+				var fObjectives = objectives.filter(x => x.type === parseInt(objKey));
+				stateVal.forEach(function(item){
+				var obj = percentageObjByState(fObjectives,item)
+					percentages[objectiveTypeVal[objKey].toLowerCase()].push(obj)
+				});
+			});
+			return percentages;
+		}
+
+
+	 function percentageObjByState(objectives, state) {
+		 var sTotal = totalByState(objectives,state.id);
+		 var sTotalBusinessValue = totalBusinessValue(objectives);
+		 return {
+			 title: state.value,
+			 cls: colorPallete[state.id],
+			 percentage: (sTotalBusinessValue === 0) ? 0 : (sTotal/sTotalBusinessValue) * 100,
+			 total: sTotal
+		 }
+	 }
+
+
+
+
+		function totalByState(objectives, stateId){
+			return objectives.filter(x => x.state === stateId).reduce(function(prev,cur){
 				return prev + cur.businessValue;
 			},0)
 		}
@@ -73,7 +109,8 @@
 
 		return {
 			getData,
-			processData
+			processData,
+			processPercentages
 		};
 
 	});
