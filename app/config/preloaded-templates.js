@@ -29,7 +29,7 @@ angular.module("/components/forgotpassword/cmpt-reset-password/resetPassword.htm
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-authentication/loginAuthentication.html",
-    "<div class=cmpt-login-authentication><div class=\"content -g\"><div class=\"app-title -u-12-24\">SAFe Tracker</div><div class=\"auth-section -u-12-24\"><div class=\"-g label\"><div class=-u-10-24>User Id</div><div class=-u-10-24>Password</div><div class=-u-4-24></div></div><div class=-g><div class=-u-10-24><input class=input name=name ng-model=vm.username></div><div class=-u-10-24><input class=input type=password name=name ng-model=vm.password></div><div class=-u-4-24><button class=\"button button-parimary\" type=button name=button ng-click=go.login()>Login</button></div></div><div type=\"button button-parimary\" ng-click=go.forgotPass() class=\"-g forgot-password\"><div class=-u-10-24></div><a div class=-u-10-24>Forgot Password?</a></div><div class=-u-4-24></div></div></div></div>");
+    "<div class=cmpt-login-authentication><div class=\"content -g\"><div class=\"app-title -u-12-24\">SAFe Tracker</div><div class=\"auth-section -u-12-24\"><div class=\"-g label\"><div class=-u-10-24>User Id</div><div class=-u-10-24>Password</div><div class=-u-4-24></div></div><div class=-g><div class=-u-10-24><input class=input name=name ng-model=vm.username></div><div class=-u-10-24><input class=input type=password name=name ng-model=vm.password></div><div class=-u-4-24><button class=\"button button-primary\" type=button name=button ng-click=go.login()>Login</button></div></div><div ng-click=go.forgotPass() class=\"-g forgot-password\"><div class=-u-10-24></div><a div class=-u-10-24>Forgot Password?</a></div><div class=-u-4-24></div></div></div></div>");
 }]);
 
 angular.module("/components/login/cmpt-login-logo/loginLogo.html", []).run(["$templateCache", function($templateCache) {
@@ -94,7 +94,7 @@ angular.module("/components/ui/cmpt-ui-loader/uiLoader.html", []).run(["$templat
 
 angular.module("/components/ui/cmpt-ui-simple-progress-bar/uiSimpleProgressBar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-simple-progress-bar/uiSimpleProgressBar.html",
-    "<div class=cmpt-ui-simple-progress-bar><div class=progressBar><div class=\"arrow-status {{ cls }}\" style=\"width: {{ percentage }}%\"><span count-to={{percentage}} value=0 duration=1></span><sup>%</sup><ng-transclude></ng-transclude></div></div></div>");
+    "<div class=cmpt-ui-simple-progress-bar><div class=progressBar><div class=\"arrow-status {{ cls }}\" style=\"width: {{percentage}}%\"><span count-to={{percentage}} value=0 duration=1></span><sup>%</sup><ng-transclude></ng-transclude></div></div></div>");
 }]);
 
 angular.module("/components/ui/cmpt-ui-state-selector/uiStateSelector.html", []).run(["$templateCache", function($templateCache) {
@@ -104,7 +104,7 @@ angular.module("/components/ui/cmpt-ui-state-selector/uiStateSelector.html", [])
 
 angular.module("/components/ui/cmpt-ui-time-line/uiTimeLine.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-time-line/uiTimeLine.html",
-    "<div class=cmpt-ui-time-line><cmpt-ui-simple-progress-bar ng-repeat=\"i in go.getNumber(blocks) track by $index\" percentage=25 cls=medium></cmpt-ui-simple-progress-bar></div>");
+    "<div class=cmpt-ui-time-line><div class=title>Overall Time Completion <span class=status>{{ vm.numDaysLeft }}/{{ vm.totalDays }} Days Completed</span></div><div class=progress-bar-container><cmpt-ui-simple-progress-bar ng-repeat=\"block in vm.blocks\" percentage=\"(vm.overallTime >= block.start && vm.overallTime <= block.end) ? vm.overallTime : 0\" cls=medium><div class=arrow_box style=\"left: {{ vm.overallTime }}%\" ng-if=\"vm.overallTime >= block.start && vm.overallTime <= block.end\">NOW</div></cmpt-ui-simple-progress-bar></div></div>");
 }]);
 
 angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$templateCache", function($templateCache) {
@@ -114,7 +114,7 @@ angular.module("/components/users/cmpt-users-list/usersList.html", []).run(["$te
 
 angular.module("/routes/dashboard/dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/dashboard/dashboard.html",
-    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi open=route.vm.open></cmpt-dashboard-pi-selector><div class=dashboard-body ng-class=\"{'panel-open': route.vm.open}\"><div class=left-section><cmpt-dashboard-pi-summary selected-pi=selectedPi></cmpt-dashboard-pi-summary><cmpt-dashboard-overall-progress teams=route.vm.teams></cmpt-dashboard-overall-progress><div class=objective-bar--timeline><cmpt-ui-time-line blocks=7></cmpt-ui-time-line><div class=empty>&nbsp;</div></div></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
+    "<div class=route-dashboard-dashboard ng-controller=\"DashboardCtrl as route\"><cmpt-ui-loader ng-if=route.vm.isLoading></cmpt-ui-loader><cmpt-dashboard-pi-selector selected=selectedPi open=route.vm.open></cmpt-dashboard-pi-selector><div class=dashboard-body ng-class=\"{'panel-open': route.vm.open}\"><div class=left-section><cmpt-dashboard-pi-summary selected-pi=selectedPi></cmpt-dashboard-pi-summary><cmpt-dashboard-overall-progress teams=route.vm.teams></cmpt-dashboard-overall-progress><div class=objective-bar--timeline ng-if=\"selectedPi !== null\"><cmpt-ui-time-line start-date=selectedPi.startDate end-date=route.go.calcEndDate(selectedPi) blocks=selectedPi.numberOfSprints></cmpt-ui-time-line><div class=empty>&nbsp;</div></div></div><div class=right-section><div class=title>TEAM COMMITMENTS</div><div class=header><div class=empty></div><div class=commitment>COMMITTED</div><div class=stretch>STRETCH</div></div><div ng-repeat=\"team in route.vm.teams\"><cmpt-dashboard-team-progress team=team></cmpt-dashboard-team-progress></div></div></div></div>");
 }]);
 
 angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$templateCache", function($templateCache) {

@@ -1,17 +1,70 @@
+@import "variables.styl"
 .cmpt-ui-time-line {
-	display: flex;
-	.cmpt-ui-simple-progress-bar{
-		flex: 1;
-    margin-left: 2px;
-		margin-right: 2px;
-    float: left;
-		.progressBar{
-			height: 1vw;
-			.arrow-status{
-				span, sup {
-					display: none;
+
+	.title{
+		color: $ap-light-grey-4;
+		margin: 20px 0 5px 0;
+		span{
+			float: right;
+		}
+	}
+	.progress-bar-container{
+		display: flex;
+		.cmpt-ui-simple-progress-bar{
+			flex: 1;
+	    // margin-left: 2px;
+			// margin-right: 2px;
+	    float: left;
+			.progressBar{
+				height: 1vw;
+				.arrow-status{
+					span, sup {
+						display: none;
+					}
 				}
 			}
+
+			.arrow_box {
+	      position: absolute;
+				color: $ap-light-grey-4;
+	      background: $mediumBlue;
+	      border: 1px solid #08496a;
+	      width: 60px;
+	      margin-left: -29px;
+	      font-size: 14px;
+	      box-sizing: border-box;
+	      display: inline-block;
+	      border-radius: 3px;
+	      text-align: center;
+	      top: 1.5vw;
+	      padding: 5px;
+	      z-index: 1;
+	      left: 0%;
+
+	      &:after,
+	      &:before {
+	          bottom: 80%;
+	          left: 0;
+	          border: solid transparent;
+	          content: " ";
+	          height: 0;
+	          width: 0;
+	          position: absolute;
+	          pointer-events: none;
+	      }
+
+	      &:after {
+	          border-color: rgba(0, 27, 42, 0);
+	          border-bottom-color: $mediumBlue;
+	          border-width: 12px;
+	          margin-left: 16px;
+	      }
+
+	      &:before {
+	          border-color: rgba(8, 73, 106, 0);
+	          border-width: 13px;
+	      }
+	  	}
 		}
 	}
 }

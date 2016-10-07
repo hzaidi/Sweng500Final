@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('DashboardCtrl', function ($scope, dashboardSvc,objectHelp) {
+.controller('DashboardCtrl', function ($scope, dashboardSvc, programIncrementSvc,objectHelp) {
 // #-----------------------------# //
 // #------- DashboardCtrl -------# //
 
@@ -40,9 +40,7 @@
 
 	// Actions that can be bound to from the view
 	route.go = {
-		someAction: function () {
-			route.vm.property = 'something';
-		}
+		calcEndDate:programIncrementSvc.calcEndDate
 	};
 
 // #----- END DashboardCtrl -----# //

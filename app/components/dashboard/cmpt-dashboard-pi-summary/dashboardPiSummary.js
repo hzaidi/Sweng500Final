@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSummary
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-dashboard-pi-summary) ----# //
-controller: function ($scope, $filter, $interval, programIncrementSvc) {
+controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -24,24 +24,14 @@ controller: function ($scope, $filter, $interval, programIncrementSvc) {
 		var endDate = programIncrementSvc.calcEndDate($scope.selectedPi);
 		var lenOfSprint = $scope.selectedPi.lengthOfSprint;
 		$interval(function(){
-			var numDaysLeft = daysLeft(new Date(endDate), new Date());
-			var sprintsLeft = Math.ceil(weeksLeft(new Date(endDate), new Date())/lenOfSprint); 
+			var numDaysLeft = dateHelp.daysLeft(new Date(endDate), new Date());
+			var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
 			vm.sprintsLeft = sprintsLeft;
 			vm.daysLeft = numDaysLeft;
 		},1000);
 	})
 
-	function daysLeft(first, second) {
-		var a = moment(first);
-		var b = moment(second);
-		return a.diff(b,'days');
-	}
-
-	function weeksLeft(first,second) {
-		var a = moment(first);
-		var b = moment(second);
-		return a.diff(b,'weeks');
-	}
+	
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {

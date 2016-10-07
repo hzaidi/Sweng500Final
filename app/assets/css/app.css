@@ -18,7 +18,7 @@
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status span,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status span {
-  font-size: 50px;
+  font-size: 35px;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status sup,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status sup {
@@ -242,7 +242,7 @@
 .cmpt-login-authentication .content .auth-section input {
   width: 170px;
 }
-.cmpt-login-authentication .content .btn-primary {
+.cmpt-login-authentication .content .auth-section .button-primary {
   margin: 6px 0;
 }
 .cmpt-login-logo {
@@ -672,7 +672,14 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.cmpt-ui-time-line {
+.cmpt-ui-time-line .title {
+  color: #fff;
+  margin: 20px 0 5px 0;
+}
+.cmpt-ui-time-line .title span {
+  float: right;
+}
+.cmpt-ui-time-line .progress-bar-container {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -680,7 +687,7 @@
   display: box;
   display: flex;
 }
-.cmpt-ui-time-line .cmpt-ui-simple-progress-bar {
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -688,16 +695,54 @@
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  margin-left: 2px;
-  margin-right: 2px;
   float: left;
 }
-.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar {
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .progressBar {
   height: 1vw;
 }
-.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar .arrow-status span,
-.cmpt-ui-time-line .cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .progressBar .arrow-status span,
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .progressBar .arrow-status sup {
   display: none;
+}
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box {
+  position: absolute;
+  color: #fff;
+  background: #0af;
+  border: 1px solid #08496a;
+  width: 60px;
+  margin-left: -29px;
+  font-size: 14px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 3px;
+  text-align: center;
+  top: 1.5vw;
+  padding: 5px;
+  z-index: 1;
+  left: 0%;
+}
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:after,
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:before {
+  bottom: 80%;
+  left: 0;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:after {
+  border-color: rgba(0,27,42,0);
+  border-bottom-color: #0af;
+  border-width: 12px;
+  margin-left: 16px;
+}
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:before {
+  border-color: rgba(8,73,106,0);
+  border-width: 13px;
 }
 .cmpt-users-list .input {
   width: 285px;
