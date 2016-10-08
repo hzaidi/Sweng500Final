@@ -13,25 +13,33 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSummary
 // #---- Component (cmpt-dashboard-pi-summary) ----# //
 controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp) {
 
+
+	var calculateSummaryTimer;
 	// View Model properties
 	var vm = $scope.vm = {
 		daysLeft: null,
 		sprintsLeft: null
 	};
 
+
+
+
 	$scope.$watch('selectedPi', function(){
 		if($scope.selectedPi === null) {return;}
+		if(calculateSummaryTimer){ $interval.cancel(calculateSummaryTimer); }
 		var endDate = programIncrementSvc.calcEndDate($scope.selectedPi);
 		var lenOfSprint = $scope.selectedPi.lengthOfSprint;
-		$interval(function(){
-			var numDaysLeft = dateHelp.daysLeft(new Date(endDate), new Date());
-			var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
-			vm.sprintsLeft = sprintsLeft;
-			vm.daysLeft = numDaysLeft;
-		},1000);
+		calculateSummaryTimer = $interval(function() { timeLeft(endDate, lenOfSprint) }, 1000);
 	})
 
-	
+
+	function timeLeft(endDate, lenOfSprint) {
+		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), new Date());
+		var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
+		vm.sprintsLeft = sprintsLeft;
+		vm.daysLeft = numDaysLeft;
+	}
+
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {

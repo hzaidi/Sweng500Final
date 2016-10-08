@@ -15,36 +15,48 @@ templateUrl: '/components/ui/cmpt-ui-time-line/uiTimeLine.html',
 // #---- Component (cmpt-ui-time-line) ----# //
 controller: function ($scope, $interval, dateHelp) {
 
-
-	const totalDays = dateHelp.daysLeft(new Date($scope.endDate), new Date($scope.startDate));
-	var blockDivision = 100 / $scope.blocks;
-	var numOfBlocks = getNumber($scope.blocks);
-
-
+	var daysLeftTimer;
 	// View Model properties
 	var vm = $scope.vm = {
-		totalDays,
+		totalDays: 0,
 		numDaysLeft: 0,
 		blocks: [],
 		overallTime: 0
 	};
 
-	vm.blocks = getNumber($scope.blocks).join().split(',').map(function(val,index){
-		var start = index * blockDivision;
-		var end = start + blockDivision;
-		return {
-			start,
-			end
+
+	$scope.$watch('blocks', function(val){
+		if(val){
+			var startDate= $scope.startDate;
+			var endDate= $scope.endDate;
+			var blocks = $scope.blocks;
+			if(daysLeftTimer) { $interval.cancel(daysLeftTimer); }
+			var totalDays = vm.totalDays = dateHelp.daysLeft(new Date(endDate), new Date(startDate));
+			var blockDivision = 100 / blocks;
+			var numOfBlocks = getNumber(blocks);
+
+			vm.blocks = getNumber(blocks).join().split(',').map(function(val,index){
+				var start = index * blockDivision;
+				var end = start + blockDivision;
+				return {
+					start,
+					end
+				}
+			});
+			daysLeftTimer = $interval(function(){ timeLeft(endDate, totalDays) },1000);
 		}
 	});
 
 
-	$interval(function(){
-		var numDaysLeft = dateHelp.daysLeft(new Date($scope.endDate), new Date());
+
+
+	function timeLeft(endDate, totalDays) {
+		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), new Date());
 		var overallTime = Math.ceil(round(100-((numDaysLeft/totalDays)*100)));
 		vm.numDaysLeft = numDaysLeft;
 		vm.overallTime = overallTime;
-	}, 1000)
+	}
+
 
 
 
