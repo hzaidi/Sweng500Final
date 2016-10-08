@@ -10,12 +10,13 @@
         <cmpt-ui-time-line start-date="selectedPi.startDate" end-date="route.go.calcEndDate(selectedPi)" blocks="selectedPi.numberOfSprints"></cmpt-ui-time-line>
         <div class="empty">&nbsp;</div>
       </div>
-      {{ route.vm.aggregation }}
-      <div class="stacked-bar-commitments">
-        <cmpt-ui-stacked-progress-bar type="Objectives" data="route.vm.aggregation.commitment"></cmpt-ui-stacked-progress-bar>
-      </div>
-      <div class="stacked-bar-stretch">
-        <cmpt-ui-stacked-progress-bar type="Stretch" data="route.vm.aggregation.stretch"></cmpt-ui-stacked-progress-bar>
+      <div class="doughnuts">
+        <div class="doughnut-commitments">
+          <cmpt-dashboard-doughnut type="Commitment" objective="route.vm.doughnuts.commitment"></cmpt-dashboard-doughnut>
+        </div>
+        <div class="doughnut-stretch">
+          <cmpt-dashboard-doughnut type="Stretch" objective="route.vm.doughnuts.stretch"></cmpt-dashboard-doughnut>          
+        </div>
       </div>
     </div>
     <div class="right-section">

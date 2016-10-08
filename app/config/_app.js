@@ -9,11 +9,15 @@
 		'templates-preload',
 		'ngDialog',
 		'toastr',
-		'ngMessages'
+		'ngMessages',
+		'chart.js'
 	]);
 
-	app.config(function() {
-	  firebase.initializeApp(window.siteConfig);		
+	app.config(function(ChartJsProvider) {
+	  firebase.initializeApp(window.siteConfig);
+		ChartJsProvider.setOptions('doughnut', {
+		 cutoutPercentage: 80
+	 });
 	});
 
 

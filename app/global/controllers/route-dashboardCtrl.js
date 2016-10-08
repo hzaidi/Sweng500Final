@@ -13,7 +13,7 @@
 		isLoading: false,
 		open: false,
 		teams: [],
-		aggregation:[]
+		doughnuts:{}
 	};
 
 
@@ -22,7 +22,8 @@
 	if($scope.objectives.length) { 	$scope.objectives.$destroy(); }
 		dashboardSvc.getData($scope.selectedPi.$id).then(function(data){
 			route.vm.teams = data.processData;
-			route.vm.aggregation = dashboardSvc.processPercentages();
+			var distributionPercentages = dashboardSvc.processPercentages();
+			route.vm.doughnuts = distributionPercentages;
 			addWatch(data.objectives);
 			}, function(error){
 			toastHelp.error(error.message,'Error')
@@ -33,19 +34,13 @@
 		$scope.objectives = objectives;
 		$scope.objectives.$watch(function(){
 			var newData = dashboardSvc.processData();
-			var newAgg = dashboardSvc.processPercentages();
+			var distributionPercentages = dashboardSvc.processPercentages();
+			route.vm.doughnuts = distributionPercentages;
 			route.vm.teams.forEach(function(team,i){
 				objectHelp.assign(team,newData[i]);
 			});
-			Object.keys(objectiveTypeVal).forEach(function(key){
-				var val = objectiveTypeVal[key].toLowerCase();
-				objectHelp.assign(route.vm.aggregation[val],newAgg[val]);	
-			})
 		});
 	}
-
-
-
 
 
 

@@ -17,8 +17,15 @@ controller: function ($scope) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		newPer: 0,
+    oldPer: 0
 	};
+
+
+  $scope.$watch('percentage', function(nVal, oVal){
+    vm.newPer = nVal;
+    vm.oldPer = oVal;
+  })
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {

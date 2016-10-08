@@ -6,10 +6,10 @@
 
 
 		const colorPallete = {
-			1: 'green',
-			2: 'dark',
-			3: 'grey',
-			4: 'red'
+			1: '#7B7B7B',
+			2: '#0076ff',
+			3: '#009592',
+			4: '#D95B5B',
 		}
 
 		var teams, users, objectives = [];
@@ -64,28 +64,24 @@
 
 
 		function processPercentages() {
-			var percentages = {	commitment: [],	stretch: []	};
+			var percentages = {	commitment: {},	stretch: {}	};
 			Object.keys(objectiveTypeVal).forEach(function(objKey){
-				var fObjectives = objectives.filter(x => x.type === parseInt(objKey));
-				stateVal.forEach(function(item){
-				var obj = percentageObjByState(fObjectives,item)
-					percentages[objectiveTypeVal[objKey].toLowerCase()].push(obj)
+				var type = objectiveTypeVal[objKey].toLowerCase();
+				var filteredObjectiveByType = objectives.filter(x => x.type === parseInt(objKey));
+				var totalBusinessValueByType = totalBusinessValue(filteredObjectiveByType);
+				var percentagesByState = stateVal.map(function(state){
+					return (totalByState(filteredObjectiveByType,state.id)/totalBusinessValueByType) * 100;										
 				});
+				var total = stateVal.map(function(state){
+					return totalByState(filteredObjectiveByType,state.id);
+				});
+				percentages[type]['labels'] = stateVal.map(x => x.value);
+				percentages[type]['data'] = percentagesByState;
+				percentages[type]['colors'] = stateVal.map(x => colorPallete[x.id]);
+				percentages[type]['total'] = total;
 			});
 			return percentages;
 		}
-
-
-	 function percentageObjByState(objectives, state) {
-		 var sTotal = totalByState(objectives,state.id);
-		 var sTotalBusinessValue = totalBusinessValue(objectives);
-		 return {
-			 title: state.value,
-			 cls: colorPallete[state.id],
-			 percentage: (sTotalBusinessValue === 0) ? 0 : (sTotal/sTotalBusinessValue) * 100,
-			 total: sTotal
-		 }
-	 }
 
 
 
