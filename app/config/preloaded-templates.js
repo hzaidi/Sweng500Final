@@ -129,7 +129,7 @@ angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$template
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
-    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu></div></div>");
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><a class=\"button button-positive\" href=/dashboard><i class=\"fa fa-check\" aria-hidden=true></i><span>Dashboard</span></a></div></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/all-teams.html", []).run(["$templateCache", function($templateCache) {
