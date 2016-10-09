@@ -9,13 +9,13 @@ templateUrl: '/components/topbar/cmpt-topbar-header/topbarHeader.html',
 
 // #----------------------------------------# //
 // #---- Component (cmpt-topbar-header) ----# //
-controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationSvc, userRoleVal, toastHelp) {
+controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationSvc, userRoleConst, toastHelp) {
 
 	var user = userSvc.userObj($scope.user);
 	// View Model properties
 	var vm = $scope.vm = {
 		orgName: null,
-		user: Object.assign({} , user, { userRole: userRoleVal[user.userRole] })
+		user: Object.assign({} , user, { userRole: userRoleConst[user.userRole] })
 	};
 
 

@@ -13,7 +13,7 @@ templateUrl: '/components/objectives/cmpt-objectives-manage-objectives/objective
 
 // #-------------------------------------------------------# //
 // #---- Component (cmpt-objectives-manage-objectives) ----# //
-controller: function ($scope, objectiveSvc, userSvc, objectiveTypeVal, toastHelp, objectHelp) {
+controller: function ($scope, objectiveSvc, userSvc, objectiveTypeConst, toastHelp, objectHelp) {
 
 
 	var context = userSvc.context().get();
@@ -22,7 +22,7 @@ controller: function ($scope, objectiveSvc, userSvc, objectiveTypeVal, toastHelp
 	var vm = $scope.vm = {
 		isLoading: false,
 		context,
-		type: objectiveTypeVal[$scope.type],
+		type: objectiveTypeConst[$scope.type],
 		objectives: []
 	};
 

@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-overall-progress/dashboardOve
 
 // #-----------------------------------------------------# //
 // #---- Component (cmpt-dashboard-overall-progress) ----# //
-controller: function ($scope, objectiveTypeVal) {
+controller: function ($scope, objectiveTypeConst) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -30,8 +30,8 @@ controller: function ($scope, objectiveTypeVal) {
 
 
 	$scope.$watch('teams', function(teams){
-			Object.keys(objectiveTypeVal).forEach(function(key){
-				var prop = objectiveTypeVal[key].toLowerCase();
+			Object.keys(objectiveTypeConst).forEach(function(key){
+				var prop = objectiveTypeConst[key].toLowerCase();
 				var total = teams.map(x=>x[prop]).filter(x=> x !== null).reduce(function(prev,cur){ return prev + cur.total || 0 },0);
 				var done = teams.map(x=>x[prop]).filter(x=> x !== null).reduce(function(prev,cur){ return prev + cur.done || 0 },0);
 				var percentage =  (done === 0) ? 0 : round((done/total) * 100);

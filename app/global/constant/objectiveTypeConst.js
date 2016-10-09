@@ -1,12 +1,12 @@
 (function() {'use strict';var app = angular.module('piStatus');
 
 	// #------------------------------------# //
-	// #----- Value (objectiveTypeVal) -----# //
-	app.value('objectiveTypeVal', {
+	// #----- Value (objectiveTypeConst) -----# //
+	app.constant('objectiveTypeConst', {
 		1: 'Commitment',
 		2: 'Stretch'
 	});
-	// #--- END Value (objectiveTypeVal) ---# //
+	// #--- END Value (objectiveTypeConst) ---# //
 	// #------------------------------------# //
 
 }());

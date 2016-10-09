@@ -1,8 +1,8 @@
 (function() {'use strict';var app = angular.module('piStatus');
 
 	// #----------------------------# //
-	// #----- Value (stateVal) -----# //
-	app.value('stateVal', [{
+	// #----- Value (stateConst) -----# //
+	app.constant('stateConst', [{
 			id: 1,
 			value: 'Defined'
 		}, {
@@ -15,7 +15,7 @@
 			id: 4,
 			value: 'On Hold'
 		}]);
-	// #--- END Value (stateVal) ---# //
+	// #--- END Value (stateConst) ---# //
 	// #----------------------------# //
 
 }());

@@ -12,10 +12,10 @@ templateUrl: '/components/ui/cmpt-ui-state-selector/uiStateSelector.html',
 
 // #--------------------------------------------# //
 // #---- Component (cmpt-ui-state-selector) ----# //
-controller: function ($scope, $timeout, stateVal) {
+controller: function ($scope, $timeout, stateConst) {
 
 	if($scope.updateState == null) { $scope.updateState = function(){}; }
-	var options = angular.copy(stateVal);
+	var options = angular.copy(stateConst);
 
 	// View Model properties
 	var vm = $scope.vm = {

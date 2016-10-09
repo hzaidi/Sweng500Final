@@ -25,7 +25,7 @@ controller: function ($scope, $interval, dateHelp) {
 	};
 
 
-	$scope.$watch('blocks', function(val){
+	$scope.$watchGroup(['startDate','endDate','blocks'], function(val){
 		if(val){
 			var startDate= $scope.startDate;
 			var endDate= $scope.endDate;

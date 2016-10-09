@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('DashboardCtrl', function ($scope, objectiveTypeVal, dashboardSvc, programIncrementSvc,objectHelp) {
+.controller('DashboardCtrl', function ($scope, objectiveTypeConst, dashboardSvc, programIncrementSvc,objectHelp) {
 // #-----------------------------# //
 // #------- DashboardCtrl -------# //
 

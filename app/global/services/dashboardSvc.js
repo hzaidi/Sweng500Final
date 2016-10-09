@@ -2,7 +2,7 @@
 
 	// #----------------------------------# //
 	// #----- Service (dashboardSvc) -----# //
-	app.factory('dashboardSvc', function ($q, objectiveSvc, teamSvc, userSvc, objectiveTypeVal, stateVal, toastHelp) {
+	app.factory('dashboardSvc', function ($q, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, toastHelp) {
 
 
 		const colorPallete = {
@@ -49,12 +49,12 @@
 				var obj = {};
 				obj.teamName = team.teamName;
 				obj.owner = `${owner.firstName}, ${owner.lastName}`;
-				Object.keys(objectiveTypeVal).forEach(function(objKey){
+				Object.keys(objectiveTypeConst).forEach(function(objKey){
 					var objectives = groups[key].filter(x => x.type === parseInt(objKey));
 					var total = totalBusinessValue(objectives);
 					var done = totalByState(objectives, 3);
 					var percentage = (done === 0) ? 0 : round((done/total) * 100)
-					obj[objectiveTypeVal[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
+					obj[objectiveTypeConst[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
 				})
 				pTeams.push(obj);
 			});
@@ -65,19 +65,19 @@
 
 		function processPercentages() {
 			var percentages = {	commitment: {},	stretch: {}	};
-			Object.keys(objectiveTypeVal).forEach(function(objKey){
-				var type = objectiveTypeVal[objKey].toLowerCase();
+			Object.keys(objectiveTypeConst).forEach(function(objKey){
+				var type = objectiveTypeConst[objKey].toLowerCase();
 				var filteredObjectiveByType = objectives.filter(x => x.type === parseInt(objKey));
 				var totalBusinessValueByType = totalBusinessValue(filteredObjectiveByType);
-				var percentagesByState = stateVal.map(function(state){
-					return (totalByState(filteredObjectiveByType,state.id)/totalBusinessValueByType) * 100;										
+				var percentagesByState = stateConst.map(function(state){
+					return (totalByState(filteredObjectiveByType,state.id)/totalBusinessValueByType) * 100;
 				});
-				var total = stateVal.map(function(state){
+				var total = stateConst.map(function(state){
 					return totalByState(filteredObjectiveByType,state.id);
 				});
-				percentages[type]['labels'] = stateVal.map(x => x.value);
+				percentages[type]['labels'] = stateConst.map(x => x.value);
 				percentages[type]['data'] = percentagesByState;
-				percentages[type]['colors'] = stateVal.map(x => colorPallete[x.id]);
+				percentages[type]['colors'] = stateConst.map(x => colorPallete[x.id]);
 				percentages[type]['total'] = total;
 			});
 			return percentages;
