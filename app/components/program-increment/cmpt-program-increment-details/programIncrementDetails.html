@@ -79,14 +79,14 @@
 												<div ng-message="min">Your field value is lesser minimum value of two</div>
 											</div>
 										</div>
+									</div>						
+									<div class="grid-cell -u-3-24">
+										<button ng-show="!pi.isEditing" class="button button-positive" ng-click="go.toggleMode(pi)">                                                 <i class="fa fa-pencil"                  ></i></button>
+										<button ng-show="!pi.isEditing" class="button button-negative" ng-click="go.delete(pi)">                                                     <i class="fa fa-trash" aria-hidden="true"></i></button>
+										<button ng-show= "pi.isEditing" class="button button-positive" ng-click="go.save(pi)" ng-disabled="programIncrementDetailsListForm.$invalid"><i class="fa fa-check"                   ></i></button>
+										<button ng-show= "pi.isEditing" class="button button-negative" ng-click="go.cancel(pi)">                                                     <i class="fa fa-times" aria-hidden="true"></i></button>
 									</div>
-							</div>
-							<div class="grid-cell -u-3-24">
-								<button ng-show="!pi.isEditing" class="button button-positive" ng-click="go.toggleMode(pi)">                                                 <i class="fa fa-pencil"                  ></i></button>
-								<button ng-show="!pi.isEditing" class="button button-negative" ng-click="go.delete(pi)">                                                     <i class="fa fa-trash" aria-hidden="true"></i></button>
-								<button ng-show= "pi.isEditing" class="button button-positive" ng-click="go.save(pi)" ng-disabled="programIncrementDetailsListForm.$invalid"><i class="fa fa-check"                   ></i></button>
-								<button ng-show= "pi.isEditing" class="button button-negative" ng-click="go.cancel(pi)">                                                     <i class="fa fa-times" aria-hidden="true"></i></button>
-							</div>
+								</div>
 						</div>
 				</form>
 			</div>
