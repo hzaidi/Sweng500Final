@@ -10,7 +10,8 @@
 		'ngDialog',
 		'toastr',
 		'ngMessages',
-		'chart.js'
+		'chart.js',
+		'720kb.datepicker'
 	]);
 
 	app.config(function(ChartJsProvider) {

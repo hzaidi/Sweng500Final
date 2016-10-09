@@ -73,6 +73,7 @@
 						loading: false,
 						action: function(form){
 							if(form.$invalid) { return; }
+							pi.startDate = formatDate(pi.startDate);
 							var ctx = userSvc.context().get();
 							pi.orgId = ctx.orgId;
 							createPi(pi).then(function(ref) {
@@ -106,6 +107,12 @@
 			return endDate.format('MM/DD/YYYY');
 		}
 
+		function formatDate(startDate) {
+			var tDate = new Date(startDate);
+			var date  = moment(tDate);
+			return date.format('MM/DD/YYYY');
+		}
+
 		return {
 			getObj: (pi) => _programIncrementSetup(pi),
 			programIncrementSetupDialog,
@@ -113,7 +120,8 @@
 			getByKey,
 			updatePi,
 			deletePi,
-			calcEndDate
+			calcEndDate,
+			formatDate
 		};
 
 	});
