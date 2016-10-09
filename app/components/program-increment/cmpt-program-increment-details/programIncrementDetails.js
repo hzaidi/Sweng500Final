@@ -53,6 +53,9 @@ controller: function ($scope, programIncrementSvc, objectHelp, toastHelp) {
 		},
 		calcEndDate: function(pi){
 			return programIncrementSvc.calcEndDate(pi);
+		},
+		formatDate: function(startDate) {
+			return programIncrementSvc.formatDate(startDate);
 		}
 	};
 }
