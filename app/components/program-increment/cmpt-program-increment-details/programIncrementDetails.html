@@ -42,6 +42,7 @@
 
 											<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy">
 													<input name="startDate"
+																 class="input"
 													       type="text"
 																 date-set="{{pi.startDate}}"
 																 ng-model="pi.startDate"
@@ -49,11 +50,6 @@
 																 required
 													>
 											</datepicker>
-
-											<!--<input name="startDate" type="text" class="input" ng-model="pi.startDate" placeholder="Enter Start date" required>-->
-											<!--<input name="startDate" type="date" class="input" ng-model="pi.startDate" placeholder="Enter Start date" required>-->
-											<!--<input name="startDate" type="date" class="input" ng-value="go.formatDate(pi.startDate)" placeholder="Enter Start date" required> ---------->
-											<!--<input name="startDate" type="date" class="input" ng-model="pi.startDate" placeholder="Enter Start date" data-date-format="mm/dd/yyyy" bs-datepicker required>-->
 											<div ng-messages="programIncrementDetailsListForm.startDate.$touched && programIncrementDetailsListForm.startDate.$error" role="alert"  class="validation-messages">
 												<div ng-message="required">Enter Start Date</div>
 												<div ng-message="date">Please Enter a Valid Date(mm/dd/yyyy)</div>
@@ -79,7 +75,7 @@
 												<div ng-message="min">Your field value is lesser minimum value of two</div>
 											</div>
 										</div>
-									</div>						
+									</div>
 									<div class="grid-cell -u-3-24">
 										<button ng-show="!pi.isEditing" class="button button-positive" ng-click="go.toggleMode(pi)">                                                 <i class="fa fa-pencil"                  ></i></button>
 										<button ng-show="!pi.isEditing" class="button button-negative" ng-click="go.delete(pi)">                                                     <i class="fa fa-trash" aria-hidden="true"></i></button>
