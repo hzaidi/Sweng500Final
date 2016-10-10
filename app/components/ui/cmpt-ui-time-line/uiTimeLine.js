@@ -21,7 +21,8 @@ controller: function ($scope, $interval, dateHelp) {
 		totalDays: 0,
 		numDaysLeft: 0,
 		blocks: [],
-		overallTime: 0
+		overallTime: 0,
+		tomorrow: new Date()
 	};
 
 
@@ -51,7 +52,8 @@ controller: function ($scope, $interval, dateHelp) {
 
 
 	function timeLeft(endDate, totalDays) {
-		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), new Date());
+		//vm.tomorrow.setDate(vm.tomorrow.getDate() + 1);
+		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), vm.tomorrow);
 		var overallTime = Math.ceil(round(100-((numDaysLeft/totalDays)*100)));
 		vm.numDaysLeft = numDaysLeft;
 		vm.overallTime = overallTime;
@@ -68,8 +70,16 @@ controller: function ($scope, $interval, dateHelp) {
 			return new Array(num);
 	}
 
+	function minmax(number, min, max) {
+		return Math.min(Math.max(parseInt(number), min), max);
+	}
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
+		calcBlockPercentage: function(block) {
+			var blockPercentage = 100 / vm.blocks.length;
+			return minmax(100 - (((block.end-vm.overallTime)/blockPercentage) * 100), 0, 100);
+		}
 	};
 }
 
