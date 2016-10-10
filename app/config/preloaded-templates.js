@@ -39,7 +39,7 @@ angular.module("/components/login/cmpt-login-authentication/loginAuthentication.
 
 angular.module("/components/login/cmpt-login-logo/loginLogo.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/login/cmpt-login-logo/loginLogo.html",
-    "<div class=cmpt-login-logo><i class=\"fa fa-circle-thin\" aria-hidden=true></i> <i class=\"fa fa-group one\" aria-hidden=true></i></div>");
+    "<div class=cmpt-login-logo><img src=/assets/images/logo.png alt=\"\"></div>");
 }]);
 
 angular.module("/components/login/cmpt-login-sign-up/loginSignUp.html", []).run(["$templateCache", function($templateCache) {

@@ -289,24 +289,9 @@
 .cmpt-login-authentication .content .auth-section .button-primary {
   margin: 6px 0;
 }
-.cmpt-login-logo {
-  position: relative;
-}
-.cmpt-login-logo i {
-  width: 100%;
-  position: absolute;
-  font-size: 100px;
-  color: #113148;
-  background-color: transparent;
-  text-shadow: 0px 1px 0px rgba(111,111,111,0.5); /* 50% white from bottom */
-}
-.cmpt-login-logo .fa-circle-thin {
-  font-size: 300px;
-  text-align: center;
-}
-.cmpt-login-logo .fa-group.one {
-  top: 95px;
-  text-align: center;
+.cmpt-login-logo img {
+  width: 300px;
+  height: 300px;
 }
 .cmpt-login-sign-up {
   height: calc(100vh - 40px);
@@ -537,21 +522,11 @@
 }
 .cmpt-topbar-header .left-content .cmpt-login-logo {
   padding: 0 10px;
+  float: left;
 }
-.cmpt-topbar-header .left-content .cmpt-login-logo i {
-  color: #19486a;
-}
-.cmpt-topbar-header .left-content .cmpt-login-logo .fa-circle-thin {
-  font-size: 70px;
-  text-align: left;
-  width: 60px;
-}
-.cmpt-topbar-header .left-content .cmpt-login-logo .fa-group.one {
-  font-size: 35px;
-  top: 18px;
-  text-align: left;
-  left: 22px;
-  width: 40px;
+.cmpt-topbar-header .left-content .cmpt-login-logo img {
+  height: 65px;
+  width: 65px;
 }
 .cmpt-topbar-header .left-content .org-name {
   font-size: 30px;
