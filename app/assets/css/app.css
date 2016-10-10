@@ -10,13 +10,13 @@
   position: absolute;
   top: 28%;
   left: 41%;
-  font-size: 60px;
+  font-size: 2vw;
   color: #fff;
   text-align: center;
 }
 .cmpt-dashboard-doughnut .total div {
   color: #8a8a8a;
-  font-size: 20px;
+  font-size: 1vw;
 }
 .cmpt-dashboard-doughnut .legend {
   color: #fff;
@@ -61,11 +61,11 @@
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status span,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status span {
-  font-size: 35px;
+  font-size: 2vw;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .cmpt-ui-simple-progress-bar .arrow-status sup,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .cmpt-ui-simple-progress-bar .arrow-status sup {
-  font-size: 20px;
+  font-size: 1.2vw;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .status,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .status {
@@ -74,7 +74,7 @@
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .title,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .title {
-  font-size: 20px;
+  font-size: 1vw;
   margin-bottom: 5px;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed {
@@ -91,7 +91,7 @@
   color: #009592;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .title {
-  color: #0076ff;
+  color: #2385f8;
 }
 .cmpt-dashboard-pi-selector .container {
   position: absolute;
@@ -155,6 +155,7 @@
 }
 .cmpt-dashboard-pi-summary {
   padding: 20px 0;
+  margin: 0 50px;
   color: #fff;
 }
 .cmpt-dashboard-pi-summary .programIncrement-header {
@@ -170,8 +171,8 @@
   padding: 20px 0 25px;
   margin-left: -70px;
   padding-left: 70px;
-  margin-right: -65px;
-  padding-right: 65px;
+  margin-right: -70px;
+  padding-right: 70px;
   background: #07121e;
   border: 1px solid #1f395d;
   border-left: none;
@@ -288,24 +289,9 @@
 .cmpt-login-authentication .content .auth-section .button-primary {
   margin: 6px 0;
 }
-.cmpt-login-logo {
-  position: relative;
-}
-.cmpt-login-logo i {
-  width: 100%;
-  position: absolute;
-  font-size: 100px;
-  color: #113148;
-  background-color: transparent;
-  text-shadow: 0px 1px 0px rgba(111,111,111,0.5); /* 50% white from bottom */
-}
-.cmpt-login-logo .fa-circle-thin {
-  font-size: 300px;
-  text-align: center;
-}
-.cmpt-login-logo .fa-group.one {
-  top: 95px;
-  text-align: center;
+.cmpt-login-logo img {
+  width: 300px;
+  height: 300px;
 }
 .cmpt-login-sign-up {
   height: calc(100vh - 40px);
@@ -426,26 +412,26 @@
   padding: 10px;
 }
 .cmpt-objectives-manage-objectives.container-blue .button-default {
-  background-color: #0076ff;
+  background-color: #2385f8;
 }
 .cmpt-objectives-manage-objectives.container-blue .button-default:hover {
-  background-color: #005ecc;
+  background-color: #0769db;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-header {
-  background-color: #0076ff;
-  border-left: 8px solid #0076ff;
+  background-color: #2385f8;
+  border-left: 8px solid #2385f8;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content {
-  border: 1px solid #0076ff;
-  border-left: 8px solid #0076ff;
+  border: 1px solid #2385f8;
+  border-left: 8px solid #2385f8;
   border-bottom: 0;
 }
 .cmpt-objectives-manage-objectives.container-blue .grid .grid-body .grid-content:last-child {
-  border-bottom: 1px solid #0076ff;
+  border-bottom: 1px solid #2385f8;
 }
 .cmpt-objectives-manage-objectives.container-blue .no-data {
-  border: 2px dashed #0076ff;
-  color: #0076ff;
+  border: 2px dashed #2385f8;
+  color: #2385f8;
 }
 .cmpt-objectives-manage-objectives.container-green .button-default {
   background-color: #009592;
@@ -536,21 +522,11 @@
 }
 .cmpt-topbar-header .left-content .cmpt-login-logo {
   padding: 0 10px;
+  float: left;
 }
-.cmpt-topbar-header .left-content .cmpt-login-logo i {
-  color: #19486a;
-}
-.cmpt-topbar-header .left-content .cmpt-login-logo .fa-circle-thin {
-  font-size: 70px;
-  text-align: left;
-  width: 60px;
-}
-.cmpt-topbar-header .left-content .cmpt-login-logo .fa-group.one {
-  font-size: 35px;
-  top: 18px;
-  text-align: left;
-  left: 22px;
-  width: 40px;
+.cmpt-topbar-header .left-content .cmpt-login-logo img {
+  height: 65px;
+  width: 65px;
 }
 .cmpt-topbar-header .left-content .org-name {
   font-size: 30px;
@@ -638,7 +614,7 @@
   background: #0af;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status.dark {
-  background: #0076ff;
+  background: #2385f8;
 }
 .cmpt-ui-simple-progress-bar .progressBar .arrow-status.green {
   background: #009592;
@@ -765,6 +741,11 @@
   padding: 5px;
   z-index: 1;
   left: 0%;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  transition: all 200ms linear;
 }
 .cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:after,
 .cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:before {
@@ -1366,7 +1347,7 @@ h1 {
   flex: 1;
 }
 .route-dashboard-dashboard .dashboard-body .right-section .title {
-  color: #0076ff;
+  color: #2385f8;
   padding: 20px 0;
   text-align: center;
   font-size: 30px;
@@ -1406,7 +1387,7 @@ h1 {
   margin-bottom: 4px;
   font-size: 20px;
   padding: 0 4px;
-  color: #0076ff;
+  color: #2385f8;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;

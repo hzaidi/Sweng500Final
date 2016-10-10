@@ -2,13 +2,14 @@
 	<div class="title">Overall Time Completion <span class="status">{{ vm.numDaysLeft }}/{{ vm.totalDays }} Days Completed</span></div>
 	<div class="progress-bar-container">
 		<cmpt-ui-simple-progress-bar ng-repeat="block in vm.blocks"
-				percentage="(vm.overallTime >= block.start && vm.overallTime <= block.end) ? vm.overallTime : 0"
+				percentage="(vm.overallTime >= block.start && vm.overallTime < block.end) ? go.calcBlockPercentage(block) : 0"
 				cls="medium">
 			<div class="arrow_box"
-					style="left: {{ vm.overallTime }}%"
-					ng-if="vm.overallTime >= block.start && vm.overallTime <= block.end">
+					style="left: {{ go.calcBlockPercentage(block)  }}%"
+					ng-if="vm.overallTime >= block.start && vm.overallTime < block.end">
 		    NOW
 		  </div>
 		</cmpt-ui-simple-progress-bar>
 	</div>
+
 </div>
