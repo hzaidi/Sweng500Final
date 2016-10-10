@@ -10,13 +10,13 @@
   position: absolute;
   top: 28%;
   left: 41%;
-  font-size: 60px;
+  font-size: 2vw;
   color: #fff;
   text-align: center;
 }
 .cmpt-dashboard-doughnut .total div {
   color: #8a8a8a;
-  font-size: 20px;
+  font-size: 1vw;
 }
 .cmpt-dashboard-doughnut .legend {
   color: #fff;
@@ -74,7 +74,7 @@
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed .title,
 .cmpt-dashboard-overall-progress .objective-bar--stats .stretch .title {
-  font-size: 20px;
+  font-size: 1vw;
   margin-bottom: 5px;
 }
 .cmpt-dashboard-overall-progress .objective-bar--stats .committed {

@@ -19,7 +19,7 @@ controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp,
 		daysLeft: null,
 		sprintsLeft: null,
 		tomorrow: new Date(),
-		duration: simulatorVal.duration(1,'days')
+		duration: 1000//simulatorVal.duration(1,'days')
 	};
 
 

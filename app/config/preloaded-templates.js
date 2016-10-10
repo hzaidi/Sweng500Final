@@ -19,7 +19,7 @@ angular.module("/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSumma
   $templateCache.put("/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSummary.html",
     "<div class=cmpt-dashboard-pi-summary><div class=header><div class=programIncrement-header>Development Status</div><div class=programIncrement-title>{{ selectedPi.title }} - {{ selectedPi.description }}</div><div class=programIncrement-dates>{{ go.parseDate(selectedPi.startDate) + ' - ' + go.calcEndDate(selectedPi) }}</div></div><div class=time-remaining><div class=box><div class=number>{{ vm.sprintsLeft }}</div><div class=text><ng-pluralize count=vm.sprintsLeft when=\"{'1': 'Sprint Remaining',\n" +
     "					'other': 'Sprints Remaining'}\"></ng-pluralize></div></div><div class=box><div class=number>{{ vm.daysLeft }}</div><div class=text><ng-pluralize count=vm.daysLeft when=\"{'1': 'Day Remaining',\n" +
-    "					'other': 'Days Remaining'}\"></ng-pluralize></div></div><button type=button name=button ng-click=go.changeTimer()>change</button></div></div>");
+    "					'other': 'Days Remaining'}\"></ng-pluralize></div></div></div></div>");
 }]);
 
 angular.module("/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamProgress.html", []).run(["$templateCache", function($templateCache) {
