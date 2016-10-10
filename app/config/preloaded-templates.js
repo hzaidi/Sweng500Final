@@ -7,7 +7,7 @@ angular.module("/components/dashboard/cmpt-dashboard-doughnut/dashboardDoughnut.
 
 angular.module("/components/dashboard/cmpt-dashboard-overall-progress/dashboardOverallProgress.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/dashboard/cmpt-dashboard-overall-progress/dashboardOverallProgress.html",
-    "<div class=cmpt-dashboard-overall-progress><div class=objective-bar--stats><div class=committed><div class=title>Overall Objective Completion <span class=status>{{ vm.commitment.done }}/{{ vm.commitment.total }} Points</span></div><cmpt-ui-simple-progress-bar percentage=vm.commitment.percentage cls=green></cmpt-ui-simple-progress-bar></div><div class=stretch><div class=title>Stretch Completion <span class=status>{{ vm.stretch.done }}/{{ vm.commitment.total }} Points</span></div><cmpt-ui-simple-progress-bar percentage=vm.stretch.percentage cls=dark></cmpt-ui-simple-progress-bar></div></div></div>");
+    "<div class=cmpt-dashboard-overall-progress><div class=objective-bar--stats><div class=committed><div class=title>Overall Objective Completion <span class=status>{{ vm.commitment.done }}/{{ vm.commitment.total }} Points</span></div><cmpt-ui-simple-progress-bar percentage=vm.commitment.percentage cls=green></cmpt-ui-simple-progress-bar></div><div class=stretch><div class=title>Stretch Completion <span class=status>{{ vm.stretch.done }}/{{ vm.stretch.total }} Points</span></div><cmpt-ui-simple-progress-bar percentage=vm.stretch.percentage cls=dark></cmpt-ui-simple-progress-bar></div></div></div>");
 }]);
 
 angular.module("/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelector.html", []).run(["$templateCache", function($templateCache) {
