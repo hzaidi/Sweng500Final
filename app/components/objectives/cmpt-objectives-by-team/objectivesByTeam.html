@@ -6,15 +6,15 @@
 				<i class="fa fa-search"></i>
 			  <input type="text" class="input ico-search"  name="name" placeholder="Search team" ng-model="vm.search">
 			</label>
-			<div ng-repeat="team in vm.teams | filter: vm.search">
+			<div ng-repeat="team in vm.teams | filter: vm.search" ng-init="team.expanded = false">
 				<div class="team-container">
-					<div class="team-name" slide-toggle="#drp-{{ $index }}">
+					<div class="team-name" ng-class="{'expanded': team.expanded}" ng-click="team.expanded = !team.expanded">
 						{{ team.teamName }}
 						<span>
 							<i class="fa fa-chevron-down"></i>
 						</span>
 					</div>
-					<div class="objective-container slideable" id="drp-{{ $index }}" class="">
+					<div class="objective-container" class="" ap-show-slide="team.expanded">
 						<cmpt-objectives-manage-objectives
 			        ng-if="selectedPi && team.$id"
 			        selected-pi="selectedPi"
