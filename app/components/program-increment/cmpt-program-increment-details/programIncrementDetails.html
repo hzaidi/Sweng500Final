@@ -40,11 +40,10 @@
 										<div ng-show="pi.isEditing">
 
 
-											<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy">
+											<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy" date-set="{{pi.startDate | date: 'MM/dd/yyyy'}}">
 													<input name="startDate"
 																 class="input"
 													       type="text"
-																 date-set="{{pi.startDate}}"
 																 ng-model="pi.startDate"
 																 placeholder="Enter Start date"
 																 required
