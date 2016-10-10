@@ -39,7 +39,6 @@
 										<div ng-show="!pi.isEditing">{{ pi.startDate }} - {{ go.calcEndDate(pi) }}</div>
 										<div ng-show="pi.isEditing">
 
-
 											<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy" date-set="{{pi.startDate | date: 'MM/dd/yyyy'}}">
 													<input name="startDate"
 																 class="input"
@@ -49,6 +48,7 @@
 																 required
 													>
 											</datepicker>
+
 											<div ng-messages="programIncrementDetailsListForm.startDate.$touched && programIncrementDetailsListForm.startDate.$error" role="alert"  class="validation-messages">
 												<div ng-message="required">Enter Start Date</div>
 												<div ng-message="date">Please Enter a Valid Date(mm/dd/yyyy)</div>
