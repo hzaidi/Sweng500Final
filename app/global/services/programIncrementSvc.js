@@ -66,7 +66,7 @@
 				data: {
 					header: 'Program Increment Details',
 					pi:pi,
-					currentDate:new Date(),
+					currentDate:new Date(), 
 					buttons: [{
 						title: 'Save',
 						cls: 'button',
