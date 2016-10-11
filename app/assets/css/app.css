@@ -984,6 +984,50 @@ h1 {
 .ngdialog-close {
   content: '\f05c';
 }
+._720kb-datepicker-calendar {
+  width: 350px;
+  border: 1px solid #fff;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header {
+  padding: 5px;
+  background-color: #113148;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-left a b,
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-right a b {
+  color: #fff;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-left a b:hover,
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-right a b:hover {
+  background-color: #19486a;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-left a:hover,
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-right a:hover {
+  background-color: #19486a;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-left:hover,
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-right:hover {
+  background-color: #19486a;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-header-middle span {
+  color: #fff;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-years-pagination a,
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-header ._720kb-datepicker-calendar-years-pagination-pages a {
+  color: #fff;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-days-header div {
+  padding: 0;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-body a {
+  margin: 0;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-body ._720kb-datepicker-calendar-day {
+  padding: 0;
+  border-radius: 30px;
+}
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-body ._720kb-datepicker-calendar-day:hover {
+  background-color: #99c6e7;
+}
 .dropdown {
   position: relative;
   overflow: hidden;

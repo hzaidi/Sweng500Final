@@ -1,0 +1,52 @@
+@import "variables.styl"
+._720kb-datepicker-calendar{
+  width: 350px;
+  border: 1px solid $ap-light-grey-4;
+  ._720kb-datepicker-calendar-header{
+    padding: 5px;
+    background-color: $augmentedColorLight;
+    ._720kb-datepicker-calendar-header-left, ._720kb-datepicker-calendar-header-right{
+      a {
+        b {
+          color: $ap-light-grey-4;
+          &:hover{
+            background-color: lighten($augmentedColorLight,10%);
+          }
+        }
+        &:hover{
+          background-color: lighten($augmentedColorLight,10%);
+        }
+      }
+      &:hover{
+        background-color: lighten($augmentedColorLight,10%);
+      }
+    }
+    ._720kb-datepicker-calendar-header-middle{
+      span {
+        color: $ap-light-grey-4
+      }
+    }
+    ._720kb-datepicker-calendar-years-pagination, ._720kb-datepicker-calendar-years-pagination-pages{
+      a {
+        color: $ap-light-grey-4;
+      }
+    }
+  }
+  ._720kb-datepicker-calendar-days-header{
+    div {
+      padding: 0;
+    }
+  }
+  ._720kb-datepicker-calendar-body{
+    a {
+      margin: 0;
+    }
+    ._720kb-datepicker-calendar-day{
+      padding: 0;
+      border-radius: 30px;
+      &:hover{
+        background-color: lighten($augmentedColorLight,70%);
+      }
+    }
+  }
+}
