@@ -326,7 +326,7 @@
 }
 .cmpt-nav-menu {
   display: inline-block;
-  height: calc(100vh);
+  height: calc(100vh - 72px);
   border-right: 1px solid #001322;
 }
 .cmpt-nav-menu ul a {
