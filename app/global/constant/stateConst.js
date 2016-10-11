@@ -4,16 +4,20 @@
 	// #----- Value (stateConst) -----# //
 	app.constant('stateConst', [{
 			id: 1,
-			value: 'Defined'
+			value: 'Defined',
+			color: 'grey'
 		}, {
 			id: 2,
-			value: 'In Progress'
+			value: 'In Progress',
+			color: 'blue'
 		}, {
 			id: 3,
-			value: 'Completed'
+			value: 'Completed',
+			color: 'green'
 		}, {
 			id: 4,
-			value: 'On Hold'
+			value: 'On Hold',
+			color: 'red'
 		}]);
 	// #--- END Value (stateConst) ---# //
 	// #----------------------------# //

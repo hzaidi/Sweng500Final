@@ -368,12 +368,12 @@
 .cmpt-objectives-by-team .team-container .team-name {
   position: relative;
   color: #fff;
-  background: #102d42;
+  background: #19486a;
   padding: 15px;
 }
 .cmpt-objectives-by-team .team-container .team-name span {
   cursor: pointer;
-  background: #0e2a3d;
+  background: #163f5c;
   position: absolute;
   right: 0;
   line-height: 3;
@@ -382,7 +382,7 @@
   text-align: center;
 }
 .cmpt-objectives-by-team .team-container .team-name span:hover {
-  background: #0e273a;
+  background: #13364f;
 }
 .cmpt-objectives-by-team .team-container .team-name i.fa-chevron-down {
   -webkit-transform: rotate(0deg);
@@ -660,28 +660,143 @@
   -ms-flex: 1;
   flex: 1;
   color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
   padding: 9px 12px;
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
   line-height: 1;
 }
-.cmpt-ui-state-selector .option:hover {
-  color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
+.cmpt-ui-state-selector .option.red {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  background-color: #d95b5b;
 }
-.cmpt-ui-state-selector .option:active {
+.cmpt-ui-state-selector .option.red:hover {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
   color: #fff;
-  background-color: #204d74;
-  border-color: #122b40;
+  background-color: #c82e2e;
+  border-color: #af2929;
 }
-.cmpt-ui-state-selector .option.active {
+.cmpt-ui-state-selector .option.red:active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
   color: #fff;
-  background-color: #286090;
-  border-color: #204d74;
+  background-color: #d75353;
+  border-color: #d34242;
+}
+.cmpt-ui-state-selector .option.red.active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #c82e2e;
+  border-color: #af2929;
+}
+.cmpt-ui-state-selector .option.grey {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  background-color: #7b7b7b;
+}
+.cmpt-ui-state-selector .option.grey:hover {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #626262;
+  border-color: #565656;
+}
+.cmpt-ui-state-selector .option.grey:active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #777;
+  border-color: #6f6f6f;
+}
+.cmpt-ui-state-selector .option.grey.active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #626262;
+  border-color: #565656;
+}
+.cmpt-ui-state-selector .option.blue {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  background-color: #0af;
+}
+.cmpt-ui-state-selector .option.blue:hover {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #08c;
+  border-color: #0077b3;
+}
+.cmpt-ui-state-selector .option.blue:active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #00a5f7;
+  border-color: #0099e6;
+}
+.cmpt-ui-state-selector .option.blue.active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #08c;
+  border-color: #0077b3;
+}
+.cmpt-ui-state-selector .option.green {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  background-color: #009592;
+}
+.cmpt-ui-state-selector .option.green:hover {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #007775;
+  border-color: #006866;
+}
+.cmpt-ui-state-selector .option.green:active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #00918e;
+  border-color: #008683;
+}
+.cmpt-ui-state-selector .option.green.active {
+  font-weight: bold;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #007775;
+  border-color: #006866;
 }
 .cmpt-ui-state-selector .option:first-child {
   border-top-left-radius: 5px;

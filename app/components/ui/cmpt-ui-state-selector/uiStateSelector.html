@@ -1,5 +1,5 @@
 <div class="cmpt-ui-state-selector">
-	<div class="option"
+	<div class="option {{ item.color }}"
 			ng-class="{'active': item.isSelected}"
 			ng-repeat="item in vm.options"
 			ng-click="go.click(item)">
