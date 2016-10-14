@@ -14,8 +14,15 @@
 								<div ng-message="required">Enter Description</div>
 							</div>
 
-							<!--<input name="startDate"       type="text"   class="input" ng-model="ngDialogData.pi.startDate"       placeholder="Enter Start date"               required>-->
-							<input name="startDate" type="date" class="input" ng-model="ngDialogData.pi.startDate" placeholder="Enter Start date" required>
+							<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy"  date-set="{{ngDialogData.currentDate | date: 'MM/dd/yyyy'}}">
+									<input name="startDate"
+												 class="input input-date"
+												 type="text"
+												 ng-model="ngDialogData.pi.startDate"
+												 placeholder="Enter Start date"
+												 required>
+							</datepicker>
+
 							<div ng-messages="programIncrementForm.startDate.$touched && programIncrementForm.startDate.$error" role="alert"  class="validation-messages">
 								<div ng-message="required">Enter Start Date</div>
 								<div ng-message="date">Please Enter a Valid Date(mm/dd/yyyy)</div>

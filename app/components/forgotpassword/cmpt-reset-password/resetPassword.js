@@ -18,13 +18,19 @@ controller: function ($scope, authSvc, $state, userSvc, toastHelp) {
 	};
 
      var go = $scope.go = {
-		reset: function () {
-			authSvc.passwordResetEmail(vm.username).then(function(user){
-				toastHelp.success(`Email was Sent to ${vm.username}`,'Success');
-			}, function(error){
-				toastHelp.error(`No Such User in the System`, 'Error');
-			});
-		}
+			logOut: function () {
+				sessionStorage.clear();
+	 			authSvc.logout();
+				$state.go('home');
+	 		},
+			reset: function (form) {
+				if(form.$invalid) { return; }
+				authSvc.passwordResetEmail(vm.username).then(function(user){
+					toastHelp.success(`Email was Sent to ${vm.username}`,'Success');
+				}, function(error){
+					toastHelp.error(`No Such User in the System`, 'Error');
+				});
+			}
 	};
 
 }
