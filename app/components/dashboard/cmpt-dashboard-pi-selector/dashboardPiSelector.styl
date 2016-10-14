@@ -23,16 +23,17 @@
 				opacity:0.7;
 			}
 			&.selected{
-				background: darken($augmentedColorLight,-5%);
+				transform: scale(1.05);
+				background: lighten($mediumGreen,0%);
 				.check{
-					color: $mediumGreen;
+					color: darken($mediumGreen,40%);
 				}
 			}
 			&:first-child{
 				margin-left: 20px;
 			}
 			&:hover{
-				transform: scale(1.1);
+				transform: scale(1.05);
 			}
 		}
 		.panel-opener{
@@ -46,4 +47,14 @@
 			top: 0px;
 		}
 	}
+
+	.simulator-box{
+		float: right;
+		padding: 29px;
+		background: $augmentedColorDark;
+	}
+
+
+
+
 }

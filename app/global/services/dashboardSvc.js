@@ -2,7 +2,7 @@
 
 	// #----------------------------------# //
 	// #----- Service (dashboardSvc) -----# //
-	app.factory('dashboardSvc', function ($q, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, toastHelp) {
+	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, toastHelp) {
 
 
 		const colorPallete = {
@@ -103,10 +103,22 @@
 		}
 
 
+		function simulatorMode(scope,day){
+			var simulatorTimer;
+			scope.$on('simulator', function(event, args) {
+				if(args.is){
+					simulatorTimer = $interval(function(){ day.setDate(day.getDate() + 1); },1000);
+				}else{
+					$interval.cancel(simulatorTimer);
+				}
+			});
+		}
+
 		return {
 			getData,
 			processData,
-			processPercentages
+			processPercentages,
+			simulatorMode
 		};
 
 	});

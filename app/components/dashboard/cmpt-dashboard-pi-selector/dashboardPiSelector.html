@@ -8,6 +8,9 @@
 				<div class="check"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
 			</div>
 		</div>
-		<div class="panel-opener" ng-click="go.toggle()"><i class="fa fa-align-justify" aria-hidden="true"></i></div>
+		<div class="simulator-box">
+			<cmpt-ui-toggle-switch is-checked="vm.isChecked" label="Simulator"></cmpt-ui-toggle-switch>
+		</div>
+		<div class="panel-opener" ng-click="go.toggle()"><i class="fa fa-{{ open ? 'times': 'align-justify'}} " aria-hidden="true"></i></div>
 	</div>
 </div>

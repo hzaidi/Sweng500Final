@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSummary
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-dashboard-pi-summary) ----# //
-controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp, simulatorVal) {
+controller: function ($scope, $filter, $interval, dashboardSvc, programIncrementSvc, dateHelp, simulatorVal) {
 
 	var calculateSummaryTimer;
 	// View Model properties
@@ -23,7 +23,7 @@ controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp,
 	};
 
 
-
+	dashboardSvc.simulatorMode($scope,vm.tomorrow);
 
 	$scope.$watch('selectedPi', function(){
 		if($scope.selectedPi === null) {return;}
@@ -40,7 +40,10 @@ controller: function ($scope, $filter, $interval, programIncrementSvc, dateHelp,
 		var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
 		vm.sprintsLeft = sprintsLeft;
 		vm.daysLeft = numDaysLeft;
+		if(numDaysLeft === 0) { $interval.cancel(calculateSummaryTimer); }
 	}
+
+
 
 
 	// Actions that can be bound to from the view
