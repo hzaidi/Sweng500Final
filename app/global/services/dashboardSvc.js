@@ -4,7 +4,7 @@
 	// #----- Service (dashboardSvc) -----# //
 	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, toastHelp) {
 
-
+		const simulatorDuration = 15000;
 		const colorPallete = {
 			1: '#7B7B7B',
 			2: '#2385f8',
@@ -107,7 +107,7 @@
 			var simulatorTimer;
 			scope.$on('simulator', function(event, args) {
 				if(args.is){
-					simulatorTimer = $interval(function(){ day.setDate(day.getDate() + 1); },1000);
+					simulatorTimer = $interval(function(){ day.setDate(day.getDate() + 1); },simulatorDuration);
 				}else{
 					$interval.cancel(simulatorTimer);
 				}
