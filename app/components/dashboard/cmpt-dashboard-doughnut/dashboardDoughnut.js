@@ -19,7 +19,8 @@ controller: function ($scope) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		total: 0
+		total: 0,
+		options: { elements: { arc: { borderWidth: 1,borderColor: '#001322' } } }
 	};
 
 	$scope.$watch('objective', function(val){

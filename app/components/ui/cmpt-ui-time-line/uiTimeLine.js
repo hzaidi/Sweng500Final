@@ -48,6 +48,7 @@ controller: function ($scope, $interval, dateHelp, dashboardSvc) {
 					end
 				}
 			});
+			timeLeft(endDate, totalDays);
 			daysLeftTimer = $interval(function(){ timeLeft(endDate, totalDays) },1000);
 		}
 	});

@@ -12,7 +12,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelect
 
 // #------------------------------------------------# //
 // #---- Component (cmpt-dashboard-pi-selector) ----# //
-controller: function ($scope, $rootScope, $filter, programIncrementSvc, toastHelp, dateHelp) {
+controller: function ($scope, $rootScope, $timeout, $filter, programIncrementSvc, toastHelp, dateHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -34,7 +34,7 @@ controller: function ($scope, $rootScope, $filter, programIncrementSvc, toastHel
 		if(nVal === oVal) { return; }
 		$rootScope.$broadcast('simulator',{ is: nVal })
 		if(nVal) { toastHelp.info('Simulator Mode is on, 15 secs are equal to 1 day','Info'); }
-		go.toggle();
+		$timeout(function(){go.toggle();},1000);
 	});
 
 	// Actions that can be bound to from the view

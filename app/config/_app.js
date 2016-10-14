@@ -16,8 +16,8 @@
 
 	app.config(function(ChartJsProvider) {
 	  firebase.initializeApp(window.siteConfig);
-		ChartJsProvider.setOptions('doughnut', {
-		 cutoutPercentage: 80
+		ChartJsProvider.setOptions('doughnut', {			
+		  cutoutPercentage: 80
 	 });
 	});
 

@@ -258,7 +258,7 @@
 }
 .cmpt-reset-password {
   text-align: center;
-  padding: 20px;
+  padding: 360px;
 }
 .cmpt-reset-password .title {
   font-size: 20px;
@@ -268,6 +268,18 @@
   text-align: center;
   font-size: 40px;
   width: 400px;
+}
+.cmpt-reset-password .reset-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+.cmpt-reset-password .reset-buttons.disabled a.button-default {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: pointer;
 }
 .cmpt-login-authentication {
   background-color: #113148;
@@ -840,7 +852,11 @@
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  margin-right: 5px;
   float: left;
+}
+.cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar:last-child {
+  margin-right: 0;
 }
 .cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .progressBar {
   height: 1vw;

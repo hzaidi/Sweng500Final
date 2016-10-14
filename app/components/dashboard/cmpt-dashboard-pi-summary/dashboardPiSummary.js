@@ -30,6 +30,7 @@ controller: function ($scope, $filter, $interval, dashboardSvc, programIncrement
 		if(calculateSummaryTimer){ $interval.cancel(calculateSummaryTimer); }
 		var endDate = programIncrementSvc.calcEndDate($scope.selectedPi);
 		var lenOfSprint = $scope.selectedPi.lengthOfSprint;
+		timeLeft(endDate, lenOfSprint);
 		calculateSummaryTimer = $interval(function() { timeLeft(endDate, lenOfSprint) }, vm.duration);
 	})
 
