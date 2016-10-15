@@ -1,12 +1,19 @@
 <div class="route-home-home" ng-controller="HomeCtrl as route">
   <cmpt-topbar-header></cmpt-topbar-header>
-  <div class="-g">
-    <cmpt-nav-menu class="-u-4-24"></cmpt-nav-menu>
-    <div class="main-content -u-18-24">
-      <a class="button button-positive" href="/dashboard"><i class="fa fa-check" aria-hidden="true"></i><span>Dashboard</span></a>
-
+  <div class="content">
+    <cmpt-nav-menu></cmpt-nav-menu>
+    <div class="content-body">
+      <div class="-g">
+        <div class="-u-16-24">
+          <cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends>
+        </div>
+        <div class="-u-8-24">
+          <div class="actions">
+            <button class="button button-positive" href="/dashboard"><i class="fa fa-check" aria-hidden="true"></i><span>Dashboard</span></button>
+          </div>
+        </div>
+      </div>
       <cmpt-landing-page-pi-status-chart></cmpt-landing-page-pi-status-chart>
-      <cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends>
     </div>
   </div>
 </div>

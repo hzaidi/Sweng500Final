@@ -5,8 +5,9 @@
 	app.factory('objectiveSvc', function ($q, $firebaseArray, $firebaseObject, userSvc, ngDialog) {
 
 		var objectiveRef = firebase.database().ref('/objectives');
-		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
+		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');		
 		var objectiveRefByPi = objectiveRef.orderByChild('piId');
+		var objectiveRefByOrg = objectiveRef.orderByChild('orgId');
 
 
 
@@ -22,6 +23,11 @@
 
 		function _objectiveRefByPi(pi) {
 			return objectiveRefByPi.equalTo(pi);
+		}
+
+		function _objectiveRefByOrg() {
+			var ctx = userSvc.context().get();
+			return objectiveRefByOrg.equalTo(ctx.orgId);
 		}
 
 
@@ -47,6 +53,11 @@
 
 		function objectiveList(pi,team, type) {
 			var objectives = $firebaseArray(_objectiveRefByPiAndTeamAndType(pi, team, type));
+			return objectives.$loaded();
+		}
+
+		function objectiveListByOrg() {
+			var objectives = $firebaseArray(_objectiveRefByOrg());
 			return objectives.$loaded();
 		}
 
@@ -126,6 +137,7 @@
 			createObjectiveDialog,
 			objectiveList,
 			objectiveListByPI,
+			objectiveListByOrg,
 			updateObjective,
 			deleteObjective,
 			getByKey

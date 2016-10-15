@@ -39,7 +39,7 @@ angular.module("/components/landing-page/cmpt-landing-page-pi-status-chart/landi
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-trends/landingPagePiTrends.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/landing-page/cmpt-landing-page-pi-trends/landingPagePiTrends.html",
-    "<div class=cmpt-landing-page-pi-trends><canvas id=base class=chart-bar chart-data=data chart-labels=labels chart-colors=colors chart-dataset-override=datasetOverride></canvas></div>");
+    "<div class=cmpt-landing-page-pi-trends><h1>Trend</h1><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div class=\"dropdown dropdown-dark\" ng-if=\"vm.teams.length > 0\"><select class=dropdown-select ng-options=\"team.$id as team.teamName for team in vm.teams\" ng-model=vm.selectedTeam ng-change=go.change()><option value=\"\">All teams</option></select></div><canvas ng-if=!vm.isLoading id=base class=chart-bar chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options chart-dataset-override=vm.dataOverride></canvas></div>");
 }]);
 
 angular.module("/components/login/cmpt-login-authentication/loginAuthentication.html", []).run(["$templateCache", function($templateCache) {
@@ -149,17 +149,17 @@ angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$template
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
-    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><a class=\"button button-positive\" href=/dashboard><i class=\"fa fa-check\" aria-hidden=true></i><span>Dashboard</span></a><cmpt-landing-page-pi-status-chart></cmpt-landing-page-pi-status-chart><cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends></div></div></div>");
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><div class=content-body><div class=-g><div class=-u-16-24><cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends></div><div class=-u-8-24><div class=actions><button class=\"button button-positive\" href=/dashboard><i class=\"fa fa-check\" aria-hidden=true></i><span>Dashboard</span></button></div></div></div><cmpt-landing-page-pi-status-chart></cmpt-landing-page-pi-status-chart></div></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/all-teams.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/list-objectives/all-teams.html",
-    "<div class=route-list-objectives-all-teams ng-controller=\"AllTeamsCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-by-team ng-if=route.vm.selectedPi selected-pi=route.vm.selectedPi></cmpt-objectives-by-team></div></div></div>");
+    "<div class=route-list-objectives-all-teams ng-controller=\"AllTeamsCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><div class=content-body><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-by-team ng-if=route.vm.selectedPi selected-pi=route.vm.selectedPi></cmpt-objectives-by-team></div></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/objectives.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/list-objectives/objectives.html",
-    "<div class=route-list-objectives-objectives ng-controller=\"ObjectivesCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><div class=\"main-content -u-18-24\"><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-team-selector selected=route.vm.selectedTeam></cmpt-objectives-team-selector><cmpt-objectives-manage-objectives ng-if=\"route.vm.selectedPi && route.vm.selectedTeam\" selected-pi=route.vm.selectedPi selected-team=route.vm.selectedTeam type=1></cmpt-objectives-manage-objectives><cmpt-objectives-manage-objectives ng-if=\"route.vm.selectedPi && route.vm.selectedTeam\" selected-pi=route.vm.selectedPi selected-team=route.vm.selectedTeam type=2></cmpt-objectives-manage-objectives></div></div></div>");
+    "<div class=route-list-objectives-objectives ng-controller=\"ObjectivesCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><div class=content-body><h1>Manage Objectives</h1><cmpt-objectives-pi-selector selected=route.vm.selectedPi></cmpt-objectives-pi-selector><cmpt-objectives-team-selector selected=route.vm.selectedTeam></cmpt-objectives-team-selector><cmpt-objectives-manage-objectives ng-if=\"route.vm.selectedPi && route.vm.selectedTeam\" selected-pi=route.vm.selectedPi selected-team=route.vm.selectedTeam type=1></cmpt-objectives-manage-objectives><cmpt-objectives-manage-objectives ng-if=\"route.vm.selectedPi && route.vm.selectedTeam\" selected-pi=route.vm.selectedPi selected-team=route.vm.selectedTeam type=2></cmpt-objectives-manage-objectives></div></div></div>");
 }]);
 
 angular.module("/routes/login/login.html", []).run(["$templateCache", function($templateCache) {
@@ -169,22 +169,22 @@ angular.module("/routes/login/login.html", []).run(["$templateCache", function($
 
 angular.module("/routes/organization/organization.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/organization/organization.html",
-    "<div class=route-organization-organization ng-controller=\"OrganizationCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><cmpt-organization-details class=\"main-content -u-18-24\"></cmpt-organization-details></div></div>");
+    "<div class=route-organization-organization ng-controller=\"OrganizationCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><cmpt-organization-details class=content-body></cmpt-organization-details></div></div>");
 }]);
 
 angular.module("/routes/setup/programincrement.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/setup/programincrement.html",
-    "<div class=route-setup-programincrement ng-controller=\"ProgramincrementCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><cmpt-program-increment-details class=\"main-content -u-18-24\"></cmpt-program-increment-details></div></div>");
+    "<div class=route-setup-programincrement ng-controller=\"ProgramincrementCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><cmpt-program-increment-details class=content-body></cmpt-program-increment-details></div></div>");
 }]);
 
 angular.module("/routes/team/list.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/team/list.html",
-    "<div class=route-team-list ng-controller=\"ListCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><cmpt-team-list class=\"main-content -u-18-24\"></cmpt-team-list></div></div>");
+    "<div class=route-team-list ng-controller=\"ListCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><cmpt-team-list class=content-body></cmpt-team-list></div></div>");
 }]);
 
 angular.module("/routes/users/scrum-masters.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/users/scrum-masters.html",
-    "<div class=route-users-scrum-masters ng-controller=\"ScrumMastersCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=-g><cmpt-nav-menu class=-u-4-24></cmpt-nav-menu><cmpt-users-list class=\"main-content -u-18-24\"></cmpt-users-list></div></div>");
+    "<div class=route-users-scrum-masters ng-controller=\"ScrumMastersCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><cmpt-users-list class=content-body></cmpt-users-list></div></div>");
 }]);
 
 angular.module("/global/modals/alert-html.html", []).run(["$templateCache", function($templateCache) {

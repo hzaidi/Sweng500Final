@@ -16,7 +16,7 @@
 			color: 'green'
 		}, {
 			id: 4,
-			value: 'On Hold',
+			value: 'Blocked',
 			color: 'red'
 		}]);
 	// #--- END Value (stateConst) ---# //

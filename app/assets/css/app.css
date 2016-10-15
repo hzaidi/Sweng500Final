@@ -160,9 +160,19 @@
   top: 0px;
 }
 .cmpt-dashboard-pi-selector .simulator-box {
-  float: right;
-  padding: 29px;
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
   background: #001322;
+  line-height: 3.5;
+  width: 4.7vw;
+  float: right;
+}
+.cmpt-dashboard-pi-selector .simulator-box .cmpt-ui-toggle-switch {
+  margin: auto 20px;
 }
 .cmpt-dashboard-pi-summary {
   padding: 20px 0;
@@ -389,6 +399,7 @@
   margin: 10px 0;
 }
 .cmpt-objectives-by-team .team-container .team-name {
+  cursor: pointer;
   position: relative;
   color: #fff;
   background: #19486a;
@@ -696,7 +707,6 @@
   background-color: #d95b5b;
 }
 .cmpt-ui-state-selector .option.red:hover {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -705,7 +715,6 @@
   border-color: #af2929;
 }
 .cmpt-ui-state-selector .option.red:active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -714,7 +723,6 @@
   border-color: #d34242;
 }
 .cmpt-ui-state-selector .option.red.active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -729,7 +737,6 @@
   background-color: #7b7b7b;
 }
 .cmpt-ui-state-selector .option.grey:hover {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -738,7 +745,6 @@
   border-color: #565656;
 }
 .cmpt-ui-state-selector .option.grey:active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -747,7 +753,6 @@
   border-color: #6f6f6f;
 }
 .cmpt-ui-state-selector .option.grey.active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -762,7 +767,6 @@
   background-color: #0af;
 }
 .cmpt-ui-state-selector .option.blue:hover {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -771,7 +775,6 @@
   border-color: #0077b3;
 }
 .cmpt-ui-state-selector .option.blue:active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -780,7 +783,6 @@
   border-color: #0099e6;
 }
 .cmpt-ui-state-selector .option.blue.active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -795,7 +797,6 @@
   background-color: #009592;
 }
 .cmpt-ui-state-selector .option.green:hover {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -804,7 +805,6 @@
   border-color: #006866;
 }
 .cmpt-ui-state-selector .option.green:active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -813,7 +813,6 @@
   border-color: #008683;
 }
 .cmpt-ui-state-selector .option.green.active {
-  font-weight: bold;
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -1097,6 +1096,33 @@ h1 {
   font-weight: bold;
   margin: 0.2em 0;
 }
+.content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.content .cmpt-nav-menu {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 20em;
+  -ms-flex: 1 1 20em;
+  flex: 1 1 20em;
+}
+.content .content-body {
+  padding: 20px;
+  -webkit-box-flex: 9;
+  -moz-box-flex: 9;
+  -o-box-flex: 9;
+  box-flex: 9;
+  -webkit-flex: 9 9 90em;
+  -ms-flex: 9 9 90em;
+  flex: 9 9 90em;
+}
 .grid {
   margin: 10px 0;
   color: #fff;
@@ -1149,7 +1175,7 @@ h1 {
   user-select: none;
   background-image: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 .button span {
   margin-left: 5px;
@@ -1681,14 +1707,9 @@ h1 {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
   filter: alpha(opacity=10);
 }
-.route-list-objectives-all-teams .main-content {
-  padding: 20px;
-}
-.route-list-objectives-objectives .main-content {
-  padding: 20px;
-}
-.route-login-login .main-content {
-  padding: 20px;
+.route-home-home .actions {
+  padding: 0.2em;
+  border: 1px solid #404040;
 }
 .route-organization-organization .main-content {
   padding: 20px;

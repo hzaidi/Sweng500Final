@@ -2,7 +2,7 @@
 
 	// #----------------------------------# //
 	// #----- Service (dashboardSvc) -----# //
-	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, toastHelp) {
+	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, arrayHelp, toastHelp) {
 
 		const simulatorDuration = 15000;
 		const colorPallete = {
@@ -13,12 +13,7 @@
 		}
 
 		var teams, users, objectives = [];
-		var groupBy = function(xs, key) {
-		  return xs.reduce(function(rv, x) {
-		    (rv[x[key]] = rv[x[key]] || []).push(x);
-		    return rv;
-		  }, {});
-		};
+
 
 
 		function getData(pi) {
@@ -40,7 +35,7 @@
 
 
 		function processData(){
-			var groups = groupBy(objectives,'teamId');
+			var groups = arrayHelp.groupBy(objectives,'teamId');
 			var pTeams = [];
 			Object.keys(groups).forEach(function(key){
 				var teamId = key;
@@ -118,6 +113,9 @@
 			getData,
 			processData,
 			processPercentages,
+			totalByState,
+			totalBusinessValue,
+			round,
 			simulatorMode
 		};
 
