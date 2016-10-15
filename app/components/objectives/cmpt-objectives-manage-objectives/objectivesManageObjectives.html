@@ -17,19 +17,24 @@
 								{{ objective.title }}
 							</div>
 							<div ng-show="objective.isEditing">
-								<input type="text" class="input" ng-model="objective.title" placeholder="Enter objective">
+								<input name="title" type="text" class="input" ng-model="objective.title" placeholder="Enter objective">
 							</div>
 						</div>
 						<div class="grid-cell -u-3-24">
 							<div ng-show="!objective.isEditing || vm.context.userRole === 2">
-								{{ (objective.businessValue === 0) ? 'Value not assigned' : objective.businessValue }}
+								{{ objective.businessValue }}
 							</div>
 							<div ng-show="objective.isEditing && vm.context.userRole === 1">
-								<input type="number" class="input" ng-model="objective.businessValue" placeholder="Enter Business Value">
+								<input name="businessValue" type="number" class="input" ng-model="objective.businessValue" placeholder="Enter Business Value" min="0">
 							</div>
 						</div>
 						<div class="grid-cell -u-9-24">
-								<cmpt-ui-state-selector selected="objective.state" update-state="go.updateState(objective)"></cmpt-ui-state-selector>
+								<div ng-show="!objective.isEditing">
+										<cmpt-ui-state-selector selected="objective.state"></cmpt-ui-state-selector>
+								</div>
+								<div ng-show="objective.isEditing">
+										<cmpt-ui-state-selector selected="objective.state" update-state="go.updateState(objective)"></cmpt-ui-state-selector>
+								</div>
 						</div>
 						<div class="grid-cell -u-3-24">
 							<button ng-show="!objective.isEditing" class="button button-positive" ng-click="go.toggleMode(objective)"><i class="fa fa-pencil"></i></button>

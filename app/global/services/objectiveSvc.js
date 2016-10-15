@@ -5,9 +5,8 @@
 	app.factory('objectiveSvc', function ($q, $firebaseArray, $firebaseObject, userSvc, ngDialog) {
 
 		var objectiveRef = firebase.database().ref('/objectives');
-		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');		
+		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
 		var objectiveRefByPi = objectiveRef.orderByChild('piId');
-		var objectiveRefByOrg = objectiveRef.orderByChild('orgId');
 
 
 
@@ -23,11 +22,6 @@
 
 		function _objectiveRefByPi(pi) {
 			return objectiveRefByPi.equalTo(pi);
-		}
-
-		function _objectiveRefByOrg() {
-			var ctx = userSvc.context().get();
-			return objectiveRefByOrg.equalTo(ctx.orgId);
 		}
 
 
@@ -56,11 +50,6 @@
 			return objectives.$loaded();
 		}
 
-		function objectiveListByOrg() {
-			var objectives = $firebaseArray(_objectiveRefByOrg());
-			return objectives.$loaded();
-		}
-
 		function objectiveListByPI(pi) {
 			var objectives = $firebaseArray(_objectiveRefByPi(pi));
 			return objectives.$loaded();
@@ -83,6 +72,7 @@
 		function createObjectiveDialog(selectedPi, selectedTeam, type) {
 			var _defer = $q.defer();
 			var objective = new _objective();
+			objective.state = 1
 			var dialog = ngDialog.open({
 				template: '/global/modals/create-objective.html',
 				closeByDocument: false,
@@ -97,7 +87,8 @@
 						cls: 'button',
 						icon: 'fa fa-check',
 						loading: false,
-						action: function(){
+						action: function(form){
+							if(form.$invalid) { return; }
 							var ctx = userSvc.context().get();
 							objective = Object.assign({},
 													objective,{
@@ -137,7 +128,6 @@
 			createObjectiveDialog,
 			objectiveList,
 			objectiveListByPI,
-			objectiveListByOrg,
 			updateObjective,
 			deleteObjective,
 			getByKey
