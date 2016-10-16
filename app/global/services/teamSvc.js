@@ -68,7 +68,6 @@
 			var _defer = $q.defer();
 			var team = new _team();
 			var users = userSvc.userList().then(function(users){
-				console.log(users);
 				var dialog = ngDialog.open({
 					template: '/global/modals/create-team.html',
 					closeByDocument: false,

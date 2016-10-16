@@ -1507,6 +1507,7 @@ h1 {
 }
 .input-container {
   position: relative;
+  width: 100%;
 }
 .input-container input.ng-invalid.ng-touched {
   border: 1px solid #d95b5b;
