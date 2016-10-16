@@ -4,7 +4,7 @@
 	// #----- Service (dashboardSvc) -----# //
 	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, arrayHelp, toastHelp) {
 
-		const simulatorDuration = 15000;
+		const simulatorDuration = 1000;
 		const colorPallete = {
 			1: '#7B7B7B',
 			2: '#2385f8',

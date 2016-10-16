@@ -129,7 +129,7 @@ angular.module("/components/ui/cmpt-ui-state-selector/uiStateSelector.html", [])
 
 angular.module("/components/ui/cmpt-ui-time-line/uiTimeLine.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/ui/cmpt-ui-time-line/uiTimeLine.html",
-    "<div class=cmpt-ui-time-line><div class=title>Overall Time Completion <span class=status>{{ vm.numDaysLeft }}/{{ vm.totalDays }} Days Completed</span></div><div class=progress-bar-container><cmpt-ui-simple-progress-bar ng-repeat=\"block in vm.blocks\" percentage=\"(vm.overallTime >= block.start && vm.overallTime < block.end) ? go.calcBlockPercentage(block) : 0\" cls=medium><div class=arrow_box style=\"left: {{ go.calcBlockPercentage(block)  }}%\" ng-if=\"vm.overallTime >= block.start && vm.overallTime < block.end\">NOW</div></cmpt-ui-simple-progress-bar></div></div>");
+    "<div class=cmpt-ui-time-line><div class=title>Overall Time Completion <span class=status>{{ vm.numDaysLeft }}/{{ vm.totalDays }} Days Completed</span></div><div class=progress-bar-container><cmpt-ui-simple-progress-bar ng-repeat=\"block in vm.blocks\" percentage=\"(vm.overallTime >= block.start && vm.overallTime < block.end) ? go.calcBlockPercentage(block) : (vm.overallTime >= block.end) ? 100 : 0\" cls=medium><div class=arrow_box style=\"left: {{ go.calcBlockPercentage(block)  }}%\" ng-if=\"vm.overallTime >= block.start && vm.overallTime <= block.end\">NOW</div></cmpt-ui-simple-progress-bar></div></div>");
 }]);
 
 angular.module("/components/ui/cmpt-ui-toggle-switch/uiToggleSwitch.html", []).run(["$templateCache", function($templateCache) {
