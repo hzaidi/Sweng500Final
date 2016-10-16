@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('HomeCtrl', function () {
+.controller('HomeCtrl', function ($location) {
 // #------------------------# //
 // #------- HomeCtrl -------# //
 
@@ -14,7 +14,7 @@
 
 	// Actions that can be bound to from the view
 	route.go = {
-
+		redirect: (url) => $location.url(url)
 	};
 
 // #----- END HomeCtrl -----# //
