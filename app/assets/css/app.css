@@ -291,6 +291,19 @@
   filter: none;
   cursor: pointer;
 }
+.cmpt-landing-page-blocked-items .pi {
+  cursor: pointer;
+}
+.cmpt-landing-page-blocked-items .pi .title {
+  font-size: 2vh;
+}
+.cmpt-landing-page-blocked-items .pi .description {
+  color: #8a8a8a;
+}
+.cmpt-landing-page-blocked-items .pi .count {
+  font-size: 2.5vh;
+  color: #d95b5b;
+}
 .cmpt-login-authentication {
   background-color: #113148;
   border-bottom: 1px solid #001322;
@@ -1014,10 +1027,44 @@
   color: #009592;
   font-weight: bold;
 }
+.container-modal-blocked-item .ngdialog-content {
+  width: 800px !important;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid {
+  width: 100%;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body {
+  color: #404040;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content:hover {
+  background-color: #d6d6d6;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type {
+  font-size: 0.8vw;
+  font-weight: bold;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.commitment {
+  color: #009592;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.stretch {
+  color: #2385f8;
+}
 .modal-objective input {
   width: 100%;
   background: #fff;
   color: #113148;
+}
+.ngdialog-buttons.disabled a {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+.ngdialog-buttons.disabled a.button-default {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  cursor: pointer;
 }
 .modal-create-org input {
   width: 100%;
@@ -1707,9 +1754,42 @@ h1 {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
   filter: alpha(opacity=10);
 }
-.route-home-home .actions {
-  padding: 0.2em;
-  border: 1px solid #404040;
+.route-home-home .section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.route-home-home .section .left-section {
+  -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -o-box-flex: 2;
+  box-flex: 2;
+  -webkit-flex: 2 2 20em;
+  -ms-flex: 2 2 20em;
+  flex: 2 2 20em;
+}
+.route-home-home .section .right-section {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 1 10em;
+  -ms-flex: 1 1 10em;
+  flex: 1 1 10em;
+  padding: 0 2em;
+}
+.route-home-home .section .right-section .actions {
+  border: 1px solid #0f2c41;
+  background: #113148;
+  border-radius: 10px;
+  padding: 10px;
+}
+.route-home-home .section .right-section .actions button {
+  width: 100%;
+  font-size: 20px;
 }
 .route-organization-organization .main-content {
   padding: 20px;

@@ -7,6 +7,7 @@
 		var objectiveRef = firebase.database().ref('/objectives');
 		var objectiveRefByPiAndTeamAndType = objectiveRef.orderByChild('piandteamandtype');
 		var objectiveRefByPi = objectiveRef.orderByChild('piId');
+		var objectiveRefByOrg = objectiveRef.orderByChild('orgId');
 
 
 
@@ -22,6 +23,11 @@
 
 		function _objectiveRefByPi(pi) {
 			return objectiveRefByPi.equalTo(pi);
+		}
+
+		function _objectiveRefByOrg() {
+			var ctx = userSvc.context().get();
+			return objectiveRefByOrg.equalTo(ctx.orgId);
 		}
 
 
@@ -49,6 +55,12 @@
 			var objectives = $firebaseArray(_objectiveRefByPiAndTeamAndType(pi, team, type));
 			return objectives.$loaded();
 		}
+
+		function objectiveListByOrg() {
+			var objectives = $firebaseArray(_objectiveRefByOrg());
+			return objectives.$loaded();
+		}
+
 
 		function objectiveListByPI(pi) {
 			var objectives = $firebaseArray(_objectiveRefByPi(pi));
@@ -128,6 +140,7 @@
 			createObjectiveDialog,
 			objectiveList,
 			objectiveListByPI,
+			objectiveListByOrg,
 			updateObjective,
 			deleteObjective,
 			getByKey

@@ -1,7 +1,23 @@
 @import "variables.styl"
 .route-home-home {
-	.actions{
-		padding: 0.2em;
-		border: 1px solid $ap-dark-grey-1;
+	.section{
+		display: flex;
+		.left-section{
+			flex: 2 2 20em;
+		}
+		.right-section{
+			flex: 1 1 10em;
+			padding: 0 2em;
+			.actions{
+				border: 1px solid darken($augmentedColorLight,10%);
+				background: $augmentedColorLight;
+				border-radius: 10px;
+				padding: 10px;
+				button {
+					width: 100%;
+					font-size: 20px;
+				}
+			}
+		}
 	}
 }

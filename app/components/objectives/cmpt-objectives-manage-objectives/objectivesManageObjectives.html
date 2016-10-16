@@ -29,10 +29,7 @@
 							</div>
 						</div>
 						<div class="grid-cell -u-9-24">
-								<div ng-show="!objective.isEditing">
-										<cmpt-ui-state-selector selected="objective.state"></cmpt-ui-state-selector>
-								</div>
-								<div ng-show="objective.isEditing">
+								<div>
 										<cmpt-ui-state-selector selected="objective.state" update-state="go.updateState(objective)"></cmpt-ui-state-selector>
 								</div>
 						</div>

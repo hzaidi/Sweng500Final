@@ -1,0 +1,18 @@
+<div class="cmpt-landing-page-blocked-items">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div class="grid">
+			<div class="grid-header">
+				<div class="grid-cell -u-24-24">Items blocked</div>
+			</div>
+			<div class="grid-body">
+				<div class="grid-content" ng-repeat="blockedItem in vm.blockedItems">
+					<div class="pi grid-cell -u-24-24" ng-click="go.details(blockedItem)">
+						<span class="title">{{ blockedItem.pi.title }}</span> -
+						<span class="description">{{ blockedItem.pi.description }}</span> -
+						<span class="count">{{ blockedItem.objectives.length }}</span> blocked Items
+					</div>
+				</div>
+			</div>
+	</div>
+</div>

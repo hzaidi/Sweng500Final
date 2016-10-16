@@ -1,0 +1,33 @@
+<div class="dialog-popup modal-blocked-item">
+		<div class="ngdialog-message">
+			<div class="header">{{ngDialogData.header}} - {{ ngDialogData.blockedItem.pi.title }} - {{ ngDialogData.blockedItem.pi.description }}</div>
+	    <div class="content">
+        <div class="grid">
+          <div class="grid-header">
+            <div class="grid-cell -u-8-24">Objective</div>
+            <div class="grid-cell -u-6-24">Team</div>
+            <div class="grid-cell -u-6-24">Owner</div>
+            <div class="grid-cell -u-4-24">Type</div>
+          </div>
+          <div class="grid-body">
+            <div class="grid-content" ng-repeat="blockedItem in ngDialogData.blockedItem.objectives">
+              <div class="grid-cell -u-8-24">{{ blockedItem.title }}</div>
+              <div class="grid-cell -u-6-24">{{ blockedItem.teamName }}</div>
+              <div class="grid-cell -u-6-24">{{ blockedItem.owner }}</div>
+              <div class="grid-cell -u-4-24 type"
+                ng-class="{'commitment': blockedItem.type === 1, 'stretch': blockedItem.type === 2}">
+                {{ blockedItem.typeName }}
+              </div>
+            </div>
+          </div>
+        </div>
+	    </div>
+		</div>
+		<div class="ngdialog-buttons">
+	    <a class="fl-button {{ button.cls }}"
+	       ng-click="button.action()"
+	       ng-repeat="button in ngDialogData.buttons">
+	      <i class="fa {{ button.icon }}"></i>{{ button.title }}
+			</a>
+		</div>
+</div>

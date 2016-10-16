@@ -66,7 +66,7 @@
 				data: {
 					header: 'Program Increment Details',
 					pi:pi,
-					currentDate:new Date(), 
+					currentDate:new Date(),
 					buttons: [{
 						title: 'Save',
 						cls: 'button',
@@ -114,6 +114,11 @@
 			return date.format('MM/DD/YYYY');
 		}
 
+		function isActivePi(pi) {
+			var today = new Date();			
+			return today >= new Date(pi.startDate) && today < new Date(calcEndDate(pi));
+		}
+
 		return {
 			getObj: (pi) => _programIncrementSetup(pi),
 			programIncrementSetupDialog,
@@ -121,6 +126,7 @@
 			getByKey,
 			updatePi,
 			deletePi,
+			isActivePi,
 			calcEndDate,
 			formatDate
 		};

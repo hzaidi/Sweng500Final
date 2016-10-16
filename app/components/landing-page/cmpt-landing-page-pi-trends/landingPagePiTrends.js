@@ -11,15 +11,15 @@ templateUrl: '/components/landing-page/cmpt-landing-page-pi-trends/landingPagePi
 // #---- Component (cmpt-landing-page-pi-trends) ----# //
 controller: function ($scope, $q, teamSvc, dashboardSvc, objectiveSvc, programIncrementSvc, arrayHelp, toastHelp) {
 
-	const colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+	const colors = ['#2385f8', '#da8cff', '#ff8e72'];
 	const barOverride = {
 		borderWidth: 1,
 		type: 'bar'
 	};
 	const lineOverride = {
-		borderWidth: 3,
-		hoverBackgroundColor: "rgba(255,99,132,0.4)",
-		hoverBorderColor: "rgba(255,99,132,1)",
+		borderWidth: 4,
+		hoverBackgroundColor: "rgba(63,0,146,0.4)",
+		hoverBorderColor: "rgba(63,0,146,1)",
 		type: 'line'
 	};
 	const dataOverride = [barOverride,lineOverride];
@@ -38,15 +38,7 @@ controller: function ($scope, $q, teamSvc, dashboardSvc, objectiveSvc, programIn
 		isLoading: true,
 		teams: [],
 		selectedTeam: null,
-		options:{
-			scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-		}
+		options:{	scales: { yAxes: [{ ticks: { beginAtZero:true } }] } }
 	};
 
 

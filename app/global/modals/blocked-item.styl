@@ -1,0 +1,29 @@
+@import "variables.styl"
+.container-modal-blocked-item {
+  .ngdialog-content{
+    width: 800px !important;
+    .modal-blocked-item{
+      .grid{
+        width: 100%;
+        .grid-body{
+          color: $ap-dark-grey-1;
+          .grid-content{
+            &:hover{
+              background-color: lighten($ap-dark-grey-4,40%);
+            }
+            .type{
+              font-size: 0.8vw;
+              font-weight: bold;
+              &.commitment{
+                color: $mediumGreen;
+              }
+              &.stretch{
+                color: $darkBlue;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
