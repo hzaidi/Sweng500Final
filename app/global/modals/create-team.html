@@ -15,8 +15,6 @@
 						<div ng-message="required">Enter Team Name</div>
 						<div ng-message="minlength">Length of Team Name should be atleast 6 characters long</div>
 					</div>
-				<!-- </div>
-				<div class="input-container"> -->
 					<div class="dropdown">
 						<select class="dropdown-select"
 							name="ownerId"
@@ -26,8 +24,8 @@
 							<option value="">Please select Team Owner</option>
 						</select>
 					</div>
-					<div ng-messages="teamForm.ownerId.$error && teamForm.ownerId.$touched" role="alert"  class="validation-messages">
-							<div ng-message="required">Team Owner is a required field</div>
+					<div ng-messages="teamForm.ownerId.$error && teamForm.ownerId.$touched" role="alert" class="validation-messages">
+						<div ng-message="required">Enter Team Name</div>
 					</div>
 				</div>
 			</div>

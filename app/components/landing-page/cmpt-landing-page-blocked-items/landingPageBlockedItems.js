@@ -11,30 +11,35 @@ templateUrl: '/components/landing-page/cmpt-landing-page-blocked-items/landingPa
 // #---- Component (cmpt-landing-page-blocked-items) ----# //
 controller: function ($scope, $q, programIncrementSvc, teamSvc, objectiveSvc, userSvc, ngDialog, arrayHelp, toastHelp, objectiveTypeConst) {
 
-	var promises = [programIncrementSvc.piList(),
-									objectiveSvc.objectiveListByOrg(),
-									teamSvc.teamList(),
-									userSvc.userList()];
+
+	var ctx = userSvc.context().get();
+	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),
+																objectiveSvc.objectiveListByOrg(),
+																teamSvc.teamList(),
+																userSvc.userList()] : [];
 
 	var teams, users = [];
 	// View Model properties
 	var vm = $scope.vm = {
-		isLoading: true,
+		isLoading: false,
 		blockedItems: []
 	};
 
-	$q.all(promises).then(function(dtl){
-		vm.isLoading = false;
-		var pis, objectives;
-		[ pis, objectives, teams, users ] = dtl;
-		var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
-		var piIds = activePis.map(x => x.$id);
-		var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
-		var blockedProcess = processBlockedItems(activePis, objectivesInActivePis, teams);
-		vm.blockedItems = blockedProcess;
-	},function(error){
-		toastHelp.error(error.messages,'Error');
-	})
+	if(ctx.orgId){
+		vm.isLoading = true;
+		$q.all(promises).then(function(dtl){
+			vm.isLoading = false;
+			var pis, objectives;
+			[ pis, objectives, teams, users ] = dtl;
+			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
+			var piIds = activePis.map(x => x.$id);
+			var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
+			var blockedProcess = processBlockedItems(activePis, objectivesInActivePis, teams);
+			vm.blockedItems = blockedProcess;
+		},function(error){
+			toastHelp.error(error.messages,'Error');
+		});
+	}
 
 
 	function processBlockedItems(pis, objectives, teams) {

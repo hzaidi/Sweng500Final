@@ -5,14 +5,19 @@
 			<div class="grid-header">
 				<div class="grid-cell -u-24-24">Items blocked</div>
 			</div>
-			<div class="grid-body">
+			<div class="grid-body" ng-if="vm.blockedItems.length">
 				<div class="grid-content" ng-repeat="blockedItem in vm.blockedItems">
 					<div class="pi grid-cell -u-24-24" ng-click="go.details(blockedItem)">
 						<span class="title">{{ blockedItem.pi.title }}</span> -
 						<span class="description">{{ blockedItem.pi.description }}</span> -
-						<span class="count">{{ blockedItem.objectives.length }}</span> blocked Items
+						<span class="count">
+							{{ blockedItem.objectives.length }}
+						</span><ng-pluralize count="blockedItem.objectives.length" when="{'1': 'blocked Item', '0': 'blocked Item',	'other': 'blocked Items'}"></ng-pluralize>
 					</div>
 				</div>
+			</div>
+			<div class="no-data" ng-if="!vm.blockedItems.length">
+				No Data
 			</div>
 	</div>
 </div>

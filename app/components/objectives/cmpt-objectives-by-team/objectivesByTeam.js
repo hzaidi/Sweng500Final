@@ -11,8 +11,10 @@ templateUrl: '/components/objectives/cmpt-objectives-by-team/objectivesByTeam.ht
 
 // #---------------------------------------------# //
 // #---- Component (cmpt-objectives-by-team) ----# //
-controller: function ($scope,teamSvc, toastHelp) {
+controller: function ($scope, $q, teamSvc, userSvc, toastHelp) {
 
+	var promises = [teamSvc.teamList(), userSvc.userList()];
+	var users = [];
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: true,
@@ -21,8 +23,8 @@ controller: function ($scope,teamSvc, toastHelp) {
 	};
 
 
-	teamSvc.teamList().then(function (teams) {
-		vm.teams = teams;
+	$q.all(promises).then(function (dtl) {
+		[ vm.teams, users ] = dtl;
 		vm.isLoading = false;
 	})
 	.catch(function(error){
@@ -32,8 +34,10 @@ controller: function ($scope,teamSvc, toastHelp) {
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		ownerName: function(id){
+			var owner = users.filter((x) => x.$id === id)[0];
+			if(owner === null) { return ''; }
+			return `${owner.firstName}, ${owner.lastName}`;
 		}
 	};
 }

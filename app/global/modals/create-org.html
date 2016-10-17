@@ -3,7 +3,7 @@
 			<div class="ngdialog-message">
 				<div class="header">{{ngDialogData.header}}</div>
 				<div class="content">
-		      <div>
+		      <div class="input-container">
 							<input name="orgName" type="text" class="input" placeholder="Name" ng-model="ngDialogData.org.orgName" required ng-minlength="6">
 							<div ng-messages="orgForm.orgName.$touched && orgForm.orgName.$error" role="alert"  class="validation-messages">
 								<div ng-message="required">Enter Organization Name</div>

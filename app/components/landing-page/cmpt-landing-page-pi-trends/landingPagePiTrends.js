@@ -9,8 +9,10 @@ templateUrl: '/components/landing-page/cmpt-landing-page-pi-trends/landingPagePi
 
 // #-------------------------------------------------# //
 // #---- Component (cmpt-landing-page-pi-trends) ----# //
-controller: function ($scope, $q, teamSvc, dashboardSvc, objectiveSvc, programIncrementSvc, arrayHelp, toastHelp) {
+controller: function ($scope, $q, teamSvc, userSvc, dashboardSvc, objectiveSvc, programIncrementSvc, arrayHelp, toastHelp) {
 
+
+	var ctx = userSvc.context().get();
 	const colors = ['#2385f8', '#da8cff', '#ff8e72'];
 	const barOverride = {
 		borderWidth: 1,
@@ -24,8 +26,7 @@ controller: function ($scope, $q, teamSvc, dashboardSvc, objectiveSvc, programIn
 	};
 	const dataOverride = [barOverride,lineOverride];
 	const maxPis = 5;
-	var promises = [programIncrementSvc.piList(),
-									teamSvc.teamList()];
+	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),teamSvc.teamList()] :[];
 
 	var objectiveList = [];
 
@@ -35,32 +36,34 @@ controller: function ($scope, $q, teamSvc, dashboardSvc, objectiveSvc, programIn
 		dataOverride,
 		labels:[],
 		data:[],
-		isLoading: true,
+		isLoading: false,
 		teams: [],
 		selectedTeam: null,
 		options:{	scales: { yAxes: [{ ticks: { beginAtZero:true } }] } }
 	};
 
-
-	$q.all(promises)
-	.then(function(dtl){
-		vm.isLoading = false;
-		var allPis = dtl[0];
-		vm.teams = dtl[1];
-		var pis = sortPiByDate(allPis).slice(0,maxPis);
-		return $q.when(pis)
-	}).then(function(pis){
-		return objectiveSvc.objectiveListByOrg().then(function(data){
-			var piIds = pis.map(x => x.$id);
-			var filteredObjectivesByPis = data.filter(x => piIds.indexOf(x.piId) >= 0);
-			return $q.when(filteredObjectivesByPis.map(x => processObjective(x, pis)));
+	if(ctx.orgId){
+		vm.isLoading = true;
+		$q.all(promises)
+		.then(function(dtl){
+			vm.isLoading = false;
+			var allPis = dtl[0];
+			vm.teams = dtl[1];
+			var pis = sortPiByDate(allPis).slice(0,maxPis);
+			return $q.when(pis)
+		}).then(function(pis){
+			return objectiveSvc.objectiveListByOrg().then(function(data){
+				var piIds = pis.map(x => x.$id);
+				var filteredObjectivesByPis = data.filter(x => piIds.indexOf(x.piId) >= 0);
+				return $q.when(filteredObjectivesByPis.map(x => processObjective(x, pis)));
+			})
+		}).then(function(objectives){
+			objectiveList = objectives;
+			paintGraph(objectiveList);
+		}).catch(function(error){
+			toastHelp.error(error.messages,'Error');
 		})
-	}).then(function(objectives){
-		objectiveList = objectives;
-		paintGraph(objectiveList);
-	}).catch(function(error){
-		toastHelp.error(error.messages,'Error');
-	})
+	}
 
 
 	function processGraphData(objectives){

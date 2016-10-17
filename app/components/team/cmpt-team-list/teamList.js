@@ -61,6 +61,7 @@ controller: function ($q, $scope, teamSvc, userSvc, toastHelp, objectHelp) {
 		},
 		ownerName: function(id){
 			var owner = vm.users.filter((x) => x.$id === id)[0];
+			if(owner === null) { return ''; }
 			return `${owner.firstName}, ${owner.lastName}`;
 		}
 	};

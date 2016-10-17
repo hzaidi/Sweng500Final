@@ -230,13 +230,13 @@
 .cmpt-dashboard-team-progress .team-container .team-name {
   color: #bababa;
   font-size: 0.9vw;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 0.8 0 0;
-  -ms-flex: 0.8 0 0;
-  flex: 0.8 0 0;
+  -webkit-box-flex: 1.3;
+  -moz-box-flex: 1.3;
+  -o-box-flex: 1.3;
+  box-flex: 1.3;
+  -webkit-flex: 1.3 0 0;
+  -ms-flex: 1.3 0 0;
+  flex: 1.3 0 0;
   margin-right: 5px;
   text-align: right;
 }
@@ -261,7 +261,7 @@
   flex: 1 0 0;
 }
 .cmpt-dashboard-team-progress .team-container .team-stretch .no-stretch {
-  color: #00deff;
+  color: #2385f8;
   font-size: 0.8vw;
   text-align: center;
   line-height: 5vh;
@@ -303,6 +303,20 @@
 .cmpt-landing-page-blocked-items .pi .count {
   font-size: 2.5vh;
   color: #d95b5b;
+  margin-right: 5px;
+}
+.cmpt-landing-page-blocked-items .no-data {
+  font-size: 1.5vw;
+  color: #2385f8;
+  padding: 1.5vw;
+  text-align: center;
+}
+.cmpt-landing-page-pi-trends .no-data {
+  font-size: 1.5vw;
+  color: #2385f8;
+  border: 2px dashed #2385f8;
+  padding: 1.5vw;
+  text-align: center;
 }
 .cmpt-login-authentication {
   background-color: #113148;
@@ -417,6 +431,12 @@
   color: #fff;
   background: #19486a;
   padding: 15px;
+}
+.cmpt-objectives-by-team .team-container .team-name div {
+  display: inline-block;
+  color: #bababa;
+  font-size: 14px;
+  margin-left: 5px;
 }
 .cmpt-objectives-by-team .team-container .team-name span {
   cursor: pointer;
@@ -544,6 +564,7 @@
   width: 205px;
 }
 .cmpt-program-increment-details .no-data {
+  margin-top: 10px;
   border: 2px dashed #0af;
   border-radius: 5px;
   padding: 50px;
@@ -552,6 +573,7 @@
   font-weight: bold;
 }
 .cmpt-team-list .no-data {
+  margin-top: 10px;
   border: 2px dashed #0af;
   border-radius: 5px;
   padding: 50px;
@@ -1016,10 +1038,8 @@
   left: 50%;
   background: #7fc6a6;
 }
-.cmpt-users-list .input {
-  width: 285px;
-}
 .cmpt-users-list .no-data {
+  margin-top: 10px;
   border: 2px dashed #009592;
   border-radius: 5px;
   padding: 50px;
@@ -1048,6 +1068,12 @@
 }
 .container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.stretch {
   color: #2385f8;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .no-data {
+  font-size: 1.2vw;
+  color: #606060;
+  padding: 1.5vw;
+  text-align: center;
 }
 .modal-objective input {
   width: 100%;
@@ -1337,10 +1363,13 @@ h1 {
 ._720kb-datepicker-calendar ._720kb-datepicker-calendar-body ._720kb-datepicker-calendar-day:hover {
   background-color: #99c6e7;
 }
+._720kb-datepicker-calendar ._720kb-datepicker-calendar-body ._720kb-datepicker-calendar-day._720kb-datepicker-active {
+  background: rgba(0,0,0,0.2);
+}
 .dropdown {
   position: relative;
   overflow: hidden;
-  height: 31px;
+  height: 33px;
   width: 100%;
   background: #c8c8c8;
   border: 1px solid;
@@ -1715,13 +1744,13 @@ h1 {
   display: flex;
 }
 .route-dashboard-dashboard .dashboard-body .right-section .header .empty {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 0.8 0 0;
-  -ms-flex: 0.8 0 0;
-  flex: 0.8 0 0;
+  -webkit-box-flex: 1.3;
+  -moz-box-flex: 1.3;
+  -o-box-flex: 1.3;
+  box-flex: 1.3;
+  -webkit-flex: 1.3 0 0;
+  -ms-flex: 1.3 0 0;
+  flex: 1.3 0 0;
   margin-right: 5px;
 }
 .route-dashboard-dashboard .dashboard-body .right-section .header .commitment {
@@ -1796,9 +1825,6 @@ h1 {
   padding: 20px;
 }
 .route-setup-programincrement .main-content {
-  padding: 20px;
-}
-.route-team-list .main-content {
   padding: 20px;
 }
 .route-users-scrum-masters .main-content {

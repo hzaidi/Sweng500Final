@@ -22,7 +22,7 @@
 						</div>
 						<div class="grid-cell -u-3-24">
 							<div ng-show="!objective.isEditing || vm.context.userRole === 2">
-								{{ objective.businessValue }}
+								{{ (objective.businessValue === 0) ? 'Value not assigned' : objective.businessValue }}
 							</div>
 							<div ng-show="objective.isEditing && vm.context.userRole === 1">
 								<input name="businessValue" type="number" class="input" ng-model="objective.businessValue" placeholder="Enter Business Value" min="0">

@@ -6,9 +6,9 @@
 		<div class="pi-list" ng-show="vm.pis.length > 0">
 		<div class="grid">
 			<div class="grid-header">
-				<div class="grid-cell -u-6-24">Title</div>
+				<div class="grid-cell -u-4-24">Title</div>
 				<div class="grid-cell -u-6-24">Description</div>
-				<div class="grid-cell -u-4-24">Date</div>
+				<div class="grid-cell -u-6-24">Date</div>
 				<div class="grid-cell -u-3-24"># Sprints</div>
 				<div class="grid-cell -u-2-24">Duration</div>
 				<div class="grid-cell -u-3-24">Action</div>
@@ -17,7 +17,7 @@
 				<form name="programIncrementDetailsForm" novalidate>
 						<div class="grid-content" ng-repeat="pi in vm.pis" ng-form="programIncrementDetailsListForm">
 							<div class="input-container">
-									<div class="grid-cell -u-6-24">
+									<div class="grid-cell -u-4-24">
 										<div ng-show="!pi.isEditing">{{ pi.title }}</div>
 										<div ng-show="pi.isEditing">
 											<input name="title" type="text" class="input" ng-model="pi.title" placeholder="Enter Title" required>
@@ -35,7 +35,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="grid-cell -u-4-24">
+									<div class="grid-cell -u-6-24">
 										<div ng-show="!pi.isEditing">{{ pi.startDate }} - {{ go.calcEndDate(pi) }}</div>
 										<div ng-show="pi.isEditing">
 

@@ -9,7 +9,7 @@
             <div class="grid-cell -u-6-24">Owner</div>
             <div class="grid-cell -u-4-24">Type</div>
           </div>
-          <div class="grid-body">
+          <div class="grid-body" ng-if="ngDialogData.blockedItem.objectives.length">
             <div class="grid-content" ng-repeat="blockedItem in ngDialogData.blockedItem.objectives">
               <div class="grid-cell -u-8-24">{{ blockedItem.title }}</div>
               <div class="grid-cell -u-6-24">{{ blockedItem.teamName }}</div>
@@ -20,6 +20,9 @@
               </div>
             </div>
           </div>
+					<div class="no-data" ng-if="!ngDialogData.blockedItem.objectives.length">
+						No Blocked Items
+					</div>
         </div>
 	    </div>
 		</div>
