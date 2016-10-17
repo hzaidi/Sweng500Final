@@ -311,6 +311,9 @@
   padding: 1.5vw;
   text-align: center;
 }
+.cmpt-landing-page-pi-trends .dropdown {
+  margin-bottom: 2vh;
+}
 .cmpt-landing-page-pi-trends .no-data {
   font-size: 1.5vw;
   color: #2385f8;
@@ -1813,7 +1816,7 @@ h1 {
 }
 .route-home-home .section .right-section .actions {
   border: 1px solid #0f2c41;
-  background: #113148;
+  background: #153d59;
   border-radius: 10px;
   padding: 10px;
 }
