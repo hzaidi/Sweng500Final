@@ -60,9 +60,9 @@ controller: function ($scope, $interval, dateHelp, dashboardSvc) {
 		//vm.tomorrow.setDate(vm.tomorrow.getDate() + 1);
 		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), vm.tomorrow);
 		var overallTime = Math.ceil(round(100-((numDaysLeft/totalDays)*100)));
-		vm.numDaysLeft = numDaysLeft;
+		vm.numDaysLeft = numDaysLeft <= 0 ? 0 : numDaysLeft;
 		vm.overallTime = overallTime;
-		if(numDaysLeft === 0) { $interval.cancel(daysLeftTimer); }
+		if(numDaysLeft <= 0) { $interval.cancel(daysLeftTimer); }
 	}
 
 

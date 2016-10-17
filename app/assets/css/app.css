@@ -1060,7 +1060,7 @@
   background-color: #d6d6d6;
 }
 .container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type {
-  font-size: 0.8vw;
+  font-size: 1.2vw;
   font-weight: bold;
 }
 .container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.commitment {
