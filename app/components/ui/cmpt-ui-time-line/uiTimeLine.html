@@ -7,9 +7,9 @@
 				cls="medium">
 			<div class="arrow_box"
 					style="left: {{ go.calcBlockPercentage(block)  }}%"
-					ng-if="vm.overallTime >= block.start && vm.overallTime <= block.end">
+					ng-if="vm.overallTime >= block.start && vm.overallTime < block.end">
 		    NOW
-		  </div>
+		  </div>			
 		</cmpt-ui-simple-progress-bar>
 	</div>
 
