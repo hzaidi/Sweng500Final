@@ -90,7 +90,7 @@ angular.module("/components/objectives/cmpt-objectives-team-selector/objectivesT
 
 angular.module("/components/organization/cmpt-organization-details/organizationDetails.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/organization/cmpt-organization-details/organizationDetails.html",
-    "<div class=cmpt-organization-details><h1>Organization Details</h1><for m=orgDetails><div><input class=input placeholder=Name name=name ng-model=vm.org.orgName></div><div><button class=\"button button-positive\" ng-click=go.updateOrg()><i class=\"fa fa-check\" aria-hidden=true></i><span>Update</span></button></div></for></div>");
+    "<div class=cmpt-organization-details><h1>Organization Details</h1><form name=orgForm><div class=input-container><input class=input placeholder=Name name=orgName ng-model=vm.org.orgName required ng-minlength=6><div ng-messages=\"orgForm.orgName.$touched && orgForm.orgName.$error\" role=alert class=validation-messages><div ng-message=required>Enter Organization Name</div><div ng-message=minlength>Length of Organization Name should be at least 6 characters long</div></div></div><div><button class=\"button button-positive\" ng-click=go.updateOrg(vm.org) ng-disabled=orgForm.$invalid><i class=\"fa fa-check\" aria-hidden=true></i><span>Update</span></button></div></form></div>");
 }]);
 
 angular.module("/components/program-increment/cmpt-program-increment-details/programIncrementDetails.html", []).run(["$templateCache", function($templateCache) {
@@ -105,7 +105,7 @@ angular.module("/components/team/cmpt-team-list/teamList.html", []).run(["$templ
 
 angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/topbar/cmpt-topbar-header/topbarHeader.html",
-    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo><div class=org-name ng-click=go.home()>{{ vm.orgName }}</div></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userRole }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
+    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo><div class=org-name ng-click=go.home()>{{ vm.org.orgName }}</div></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userRole }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
 }]);
 
 angular.module("/components/ui/cmpt-ui-loader/uiLoader.html", []).run(["$templateCache", function($templateCache) {

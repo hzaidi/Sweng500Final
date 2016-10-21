@@ -14,7 +14,7 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationS
 	var user = userSvc.userObj($scope.user);
 	// View Model properties
 	var vm = $scope.vm = {
-		orgName: null,
+		org: null,
 		user: Object.assign({} , user, { userRole: userRoleConst[user.userRole] })
 	};
 
@@ -26,20 +26,25 @@ controller: function ($scope, $state, authSvc, userSvc, storageSvc,organizationS
 				user.organdrole = `${org.id}~~${user.userRole}`;
 				userSvc.updateUser(user).then(function(){
 					userSvc.context().set(user);
-					updateOrgName(org.orgName);
+					setOrg(org.id);
 					toastHelp.success('Organizaiton is created', 'Success');
 				},function(error){
 					toastHelp.error(error.message, 'Error');
 				})
-			},function(error){
-				toastHelp.error(error.message, 'Error');
-			})
+			 },function(error){
+			 	toastHelp.error(error.message, 'Error');
+			 })
 		},function(error){
 			toastHelp.error(error.message, 'Error');
 		});
 	}else{
-		organizationSvc.getByKey(vm.user.orgId).then(function(org){
-			updateOrgName(organizationSvc.orgObj(org).orgName);
+		setOrg(vm.user.orgId);		
+	}
+
+
+	function setOrg(orgId) {
+		organizationSvc.getByKey(orgId).then(function(org){
+			vm.org = org;
 		},function(error){
 			toastHelp.error(error.message, 'Error');
 		})

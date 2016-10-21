@@ -9,7 +9,7 @@ templateUrl: '/components/organization/cmpt-organization-details/organizationDet
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-organization-details) ----# //
-controller: function ($scope, organizationSvc) {
+controller: function ($scope, $firebaseObject, organizationSvc) {
 
 
 
@@ -19,12 +19,12 @@ controller: function ($scope, organizationSvc) {
 	};
 
 	organizationSvc.getOrg().then(function(org){
-		vm.org = organizationSvc.orgObj(org);
+		vm.org = org;//organizationSvc.orgObj(org);
 	});
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		updateOrg: function () {
-			console.log('call to update org`');
+		updateOrg: function (org) {
+			org.$save();
 		}
 	};
 }

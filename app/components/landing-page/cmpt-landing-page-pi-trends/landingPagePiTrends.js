@@ -13,18 +13,16 @@ controller: function ($scope, $q, teamSvc, userSvc, dashboardSvc, objectiveSvc, 
 
 
 	var ctx = userSvc.context().get();
-	const colors = ['#2385f8', '#da8cff', '#ff8e72'];
+	const colors = ['#2385f8', '#da8cff', '#BABABA'];
 	const barOverride = {
 		borderWidth: 1,
 		type: 'bar'
 	};
 	const lineOverride = {
 		borderWidth: 4,
-		hoverBackgroundColor: "rgba(63,0,146,0.4)",
-		hoverBorderColor: "rgba(63,0,146,1)",
 		type: 'line'
 	};
-	const dataOverride = [barOverride,lineOverride];
+	const dataOverride = [barOverride,lineOverride, Object.assign({},lineOverride,{ borderWidth: 1 })];
 	const maxPis = 5;
 	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),teamSvc.teamList()] :[];
 
@@ -39,7 +37,14 @@ controller: function ($scope, $q, teamSvc, userSvc, dashboardSvc, objectiveSvc, 
 		isLoading: false,
 		teams: [],
 		selectedTeam: null,
-		options:{	scales: { yAxes: [{ ticks: { beginAtZero:true } }] } }
+		options:{
+			scales: {
+				yAxes: [{ ticks: { beginAtZero:true } }]
+			},
+			tooltips: {
+				enabled: false
+			}
+		}
 	};
 
 	if(ctx.orgId){
@@ -78,7 +83,7 @@ controller: function ($scope, $q, teamSvc, userSvc, dashboardSvc, objectiveSvc, 
 		});
 		return {
 			labels: Array.from(new Set(objectives.map(x=> x.piTitle))),
-			data: [dataArray,dataArray]
+			data: [dataArray, dataArray, dataArray.map(x=> 80)]
 		}
 	}
 
