@@ -311,6 +311,19 @@
   padding: 1.5vw;
   text-align: center;
 }
+.cmpt-landing-page-pi-status-chart {
+  margin: 2em 0;
+  padding: 2em;
+  background: #153d59;
+}
+.cmpt-landing-page-pi-status-chart h1 {
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+.cmpt-landing-page-pi-status-chart h1 span {
+  font-size: 18px;
+  color: #8a8a8a;
+}
 .cmpt-landing-page-pi-trends .dropdown {
   margin-bottom: 2vh;
 }
@@ -1063,7 +1076,7 @@
   background-color: #d6d6d6;
 }
 .container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type {
-  font-size: 1.2vw;
+  font-size: 1vw;
   font-weight: bold;
 }
 .container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.commitment {

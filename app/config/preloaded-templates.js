@@ -39,7 +39,8 @@ angular.module("/components/landing-page/cmpt-landing-page-blocked-items/landing
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html",
-    "<div class=cmpt-landing-page-pi-status-chart><h1 ng-click=go.someAction()>{{ vm.property }}</h1></div>");
+    "<div class=cmpt-landing-page-pi-status-chart><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><h1>{{ vm.pis.length }} <span><ng-pluralize count=vm.pis.length when=\"{'1': ' Program Increment ',\n" +
+    "					'other': ' Program Increments '}\"></ng-pluralize>are active</span></h1><canvas id=pie width=500 height=350 class=\"chart chart-pie\" chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options></canvas><div class=legend></div></div></div>");
 }]);
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-trends/landingPagePiTrends.html", []).run(["$templateCache", function($templateCache) {
@@ -154,7 +155,7 @@ angular.module("/routes/forgotpassword/forgotpassword.html", []).run(["$template
 
 angular.module("/routes/home/home.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/routes/home/home.html",
-    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><div class=content-body><div class=section><div class=left-section><cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends></div><div class=right-section><div class=actions><button class=\"button button-positive\" ng-click=\"route.go.redirect('/dashboard')\"><i class=\"fa fa-tachometer\" aria-hidden=true></i><span>Dashboard</span></button></div><cmpt-landing-page-blocked-items><cmpt-landing-page-blocked-items></cmpt-landing-page-blocked-items></cmpt-landing-page-blocked-items></div></div><cmpt-landing-page-pi-status-chart></cmpt-landing-page-pi-status-chart></div></div></div>");
+    "<div class=route-home-home ng-controller=\"HomeCtrl as route\"><cmpt-topbar-header></cmpt-topbar-header><div class=content><cmpt-nav-menu></cmpt-nav-menu><div class=content-body><div class=section><div class=left-section><cmpt-landing-page-pi-trends></cmpt-landing-page-pi-trends></div><div class=right-section><div class=actions><button class=\"button button-positive\" ng-click=\"route.go.redirect('/dashboard')\"><i class=\"fa fa-tachometer\" aria-hidden=true></i><span>Dashboard</span></button></div><cmpt-landing-page-pi-status-chart></cmpt-landing-page-pi-status-chart><cmpt-landing-page-blocked-items></cmpt-landing-page-blocked-items></div></div></div></div></div>");
 }]);
 
 angular.module("/routes/list-objectives/all-teams.html", []).run(["$templateCache", function($templateCache) {

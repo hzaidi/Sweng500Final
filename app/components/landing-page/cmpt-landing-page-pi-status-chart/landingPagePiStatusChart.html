@@ -1,3 +1,27 @@
 <div class="cmpt-landing-page-pi-status-chart">
-	<h1 ng-click="go.someAction()">{{ vm.property }}</h1>
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<h1>
+			{{ vm.pis.length }}
+			<span>
+				<ng-pluralize count="vm.pis.length" when="{'1': ' Program Increment ',
+					'other': ' Program Increments '}">
+				</ng-pluralize>
+				are active
+			</span>
+		</h1>
+		<canvas id="pie"
+			width="500"
+			height="350"
+			class="chart chart-pie"
+			chart-data="vm.data"
+			chart-labels="vm.labels"
+			chart-colors="vm.colors"
+			chart-options="vm.options"
+			>
+		</canvas>
+		<div class="legend">
+
+		</div>
+	</div>
 </div>

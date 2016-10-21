@@ -5,12 +5,6 @@
 	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, arrayHelp, toastHelp) {
 
 		const simulatorDuration = 1000;
-		const colorPallete = {
-			1: '#7B7B7B',
-			2: '#2385f8',
-			3: '#009592',
-			4: '#D95B5B',
-		}
 
 		var teams, users, objectives = [];
 
@@ -72,7 +66,7 @@
 				});
 				percentages[type]['labels'] = stateConst.map(x => x.value);
 				percentages[type]['data'] = percentagesByState;
-				percentages[type]['colors'] = stateConst.map(x => colorPallete[x.id]);
+				percentages[type]['colors'] = stateConst.map(x => x.hex);
 				percentages[type]['total'] = total;
 			});
 			return percentages;
