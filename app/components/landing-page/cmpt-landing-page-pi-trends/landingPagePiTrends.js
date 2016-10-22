@@ -9,110 +9,52 @@ templateUrl: '/components/landing-page/cmpt-landing-page-pi-trends/landingPagePi
 
 // #-------------------------------------------------# //
 // #---- Component (cmpt-landing-page-pi-trends) ----# //
-controller: function ($scope, $q, teamSvc, userSvc, dashboardSvc, objectiveSvc, programIncrementSvc, arrayHelp, toastHelp) {
+controller: function ($scope, userSvc, landingPageSvc , toastHelp) {
 
 
 	var ctx = userSvc.context().get();
-	const colors = ['#2385f8', '#da8cff', '#BABABA'];
-	const barOverride = {
-		borderWidth: 1,
-		type: 'bar'
-	};
-	const lineOverride = {
-		borderWidth: 4,
-		type: 'line'
-	};
-	const dataOverride = [barOverride,lineOverride, Object.assign({},lineOverride,{ borderWidth: 1 })];
-	const maxPis = 5;
-	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),teamSvc.teamList()] :[];
-
-	var objectiveList = [];
 
 	// View Model properties
 	var vm = $scope.vm = {
-		colors,
-		dataOverride,
+		colors: [],
+		dataOverride: [],
 		labels:[],
 		data:[],
 		isLoading: false,
 		teams: [],
 		selectedTeam: null,
-		options:{
-			scales: {
-				yAxes: [{ ticks: { beginAtZero:true } }]
-			},
-			tooltips: {
-				enabled: false
-			}
-		}
+		options:{}
 	};
 
 	if(ctx.orgId){
-		vm.isLoading = true;
-		$q.all(promises)
-		.then(function(dtl){
-			vm.isLoading = false;
-			var allPis = dtl[0];
-			vm.teams = dtl[1];
-			var pis = sortPiByDate(allPis).slice(0,maxPis);
-			return $q.when(pis)
-		}).then(function(pis){
-			return objectiveSvc.objectiveListByOrg().then(function(data){
-				var piIds = pis.map(x => x.$id);
-				var filteredObjectivesByPis = data.filter(x => piIds.indexOf(x.piId) >= 0);
-				return $q.when(filteredObjectivesByPis.map(x => processObjective(x, pis)));
-			})
-		}).then(function(objectives){
-			objectiveList = objectives;
-			paintGraph(objectiveList);
-		}).catch(function(error){
-			toastHelp.error(error.messages,'Error');
+		landingPageSvc.ready.then(function(){
+			var piTrends = landingPageSvc.piTrends();
+			vm.colors = piTrends.colors;
+			vm.dataOverride = piTrends.dataOverride;
+			vm.labels = piTrends.labels;
+			vm.options = piTrends.options;
+			vm.labels = piTrends.processTrendGraphData().labels;
+			vm.data = piTrends.processTrendGraphData().data;
+			vm.teams = piTrends.teams;
 		})
-	}
-
-
-	function processGraphData(objectives){
-		var groups = arrayHelp.groupBy(objectives,'piId');
-		var dataArray = [];
-		Object.keys(groups).forEach(function(key){
-			var objectives = groups[key];
-			var total = dashboardSvc.totalBusinessValue(objectives);
-			var done = dashboardSvc.totalByState(objectives, 3);
-			var percentage = (done === 0) ? 0 : dashboardSvc.round((done/total) * 100)
-			dataArray.push(percentage);
+		.catch(function(error){
+			if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
+		})
+		.finally(function(){
+			vm.isLoading = false;
 		});
-		return {
-			labels: Array.from(new Set(objectives.map(x=> x.piTitle))),
-			data: [dataArray, dataArray, dataArray.map(x=> 80)]
-		}
 	}
-
-	function processObjective(objective, pis){
-		objective.piTitle = pis.filter(x => x.$id === objective.piId)[0].title;
-		return objective;
-	}
-
-	function sortPiByDate(pis) {
-		return pis.sort((a,b) => new Date(b.startDate) - new Date(a.startDate));
-	}
-
-
-	function paintGraph(objectives) {
-		var graphData = processGraphData(objectives);
-		vm.labels = graphData.labels;
-		vm.data = graphData.data;
-	}
-
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		change: function () {
-			if(vm.selectedTeam === null){
-				paintGraph(objectiveList);
-			}else{
-				var objectives = objectiveList.filter(x => x.teamId === vm.selectedTeam);
-				paintGraph(objectives);
-			}
+			landingPageSvc.ready.then(function(){
+				var piTrends = landingPageSvc.piTrends();
+				vm.labels = piTrends.processTrendGraphData(vm.selectedTeam).labels;
+				vm.data = piTrends.processTrendGraphData(vm.selectedTeam).data;
+			}).catch(function(error){
+				if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
+			})
 		}
 	};
  }

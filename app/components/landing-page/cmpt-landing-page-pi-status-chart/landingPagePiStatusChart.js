@@ -9,61 +9,37 @@ templateUrl: '/components/landing-page/cmpt-landing-page-pi-status-chart/landing
 
 // #-------------------------------------------------------# //
 // #---- Component (cmpt-landing-page-pi-status-chart) ----# //
-controller: function ($scope, $q, userSvc, stateConst, programIncrementSvc, objectiveSvc, toastHelp) {
+controller: function ($scope, landingPageSvc, userSvc, toastHelp) {
 
 	var ctx = userSvc.context().get();
-	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),
-																objectiveSvc.objectiveListByOrg()] : [];
 
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: false,
-		labels: stateConst.map(x => x.value),
-		colors: stateConst.map(x => x.hex),
+		labels: [],
+		colors: [],
 		data: [],
 		pis:[],
-		options: {
-			elements: {
-				arc: {
-					borderWidth: 1,
-					borderColor: '#FFF'
-				}
-			},
-			legend: {
-				display: true,
-				position: 'bottom',
-				labels: {
-					fontColor: '#FFF'
-				}
-			}
-		}
+		options: {}
 	};
 
-
-	if(ctx.orgId){
+	if(ctx.orgId) {
 		vm.isLoading = true;
-		$q.all(promises).then(function(dtl){
+		landingPageSvc.ready.then(function(){
+				var piStats = landingPageSvc.piStats();
+				vm.labels = piStats.labels;
+				vm.colors = piStats.colors;
+				vm.options = piStats.options;
+				vm.pis = piStats.activePis;
+				vm.data = piStats.data;
+		})
+		.catch(function(error){
+			if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
+		})
+		.finally(function(){
 			vm.isLoading = false;
-			var pis, objectives;
-			[ pis, objectives ] = dtl;
-			var activePis = vm.pis = pis.filter(x => programIncrementSvc.isActivePi(x));
-			var piIds = activePis.map(x => x.$id);
-			var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
-			var data = [];
-			stateConst.forEach(function(state){
-				var count = objectivesInActivePis
-											.filter(x => x.state === state.id)
-											.map(x => x.businessValue)
-											.reduce((prev,cur) => { return prev + cur },0);
-				data.push(count);
-			});
-			vm.data = data;
-		},function(error){
-			toastHelp.error(error.messages,'Error');
-		});
+		})
 	}
-
-
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {

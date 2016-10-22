@@ -9,14 +9,11 @@ templateUrl: '/components/landing-page/cmpt-landing-page-blocked-items/landingPa
 
 // #-----------------------------------------------------# //
 // #---- Component (cmpt-landing-page-blocked-items) ----# //
-controller: function ($scope, $q, programIncrementSvc, teamSvc, objectiveSvc, userSvc, ngDialog, arrayHelp, toastHelp, objectiveTypeConst) {
+controller: function ($scope, userSvc, landingPageSvc, ngDialog, toastHelp) {
 
 
 	var ctx = userSvc.context().get();
-	var promises = (ctx.orgId) ? [programIncrementSvc.piList(),
-																objectiveSvc.objectiveListByOrg(),
-																teamSvc.teamList(),
-																userSvc.userList()] : [];
+
 
 	var teams, users = [];
 	// View Model properties
@@ -27,33 +24,19 @@ controller: function ($scope, $q, programIncrementSvc, teamSvc, objectiveSvc, us
 
 	if(ctx.orgId){
 		vm.isLoading = true;
-		$q.all(promises).then(function(dtl){
+		landingPageSvc.ready.then(function(){
+				var blockedItems = landingPageSvc.blockedItems();
+				vm.blockedItems = blockedItems.blockedProcess;
+		})
+		.catch(function(error){
+			if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
+		})
+		.finally(function(){
 			vm.isLoading = false;
-			var pis, objectives;
-			[ pis, objectives, teams, users ] = dtl;
-			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
-			var piIds = activePis.map(x => x.$id);
-			var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
-			var blockedProcess = processBlockedItems(activePis, objectivesInActivePis, teams);
-			vm.blockedItems = blockedProcess;
-		},function(error){
-			toastHelp.error(error.messages,'Error');
 		});
-	}
+	};
 
 
-	function processBlockedItems(pis, objectives, teams) {
-		var results = []
-		pis.forEach(function(pi){
-			var blockedObjectives = objectives.filter(x => x.piId === pi.$id && x.state === 4);
-
-			results.push({
-				pi: pi,
-				objectives: blockedObjectives
-			})
-		});
-		return results;
-	}
 
 
 	function blockedItemDialog(blockedItem) {
@@ -84,16 +67,17 @@ controller: function ($scope, $q, programIncrementSvc, teamSvc, objectiveSvc, us
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		details: function (blockedItem) {
-			blockedItem.objectives.map(function(o){
-				var team = teams.filter(x=>x.$id === o.teamId)[0];
-				var owner = users.filter(x=>x.$id === team.ownerId)[0];
-				o.teamName = team.teamName;
-				o.owner = `${owner.firstName}, ${owner.lastName}`;
-				o.typeName = objectiveTypeConst[o.type];
-				return o;
+		details: function (item) {
+			landingPageSvc.ready.then(function(){
+					var blockedItem = landingPageSvc.blockedItems();
+					console.log('before process', item);
+					console.log('after process',blockedItem.details(item));
+
+					blockedItemDialog(blockedItem.details(item));
+			})
+			.catch(function(error){
+				if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
 			});
-			blockedItemDialog(blockedItem)
 		}
 	};
 }
