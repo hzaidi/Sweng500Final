@@ -3,9 +3,11 @@
 	<div ng-if="!vm.isLoading">
 		<h1>Dashboard Links</h1>
 		<div class="bar" ng-repeat="pi in vm.pis">
-			<div class="title">{{ pi.title }}</div>
-			<div class="clipboard"><i class="fa fa-clipboard" aria-hidden="true"></i></div>
+			<div class="title" ng-click="go.redirect('/dashboard')">{{ pi.title }}</div>
+			<div class="clipboard" data-balloon="Whats up!" data-balloon-pos="up"><i class="fa fa-clipboard" aria-hidden="true"></i></div>
 		</div>
-		Archive
+		<div class="load-more">
+			<span ng-click="go.loadMore()">{{ vm.showArchived ? 'Hide' : 'Show' }} archive</span>
+		</div>
 	</div>
 </div>

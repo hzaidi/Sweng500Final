@@ -39,13 +39,13 @@ angular.module("/components/landing-page/cmpt-landing-page-blocked-items/landing
 
 angular.module("/components/landing-page/cmpt-landing-page-dashboard-link/landingPageDashboardLink.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/landing-page/cmpt-landing-page-dashboard-link/landingPageDashboardLink.html",
-    "<div class=cmpt-landing-page-dashboard-link><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><h1>Dashboard Links</h1><div class=bar ng-repeat=\"pi in vm.pis\"><div class=title>{{ pi.title }}</div><div class=clipboard><i class=\"fa fa-clipboard\" aria-hidden=true></i></div></div>Archive</div></div>");
+    "<div class=cmpt-landing-page-dashboard-link><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><h1>Dashboard Links</h1><div class=bar ng-repeat=\"pi in vm.pis\"><div class=title ng-click=\"go.redirect('/dashboard')\">{{ pi.title }}</div><div class=clipboard data-balloon=\"Whats up!\" data-balloon-pos=up><i class=\"fa fa-clipboard\" aria-hidden=true></i></div></div><div class=load-more><span ng-click=go.loadMore()>{{ vm.showArchived ? 'Hide' : 'Show' }} archive</span></div></div></div>");
 }]);
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html",
     "<div class=cmpt-landing-page-pi-status-chart><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><h1>{{ vm.pis.length }} <span><ng-pluralize count=vm.pis.length when=\"{'1': ' Program Increment ',\n" +
-    "					'other': ' Program Increments '}\"></ng-pluralize>are active</span></h1><canvas id=pie width=500 height=350 class=\"chart chart-pie\" chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options></canvas><div class=legend></div></div></div>");
+    "					'other': ' Program Increments '}\"></ng-pluralize>are active</span></h1><canvas id=pie width=400 height=250 class=\"chart chart-pie\" chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options></canvas><div class=legend></div></div></div>");
 }]);
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-trends/landingPagePiTrends.html", []).run(["$templateCache", function($templateCache) {

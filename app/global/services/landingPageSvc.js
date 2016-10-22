@@ -172,8 +172,10 @@
 			var allPis = angular.copy(pis);
 			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
 
+			var archivedPis = pis.filter(x => !programIncrementSvc.isActivePi(x));
+
 			return{
-				allPis,
+				archivedPis,
 				activePis
 			}
 		}

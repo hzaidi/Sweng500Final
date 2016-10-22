@@ -9,7 +9,7 @@ templateUrl: '/components/landing-page/cmpt-landing-page-dashboard-link/landingP
 
 // #------------------------------------------------------# //
 // #---- Component (cmpt-landing-page-dashboard-link) ----# //
-controller: function ($scope, userSvc, landingPageSvc) {
+controller: function ($scope, $location, userSvc, landingPageSvc) {
 
 
 	var ctx = userSvc.context().get();
@@ -17,6 +17,7 @@ controller: function ($scope, userSvc, landingPageSvc) {
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: false,
+		showArchived: false,
 		pis: []
 	};
 
@@ -38,8 +39,22 @@ controller: function ($scope, userSvc, landingPageSvc) {
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		redirect: function(url){
+			$location.url(url)
+		},
+		loadMore: function () {
+			landingPageSvc.ready.then(function(){
+				vm.showArchived = !vm.showArchived;
+				var dashboardLink = landingPageSvc.dashboardLink();
+				if(vm.showArchived){
+					vm.pis = vm.pis.concat(dashboardLink.archivedPis);
+				}else{
+					vm.pis = dashboardLink.activePis;
+				}
+			})
+			.catch(function(error){
+				if(angular.isObject(error)){ toastHelp.error(error.messages,'Error');	}
+			})
 		}
 	};
 }

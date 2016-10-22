@@ -353,6 +353,11 @@
   -ms-flex: 1;
   flex: 1;
 }
+.cmpt-landing-page-dashboard-link .load-more {
+  cursor: pointer;
+  color: #8a8a8a;
+  text-align: center;
+}
 .cmpt-landing-page-pi-status-chart {
   margin: 2em 0;
   padding: 2em;
