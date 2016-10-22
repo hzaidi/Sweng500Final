@@ -15,7 +15,6 @@ controller: function ($scope, userSvc, landingPageSvc, ngDialog, toastHelp) {
 	var ctx = userSvc.context().get();
 
 
-	var teams, users = [];
 	// View Model properties
 	var vm = $scope.vm = {
 		isLoading: false,

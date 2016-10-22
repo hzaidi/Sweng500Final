@@ -168,6 +168,15 @@
 		}
 
 
+		var dashboardLink = function(){
+			var allPis = angular.copy(pis);
+			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
+
+			return{
+				allPis,
+				activePis
+			}
+		}
 
 
 
@@ -178,7 +187,8 @@
 			ready: _defer.promise,
 			blockedItems,
 			piTrends,
-			piStats
+			piStats,
+			dashboardLink
 		};
 
 	});

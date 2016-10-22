@@ -1,0 +1,27 @@
+@import "variables.styl"
+.cmpt-landing-page-dashboard-link {
+	.bar{
+		color: $ap-light-grey-4;
+		display: flex;
+		line-height: 2;
+		margin-bottom: 0.2em;
+		background: $baseColorLight;
+	  border-color: #111111 #0a0a0a black;
+		border-radius: 5px;
+		div {
+			font-size: 1.5vh;
+			padding: 5px;
+			cursor: pointer;
+		}
+		.title{
+			flex: 8 8 80px;
+		}
+		.clipboard{
+			background: darken($baseColorLight,20%);
+		  -webkit-box-shadow: inset 0 0px rgba(255, 255, 255, 0.1), 0 0px 0px rgba(0, 0, 0, 0.2);
+		  box-shadow: inset 0 0px rgba(255, 255, 255, 0.1), 0 0px 0px rgba(0, 0, 0, 0.2);
+			text-align: center;
+			flex: 1;
+		}
+	}
+}
