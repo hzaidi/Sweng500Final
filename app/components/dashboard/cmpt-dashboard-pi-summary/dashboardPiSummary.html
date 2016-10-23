@@ -1,7 +1,7 @@
 <div class="cmpt-dashboard-pi-summary">
 	<div class="header">
     <div class="programIncrement-header">Development Status</div>
-    <div class="programIncrement-title">{{ selectedPi.title }} - {{ selectedPi.description }}</div>
+    <div class="programIncrement-title">{{ selectedPi.title }} - <span>{{ selectedPi.description }}</span></div>
     <div class="programIncrement-dates">{{ go.parseDate(selectedPi.startDate) + ' - ' + go.calcEndDate(selectedPi) }}</div>
   </div>
 	<div class="time-remaining">
@@ -28,6 +28,6 @@
 			<div class="text">
 				Total Done
 			</div>
-		</div> -->		
+		</div> -->
 	</div>
 </div>

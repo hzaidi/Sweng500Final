@@ -11,6 +11,13 @@
 			return $firebaseAuth().$signInWithEmailAndPassword(username, password)
 		}
 
+		const loginAsSystem = function() {
+			var auth = $firebaseAuth().$getAuth();
+			if(!auth) {
+				return $firebaseAuth().$signInWithEmailAndPassword('system@gmail.com', '123123')
+			}
+			return $q.when();
+		}
 
 		const createUser = function(user){
 			sessionStorage.clear();
@@ -47,7 +54,8 @@
 			createUser,
 			deleteUser,
 			passwordResetEmail,
-			createTeamOwners
+			createTeamOwners,
+			loginAsSystem
 		}
 
 	});

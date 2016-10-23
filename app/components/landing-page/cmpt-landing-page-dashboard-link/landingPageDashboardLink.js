@@ -18,7 +18,8 @@ controller: function ($scope, $location, userSvc, landingPageSvc) {
 	var vm = $scope.vm = {
 		isLoading: false,
 		showArchived: false,
-		pis: []
+		pis: [],
+		baseUri: document.baseURI
 	};
 
 
@@ -39,8 +40,21 @@ controller: function ($scope, $location, userSvc, landingPageSvc) {
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		redirect: function(url){
-			$location.url(url)
+		redirect: function(pi){
+			$location.url(`/dashboard?guid=${pi.$id}~~${pi.orgId}`);
+		},
+		copyClipboard: function($event, pi){
+			var t = $event.target;
+			var copyTextarea = document.querySelector(`#${pi.$id}`);
+  		copyTextarea.select();
+			try {
+		    document.execCommand('copy');
+				t.classList.add('copied');
+			 setTimeout(function() { t.classList.remove('copied'); }, 2000);
+
+		  } catch (err) {
+		    console.log('Oops, unable to copy');
+		  }
 		},
 		loadMore: function () {
 			landingPageSvc.ready.then(function(){

@@ -110,14 +110,28 @@
 			url: '/dashboard',
 			templateUrl: '/routes/dashboard/dashboard.html',
 			resolve: {
-				user: function user(authSvc, userSvc) {
-					return authSvc.auth().$requireSignIn().then(function () {
-						return userSvc.getLoggedInUser();
-					});
+				user: function user(authSvc) {
+					return authSvc.loginAsSystem();
+				},
+				verifyLink: function verifyLink($q, $timeout, $location, userSvc, storageSvc) {
+					var _defer = $q.defer();
+					var param = $location.search().guid;
+					if (param) {
+						var passedGuid = param.split('~~');
+						var piId = passedGuid[0];
+						var orgId = passedGuid[1];
+						var context = userSvc.context().get();
+						if (!context) {
+							storageSvc.save({ key: 'user', data: { orgId: orgId, userRole: 1 } });
+						}
+						_defer.resolve();
+					} else {
+						$timeout(function () {
+							_defer.reject('INVALID_DASHBOARD_LINK');
+						}, 100);
+					}
+					return _defer.promise;
 				}
-			},
-			controller: function controller($scope, user) {
-				$scope.user = user;
 			}
 		});
 		// ========================================================== //
@@ -125,6 +139,10 @@
 		$rootScope.$on('$stateChangeError', function (e, toState, toParams, fromState, fromParams, error) {
 			if (error === "AUTH_REQUIRED") {
 				toastHelp.error('Login again to use the application', 'Error');
+				$state.go('default');
+			}
+			if (error === "INVALID_DASHBOARD_LINK") {
+				toastHelp.error('Invalid dashboard Link', 'Error');
 				$state.go('default');
 			}
 			if (error === "USER_DELETED") {

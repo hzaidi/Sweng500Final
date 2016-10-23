@@ -1,10 +1,13 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('DashboardCtrl', function ($scope, objectiveTypeConst, dashboardSvc, programIncrementSvc,objectHelp) {
+.controller('DashboardCtrl', function ($scope, $location, objectiveTypeConst, dashboardSvc, programIncrementSvc,objectHelp) {
 // #-----------------------------# //
 // #------- DashboardCtrl -------# //
 
 	// this is a route controller
+
 	var route = this;
+	var param = $location.search().guid;
+	var passedGuid = param.split('~~');
 	$scope.selectedPi = null;
 	$scope.objectives = [];
 
@@ -16,10 +19,13 @@
 		doughnuts:{}
 	};
 
+	programIncrementSvc.getByKey(passedGuid[0]).then(function(pi){
+		$scope.selectedPi = pi;
+	})
 
 	$scope.$watch('selectedPi', function(val){
-	if(val === null) { return; }
-	if($scope.objectives.length) { 	$scope.objectives.$destroy(); }
+		if(val === null) { return; }
+		if($scope.objectives.length) { 	$scope.objectives.$destroy(); }
 		dashboardSvc.getData($scope.selectedPi.$id).then(function(data){
 			route.vm.teams = data.processData;
 			var distributionPercentages = dashboardSvc.processPercentages();

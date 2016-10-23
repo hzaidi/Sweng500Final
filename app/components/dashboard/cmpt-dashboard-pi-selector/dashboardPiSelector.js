@@ -12,7 +12,9 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-selector/dashboardPiSelect
 
 // #------------------------------------------------# //
 // #---- Component (cmpt-dashboard-pi-selector) ----# //
-controller: function ($scope, $rootScope, $timeout, $filter, programIncrementSvc, toastHelp, dateHelp) {
+controller: function ($scope, $location, $rootScope, $timeout, $filter, programIncrementSvc, toastHelp, dateHelp) {
+
+	var param = $location.search().guid;
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -21,9 +23,15 @@ controller: function ($scope, $rootScope, $timeout, $filter, programIncrementSvc
 		isChecked: false
 	};
 
+
 	programIncrementSvc.piList().then(function(pis){
 		vm.isLoading = false;
-		$scope.selected = pis[0];
+		if(param) {
+			var passedGuid = param.split('~~');
+			$scope.selected = pis.filter(x => x.$id === passedGuid[0])[0];
+		}else{
+			$scope.selected = pis[0];
+		}
 		vm.pis = pis;
 	}, function(error){
 		toastHelp.error(error.message, 'Error')
