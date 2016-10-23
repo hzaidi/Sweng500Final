@@ -50,8 +50,7 @@ controller: function ($scope, $location, userSvc, landingPageSvc) {
 			try {
 		    document.execCommand('copy');
 				t.classList.add('copied');
-			 setTimeout(function() { t.classList.remove('copied'); }, 2000);
-
+			  setTimeout(function() { t.classList.remove('copied'); }, 2000);
 		  } catch (err) {
 		    console.log('Oops, unable to copy');
 		  }

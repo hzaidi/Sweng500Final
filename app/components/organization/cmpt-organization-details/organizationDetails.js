@@ -9,7 +9,7 @@ templateUrl: '/components/organization/cmpt-organization-details/organizationDet
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-organization-details) ----# //
-controller: function ($scope, $firebaseObject, organizationSvc) {
+controller: function ($scope, $firebaseObject, organizationSvc, toastHelp) {
 
 
 
@@ -24,6 +24,7 @@ controller: function ($scope, $firebaseObject, organizationSvc) {
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
 		updateOrg: function (org) {
+			toastHelp.success('Organization updated', 'Success');
 			org.$save();
 		}
 	};

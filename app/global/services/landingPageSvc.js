@@ -2,7 +2,7 @@
 
 	// #------------------------------------# //
 	// #----- Service (landingPageSvc) -----# //
-	app.factory('landingPageSvc', function ($q, userSvc, stateConst,programIncrementSvc, objectiveSvc, teamSvc,
+	app.factory('landingPageSvc', function ($q, userSvc, stateConst,programIncrementSvc, objectiveSvc, teamSvc,organizationSvc,
 																					 dashboardSvc, arrayHelp, objectiveTypeConst) {
 
 
@@ -10,13 +10,14 @@
 		var promises = (ctx.orgId) ? [programIncrementSvc.piList(),
 																	objectiveSvc.objectiveListByOrg(),
 																	teamSvc.teamList(),
-																	userSvc.userList()] : [];
+																	userSvc.userList(),
+																	organizationSvc.getByKey(ctx.orgId)] : [];
 		var	_defer = $q.defer();
-		var pis, objectives, teams, users;
+		var pis, objectives, teams, users, organization;
 
 		if(ctx.orgId){
 			$q.all(promises).then(function(dtl){
-				[ pis, objectives, teams, users ] = dtl;
+				[ pis, objectives, teams, users , organization] = dtl;
 				_defer.resolve();
 			},function(error){
 				_defer.reject(error);
@@ -99,7 +100,7 @@
 				});
 				return {
 					labels: Array.from(new Set(_objectives.map(x=> x.piTitle))),
-					data: [dataArray, dataArray, dataArray.map(x=> 80)]
+					data: [dataArray, dataArray, dataArray.map(x=> organization.acceptablePiTreshold || 80)]
 				}
 			}
 
