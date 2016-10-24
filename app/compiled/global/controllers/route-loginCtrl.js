@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	'use strict';angular.module('piStatus').controller('LoginCtrl', function () {
+	'use strict';angular.module('piStatus').controller('LoginCtrl', function ($scope) {
 		// #-------------------------# //
 		// #------- LoginCtrl -------# //
 

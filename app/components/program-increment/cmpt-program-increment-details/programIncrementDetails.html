@@ -1,0 +1,95 @@
+<div class="cmpt-program-increment-details">
+	<h1>Program Increment Details</h1>
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div><button class="button button-primary" ng-click="go.addPi()"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Program Increment</span></button></div>
+		<div class="pi-list" ng-show="vm.pis.length > 0">
+		<div class="grid">
+			<div class="grid-header">
+				<div class="grid-cell -u-4-24">Title</div>
+				<div class="grid-cell -u-6-24">Description</div>
+				<div class="grid-cell -u-6-24">Date</div>
+				<div class="grid-cell -u-3-24"># Sprints</div>
+				<div class="grid-cell -u-2-24">Duration</div>
+				<div class="grid-cell -u-3-24">Action</div>
+			</div>
+			<div class="grid-body">
+				<form name="programIncrementDetailsForm" novalidate>
+						<div class="grid-content" ng-repeat="pi in vm.pis" ng-form="programIncrementDetailsListForm">
+							<div class="input-container">
+									<div class="grid-cell -u-4-24">
+										<div ng-show="!pi.isEditing">{{ pi.title }}</div>
+										<div ng-show="pi.isEditing">
+											<input name="title" type="text" class="input" ng-model="pi.title" placeholder="Enter Title" required>
+											<div ng-messages="programIncrementDetailsListForm.title.$touched && programIncrementDetailsListForm.title.$error" role="alert"  class="validation-messages">
+												<div ng-message="required">Enter Title</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid-cell -u-6-24">
+										<div ng-show="!pi.isEditing">{{ pi.description }}</div>
+										<div ng-show="pi.isEditing">
+											<input name="description" type="text" class="input" ng-model="pi.description" placeholder="Enter Description" required>
+											<div ng-messages="programIncrementDetailsListForm.description.$touched && programIncrementDetailsListForm.description.$error" role="alert"  class="validation-messages">
+												<div ng-message="required">Enter Description</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid-cell -u-6-24">
+										<div ng-show="!pi.isEditing">{{ pi.startDate }} - {{ go.calcEndDate(pi) }}</div>
+										<div ng-show="pi.isEditing">
+
+											<datepicker class="angular-datepicker-input" date-format="MM/dd/yyyy" date-set="{{pi.startDate | date: 'MM/dd/yyyy'}}">
+													<input name="startDate"
+																 class="input input-date"
+													       type="text"
+																 ng-model="pi.startDate"
+																 placeholder="Enter Start date"
+																 required
+													>
+											</datepicker>
+
+											<div ng-messages="programIncrementDetailsListForm.startDate.$touched && programIncrementDetailsListForm.startDate.$error" role="alert"  class="validation-messages">
+												<div ng-message="required">Enter Start Date</div>
+												<div ng-message="date">Please Enter a Valid Date(mm/dd/yyyy)</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid-cell -u-3-24">
+										<div ng-show="!pi.isEditing">{{ pi.numberOfSprints }}</div>
+										<div ng-show="pi.isEditing">
+											<input name="numberOfSprints" type="number" class="input" ng-model="pi.numberOfSprints" placeholder="Enter Number of Sprints" required min="1">
+											<div ng-messages="programIncrementDetailsListForm.numberOfSprints.$touched && programIncrementDetailsListForm.numberOfSprints.$error" role="alert"  class="validation-messages">
+												<div ng-message="required">Enter Number of Sprints</div>
+												<div ng-message="min">Your field value is lesser minimum value of one</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid-cell -u-2-24">
+										<div ng-show="!pi.isEditing">{{ pi.lengthOfSprint }}</div>
+										<div ng-show="pi.isEditing">
+											<input name="lengthOfSprint" type="number" class="input" ng-model="pi.lengthOfSprint" placeholder="Enter Length of Spring (Weeks)" required min="2">
+											<div ng-messages="programIncrementDetailsListForm.lengthOfSprint.$touched && programIncrementDetailsListForm.lengthOfSprint.$error" role="alert"  class="validation-messages">
+												<div ng-message="required">Enter Length of Sprint</div>
+												<div ng-message="min">Your field value is lesser minimum value of two</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid-cell -u-3-24">
+										<button ng-show="!pi.isEditing" class="button button-positive" ng-click="go.toggleMode(pi)">                                                 <i class="fa fa-pencil"                  ></i></button>
+										<button ng-show="!pi.isEditing" class="button button-negative" ng-click="go.delete(pi)">                                                     <i class="fa fa-trash" aria-hidden="true"></i></button>
+										<button ng-show= "pi.isEditing" class="button button-positive" ng-click="go.save(pi)" ng-disabled="programIncrementDetailsListForm.$invalid"><i class="fa fa-check"                   ></i></button>
+										<button ng-show= "pi.isEditing" class="button button-negative" ng-click="go.cancel(pi)">                                                     <i class="fa fa-times" aria-hidden="true"></i></button>
+									</div>
+								</div>
+						</div>
+				</form>
+			</div>
+		</div>
+
+		</div>
+		<div class="no-data" ng-show="vm.pis.length <= 0">
+			Create Program Increment
+		</div>
+	</div>
+</div>

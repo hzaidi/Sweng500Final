@@ -1,0 +1,23 @@
+<div class="cmpt-dashboard-doughnut">
+	<div class="title">Overall {{ type }} breakdown</div>
+	<canvas id="doughnut" class="chart chart-doughnut"
+		width="400"
+		height="150"
+		chart-options="vm.options"
+		chart-colors="objective.colors"
+		chart-data="objective.data"
+		chart-labels="objective.labels">
+	</canvas>
+	<div class="total">
+		<span count-to="{{ vm.total }}" value="0" duration="1"></span>
+		<div>Total Points</div>
+	</div>
+	<div class="legend -g">
+		<div class="-u-12-24" ng-repeat="data in objective.labels">
+			<div>
+				<span ng-style="{background: objective.colors[$index]}"></span>
+				{{ objective.total[$index] }} Points {{ objective.labels[$index] }}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+@import "variables.styl"
+.cmpt-topbar-header {
+	background-color: $augmentedColorLight;
+	border-bottom: 1px solid $augmentedColorDark;
+  min-height: $top-bar-min-height;
+	.left-content{
+		text-align: left;
+		.cmpt-login-logo{
+			padding: 0 10px;
+			float: left;
+			img {
+				height: 65px;
+				width: 65px;
+			}
+		}
+		.org-name{
+			font-size: 30px;
+    	color: #fff;
+    	cursor: pointer;
+    	padding: 19px 88px;
+		}
+	}
+	.right-content{
+		text-align: right;
+		& > div{
+			display: inline-block;
+			vertical-align: middle;
+			.name{
+				padding: 0 12px;
+				color: $ap-light-grey-4;
+				font-size: 22px;
+				font-weight: bold;
+			}
+			.type{
+				padding: 0 12px;
+				color: $ap-light-grey-4;
+				font-size: 15px;
+			}
+		}
+		button{
+			margin: 0;
+	    background-color: transparent;
+	    height: $top-bar-min-height;
+	    border-left: 1px solid white;
+	    border-radius: 0;
+			&:hover{
+				background-color: $baseColorLight;
+			}
+		}
+	}
+
+}

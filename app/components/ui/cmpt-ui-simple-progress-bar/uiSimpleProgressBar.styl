@@ -1,0 +1,62 @@
+@import "variables.styl"
+.cmpt-ui-simple-progress-bar {
+	.progressBar {
+		padding: 1px;
+		height: 2.5vw;
+		box-shadow: 0px 0px 2px #08496a;
+		border: 1px solid #08496a;
+		background: rgba(0,66,85,.2);
+		margin-bottom: .4vw;
+		text-align: center;
+		position: relative;
+		transition: all 160ms ease-in-out;
+
+		.arrow-status {
+			display: flex;
+			align-items: center;
+			height: 100%;
+			width: 100%;
+			transition: all 160ms ease-in-out;
+			font-size: 1.2vw;
+
+			&.light {
+				background: $lightBlue;
+			}
+
+			&.medium {
+				background: $mediumBlue;
+			}
+
+			&.dark {
+				background: $darkBlue;
+			}
+
+			&.green {
+				background: $mediumGreen;
+			}
+
+			& > span{
+				color: $ap-light-grey-4;
+			}
+
+			span {
+				margin-left: 10px;
+
+				&.status {
+					color: $ap-light-grey-4;
+					position: absolute;
+					right: 10px;
+					top:0;
+					opacity: .6;
+					line-height: 3.3em;
+					font-size: 0.8vw;
+				}
+			}
+
+			sup {
+				color: $ap-light-grey-4;
+				font-size: 0.8vw;
+			}
+		}
+	}
+}

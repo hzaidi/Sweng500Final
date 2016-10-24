@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('LoginCtrl', function () {
+.controller('LoginCtrl', function ($scope) {
 // #-------------------------# //
 // #------- LoginCtrl -------# //
 

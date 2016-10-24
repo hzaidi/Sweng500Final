@@ -1,0 +1,65 @@
+@import "variables.styl"
+.cmpt-dashboard-pi-selector {
+	.container{
+		position: absolute;
+		top: -114px
+		background: darken($augmentedColorLight,-2%);
+		color: $ap-light-grey-4;
+		width: 100%;
+		z-index: 1;
+		transition: all 100ms ease-in-out;
+		.pi-tiles{
+			cursor: pointer;
+			background: darken($augmentedColorLight,-10%);
+			text-align: center;
+			margin: 10px 20px 10px 0px;
+			padding: 10px;
+			float: left;
+			transition: all 200ms ease-in-out;
+			.title{
+				font-size: 20px;
+			}
+			.description{
+				opacity:0.7;
+			}
+			&.selected{
+				transform: scale(1.05);
+				background: lighten($mediumGreen,0%);
+				.check{
+					color: darken($mediumGreen,40%);
+				}
+			}
+			&:first-child{
+				margin-left: 20px;
+			}
+			&:hover{
+				transform: scale(1.05);
+			}
+		}
+		.panel-opener{
+			cursor: pointer;
+			background: darken($augmentedColorLight,-10%);
+			padding: 5px;
+			clear: both;
+			text-align: center;
+		}
+		&.opened{
+			top: 0px;
+		}
+	}
+
+	.simulator-box{
+		display:inline-flex;
+		background: $augmentedColorDark;
+		line-height: 3.5;
+    width: 4.7vw;
+    float: right;
+		.cmpt-ui-toggle-switch{
+			margin: auto 20px;
+		}
+	}
+
+
+
+
+}

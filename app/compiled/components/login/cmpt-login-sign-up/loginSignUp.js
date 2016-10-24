@@ -12,17 +12,29 @@
 
 			// #----------------------------------------# //
 			// #---- Component (cmpt-login-sign-up) ----# //
-			controller: function controller($scope) {
+			controller: function controller($scope, $state, userSvc, toastHelp) {
 
 				// View Model properties
 				var vm = $scope.vm = {
-					property: 'initial value'
+					user: userSvc.userObj(),
+					confirmPassword: ''
 				};
 
 				// Actions that can be bound to from the view
 				var go = $scope.go = {
-					someAction: function someAction() {
-						vm.property = 'something';
+					createUser: function createUser() {
+						userSvc.createUserAuthentication(vm.user).then(function (user) {
+							var uid = angular.copy(user.uid);
+							var newUser = Object.assign({}, vm.user, { uid: uid, userRole: 1 });
+							userSvc.createUser(newUser).then(function (ref) {
+								toastHelp.success('User created successfully');
+								$state.go('home');
+							}, function (error) {
+								toastHelp.error(error.message, 'Error');
+							});
+						})['catch'](function (error) {
+							toastHelp.error(error.message, 'Error');
+						});
 					}
 				};
 			}

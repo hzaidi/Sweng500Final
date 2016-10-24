@@ -1,0 +1,22 @@
+<div class="cmpt-landing-page-pi-trends">
+	<h1>Trend</h1>
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div class="dropdown dropdown-dark" ng-if="vm.teams.length > 0">
+		<select class="dropdown-select"
+						ng-options="team.$id as team.teamName for team in vm.teams"
+						ng-model="vm.selectedTeam"
+						ng-change="go.change()">
+			<option value="">All teams</option>
+		</select>
+	</div>
+	<canvas ng-if="!vm.isLoading && vm.data.length" id="base" class="chart-bar"
+  	chart-data="vm.data"
+		chart-labels="vm.labels"
+		chart-colors="vm.colors"
+		chart-options="vm.options"
+	  chart-dataset-override="vm.dataOverride" >
+	</canvas>
+	<div class="no-data" ng-if="!vm.data.length">
+		No Data
+	</div>
+</div>

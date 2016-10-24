@@ -9,18 +9,26 @@ templateUrl: '/components/login/cmpt-login-authentication/loginAuthentication.ht
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-login-authentication) ----# //
-controller: function ($scope) {
+controller: function ($scope, $state, authSvc, userSvc, storageSvc,toastHelp) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		username: 'dkim@gmail.com',
+		password: '123456'
 	};
 
-	
+
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		someAction: function () {
-			vm.property = 'something';
+		login: function () {
+			authSvc.login(vm.username, vm.password).then(function(){
+					$state.go('home');
+			}, function(error){
+				toastHelp.error(error.message, 'Error');
+			})
+		},
+		forgotPass: function () {
+			$state.go('forgotpassword');
 		}
 	};
 }

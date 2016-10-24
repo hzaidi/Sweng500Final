@@ -1,10 +1,12 @@
-node_modules 
+node_modules
 *.DS_Store
 *.sublime-workspace
 build
 .tmp
 mocks
+*.map
 app/assets/css/*.css
 app/config/preloaded-templates.js
 app/compiled
 *.bak
+firebase.config.json

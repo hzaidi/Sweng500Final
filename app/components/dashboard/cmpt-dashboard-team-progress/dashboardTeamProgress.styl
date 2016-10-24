@@ -1,0 +1,29 @@
+@import "variables.styl"
+.cmpt-dashboard-team-progress {
+	line-height: 68px;
+	.team-container{
+		color: $ap-light-grey-4;
+		display: flex;
+		.team-name{
+			color: $ap-dark-grey-4;
+			font-size: 0.9vw;
+			flex: 1.3 0 0;
+			margin-right: 5px;
+			text-align: right;
+		}
+		.team-commitment{
+			padding: 0 4px;
+			flex: 2 0 0;
+		}
+		.team-stretch{
+			padding: 0 4px;
+			flex: 1 0 0;
+			.no-stretch {
+          color: $darkBlue;
+          font-size: 0.8vw;
+          text-align: center;
+					line-height: 5vh;
+      }
+		}
+	}
+}
