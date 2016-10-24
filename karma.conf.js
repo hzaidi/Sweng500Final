@@ -27,7 +27,7 @@ module.exports = function(config) {'use strict';
 
 
 		// list of files to exclude
-		exclude: [
+		exclude: [			
 			'app/**/*.dev.js',
 			'app/**/*.js.map',
 			'app/compiled/**/*.js'

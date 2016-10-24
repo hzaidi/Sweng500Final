@@ -4,7 +4,13 @@
 	// #----- Service (authSvc) -----# //
 	app.factory('authSvc', function ($q, $firebaseAuth) {
 
-		const secondaryAuthInstance = firebase.initializeApp(window.siteConfig,'secondary');
+		var secondaryAuthInstance;
+		try{
+			secondaryAuthInstance = firebase.app('secondary');
+		}
+		catch(e){
+			secondaryAuthInstance = firebase.initializeApp(window.siteConfig,'secondary');
+		}
 
 		const login = function(username,password) {
 			sessionStorage.clear();

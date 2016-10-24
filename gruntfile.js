@@ -41,6 +41,7 @@ module.exports = function (grunt) {
 			'concat:vendor',
 			'html2js:preload',
 			'clean:temp',
+			'start-karma',
 			'babel:dev',
 			'browserSync:dev',
 			'watch'
@@ -49,12 +50,12 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('dev-stylus', ['concat:stylus', 'stylus:dev']);
 
-	// start karma test runner as a separate process
-	// grunt.registerTask('start-karma', function () {
-	// 	grunt.util.spawn({
-	// 		cmd: 'karma',
-	// 		args: ['start', 'karma.conf.js']
-	// 	}, function () {});
-	// });
+	//start karma test runner as a separate process
+	grunt.registerTask('start-karma', function () {
+		grunt.util.spawn({
+			cmd: 'karma',
+			args: ['start', 'karma.conf.js']
+		}, function () {});
+	});
 
 };

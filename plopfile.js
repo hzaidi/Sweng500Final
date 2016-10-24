@@ -152,6 +152,10 @@ module.exports = function (plop) {
 			type: 'add',
 			path: 'app/global/services/{{camelCase name}}Svc.js',
 			templateFile: 'templates/service.js'
+		},{
+			type: 'add',
+			path: 'app/global/services/{{camelCase name}}Svc.spec.js',
+			templateFile: 'templates/service-spec.js'
 		}]
 	});
 	//------------------Service-------------------------------
@@ -198,6 +202,10 @@ module.exports = function (plop) {
 			type: 'add',
 			path: 'app/global/helpers/{{camelCase name}}Help.js',
 			templateFile: 'templates/helper.js'
+		},{
+			type: 'add',
+			path: 'app/global/helpers/{{camelCase name}}Help.spec.js',
+			templateFile: 'templates/helper-spec.js'
 		}]
 	});
 	//------------------Helper-------------------------------
