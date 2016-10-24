@@ -1,0 +1,16 @@
+<div class="cmpt-objectives-team-selector">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div class="selector">
+		<div class="dropdown dropdown-dark" ng-if="vm.teams.length > 1">
+			<select class="dropdown-select"
+							ng-options="team.$id as team.teamName for team in vm.teams"
+							ng-model="vm.val"
+							ng-change="go.change()">
+				<option value="">Please select Team</option>
+			</select>
+		</div>
+		<div ng-if="vm.teams.length === 1">
+			Team: {{ vm.teams[0].teamName }}
+		</div>
+	</div>
+</div>

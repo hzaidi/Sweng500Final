@@ -1,29 +1,61 @@
 <div class="cmpt-login-sign-up">
 	<div class="content -g">
 		<div class="-u-12-24 logo">
-			<img src="../assets/images/logo.png" alt="">			
+			<cmpt-login-logo></cmpt-login-logo>
 		</div>
 		<div class="-u-12-24 sign-up-form">
-			<div class="title">Sign Up</div>
-			<div class="-g two-side-by-side">
-				<div class="-u-12-24"><input type="text" class="input" placeholder="First Name" name="name" value=""></div>
-				<div class="-u-12-24"><input type="text" class="input" placeholder="Last Name" name="name" value=""></div>
-			</div>
-			<div>
-				<input type="text" class="input" placeholder="Email" name="name" value="">
-			</div>
-			<div>
-				<input type="text" class="input" placeholder="User Id" name="name" value="">
-			</div>
-			<div>
-				<input type="password" class="input" placeholder="Password" name="name" value="">
-			</div>
-			<div>
-				<input type="password" class="input" placeholder="Re-Password" name="name" value="">
-			</div>
-			<div>
-				<button class="button button-positive">Sign Up</button>
-			</div>
+			<form name="myForm" ng-submit="go.createUser()">
+				<div class="title">Sign Up</div>
+				<div class="-g two-side-by-side">
+					<div class="-u-12-24">
+						<div class="input-container">
+							<input type="text" name="firstName" class="input" placeholder="First Name" name="name" value="" ng-model="vm.user.firstName" required>
+							<div ng-messages="myForm.firstName.$touched && myForm.firstName.$error" role="alert"  class="validation-messages">
+						    <div ng-message="required">Enter First Name</div>
+						  </div>
+						</div>
+					</div>
+					<div class="-u-12-24">
+						<div class="input-container">
+							<input type="text" name="lastName" class="input" placeholder="Last Name" name="name" value="" ng-model="vm.user.lastName" required>
+							<div ng-messages="myForm.lastName.$touched && myForm.lastName.$error" role="alert"  class="validation-messages">
+								<div ng-message="required">Enter Last Name</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="input-container">
+						<input type="email" class="input" placeholder="Email" name="email" value="" ng-model="vm.user.email" required>
+						<div ng-messages="myForm.email.$touched && myForm.email.$error" role="alert"  class="validation-messages">
+							<div ng-message="required">Email is required</div>
+							<div ng-message="email">Email format is invalid</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="input-container">
+						<input type="password" name="password" class="input" placeholder="Password" name="name" value="" ng-model="vm.user.password" required ng-minlength="6">
+						<div ng-messages="myForm.password.$touched && myForm.password.$error" role="alert"  class="validation-messages">
+							<div ng-message="required">Password is required</div>
+							<div ng-message="minlength">Length of password should be atleast 6 characters long</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="input-container">
+						<input type="password" name="confirmPassword" class="input" placeholder="Re-Password" name="name" value="" ng-model="vm.confirmPassword" equals="{{ vm.user.password }}" required  ng-minlength="6">
+						<div ng-messages="myForm.confirmPassword.$touched && myForm.confirmPassword.$error" role="alert"  class="validation-messages">
+							<div ng-message="required">Password is required</div>
+							<div ng-message="minlength">Length of password should be atleast 6 characters long</div>
+							<div ng-message="equals">Password is not matching</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="button button-positive" ng-disabled="myForm.$invalid">Sign Up</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

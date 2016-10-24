@@ -1,0 +1,49 @@
+@import "variables.styl"
+.cmpt-dashboard-doughnut {
+	position: relative;
+	.title{
+		color: $ap-light-grey-4;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.total{
+		position: absolute;
+		top: 28%;
+    left: 41%;
+    font-size: 2vw;
+    color: $ap-light-grey-4;
+    text-align: center;
+		div {
+			color: $ap-dark-grey-3;
+			font-size: 1vw;
+		}
+	}
+	.legend{
+		//width: 100%;
+		color: $ap-light-grey-4;
+		margin-top: 10px;
+		& > div{
+			margin: 5px 0;
+			div {
+				display: inline-block;
+				width: 160px;
+				span {
+					display: inline-block;
+				  width: 15px;
+				  height: 15px;
+				  vertical-align: top;
+				}
+			}
+			&:nth-child(even){
+				div {
+					float: left;
+				}
+			}
+			&:nth-child(odd){
+				div {
+					float: right;
+				}
+			}
+		}
+	}
+}

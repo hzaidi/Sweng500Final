@@ -1,0 +1,61 @@
+<div class="cmpt-users-list">
+	<h1>Team Owners</h1>
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div><button class="button button-positive" ng-click="go.addUser()"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Owner</span></button></div>
+		<div class="team-list" ng-show="vm.users.length > 0">
+			<div class="grid">
+				<div class="grid-header">
+					<div class="grid-cell -u-10-24">Name</div>
+					<div class="grid-cell -u-10-24">Email</div>
+					<div class="grid-cell -u-4-24">Action</div>
+				</div>
+				<div class="grid-body">
+					<form name="userForm" novalidate>
+							<div class="grid-content" ng-repeat="user in vm.users" ng-form="userListForm">
+								<div class="grid-cell -u-10-24">
+									<div class="user-name" ng-show="!user.isEditing">
+										{{ user.firstName }} {{ user.lastName }}
+									</div>
+									<div  class="user-name" ng-show="user.isEditing">
+										<div class="-u-12-24">
+											<div class="input-container">
+												<input name="firstName" type="text" class="input" ng-model="user.firstName" placeholder="First Name" required ng-minlength="3">
+												<div ng-messages="userListForm.firstName.$touched && userListForm.firstName.$error" role="alert"  class="validation-messages">
+														<div ng-message="required">Enter First Name</div>
+														<div ng-message="minlength">Length of First Name should be at least 3 characters long</div>
+												</div>
+											</div>
+										</div>
+										<div class="-u-12-24">
+											<div class="input-container">
+												<input name="lastName" type="text" class="input" ng-model="user.lastName" placeholder="Last Name" required ng-minlength="3">
+												<div ng-messages="userListForm.lastName.$touched && userListForm.lastName.$error" role="alert"  class="validation-messages">
+														<div ng-message="required">Enter Last Name</div>
+														<div ng-message="minlength">Length of Last Name should be at least 3 characters long</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="grid-cell -u-10-24">
+									<div class="user-email">
+										{{ user.email }}
+									</div>
+								</div>
+								<div class="grid-cell -u-4-24">
+									<button ng-show="!user.isEditing" class="button button-positive" ng-click="go.toggleMode(user)">                              <i class="fa fa-pencil">                  </i></button>
+									<button ng-show="!user.isEditing" class="button button-negative" ng-click="go.delete(user)">                                  <i class="fa fa-trash" aria-hidden="true"></i></button>
+									<button ng-show="user.isEditing"  class="button button-positive" ng-click="go.save(user)" ng-disabled="userListForm.$invalid"><i class="fa fa-check">                   </i></button>
+									<button ng-show="user.isEditing"  class="button button-negative" ng-click="go.cancel(user)">                                  <i class="fa fa-times" aria-hidden="true"></i></button>
+								</div>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="no-data" ng-show="vm.users.length <= 0">
+			Create Users
+		</div>
+	</div>
+</div>

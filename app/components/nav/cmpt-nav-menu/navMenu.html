@@ -1,0 +1,9 @@
+<div class="cmpt-nav-menu">
+	<ul>
+		<a href="{{ menu.url }}" ng-class="{ 'selected': go.isSelected(menu.url) }" ng-repeat="menu in vm.menuData">
+			<li>
+				<i class="fa {{ menu.icon }}" aria-hidden="true"></i>{{ menu.title }}
+			</li>
+		</a>
+	</ul>
+</div>

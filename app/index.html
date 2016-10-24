@@ -13,9 +13,19 @@
 	<link rel="stylesheet" href="/assets/css/vendor.css">
 	<link rel="stylesheet" href="/assets/css/app.css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.3.0/balloon.min.css">
 	<base href="/">
 </head>
 <body ng-app="piStatus">
+
+
+	<script>window.siteConfig = {
+		apiKey: '#{apiKey}',
+		authDomain: '#{authDomain}',
+		databaseURL: '#{databaseURL}',
+		storageBucket: '#{storageBucket}',
+		messagingSenderId: '#{messagingSenderId}'
+	};</script>
 
 	<ui-view></ui-view>
 
@@ -25,6 +35,18 @@
 	<!--[if gt IE 8]><!-->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 	<script>window.Modernizr||document.write('<script src="/assets/js/modernizr.js"><\/script>')</script>
+	<!--<![endif]-->
+
+	<!-- jQuery v2.1.3 -->
+	<!--[if gt IE 8]><!-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>window.jQuery||document.write('<script src="/assets/js/jquery.js"><\/script>')</script>
+	<!--<![endif]-->
+
+	<!-- jQuery UI v1.11.2 -->
+	<!--[if gt IE 8]><!-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script>window.jQuery.ui||document.write('<script src="/assets/js/jquery-ui.js"><\/script>')</script>
 	<!--<![endif]-->
 
 
@@ -40,13 +62,17 @@
 	<script>try{angular.module('ui.router')}catch(e){document.write('<script src="/assets/js/angular-ui-router.js"><\/script>')}</script>
 	<!--<![endif]-->
 
-
 	<!-- Firebase v3.2.0-->
 	<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
 
 	<!-- AngularFire v2.0.1-->
 	<script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
 
+	<!-- Chartjs v2.1.3 -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
+
+	<!-- Angular Charts -->
+	<script src="/assets/js/angular-chart.js"></script>
 
 	<!-- Angular Touch v1.5.3 -->
 	<!--[if gt IE 8]><!-->

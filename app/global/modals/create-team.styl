@@ -1,0 +1,22 @@
+@import "variables.styl"
+.modal-team-org{
+  input {
+    width :100%;
+    background: $ap-light-grey-4;
+    color: $augmentedColorLight;
+  }
+  .ngdialog-buttons{
+    &.disabled{
+      a {
+      opacity: 0.5;
+      cursor: not-allowed;
+      }
+      a {
+      &.button-default{
+        opacity:1;
+        cursor: pointer;
+        }
+      }
+    }
+  }
+}

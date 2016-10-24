@@ -1,0 +1,30 @@
+@import "variables.styl"
+.cmpt-nav-menu {
+	display: inline-block;
+	height: calc(100vh - 72px);
+	border-right: 1px solid $augmentedColorDark;
+	ul {
+		a {
+			color: $ap-light-grey-4;
+			text-decoration: none;
+			&.selected{
+				li{
+					background-color: $augmentedColorLight;
+				}
+			}
+		}
+		li {
+			padding: 10px;
+			border-bottom: 1px solid $augmentedColorDark;
+			color: $ap-light-grey-4;
+			cursor: pointer;
+			i {
+				margin-right: 5px;
+			}
+			&:hover{
+				background-color: $augmentedColorLight;
+			}
+		}
+	}
+
+}

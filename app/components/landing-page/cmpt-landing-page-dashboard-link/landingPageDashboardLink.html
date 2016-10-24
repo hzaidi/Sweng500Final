@@ -1,0 +1,14 @@
+<div class="cmpt-landing-page-dashboard-link">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<h1>Dashboard Links</h1>
+		<div class="bar" ng-repeat="pi in vm.pis">
+			<div class="title" ng-click="go.redirect(pi)">{{ pi.title }}</div>
+			<input id="{{ pi.$id }}" type="text" class="input" name="name" value="{{ vm.baseUri }}dashboard?guid={{ pi.$id }}~~{{ pi.orgId }}" readonly>
+			<div data-balloon="copy to clipboard" data-balloon-pos="down" class="clipboard" ng-click="go.copyClipboard($event,pi)" title="Copy to clipboard">copy</div>
+		</div>
+		<div class="load-more">
+			<span ng-click="go.loadMore()">{{ vm.showArchived ? 'Hide' : 'Show' }} archive</span>
+		</div>
+	</div>
+</div>

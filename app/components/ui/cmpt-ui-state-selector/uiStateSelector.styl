@@ -1,0 +1,114 @@
+@import "variables.styl"
+.cmpt-ui-state-selector {
+	display: flex;
+  height: 34px;
+  margin:5px;
+  .option{
+    text-transform: uppercase;
+    flex: 1;
+    color: $ap-light-grey-4;
+    padding: 9px 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+		line-height: 1;
+		&.red{
+			opacity: 0.4;
+			background-color: $mediumRed;
+			&:hover{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumRed,20%);
+				border-color: darken($mediumRed,30%);
+			}
+			&:active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumRed,3%);
+				border-color: darken($mediumRed,10%);
+			}
+			&.active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumRed,20%);
+				border-color: darken($mediumRed,30%);
+			}
+		}
+		&.grey{
+			opacity: 0.4;
+			background-color: $mediumGrey;
+			&:hover{
+				opacity:1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGrey,20%);
+				border-color: darken($mediumGrey,30%);
+			}
+			&:active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGrey,3%);
+				border-color: darken($mediumGrey,10%);
+			}
+			&.active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGrey,20%);
+				border-color: darken($mediumGrey,30%);
+			}
+		}
+		&.blue{
+			opacity: 0.4;
+			background-color: $mediumBlue;
+			&:hover{
+				opacity:1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumBlue,20%);
+				border-color: darken($mediumBlue,30%);
+			}
+			&:active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumBlue,3%);
+				border-color: darken($mediumBlue,10%);
+			}
+			&.active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumBlue,20%);
+				border-color: darken($mediumBlue,30%);
+			}
+		}
+		&.green{
+			opacity: 0.4;
+			background-color: $mediumGreen;
+			&:hover{
+				opacity:1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGreen,20%);
+				border-color: darken($mediumGreen,30%);
+			}
+			&:active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGreen,3%);
+				border-color: darken($mediumGreen,10%);
+			}
+			&.active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumGreen,20%);
+				border-color: darken($mediumGreen,30%);
+			}
+		}
+
+
+    &:first-child{
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &:last-child{
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="dialog-popup modal-objective">
+	<form name="objectiveForm">
+			<div class="ngdialog-message">
+				<div class="header">{{ngDialogData.header}}</div>
+		    <div class="content">
+		      <div class="input-container">
+							<input name="title" type="text" class="input" ng-model="ngDialogData.objective.title" placeholder="Enter objective" required ng-minlength="6">
+							<div ng-messages="objectiveForm.title.$touched && objectiveForm.title.$error" role="alert"  class="validation-messages">
+								<div ng-message="required">Enter Objective Name</div>
+								<div ng-message="minlength">Length of Objective Name should be at least 6 characters long</div>
+							</div>
+					<!-- </div>
+		      <div class="input-container"> -->
+		        <cmpt-ui-state-selector selected="ngDialogData.objective.state"></cmpt-ui-state-selector>
+		      </div>
+		    </div>
+			</div>
+			<div class="ngdialog-buttons" ng-class="{'disabled' : objectiveForm.$invalid}">
+		    <a class="fl-button {{ button.cls }}"
+		       ng-click="button.action(objectiveForm)"
+		       ng-repeat="button in ngDialogData.buttons">
+		      <i class="fa {{ button.icon }}" ng-class="{ 'fa-spinner fa-spin': button.loading }"></i>{{ button.title }}
+				</a>
+			</div>
+	</form>
+</div>

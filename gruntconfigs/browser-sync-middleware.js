@@ -60,6 +60,11 @@ module.exports = function (safApp) {
 	function serveSpaApp (req, res, next) { return serveSpa.call(this, req, res, next, 'app'); }
 
 	function configReplacer(content) {
+		var	configFile = JSON.parse(fs.readFileSync('firebase.config.json', {encoding: 'utf8'}));
+		Object.keys(configFile).forEach(function (cfg) {
+			var cfgValue = configFile[cfg];
+			content = content.replace(cfg, cfgValue);
+		});
 		return content;
 	}
 

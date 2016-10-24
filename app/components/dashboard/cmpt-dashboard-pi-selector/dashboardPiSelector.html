@@ -1,0 +1,16 @@
+<div class="cmpt-dashboard-pi-selector">
+	<div class="container" ng-class="{'opened' : open}">
+		<div class="pi-tiles" ng-repeat="pi in vm.pis" ng-click="go.select(pi)" ng-class="{'selected': pi.$id === selected.$id}">
+			<div class="pi-info">
+				<div class="title">{{ pi.title }}</div>
+				<div class="description">{{ pi.description }}</div>
+				<div class="dates">{{ go.parseDate(pi.startDate) + ' - ' + go.calcEndDate(pi) }}</div>
+				<div class="check"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+			</div>
+		</div>
+		<div class="simulator-box">
+			<cmpt-ui-toggle-switch is-checked="vm.isChecked" label="Simulator"></cmpt-ui-toggle-switch>
+		</div>
+		<div class="panel-opener" ng-click="go.toggle()"><i class="fa fa-{{ open ? 'times': 'align-justify'}} " aria-hidden="true"></i></div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<div class="cmpt-dashboard-pi-summary">
+	<div class="header">
+    <div class="programIncrement-header">Development Status</div>
+    <div class="programIncrement-title">{{ selectedPi.title }} - <span>{{ selectedPi.description }}</span></div>
+    <div class="programIncrement-dates">{{ go.parseDate(selectedPi.startDate) + ' - ' + go.calcEndDate(selectedPi) }}</div>
+  </div>
+	<div class="time-remaining">
+		<div class="box">
+			<div class="number">{{ vm.sprintsLeft }}</div>
+			<div class="text">
+				<ng-pluralize count="vm.sprintsLeft" when="{'1': 'Sprint Remaining',
+					'other': 'Sprints Remaining'}">
+				</ng-pluralize>
+			</div>
+
+		</div>
+		<div class="box">
+			<div class="number">{{ vm.daysLeft }}</div>
+			<div class="text">
+				<ng-pluralize count="vm.daysLeft" when="{'1': 'Day Remaining',
+					'other': 'Days Remaining'}">
+				</ng-pluralize>
+			</div>
+		</div>
+
+		<!-- <div class="box">
+			<div class="number">{{ (totalCommittedDone + totalStretchDone) / totalCommitted * 100 | number:0 }}%</div>
+			<div class="text">
+				Total Done
+			</div>
+		</div> -->
+	</div>
+</div>

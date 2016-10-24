@@ -4,35 +4,72 @@ $default-button-bg = #28597b;
 $positive-button-bg = $mediumGreen;
 $primary-button-bg = $mediumBlue;
 $negative-button-bg = $mediumRed;
+$grey-button-bg = #8b8b8b;
 
 body {
 	margin: 0;
 	font-family: 'Ropa Sans';
 	height: 100%;
 	-webkit-font-smoothing: antialiased;
-	overflow: hidden;
+	background: $baseColorLight;
 }
 
+*:focus {
+    outline: none;
+}
 
-.input{
-	display: inline-block;
-	padding: 6px 12px;
-	margin: 5px 0;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.42857143;
-	box-shadow: 1px 1px 3px rgba(0, 27, 42, .8);
-  border: 1px solid #08496a;
-  background: rgba(0, 66, 85, .2);
+h1{
 	color: $ap-light-grey-4;
-	border-radius: 2px;
+	font-weight: bold;
+	margin: 0.2em 0;
 }
+
+.content{
+	display: flex;
+	.cmpt-nav-menu{
+		flex: 1 1 20em;
+	}
+	.content-body{
+		padding: 20px
+		flex: 9 9 90em;
+	}
+}
+
+.grid{
+	margin: 10px 0;
+	color:$ap-light-grey-4;
+	border: 1px solid darken($default-button-bg,10%);
+	.grid-header{
+		background-color: $default-button-bg;
+		.grid-cell{
+			line-height: 25px;
+		}
+	}
+	.grid-body{
+		.grid-content{
+			border-bottom: 1px solid darken($default-button-bg,10%);
+			&:hover{
+				background-color: #1d3444;
+			}
+			&:last-child{
+				border-bottom: 0;
+			}
+		}
+		.grid-cell{
+			line-height: 43px;
+		}
+	}
+	.grid-cell{
+		padding: 5px;
+		box-sizing: border-box;
+	}
+}
+
 
 
 .button {
 	display: inline-block;
 	padding: 6px 12px;
-	margin: 5px 0;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.42857143;
@@ -50,9 +87,16 @@ body {
 	user-select: none;
 	background-image: none;
 	border: none;
-	border-radius: 4px;
+	border-radius: 2px;
+	span {
+		margin-left: 5px;
+	}
 	&:hover {
 		background-color: darken($default-button-bg, 10%);
+	}
+
+	&:disabled{
+		opacity: 0.3;
 	}
 
 	&.button-positive {
@@ -76,4 +120,64 @@ body {
 	    	background-color: darken($negative-button-bg, 5%);
 		}
 	}
+
+	&.button-default {
+    	background-color: $grey-button-bg;
+			&:hover {
+	    	background-color: darken($grey-button-bg, 5%);
+		}
+	}
+}
+
+
+
+
+.dialog-popup {
+
+	.ngdialog-message {
+		& > div {
+			margin: 0 1rem 1rem 1rem;
+		}
+
+	 	.header {
+			font-size: 1.2rem;
+			color: $ap-light-grey-4;
+			background: none repeat scroll 0% 0% $default-button-bg;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			margin: 0 0 1rem 0;
+			padding: 0.7rem 2.7rem 0.7rem 1rem;
+		}
+
+		.content {
+			font-size: 1rem;
+		}
+	}
+
+	.ngdialog-buttons {
+
+		a {
+			float:right;
+			margin-left: 5px;
+
+			&.fl-link {
+				font-size: 14px;
+				margin: 6px 24px;
+				color: $ap-dark-grey-1;
+				cursor:pointer;
+			}
+			i{
+				margin-right: 5px;
+			}
+
+		}
+	}
+}
+
+.ngdialog-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.ngdialog-close {
+	content: '\f05c';
 }
