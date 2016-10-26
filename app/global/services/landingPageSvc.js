@@ -137,7 +137,7 @@
 				elements: {
 					arc: {
 						borderWidth: 1,
-						borderColor: '#FFF'
+						borderColor: '#001322'
 					}
 				},
 				legend: {

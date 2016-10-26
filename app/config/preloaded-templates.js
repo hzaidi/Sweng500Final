@@ -50,7 +50,7 @@ angular.module("/components/landing-page/cmpt-landing-page-dashboard-link/landin
 angular.module("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/landing-page/cmpt-landing-page-pi-status-chart/landingPagePiStatusChart.html",
     "<div class=cmpt-landing-page-pi-status-chart><cmpt-ui-loader ng-if=vm.isLoading></cmpt-ui-loader><div ng-if=!vm.isLoading><h1>{{ vm.pis.length }} <span><ng-pluralize count=vm.pis.length when=\"{'1': ' Program Increment ',\n" +
-    "					'other': ' Program Increments '}\"></ng-pluralize>are active</span></h1><canvas id=pie width=400 height=250 class=\"chart chart-pie\" chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options></canvas><div class=legend></div></div></div>");
+    "					'other': ' Program Increments '}\"></ng-pluralize>are active</span></h1><canvas id=pie width=300 height=150 class=\"chart chart-pie\" chart-data=vm.data chart-labels=vm.labels chart-colors=vm.colors chart-options=vm.options></canvas><div class=legend></div></div></div>");
 }]);
 
 angular.module("/components/landing-page/cmpt-landing-page-pi-trends/landingPagePiTrends.html", []).run(["$templateCache", function($templateCache) {
