@@ -115,7 +115,7 @@ angular.module("/components/team/cmpt-team-list/teamList.html", []).run(["$templ
 
 angular.module("/components/topbar/cmpt-topbar-header/topbarHeader.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/components/topbar/cmpt-topbar-header/topbarHeader.html",
-    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo><div class=org-name ng-click=go.home()>{{ vm.org.orgName }}</div></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userRole }}</div></div><button class=button ng-click=go.logout()>Logout</button></div></div></div>");
+    "<div class=cmpt-topbar-header><div class=\"content -g\"><div class=\"left-content -u-12-24\"><cmpt-login-logo></cmpt-login-logo><div class=org-name ng-click=go.home()>{{ vm.org.orgName }}</div></div><div class=\"right-content -u-12-24\"><div><div class=name>{{ vm.user.firstName }} {{ vm.user.lastName }}</div><div class=type>{{ vm.user.userRole }}</div></div><button class=\"button bell\" ng-click=go.logout()><i class=\"fa fa-bell-o\" aria-hidden=true></i> <span>12</span></button> <button class=\"button logout\" ng-click=go.logout()>Logout<i class=\"fa fa-sign-out\" aria-hidden=true></i></button></div></div></div>");
 }]);
 
 angular.module("/components/ui/cmpt-ui-loader/uiLoader.html", []).run(["$templateCache", function($templateCache) {
