@@ -12,7 +12,22 @@
 		<div class="row">
 			<span class="label"
 						data-balloon-length="medium"
-						data-balloon="In percentage specify the accpetable treshold of the Program Increment" 
+						data-balloon="In percentage specify the accpetable treshold of the Program Increment"
+						data-balloon-pos="right" >Acceptable PI treshold
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+			</span>
+			<div class="input-container">
+					<input type="number" class="input" step="10" name="acceptablePiTreshold" ng-model="vm.org.acceptablePiTreshold" ng-min="0" ng-max="100">
+					<div ng-messages="orgForm.acceptablePiTreshold.$touched && orgForm.acceptablePiTreshold.$error" role="alert"  class="validation-messages">
+						<div ng-message="min">Minimum value in percentage is 0</div>
+						<div ng-message="max">Maximum value in percentage is 100</div>
+					</div>
+			</div>
+		</div>
+		<div class="row">
+			<span class="label"
+						data-balloon-length="medium"
+						data-balloon="In percentage specify the accpetable treshold of the Program Increment"
 						data-balloon-pos="right" >Acceptable PI treshold
 						<i class="fa fa-question-circle" aria-hidden="true"></i>
 			</span>

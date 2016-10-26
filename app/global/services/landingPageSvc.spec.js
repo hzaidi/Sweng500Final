@@ -83,7 +83,7 @@
       expect(typeof service.ready.then).toBe('function');
     });
     it('should have a blockedItems property that is a function', function () {
-      expect(typeof service.blockedItems).toBe('function');
+      expect(typeof service.itemsByStateId).toBe('function');
     });
     it('should have a piTrends property that is a function', function () {
       expect(typeof service.piTrends).toBe('function');

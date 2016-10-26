@@ -100,6 +100,28 @@
 				border-color: darken($mediumGreen,30%);
 			}
 		}
+		&.yellow{
+			opacity: 0.4;
+			background-color: $mediumYellow;
+			&:hover{
+				opacity:1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumYellow,20%);
+				border-color: darken($mediumYellow,30%);
+			}
+			&:active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumYellow,3%);
+				border-color: darken($mediumYellow,10%);
+			}
+			&.active{
+				opacity: 1;
+				color: $ap-light-grey-4;
+				background-color: darken($mediumYellow,20%);
+				border-color: darken($mediumYellow,30%);
+			}
+		}
 
 
     &:first-child{

@@ -91,6 +91,7 @@
 				showClose: false,
 				closeByEscape: false,
 				closeByNavigation: false,
+					className:'ngdialog ngdialog-theme-default container-modal-add-objectives',
 				data: {
 					header: 'Add Objective',
 					objective,

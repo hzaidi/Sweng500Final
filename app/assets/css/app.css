@@ -299,17 +299,39 @@
   cursor: pointer;
 }
 .cmpt-landing-page-blocked-items .pi .title {
-  font-size: 2vh;
+  font-size: 1.6vh;
 }
 .cmpt-landing-page-blocked-items .pi .description {
   color: #8a8a8a;
+  font-size: 1.4vh;
 }
 .cmpt-landing-page-blocked-items .pi .count {
+  font-size: 2.5vh;
+  color: #9b970b;
+  margin-right: 5px;
+}
+.cmpt-landing-page-blocked-items .no-data {
+  font-size: 1.5vw;
+  color: #2385f8;
+  padding: 1.5vw;
+  text-align: center;
+}
+.cmpt-landing-page-cancelled-items .pi {
+  cursor: pointer;
+}
+.cmpt-landing-page-cancelled-items .pi .title {
+  font-size: 1.6vh;
+}
+.cmpt-landing-page-cancelled-items .pi .description {
+  color: #8a8a8a;
+  font-size: 1.4vh;
+}
+.cmpt-landing-page-cancelled-items .pi .count {
   font-size: 2.5vh;
   color: #d95b5b;
   margin-right: 5px;
 }
-.cmpt-landing-page-blocked-items .no-data {
+.cmpt-landing-page-cancelled-items .no-data {
   font-size: 1.5vw;
   color: #2385f8;
   padding: 1.5vw;
@@ -419,7 +441,6 @@
   content: "copied";
 }
 .cmpt-landing-page-pi-status-chart {
-  margin: 2em 0;
   padding: 2em;
   background: #153d59;
 }
@@ -992,6 +1013,36 @@
   background-color: #007775;
   border-color: #006866;
 }
+.cmpt-ui-state-selector .option.yellow {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  background-color: #9b970b;
+}
+.cmpt-ui-state-selector .option.yellow:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #7c7909;
+  border-color: #6d6a08;
+}
+.cmpt-ui-state-selector .option.yellow:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #96920b;
+  border-color: #8b880a;
+}
+.cmpt-ui-state-selector .option.yellow.active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  color: #fff;
+  background-color: #7c7909;
+  border-color: #6d6a08;
+}
 .cmpt-ui-state-selector .option:first-child {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -1212,18 +1263,49 @@
   padding: 1.5vw;
   text-align: center;
 }
-.modal-objective input {
+.container-modal-blocked-item .ngdialog-content {
+  width: 800px !important;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid {
+  width: 100%;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body {
+  color: #404040;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content:hover {
+  background-color: #d6d6d6;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type {
+  font-size: 1vw;
+  font-weight: bold;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.commitment {
+  color: #009592;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .grid-body .grid-content .type.stretch {
+  color: #2385f8;
+}
+.container-modal-blocked-item .ngdialog-content .modal-blocked-item .grid .no-data {
+  font-size: 1.2vw;
+  color: #606060;
+  padding: 1.5vw;
+  text-align: center;
+}
+.container-modal-add-objectives .ngdialog-content {
+  width: 550px !important;
+}
+.container-modal-add-objectives .ngdialog-content .modal-objective input {
   width: 100%;
   background: #fff;
   color: #113148;
 }
-.ngdialog-buttons.disabled a {
+.container-modal-add-objectives .ngdialog-content .ngdialog-buttons.disabled a {
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
   cursor: not-allowed;
 }
-.ngdialog-buttons.disabled a.button-default {
+.container-modal-add-objectives .ngdialog-content .ngdialog-buttons.disabled a.button-default {
   opacity: 1;
   -ms-filter: none;
   filter: none;

@@ -1,0 +1,23 @@
+<div class="cmpt-landing-page-cancelled-items">
+	<cmpt-ui-loader ng-if="vm.isLoading"></cmpt-ui-loader>
+	<div ng-if="!vm.isLoading">
+		<div class="grid">
+			<div class="grid-header">
+				<div class="grid-cell -u-24-24">Items Cancelled</div>
+			</div>
+			<div class="grid-body" ng-if="vm.cancelledItems.length">
+				<div class="grid-content" ng-repeat="cancelledItem in vm.cancelledItems">
+					<div class="pi grid-cell -u-24-24" ng-click="go.details(cancelledItem)">
+						<span class="title">{{ cancelledItem.pi.title }}</span> -
+						<span class="description">{{ cancelledItem.pi.description }}</span> -
+						<span class="count">
+							{{ cancelledItem.objectives.length }}
+						</span><ng-pluralize count="cancelledItem.objectives.length" when="{'1': 'cancelled Item', '0': 'cancelled Item',	'other': 'blocked Items'}"></ng-pluralize>
+					</div>
+				</div>
+			</div>
+			<div class="no-data" ng-if="!vm.cancelledItems.length">
+				No Data
+			</div>
+	</div>
+</div>

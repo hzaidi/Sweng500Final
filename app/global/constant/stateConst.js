@@ -20,6 +20,11 @@
 		}, {
 			id: 4,
 			value: 'Blocked',
+			color: 'yellow',
+			hex: '#9b970b'
+		},{
+			id: 5,
+			value: 'Cancelled',
 			color: 'red',
 			hex: '#D95B5B'
 		}]);

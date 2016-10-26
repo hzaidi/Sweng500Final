@@ -26,7 +26,9 @@
 			$q.when('No Data')
 		}
 
-		var blockedItems = function () {
+
+
+		var itemsByStateId = function (stateId) {
 			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
 			var piIds = activePis.map(x => x.$id);
 			var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
@@ -35,7 +37,7 @@
 			function processBlockedItems(_pis, _objectives) {
 				var results = []
 				_pis.forEach(function(pi){
-					var blockedObjectives = _objectives.filter(x => x.piId === pi.$id && x.state === 4);
+					var blockedObjectives = _objectives.filter(x => x.piId === pi.$id && x.state === stateId);
 					results.push({
 						pi: pi,
 						objectives: blockedObjectives
@@ -188,7 +190,7 @@
 
 		return {
 			ready: _defer.promise,
-			blockedItems,
+			itemsByStateId,
 			piTrends,
 			piStats,
 			dashboardLink

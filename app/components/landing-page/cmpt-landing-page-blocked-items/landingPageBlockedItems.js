@@ -24,7 +24,7 @@ controller: function ($scope, userSvc, landingPageSvc, ngDialog, toastHelp) {
 	if(ctx.orgId){
 		vm.isLoading = true;
 		landingPageSvc.ready.then(function(){
-				var blockedItems = landingPageSvc.blockedItems();
+				var blockedItems = landingPageSvc.itemsByStateId(4);
 				vm.blockedItems = blockedItems.blockedProcess;
 		})
 		.catch(function(error){
@@ -68,10 +68,7 @@ controller: function ($scope, userSvc, landingPageSvc, ngDialog, toastHelp) {
 	var go = $scope.go = {
 		details: function (item) {
 			landingPageSvc.ready.then(function(){
-					var blockedItem = landingPageSvc.blockedItems();
-					console.log('before process', item);
-					console.log('after process',blockedItem.details(item));
-
+					var blockedItem = landingPageSvc.itemsByStateId(4);
 					blockedItemDialog(blockedItem.details(item));
 			})
 			.catch(function(error){
