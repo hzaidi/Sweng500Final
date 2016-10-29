@@ -8,8 +8,8 @@
 }
 .cmpt-dashboard-doughnut .total {
   position: absolute;
-  top: 28%;
-  left: 41%;
+  top: 26%;
+  left: 40%;
   font-size: 2vw;
   color: #fff;
   text-align: center;
@@ -175,7 +175,6 @@
   margin: auto 20px;
 }
 .cmpt-dashboard-pi-summary {
-  padding: 20px 0;
   margin: 0 50px;
   color: #fff;
 }
@@ -202,8 +201,8 @@
   border: 1px solid #1f395d;
   border-left: none;
   border-right: none;
-  margin-top: 44px;
-  margin-bottom: 45px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 .cmpt-dashboard-pi-summary .time-remaining .box {
   display: inline-block;
@@ -708,11 +707,14 @@
   width: 205px;
 }
 .cmpt-organization-details .sub-heading {
-  margin: 10px 0;
-  padding: 10px 0;
+  margin: 10px 0 0 0;
+  padding: 10px 0 0 0;
   border-top: 1px solid #1f395d;
   color: #8a8a8a;
-  font-size: 20px;
+  font-size: 30px;
+}
+.cmpt-organization-details .row {
+  margin: 20px 0;
 }
 .cmpt-organization-details .row .label {
   color: #fff;
@@ -720,6 +722,32 @@
 .cmpt-organization-details .row .label i {
   margin-left: 5px;
   cursor: pointer;
+}
+.cmpt-organization-details .action {
+  margin: 10px 0 0 0;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #1f395d;
+}
+.cmpt-organization-kip {
+  color: #fff;
+}
+.cmpt-organization-kip .kpi-data {
+  width: 25%;
+  text-align: center;
+}
+.cmpt-organization-kip .kpi-data input {
+  width: 100px;
+  padding: 6px;
+  margin-right: 2px;
+}
+.cmpt-organization-kip .no-data {
+  margin-top: 10px;
+  border: 2px dashed #0af;
+  border-radius: 5px;
+  padding: 50px;
+  text-align: center;
+  color: #0af;
+  font-weight: bold;
 }
 .cmpt-program-increment-details .no-data {
   margin-top: 10px;
@@ -776,7 +804,7 @@
 }
 .cmpt-topbar-header .right-content > div .type {
   padding: 0 12px;
-  color: #fff;
+  color: #bababa;
   font-size: 15px;
 }
 .cmpt-topbar-header .right-content button {
@@ -1421,6 +1449,9 @@
 .cmpt-ui-time-line .progress-bar-container .cmpt-ui-simple-progress-bar .arrow_box:before {
   border-color: rgba(8,73,106,0);
   border-width: 13px;
+}
+.cmpt-ui-toggle-switch div {
+  color: #fff;
 }
 .cmpt-ui-toggle-switch .tgl {
   display: none;
@@ -2240,7 +2271,7 @@ h1 {
 }
 .route-dashboard-dashboard .dashboard-body .right-section .title {
   color: #2385f8;
-  padding: 20px 0;
+  padding: 0 0 20px 0;
   text-align: center;
   font-size: 30px;
 }
@@ -2287,6 +2318,11 @@ h1 {
   -webkit-flex: 1 0 0;
   -ms-flex: 1 0 0;
   flex: 1 0 0;
+}
+.route-dashboard-dashboard .dashboard-body .cmpt-ui-toggle-switch {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .route-dashboard-dashboard .dashboard-body.panel-open {
   opacity: 0.1;

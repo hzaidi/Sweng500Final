@@ -25,21 +25,10 @@
 			</div>
 		</div>
 		<div class="row">
-			<span class="label"
-						data-balloon-length="medium"
-						data-balloon="In percentage specify the accpetable treshold of the Program Increment"
-						data-balloon-pos="right" >Acceptable PI treshold
-						<i class="fa fa-question-circle" aria-hidden="true"></i>
-			</span>
-			<div class="input-container">
-					<input type="number" class="input" name="acceptablePiTreshold" ng-model="vm.org.acceptablePiTreshold" ng-min="0" ng-max="100">
-					<div ng-messages="orgForm.acceptablePiTreshold.$touched && orgForm.acceptablePiTreshold.$error" role="alert"  class="validation-messages">
-						<div ng-message="min">Minimum value in percentage is 0</div>
-						<div ng-message="max">Maximum value in percentage is 100</div>
-					</div>
-			</div>
+			<cmpt-organization-kip kpi-data="vm.kpiData" remove="go.removeKpi"></cmpt-organization-kip>
+			<button class="button button-primary" ng-click="go.addKpi()"><i class="fa fa-plus"></i>Add KPI</button>
 		</div>
-		<div>
+		<div class="action">
 			<button class="button button-positive" ng-click="go.updateOrg(vm.org)" ng-disabled="orgForm.$invalid"><i class="fa fa-check" aria-hidden="true"></i><span>Update</span></button>
 		</div>
 	</form>

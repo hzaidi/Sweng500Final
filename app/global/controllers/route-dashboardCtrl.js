@@ -1,5 +1,5 @@
 (function() {'use strict';angular.module('piStatus')
-.controller('DashboardCtrl', function ($scope, $location, objectiveTypeConst, dashboardSvc, programIncrementSvc,objectHelp) {
+.controller('DashboardCtrl', function ($rootScope, $scope, $location, objectiveTypeConst, dashboardSvc, programIncrementSvc,objectHelp, toastHelp) {
 // #-----------------------------# //
 // #------- DashboardCtrl -------# //
 
@@ -10,13 +10,14 @@
 	var passedGuid = param.split('~~');
 	$scope.selectedPi = null;
 	$scope.objectives = [];
-
+	$scope.isChecked = false;
 	// View Model properties
 	route.vm = {
 		isLoading: false,
 		open: false,
 		teams: [],
-		doughnuts:{}
+		doughnuts:{},
+		isChecked: false
 	};
 
 	programIncrementSvc.getByKey(passedGuid[0]).then(function(pi){
@@ -35,6 +36,14 @@
 			toastHelp.error(error.message,'Error')
 		});
 	});
+
+
+	$scope.$watch('isChecked', function(nVal,oVal){
+		if(nVal === oVal) { return; }
+		$rootScope.$broadcast('simulator',{ is: nVal })
+		if(nVal) { toastHelp.info('Simulator Mode is on, 15 secs are equal to 1 day','Info'); }
+	});
+
 
 	function addWatch(objectives){
 		$scope.objectives = objectives;
