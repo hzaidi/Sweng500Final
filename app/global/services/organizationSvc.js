@@ -26,6 +26,10 @@
 			return orgs.$add(org);
 		}
 
+		function updateOrg(org) {
+			return org.$save();
+		}
+
 		function getOrg() {
 			var ctx = userSvc.context().get();
 			var org = $firebaseObject(_orgRef(ctx.orgId));
@@ -75,7 +79,8 @@
 			orgObj: (org = null) => { return new _org(org); },
 			createOrgDialog,
 			getOrg,
-			getByKey
+			getByKey,
+			updateOrg
 		};
 
 	});

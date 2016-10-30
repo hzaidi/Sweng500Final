@@ -31,37 +31,31 @@ controller: function ($q, $scope, $firebaseObject, organizationSvc, userSvc, kpi
 		}
 	})
 
-
-	function createKpi(){
-		return kpiSvc.createKpi(vm.kpiData);
-	}
-
-	function updateKpi(){
-		return vm.kpiData.$save();
-	}
-
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
-		updateOrg: function (org) {
-			var isNewKpi = vm.kpiData.$id == null
-			var func = isNewKpi ? createKpi : updateKpi;
-			func().then(function(ref){
-				if(isNewKpi){	org.kpiBucketId = ref.key; }
-				org.$save();
+		updateOrg: function () {
+			kpiSvc.setKpi(vm.kpiData, vm.org)
+			.then(function(kpiData){
+				vm.kpiData = kpiData;
+				organizationSvc.updateOrg(vm.org);
 				toastHelp.success('Organization updated', 'Success');
 			})
 			.catch(function(error){
 				toastHelp.error(error.messages, 'Error');
-			});
+			})
 		},
 		addKpi: function(){
 			vm.kpiData.value.push(kpiSvc.kpiDataPoint());
 		},
 		removeKpi: function(kpi){
-			var isNewKpi = vm.kpiData.$id == null
-			var index = vm.kpiData.value.indexOf(kpi);
-			vm.kpiData.value.splice(index,1);
-			if(!isNewKpi) { vm.kpiData.$save(); }
+			kpiSvc.removeKpi(kpi, vm.kpiData, vm.org)
+			.then(function(kpiData){
+				vm.kpiData = kpiData;
+				organizationSvc.updateOrg(vm.org);
+			})
+			.catch(function(error){
+				toastHelp.error(error.messages, 'Error');
+			})
 		}
 	};
 }

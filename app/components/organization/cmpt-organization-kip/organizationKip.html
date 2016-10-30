@@ -11,7 +11,7 @@
 				<div class="grid-cell -u-10-24">Time Gone</div>
 				<div class="grid-cell -u-10-24">Pi Progress</div>
 				<div class="grid-cell -u-4-24">&nbsp;</div>
-			</div>
+			</div>			
 			<div class="grid-body">
 				<div class="grid-content" ng-repeat="kpi in kpiData.value">
 					<div class="grid-cell -u-10-24">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="no-data" ng-show="kpiData.value.length <= 0">
+		<div class="no-data" ng-show="kpiData.value.length <= 0 || kpiData.$value === null">
 			No KPI setup
 		</div>
 	</div>
