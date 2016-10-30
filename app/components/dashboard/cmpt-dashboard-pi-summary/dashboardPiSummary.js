@@ -35,8 +35,7 @@ controller: function ($scope, $filter, $interval, dashboardSvc, programIncrement
 	})
 
 
-	function timeLeft(endDate, lenOfSprint) {
-		//vm.tomorrow.setDate(vm.tomorrow.getDate() + 1);
+	function timeLeft(endDate, lenOfSprint) {		
 		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), vm.tomorrow);
 		var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
 		vm.sprintsLeft = sprintsLeft;

@@ -1,0 +1,52 @@
+@import "variables.styl"
+.cmpt-ui-pulse {
+	position: relative;
+
+	@keyframes pulse {
+    0% {-webkit-transform: scale(0); opacity: 0;}
+    8% {-webkit-transform: scale(0); opacity: 0;}
+    15% {-webkit-transform: scale(0.1); opacity: 1;}
+    30% {-webkit-transform: scale(0.5); opacity: 1;}
+    100% {opacity: 0; -webkit-transform: scale(1);}
+  }
+
+
+  .pulse_holder
+  {
+    display: block;
+    position: absolute;
+  }
+
+  .pulse_holder .pulse_marker
+  {
+    width: 10px;
+    height: 10px;
+    background: $mediumRed;
+    border-radius: 28px;
+  }
+
+  .pulse_holder .pulse_rays
+  {
+    margin: 0 auto;
+    border-radius: 100px;
+    position: absolute;
+    right: -17px;
+    top: -17px;
+    z-index: 10;
+    background-color: transparent;
+    opacity: 0.1;
+    width: 35px;
+    height: 35px;
+    border: 5px solid darken($mediumRed,20%);
+    border-radius: 100px;
+    /* Giving Animation Function */
+    border-image: initial;
+		&:nth-child(odd) {
+			animation: pulse 2s linear infinite;
+		}
+		&:nth-child(even) {
+			animation: pulse 1s linear infinite;
+		}
+  }
+
+}

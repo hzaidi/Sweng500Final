@@ -1,6 +1,9 @@
 <div class="cmpt-dashboard-team-progress">
 	<div class="team-container">
-		<div class="team-name">{{ team.teamName }} - {{ team.owner }}</div>
+		<cmpt-ui-pulse ng-show="vm.showPluse"></cmpt-ui-pulse>
+		<div class="team-name">
+			{{ team.teamName }} - {{ team.owner }}
+		</div>
 		<div class="team-commitment">
 			<cmpt-ui-simple-progress-bar percentage="team.commitment.percentage" cls="green">
 				<span class="status">({{ team.commitment.done }}/{{ team.commitment.total }} POINTS)</span>

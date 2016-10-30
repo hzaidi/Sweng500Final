@@ -14,10 +14,10 @@ templateUrl: '/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamPr
 controller: function ($scope) {
 
 
-	
+
 	// View Model properties
 	var vm = $scope.vm = {
-		property: 'initial value'
+		showPluse: false
 	};
 
 	// Actions that can be bound to from the view

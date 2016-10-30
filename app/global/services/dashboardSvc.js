@@ -8,8 +8,6 @@
 
 		var teams, users, objectives = [];
 
-
-
 		function getData(pi) {
 			var _defer = $q.defer();
 			var promises = [userSvc.userList(),

@@ -41,6 +41,10 @@
 .cmpt-dashboard-doughnut .legend > div:nth-child(odd) div {
   float: right;
 }
+.cmpt-dashboard-overall-progress .cmpt-ui-pulse .pulse_holder {
+  top: 52%;
+  left: -26px;
+}
 .cmpt-dashboard-overall-progress .objective-bar--stats {
   display: -webkit-box;
   display: -moz-box;
@@ -230,6 +234,10 @@
   display: box;
   display: flex;
 }
+.cmpt-dashboard-team-progress .team-container .cmpt-ui-pulse .pulse_holder {
+  top: 28%;
+  left: 0px;
+}
 .cmpt-dashboard-team-progress .team-container .team-name {
   color: #bababa;
   font-size: 0.9vw;
@@ -242,6 +250,7 @@
   flex: 1.3 0 0;
   margin-right: 5px;
   text-align: right;
+  line-height: 2.5vw;
 }
 .cmpt-dashboard-team-progress .team-container .team-commitment {
   padding: 0 4px;
@@ -271,7 +280,7 @@
 }
 .cmpt-reset-password {
   text-align: center;
-  padding: 360px;
+  padding: 30px;
 }
 .cmpt-reset-password .title {
   font-size: 20px;
@@ -1118,6 +1127,182 @@
 }
 .cmpt-ui-loader i {
   margin-right: 5px;
+}
+.cmpt-ui-pulse {
+  position: relative;
+}
+.cmpt-ui-pulse .pulse_holder {
+  display: block;
+  position: absolute;
+}
+.cmpt-ui-pulse .pulse_holder .pulse_marker {
+  width: 10px;
+  height: 10px;
+  background: #d95b5b;
+  border-radius: 28px;
+}
+.cmpt-ui-pulse .pulse_holder .pulse_rays {
+  margin: 0 auto;
+  border-radius: 100px;
+  position: absolute;
+  right: -17px;
+  top: -17px;
+  z-index: 10;
+  background-color: transparent;
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+  width: 35px;
+  height: 35px;
+  border: 5px solid #c82e2e;
+  border-radius: 100px;
+/* Giving Animation Function */
+  -webkit-border-image: initial;
+  -moz-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
+}
+.cmpt-ui-pulse .pulse_holder .pulse_rays:nth-child(odd) {
+  -webkit-animation: pulse 2s linear infinite;
+  -moz-animation: pulse 2s linear infinite;
+  -o-animation: pulse 2s linear infinite;
+  -ms-animation: pulse 2s linear infinite;
+  animation: pulse 2s linear infinite;
+}
+.cmpt-ui-pulse .pulse_holder .pulse_rays:nth-child(even) {
+  -webkit-animation: pulse 1s linear infinite;
+  -moz-animation: pulse 1s linear infinite;
+  -o-animation: pulse 1s linear infinite;
+  -ms-animation: pulse 1s linear infinite;
+  animation: pulse 1s linear infinite;
+}
+@-moz-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  8% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  15% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  30% {
+    -webkit-transform: scale(0.5);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1);
+  }
+}
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  8% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  15% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  30% {
+    -webkit-transform: scale(0.5);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1);
+  }
+}
+@-o-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  8% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  15% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  30% {
+    -webkit-transform: scale(0.5);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  8% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  15% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  30% {
+    -webkit-transform: scale(0.5);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+  }
+  100% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1);
+  }
 }
 .cmpt-ui-simple-progress-bar .progressBar {
   padding: 1px;

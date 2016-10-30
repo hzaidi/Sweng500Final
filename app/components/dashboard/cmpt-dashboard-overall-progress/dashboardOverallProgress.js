@@ -15,6 +15,7 @@ controller: function ($scope, objectiveTypeConst) {
 
 	// View Model properties
 	var vm = $scope.vm = {
+		showPluse: false,
 		commitment: {
 			total:0,
 			percentage:0,
