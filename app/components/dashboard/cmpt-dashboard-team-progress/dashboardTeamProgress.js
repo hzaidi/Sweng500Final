@@ -17,7 +17,7 @@ controller: function ($scope) {
 
 	// View Model properties
 	var vm = $scope.vm = {
-		showPluse: false
+		showPulse: false
 	};
 
 	// Actions that can be bound to from the view
