@@ -155,7 +155,7 @@
 				authSvc.deleteUser().then(function(){
 					$state.go('default');
 				});
-			}			
+			}
 		});
 
 		$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, error){

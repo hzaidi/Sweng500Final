@@ -18,11 +18,18 @@
 		}
 
 		const loginAsSystem = function() {
-			var auth = $firebaseAuth().$getAuth();
-			if(!auth) {
-				return $firebaseAuth().$signInWithEmailAndPassword('system@gmail.com', '123123')
-			}
-			return $q.when();
+			var _defer = $q.defer();
+			firebase.auth().onAuthStateChanged(function (user) {
+				if(user == null){
+					$firebaseAuth().$signInWithEmailAndPassword('system@gmail.com', '123123').then(function(){
+						_defer.resolve();
+					}, function(error) {
+						_defer.reject(error);
+					})
+				}
+				_defer.resolve();
+			});
+			return _defer.promise;
 		}
 
 		const createUser = function(user){
