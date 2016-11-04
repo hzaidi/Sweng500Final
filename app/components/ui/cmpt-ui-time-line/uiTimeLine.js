@@ -13,7 +13,7 @@ templateUrl: '/components/ui/cmpt-ui-time-line/uiTimeLine.html',
 
 // #---------------------------------------# //
 // #---- Component (cmpt-ui-time-line) ----# //
-controller: function ($scope, $interval, dateHelp, dashboardSvc) {
+controller: function ($scope, $rootScope, $interval, dateHelp, dashboardSvc) {
 
 	var daysLeftTimer;
 
@@ -62,6 +62,7 @@ controller: function ($scope, $interval, dateHelp, dashboardSvc) {
 		var overallTime = Math.ceil(round(100-((numDaysLeft/totalDays)*100)));
 		vm.numDaysLeft = numDaysLeft <= 0 ? 0 : numDaysLeft;
 		vm.overallTime = overallTime;
+		$rootScope.$broadcast('timeGone',{ timeGone: overallTime })
 		if(numDaysLeft <= 0) { $interval.cancel(daysLeftTimer); }
 	}
 

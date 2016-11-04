@@ -2,19 +2,21 @@
 
 	// #----------------------------------# //
 	// #----- Service (dashboardSvc) -----# //
-	app.factory('dashboardSvc', function ($q, $interval, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, arrayHelp, toastHelp) {
+	app.factory('dashboardSvc', function ($q, $interval, organizationSvc, objectiveSvc, teamSvc, userSvc, objectiveTypeConst, stateConst, arrayHelp, toastHelp) {
 
 		const simulatorDuration = 1000;
 
-		var teams, users, objectives = [];
+		var teams, users, objectives, kpi = [];
+
 
 		function getData(pi) {
 			var _defer = $q.defer();
 			var promises = [userSvc.userList(),
 											teamSvc.teamList(),
-											objectiveSvc.objectiveListByPI(pi)];
+											objectiveSvc.objectiveListByPI(pi),
+											organizationSvc.getOrgKpi()];
 			$q.all(promises).then(function(dtl){
-				[ users, teams, objectives ] = dtl;
+				[ users, teams, objectives, kpi ] = dtl;
 				return _defer.resolve({
 					objectives,
 					processData: processData(objectives)
@@ -101,6 +103,29 @@
 			});
 		}
 
+		function showPulse(completion,timeGone) {
+			if(kpi.length){
+				var range = getClosest(timeGone, kpi).map(x => x.piProgress).sort(function(a, b){return a-b});				
+				if(range.length === 1){
+					return completion < range[0];
+				}else {
+					return (completion >= range[0] && completion <= range[1]) || completion <= range[1];
+				}
+			}
+		}
+
+		function getClosest(num, ar) {
+			var copy = angular.copy(ar);
+		  if (num > copy[0].timeGone) {
+		    return [copy[0]];
+		  } else if (num < copy[copy.length - 1].timeGone) {
+		    return [copy[copy.length - 1]];
+		  } else {
+		    return copy.sort((a, b) => Math.abs(a.timeGone - num) - Math.abs(b.timeGone - num)).slice(0, 2);
+		  }
+		}
+
+
 		return {
 			getData,
 			processData,
@@ -108,7 +133,8 @@
 			totalByState,
 			totalBusinessValue,
 			round,
-			simulatorMode
+			simulatorMode,
+			showPulse
 		};
 
 	});

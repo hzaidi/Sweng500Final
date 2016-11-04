@@ -5,14 +5,14 @@
 		<div ng-show="vm.objectives.length > 0">
 			<div class="grid">
 				<div class="grid-header">
-					<div class="grid-cell -u-9-24">Title</div>
+					<div class="grid-cell -u-7-24">Title</div>
 					<div class="grid-cell -u-3-24">Business Value</div>
-					<div class="grid-cell -u-9-24">State</div>
+					<div class="grid-cell -u-11-24">State</div>
 					<div class="grid-cell -u-3-24">Action</div>
 				</div>
 				<div class="grid-body">
 					<div class="grid-content" ng-repeat="objective in vm.objectives">
-						<div class="grid-cell -u-9-24">
+						<div class="grid-cell -u-7-24">
 							<div ng-show="!objective.isEditing">
 								{{ objective.title }}
 							</div>
@@ -28,7 +28,7 @@
 								<input name="businessValue" type="number" class="input" ng-model="objective.businessValue" placeholder="Enter Business Value" min="0">
 							</div>
 						</div>
-						<div class="grid-cell -u-9-24">
+						<div class="grid-cell -u-11-24">
 								<div>
 										<cmpt-ui-state-selector selected="objective.state" update-state="go.updateState(objective)"></cmpt-ui-state-selector>
 								</div>

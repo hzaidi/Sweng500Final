@@ -2,7 +2,7 @@
 
 	// #-------------------------------------# //
 	// #----- Service (organizationSvc) -----# //
-	app.factory('organizationSvc', function ($q, $firebaseArray, $firebaseObject, storageSvc, userSvc, ngDialog, toastHelp) {
+	app.factory('organizationSvc', function ($q, $firebaseArray, $firebaseObject, kpiSvc, storageSvc, userSvc, ngDialog, toastHelp) {
 
 		var orgRef = firebase.database().ref('/organizations');
 
@@ -34,6 +34,28 @@
 			var ctx = userSvc.context().get();
 			var org = $firebaseObject(_orgRef(ctx.orgId));
 			return org.$loaded();
+		}
+
+		function getOrgKpi() {
+			var _defer = $q.defer();
+			getOrg()
+			.then(function(org){
+				if(org.kpiBucketId){
+					kpiSvc.getByKey(org.kpiBucketId)
+					.then(function(kpiData){
+						_defer.resolve(kpiData.value);
+					})
+					.catch(function(error){
+						_defer.reject(error);
+					})
+				}else{
+					_defer.resolve([]);
+				}
+			})
+			.catch(function(error){
+				_defer.reject(error);
+			})
+			return _defer.promise;
 		}
 
 		function getByKey(key) {
@@ -79,6 +101,7 @@
 			orgObj: (org = null) => { return new _org(org); },
 			createOrgDialog,
 			getOrg,
+			getOrgKpi,
 			getByKey,
 			updateOrg
 		};

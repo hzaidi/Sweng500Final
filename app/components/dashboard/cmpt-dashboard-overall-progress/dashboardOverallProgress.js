@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-overall-progress/dashboardOve
 
 // #-----------------------------------------------------# //
 // #---- Component (cmpt-dashboard-overall-progress) ----# //
-controller: function ($scope, objectiveTypeConst) {
+controller: function ($scope, dashboardSvc, objectiveTypeConst) {
 
 	// View Model properties
 	var vm = $scope.vm = {
@@ -42,6 +42,10 @@ controller: function ($scope, objectiveTypeConst) {
 			});
 	}, true);
 
+
+	$scope.$on('timeGone', function(event, args){
+		vm.showPulse = dashboardSvc.showPulse(vm.commitment.percentage, args.timeGone);
+	});
 
 	function round(num) {
 		return Math.round(num * 100) / 100;

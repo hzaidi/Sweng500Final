@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-team-progress/dashboardTeamPr
 
 // #--------------------------------------------------# //
 // #---- Component (cmpt-dashboard-team-progress) ----# //
-controller: function ($scope) {
+controller: function ($scope, dashboardSvc) {
 
 
 
@@ -19,6 +19,11 @@ controller: function ($scope) {
 	var vm = $scope.vm = {
 		showPulse: false
 	};
+
+	$scope.$on('timeGone', function(event, args){
+		vm.showPulse = dashboardSvc.showPulse($scope.team.commitment.percentage, args.timeGone);
+	});
+
 
 	// Actions that can be bound to from the view
 	var go = $scope.go = {
