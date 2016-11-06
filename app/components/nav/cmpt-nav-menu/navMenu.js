@@ -12,6 +12,10 @@ templateUrl: '/components/nav/cmpt-nav-menu/navMenu.html',
 controller: function ($scope, $location, userSvc) {
 
 	var adminMenu = [{
+		icon: 'fa-home',
+		url: '/home',
+		title: 'Home'
+	},{
 		icon: 'fa-sitemap',
 		url: '/organization',
 		title: 'Organization'
@@ -34,6 +38,10 @@ controller: function ($scope, $location, userSvc) {
 	}]
 
 	var scrumMasterMenu = [{
+		icon: 'fa-home',
+		url: '/home',
+		title: 'Home'
+	},{
 		icon: 'fa-cog',
 		url: '/objectives/list',
 		title: 'Objectives'

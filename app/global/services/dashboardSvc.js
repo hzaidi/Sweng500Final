@@ -6,7 +6,7 @@
 
 		const simulatorDuration = 1000;
 
-		var teams, users, objectives, kpi = [];
+		var teams, users, objectives, kpi;
 
 
 		function getData(pi) {
@@ -19,7 +19,7 @@
 				[ users, teams, objectives, kpi ] = dtl;
 				return _defer.resolve({
 					objectives,
-					processData: processData(objectives)
+					processData: processData()
 				})
 			}, function(error){
 				_defer.reject(error);
@@ -29,26 +29,27 @@
 
 
 		function processData(){
-			var groups = arrayHelp.groupBy(objectives,'teamId');
-			var pTeams = [];
-			Object.keys(groups).forEach(function(key){
-				var teamId = key;
-				var team = teams.filter(x=>x.$id === teamId)[0];
-				var owner = users.filter(x=>x.$id === team.ownerId)[0];
-				var obj = {};
-				obj.teamName = team.teamName;
-				obj.owner = `${owner.firstName}, ${owner.lastName}`;
-				Object.keys(objectiveTypeConst).forEach(function(objKey){
-					var objectives = groups[key].filter(x => x.type === parseInt(objKey));
-					var total = totalBusinessValue(objectives);
-					var done = totalByState(objectives, 3);
-					var percentage = (done === 0) ? 0 : round((done/total) * 100)
-					obj[objectiveTypeConst[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
-				})
-				pTeams.push(obj);
-			});
-
-			return pTeams;
+			if(objectives && objectives.length){
+				var groups = arrayHelp.groupBy(objectives,'teamId');
+				var pTeams = [];
+				Object.keys(groups).forEach(function(key){
+					var teamId = key;
+					var team = teams.filter(x=>x.$id === teamId)[0];
+					var owner = users.filter(x=>x.$id === team.ownerId)[0];
+					var obj = {};
+					obj.teamName = team.teamName;
+					obj.owner = `${owner.firstName}, ${owner.lastName}`;
+					Object.keys(objectiveTypeConst).forEach(function(objKey){
+						var objectives = groups[key].filter(x => x.type === parseInt(objKey));
+						var total = totalBusinessValue(objectives);
+						var done = totalByState(objectives, 3);
+						var percentage = (done === 0) ? 0 : round((done/total) * 100)
+						obj[objectiveTypeConst[objKey].toLowerCase()] = (objectives.length) ? { total, done,percentage } : null;
+					})
+					pTeams.push(obj);
+				});
+				return pTeams;
+			}
 		}
 
 
@@ -104,19 +105,22 @@
 		}
 
 		function showPulse(completion,timeGone) {
-			if(kpi.length){
-				var range = getClosest(timeGone, kpi).map(x => x.piProgress).sort(function(a, b){return a-b});				
+			if(kpi && kpi.length){
+				var range = getClosest(timeGone, kpi).map(x => x.piProgress).sort(function(a, b){return a-b});
 				if(range.length === 1){
 					return completion < range[0];
 				}else {
-					return (completion >= range[0] && completion <= range[1]) || completion <= range[1];
+					if(completion < range[0]) { return true; }
+					if(completion > range[1]) { return false; }
+					return !(completion >= range[0] && completion <= range[1]);
 				}
 			}
+			return false;
 		}
 
 		function getClosest(num, ar) {
 			var copy = angular.copy(ar);
-		  if (num > copy[0].timeGone) {
+		  if (num >= copy[0].timeGone) {
 		    return [copy[0]];
 		  } else if (num < copy[copy.length - 1].timeGone) {
 		    return [copy[copy.length - 1]];

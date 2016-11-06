@@ -16,7 +16,7 @@
 
 				// View Model properties
 				var vm = $scope.vm = {
-					username: 'dkim@gmail.com',
+					username: 'shumzaz@hotmail.com',
 					password: '123456'
 				};
 

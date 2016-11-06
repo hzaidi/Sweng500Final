@@ -1,7 +1,27 @@
 (function () {'use strict';
 	var app = angular.module('piStatus');
 
-	app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+	app.provider('routeSvc', function(){
+		this.verifyUser = ['$q', 'authSvc', 'userSvc', function($q, authSvc, userSvc){
+			var _defer = $q.defer();
+			authSvc.auth().$requireSignIn()
+			.then(function(user){
+				if(user.email === 'system@gmail.com') { _defer.reject('SYSTEM_USER_NOT_ALLOWED'); }
+				return userSvc.getLoggedInUser();
+			})
+			.then(function(user){
+				_defer.resolve(user);
+			})
+			.catch(function(error){
+				_defer.reject(error);
+			});
+			return _defer.promise;
+		}];
+		this.$get = function() { return {}; };
+	});
+
+
+	app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, routeSvcProvider) {
 		// use the HTML5 History API
     $locationProvider.html5Mode(true);
 
@@ -18,13 +38,9 @@
 				url: '/home',
 				templateUrl: '/routes/home/home.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
-				controller: function($scope, user, storageSvc, userSvc){
+				controller: function($scope, user, userSvc){
 					$scope.user = user;
 					userSvc.context().set(user);
 				}
@@ -33,11 +49,7 @@
 				url: '/organization',
 				templateUrl: '/routes/organization/organization.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -47,11 +59,7 @@
 				url: '/team/list',
 				templateUrl: '/routes/team/list.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -61,11 +69,7 @@
 				url: '/users/list',
 				templateUrl: '/routes/users/scrum-masters.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -75,11 +79,7 @@
 				url: '/programincrement/list',
 				templateUrl: '/routes/setup/programincrement.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -89,11 +89,7 @@
 				url: '/objectives/list',
 				templateUrl: '/routes/list-objectives/objectives.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -103,11 +99,7 @@
 				url: '/objectives/all-teams/list',
 				templateUrl: '/routes/list-objectives/all-teams.html',
 				resolve:{
-					user: function(authSvc, userSvc){
-						return authSvc.auth().$requireSignIn().then(function(){
-							return userSvc.getLoggedInUser();
-						});
-					}
+					user: routeSvcProvider.verifyUser
 				},
 				controller: function($scope, user){
 					$scope.user = user;
@@ -156,12 +148,16 @@
 					$state.go('default');
 				});
 			}
+			if(error === 'SYSTEM_USER_NOT_ALLOWED'){
+				$state.go('default');
+			}
 		});
 
 		$rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, error){
 			if(toState.name === 'default'){
-				var user = authSvc.auth().$getAuth();
-				if(user) { $state.go('home'); }
+				firebase.auth().onAuthStateChanged(function(user){
+					if(user) { $state.go('home'); }
+				});
 			}
 		});
 
