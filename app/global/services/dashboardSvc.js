@@ -29,9 +29,9 @@
 
 
 		function processData(){
+			var pTeams = [];
 			if(objectives && objectives.length){
 				var groups = arrayHelp.groupBy(objectives,'teamId');
-				var pTeams = [];
 				Object.keys(groups).forEach(function(key){
 					var teamId = key;
 					var team = teams.filter(x=>x.$id === teamId)[0];
@@ -48,8 +48,8 @@
 					})
 					pTeams.push(obj);
 				});
-				return pTeams;
 			}
+			return pTeams;
 		}
 
 
@@ -77,19 +77,22 @@
 
 
 		function totalByState(objectives, stateId){
+			if(objectives == null) { return 0; }
 			return objectives.filter(x => x.state === stateId).reduce(function(prev,cur){
 				return prev + cur.businessValue;
 			},0)
 		}
 
 		function totalBusinessValue(objectives) {
+			if(objectives == null) { return 0; }
 			return objectives.reduce(function(prev,cur){
 				return prev + cur.businessValue;
 			},0)
 		}
 
 		function round(num) {
-			return Math.round(num * 100) / 100;
+			if(num == null) { return 0; }
+			return Math.round(num);
 		}
 
 
