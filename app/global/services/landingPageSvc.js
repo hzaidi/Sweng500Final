@@ -32,7 +32,7 @@
 			var activePis = pis.filter(x => programIncrementSvc.isActivePi(x));
 			var piIds = activePis.map(x => x.$id);
 			var objectivesInActivePis = objectives.filter(x => piIds.indexOf(x.piId) >= 0);
-			var blockedProcess = processBlockedItems(activePis, objectivesInActivePis, teams);
+			var blockedProcess = processBlockedItems(activePis, objectivesInActivePis);
 
 			function processBlockedItems(_pis, _objectives) {
 				var results = []

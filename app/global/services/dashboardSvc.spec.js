@@ -27,39 +27,6 @@
       }
     };
 
-    var objectiveTypeConstMock = {
-			1: 'Commitment',
-			2: 'Stretch'
-		};
-    var stateConstMock = [{
-			id: 1,
-			value: 'Defined',
-			color: 'grey',
-			hex: '#7b7b7b'
-		}, {
-			id: 2,
-			value: 'In Progress',
-			color: 'blue',
-			hex: '#2385f8'
-		}, {
-			id: 3,
-			value: 'Completed',
-			color: 'green',
-			hex: '#009592'
-		}, {
-			id: 4,
-			value: 'Blocked',
-			color: 'yellow',
-			hex: '#9b970b'
-		},{
-			id: 5,
-			value: 'Cancelled',
-			color: 'red',
-			hex: '#D95B5B'
-		}];
-
-
-
     beforeEach(module('piStatus', function($provide){
       //http://www.syntaxsuccess.com/viewarticle/how-to-mock-providers-in-angular
       $provide.factory('userSvc', function(){
@@ -74,13 +41,6 @@
       $provide.factory('organizationSvc', function(){
         return organizationSvcMock;
       });
-      $provide.constant('objectiveTypeConst', function(){
-        return objectiveTypeConstMock;
-      });
-      $provide.constant('stateConst', function(){
-        return stateConstMock;
-      });
-
     }));
 
 		afterEach(function(){
@@ -113,22 +73,26 @@
         return [{ $id: 0 }];
       }
 
-			var processData = service.getData('test-pi-id');
+			service.getData('test-pi-id');
+
 			$scope.$apply();
+			var processData = service.processData();
 			expect(typeof service.processData).toBe('function');
 			expect(processData.length).toBe(0);
 		});
 
 		it('processData returns empty array is objectives is empty array', function () {
-			objectiveSvcMock.objectiveListByPI = function(pi){ return null }
+			objectiveSvcMock.objectiveListByPI = function(pi){ return [] }
 			userSvcMock.userList = function(){
         return [{ $id: 0 }];
       }
 			teamSvcMock.teamList = function(){
         return [{ $id: 0 }];
       }
-			var processData = service.getData('test-pi-id');
-			$scope.$apply();			
+			service.getData('test-pi-id');
+
+			$scope.$apply();
+			var processData = service.processData();
 			expect(typeof service.processData).toBe('function');
 			expect(processData.length).toBe(0);
 		});
@@ -136,29 +100,247 @@
 		it('processData returns an array of processed objectives', function () {
 			objectiveSvcMock.objectiveListByPI = function(pi){
 				return [{
-					$id: 1, teamId: 'team-one'
+					$id: 1,
+					teamId: 'team-one',
+					type: 1,
+					businessValue: 10,
+					state: 3
 				},{
-					$id: 2, teamId: 'team-two'
+					$id: 2,
+					teamId: 'team-one',
+					type: 2,
+					businessValue: 8,
+					state: 1
+				},{
+					$id: 3,
+					teamId: 'team-two',
+					type: 2,
+					businessValue: 8,
+					state: 3
+				},{
+					$id: 4,
+					teamId: 'team-two',
+					type: 1,
+					businessValue: 10,
+					state: 3
 				}];
 			}
 
 			userSvcMock.userList = function(){
-				return [{ $id: 1 },{ $id: 2 }];
+				return [{
+					$id: 1,
+					firstName: 'Hamza',
+					lastName: 'Zaidi'
+				},{
+					$id: 2,
+					firstName: 'Davin',
+					lastName: 'Kim'
+				}];
 			}
 			teamSvcMock.teamList = function(){
 				return [{
 					$id: 'team-one',
-					ownerId: 1
+					ownerId: 1,
+					teamName: 'team one'
 				},{
 					$id: 'team-two',
-					ownerId: 2
+					ownerId: 2,
+					teamName: 'team two'
 				}];
 			}
-			var processData = service.getData('test-pi-id');
+			service.getData('test-pi-id');
 			$scope.$apply();
+			var processData = service.processData();
 			expect(typeof service.processData).toBe('function');
-			expect(processData.length).toBe(0);
+			expect(processData.length).toBe(2);
+			expect(processData[0].owner).toBe('Hamza, Zaidi');
+			expect(processData[0].teamName).toBe('team one');
+			expect(typeof processData[0].commitment).toBe('object');
+			expect(typeof processData[0].stretch).toBe('object');
+			expect(processData[0].commitment.done).toBe(10);
+			expect(processData[0].commitment.percentage).toBe(100);
+			expect(processData[0].commitment.total).toBe(10);
+			expect(processData[0].stretch.done).toBe(0);
+			expect(processData[0].stretch.percentage).toBe(0);
+			expect(processData[0].stretch.total).toBe(8);
+
+			expect(processData[1].owner).toBe('Davin, Kim');
+			expect(processData[1].teamName).toBe('team two');
+			expect(typeof processData[1].commitment).toBe('object');
+			expect(typeof processData[1].stretch).toBe('object');
+			expect(processData[1].commitment.done).toBe(10);
+			expect(processData[1].commitment.percentage).toBe(100);
+			expect(processData[1].commitment.total).toBe(10);
+			expect(processData[1].stretch.done).toBe(8);
+			expect(processData[1].stretch.percentage).toBe(100);
+			expect(processData[1].stretch.total).toBe(8);
+
 		});
+
+		it('processData returns an array of processed objectives checking nulls', function () {
+			objectiveSvcMock.objectiveListByPI = function(pi){
+				return [{
+					$id: 1,
+					teamId: 'team-one',
+					type: 1,
+					businessValue: 10,
+					state: 3
+				},{
+					$id: 3,
+					teamId: 'team-two',
+					type: 2,
+					businessValue: 8,
+					state: 3
+				}];
+			}
+
+			userSvcMock.userList = function(){
+				return [{
+					$id: 1,
+					firstName: 'Hamza',
+					lastName: 'Zaidi'
+				},{
+					$id: 2,
+					firstName: 'Davin',
+					lastName: 'Kim'
+				}];
+			}
+			teamSvcMock.teamList = function(){
+				return [{
+					$id: 'team-one',
+					ownerId: 1,
+					teamName: 'team one'
+				},{
+					$id: 'team-two',
+					ownerId: 2,
+					teamName: 'team two'
+				}];
+			}
+			service.getData('test-pi-id');
+			$scope.$apply();
+			var processData = service.processData();
+			expect(typeof service.processData).toBe('function');
+			expect(processData.length).toBe(2);
+			expect(processData[0].owner).toBe('Hamza, Zaidi');
+			expect(processData[0].teamName).toBe('team one');
+			expect(typeof processData[0].commitment).toBe('object');
+			expect(processData[0].stretch).toBe(null);
+			expect(processData[0].commitment.done).toBe(10);
+			expect(processData[0].commitment.percentage).toBe(100);
+			expect(processData[0].commitment.total).toBe(10);
+
+			expect(processData[1].owner).toBe('Davin, Kim');
+			expect(processData[1].teamName).toBe('team two');
+			expect(processData[1].commitment).toBe(null);
+			expect(typeof processData[1].stretch).toBe('object');
+			expect(processData[1].stretch.done).toBe(8);
+			expect(processData[1].stretch.percentage).toBe(100);
+			expect(processData[1].stretch.total).toBe(8);
+
+		});
+
+		it('processPercentages is a function', function () {
+			expect(typeof service.processPercentages).toBe('function');
+		});
+
+		it('processPercentages returns an object of processed objectives', function () {
+			objectiveSvcMock.objectiveListByPI = function(pi){
+				return [{
+					$id: 1,
+					teamId: 'team-one',
+					type: 1,
+					businessValue: 10,
+					state: 3
+				},{
+					$id: 3,
+					teamId: 'team-two',
+					type: 2,
+					businessValue: 8,
+					state: 3
+				}];
+			}
+
+			userSvcMock.userList = function(){
+				return [{
+					$id: 1,
+					firstName: 'Hamza',
+					lastName: 'Zaidi'
+				},{
+					$id: 2,
+					firstName: 'Davin',
+					lastName: 'Kim'
+				}];
+			}
+			teamSvcMock.teamList = function(){
+				return [{
+					$id: 'team-one',
+					ownerId: 1,
+					teamName: 'team one'
+				},{
+					$id: 'team-two',
+					ownerId: 2,
+					teamName: 'team two'
+				}];
+			}
+
+			var colors = ["#7b7b7b", "#2385f8", "#009592", "#9b970b", "#D95B5B"];
+			var labels = ["Defined", "In Progress", "Completed", "Blocked", "Cancelled"];
+			var keys = ['commitment', 'stretch'];
+			var typeKeys = ['colors', 'data', 'labels', 'total'];
+
+			service.getData('test-pi-id');
+			$scope.$apply();
+			var processPercentages = service.processPercentages();
+			expect(typeof service.processPercentages).toBe('function');
+			expect(typeof processPercentages).toBe('object');
+			Object.keys(processPercentages).forEach(function(key){
+				expect(keys.indexOf(key)).toBeGreaterThan(-1);
+				Object.keys(processPercentages[key]).forEach(function(tKey){
+					expect(typeKeys.indexOf(tKey)).toBeGreaterThan(-1);
+				})
+			})
+
+			processPercentages.commitment.colors.forEach(function(color){
+				expect(colors.indexOf(color)).toBeGreaterThan(-1);
+			})
+			processPercentages.stretch.colors.forEach(function(color){
+				expect(colors.indexOf(color)).toBeGreaterThan(-1);
+			})
+
+			processPercentages.commitment.labels.forEach(function(label){
+				expect(labels.indexOf(label)).toBeGreaterThan(-1);
+			})
+			processPercentages.stretch.labels.forEach(function(label){
+				expect(labels.indexOf(label)).toBeGreaterThan(-1);
+			})
+
+			expect(processPercentages.commitment.data[0]).toBe(0);
+			expect(processPercentages.commitment.data[1]).toBe(0);
+			expect(processPercentages.commitment.data[2]).toBe(100);
+			expect(processPercentages.commitment.data[3]).toBe(0);
+			expect(processPercentages.commitment.data[4]).toBe(0);
+
+			expect(processPercentages.commitment.total[0]).toBe(0);
+			expect(processPercentages.commitment.total[1]).toBe(0);
+			expect(processPercentages.commitment.total[2]).toBe(10);
+			expect(processPercentages.commitment.total[3]).toBe(0);
+			expect(processPercentages.commitment.total[4]).toBe(0);
+
+			expect(processPercentages.stretch.data[0]).toBe(0);
+			expect(processPercentages.stretch.data[1]).toBe(0);
+			expect(processPercentages.stretch.data[2]).toBe(100);
+			expect(processPercentages.stretch.data[3]).toBe(0);
+			expect(processPercentages.stretch.data[4]).toBe(0);
+
+			expect(processPercentages.stretch.total[0]).toBe(0);
+			expect(processPercentages.stretch.total[1]).toBe(0);
+			expect(processPercentages.stretch.total[2]).toBe(8);
+			expect(processPercentages.stretch.total[3]).toBe(0);
+			expect(processPercentages.stretch.total[4]).toBe(0);
+
+
+		});
+
 
 		it('showPulse is a function', function () {
       expect(typeof service.showPulse).toBe('function');
