@@ -30,11 +30,37 @@
 
     var programIncrementSvcMock = {
       piList: function(){ return [{
-					$id:'pi',
+					$id:'pi1',
+					title: 'Program Increment 1',
 					startDate: '10/20/2016',
 					numberOfSprints: 5,
 					lengthOfSprint: 2
-				}]; },
+				},{
+					$id:'pi2',
+					title: 'Program Increment 2',
+					startDate: '10/20/2016',
+					numberOfSprints: 5,
+					lengthOfSprint: 2
+				},{
+					$id:'pi3',
+					title: 'Program Increment 3',
+					startDate: '10/20/2016',
+					numberOfSprints: 5,
+					lengthOfSprint: 2
+				},{
+					$id:'pi4',
+					title: 'Program Increment 4',
+					startDate: '10/20/2016',
+					numberOfSprints: 5,
+					lengthOfSprint: 2
+				},{
+					$id:'pi5',
+					title: 'Program Increment 5',
+					startDate: '10/20/2016',
+					numberOfSprints: 5,
+					lengthOfSprint: 2
+				}];
+			},
       isActivePi: function(pi){ return true; }
     }
 
@@ -45,28 +71,28 @@
 				type: 1,
 				businessValue: 10,
 				state: 4,
-				piId:'pi'
+				piId:'pi1'
 			},{
 				$id: 2,
 				teamId: 'team-one',
 				type: 2,
 				businessValue: 8,
 				state: 5,
-				piId:'pi'
+				piId:'pi1'
 			},{
 				$id: 3,
 				teamId: 'team-two',
 				type: 2,
 				businessValue: 8,
 				state: 4,
-				piId:'pi'
+				piId:'pi1'
 			},{
 				$id: 4,
 				teamId: 'team-two',
 				type: 1,
 				businessValue: 10,
 				state: 5,
-				piId:'pi'
+				piId:'pi1'
 			}]; }
     }
     var teamSvcMock = {
@@ -156,14 +182,14 @@
     it('should have a dashboardLink property valid active Pis', function () {
       $scope.$apply();
       var dashboardLink = service.dashboardLink();
-      expect(dashboardLink.activePis.length).toBe(1);
+      expect(dashboardLink.activePis.length).toBe(5);
       expect(dashboardLink.archivedPis.length).toBe(0);
     });
 
     it('should have a dashboardLink property valid archived Pis', function () {
 			$scope.$apply();
       var dashboardLink = service.dashboardLink();
-      expect(dashboardLink.activePis.length).toBe(1);
+      expect(dashboardLink.activePis.length).toBe(5);
       expect(dashboardLink.archivedPis.length).toBe(0);
     });
 
@@ -175,16 +201,17 @@
 			Object.keys(blockedItems).forEach(function(key){
 				expect(keys.indexOf(key)).toBeGreaterThan(-1);
 			})
-			expect(blockedItems.blockedProcess.length).toBe(1);
+			expect(blockedItems.blockedProcess.length).toBe(5);
 			blockedItems.blockedProcess.forEach(function(item){
 				Object.keys(item).forEach(function(key){
 					expect(bpKeys.indexOf(key)).toBeGreaterThan(-1);
 				})
-				expect(item.objectives.length).toBe(2);
-				expect(item.objectives[0].state).toBe(4);
-				expect(item.objectives[1].state).toBe(4);
 				expect(typeof item.pi).toBe('object');
 			})
+			expect(blockedItems.blockedProcess[0].objectives.length).toBe(2);
+			expect(blockedItems.blockedProcess[0].objectives[0].state).toBe(4);
+			expect(blockedItems.blockedProcess[0].objectives[1].state).toBe(4);
+
 		});
 
 		it('itemsByStateId if state id is 4, verify the details', function () {
@@ -212,16 +239,16 @@
 			Object.keys(blockedItems).forEach(function(key){
 				expect(keys.indexOf(key)).toBeGreaterThan(-1);
 			})
-			expect(blockedItems.blockedProcess.length).toBe(1);
+			expect(blockedItems.blockedProcess.length).toBe(5);
 			blockedItems.blockedProcess.forEach(function(item){
 				Object.keys(item).forEach(function(key){
 					expect(bpKeys.indexOf(key)).toBeGreaterThan(-1);
 				})
-				expect(item.objectives.length).toBe(2);
-				expect(item.objectives[0].state).toBe(5);
-				expect(item.objectives[1].state).toBe(5);
 				expect(typeof item.pi).toBe('object');
 			})
+			expect(blockedItems.blockedProcess[0].objectives.length).toBe(2);
+			expect(blockedItems.blockedProcess[0].objectives[0].state).toBe(5);
+			expect(blockedItems.blockedProcess[0].objectives[1].state).toBe(5);
 		});
 
 		it('itemsByStateId if state id is 5, verify the details', function () {
@@ -240,6 +267,115 @@
 			expect(details[1].typeName).toBe('Commitment');
 		});
 
+		it('piTrends, verify the graph style and corresponding data', function () {
+			$scope.$apply();
+			var piTrends = service.piTrends();
+			var colors = ['#2385f8', '#da8cff', '#BABABA'];
+			piTrends.colors.forEach(function(color){
+				expect(colors.indexOf(color)).toBeGreaterThan(-1);
+			})
+			expect(piTrends.barOverride.borderWidth).toBe(1);
+			expect(piTrends.barOverride.type).toBe('bar');
+
+			expect(piTrends.dataOverride.length).toBe(3);
+			expect(piTrends.dataOverride[0].borderWidth).toBe(1);
+			expect(piTrends.dataOverride[0].type).toBe('bar');
+			expect(piTrends.dataOverride[1].borderWidth).toBe(4);
+			expect(piTrends.dataOverride[1].type).toBe('line');
+			expect(piTrends.dataOverride[2].borderWidth).toBe(1);
+			expect(piTrends.dataOverride[2].type).toBe('line');
+
+			expect(piTrends.lineOverride.borderWidth).toBe(4);
+			expect(piTrends.lineOverride.type).toBe('line');
+
+			expect(piTrends.options.scales.yAxes[0].ticks.beginAtZero).toBe(true);
+			expect(piTrends.options.tooltips.enabled).toBe(false);
+
+		});
+
+		it('piTrends, verify teams', function () {
+			$scope.$apply();
+			var piTrends = service.piTrends();
+			expect(piTrends.teams.length).toBe(2);
+			expect(piTrends.teams[0].$id).toBe('team-one');
+			expect(piTrends.teams[0].ownerId).toBe(1);
+			expect(piTrends.teams[0].teamName).toBe('team one');
+			expect(piTrends.teams[1].$id).toBe('team-two');
+			expect(piTrends.teams[1].ownerId).toBe(2);
+			expect(piTrends.teams[1].teamName).toBe('team two');
+		});
+
+		it('piTrends, verify graph data by team id, team id is null', function () {
+			$scope.$apply();
+			var piTrends = service.piTrends();
+			var graphData = piTrends.processTrendGraphData(null);
+			var keys = ['data', 'labels'];
+			expect(typeof piTrends.processTrendGraphData).toBe('function');
+			Object.keys(graphData).forEach(function(key){
+				expect(keys.indexOf(key)).toBeGreaterThan(-1);
+			})
+			expect(graphData.labels.length).toBeGreaterThan(0);
+			expect(graphData.data.length).toBeGreaterThan(0);
+
+			graphData.data.forEach(function(item){
+				expect(item.length).toBeGreaterThan(0);
+			})
+
+		});
+
+		it('piTrends, verify graph data by team id, team id is "team-one"', function () {
+			$scope.$apply();
+			var piTrends = service.piTrends();
+			var graphData = piTrends.processTrendGraphData('team-one');
+			var keys = ['data', 'labels'];
+			expect(typeof piTrends.processTrendGraphData).toBe('function');
+			Object.keys(graphData).forEach(function(key){
+				expect(keys.indexOf(key)).toBeGreaterThan(-1);
+			})
+			expect(graphData.labels.length).toBeGreaterThan(0);
+			expect(graphData.data.length).toBeGreaterThan(0);
+
+			graphData.data.forEach(function(item){
+				expect(item.length).toBeGreaterThan(0);
+			})
+
+		});
+
+		it('piStats, verify the graph style and corresponding data', function () {
+			$scope.$apply();
+			var colors = ["#7b7b7b", "#2385f8", "#009592", "#9b970b", "#D95B5B"];
+			var labels = ["Defined", "In Progress", "Completed", "Blocked", "Cancelled"];
+			var keys = ['elements', 'legend'];
+			var piStats = service.piStats();
+			piStats.colors.forEach(function(color){
+				expect(colors.indexOf(color)).toBeGreaterThan(-1);
+			})
+			piStats.labels.forEach(function(label){
+				expect(labels.indexOf(label)).toBeGreaterThan(-1);
+			})
+			Object.keys(piStats.options).forEach(function(key){
+				expect(keys.indexOf(key)).toBeGreaterThan(-1);
+			})
+			expect(piStats.options.elements.arc.borderColor).toBe('#001322');
+			expect(piStats.options.elements.arc.borderWidth).toBe(1);
+
+			expect(piStats.options.legend.display).toBe(true);
+			expect(piStats.options.legend.position).toBe('bottom');
+			expect(piStats.options.legend.labels.fontColor).toBe('#FFF');
+		});
+
+		it('piStats, verify data', function () {
+			$scope.$apply();
+			var piStats = service.piStats();
+
+			expect(piStats.activePis.length).toBe(5);
+			expect(piStats.data.length).toBe(5);
+			expect(piStats.data[0]).toBe(0);
+			expect(piStats.data[1]).toBe(0);
+			expect(piStats.data[2]).toBe(0);
+			expect(piStats.data[3]).toBe(18);
+			expect(piStats.data[4]).toBe(18);
+		});
 
 
 
