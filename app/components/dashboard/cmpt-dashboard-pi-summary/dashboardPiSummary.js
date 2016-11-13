@@ -11,7 +11,7 @@ templateUrl: '/components/dashboard/cmpt-dashboard-pi-summary/dashboardPiSummary
 
 // #-----------------------------------------------# //
 // #---- Component (cmpt-dashboard-pi-summary) ----# //
-controller: function ($scope, $filter, $interval, dashboardSvc, programIncrementSvc, dateHelp, simulatorVal) {
+controller: function ($scope, $filter, $interval, dashboardSvc, programIncrementSvc, dateHelp) {
 
 	var calculateSummaryTimer;
 	// View Model properties
@@ -35,7 +35,7 @@ controller: function ($scope, $filter, $interval, dashboardSvc, programIncrement
 	})
 
 
-	function timeLeft(endDate, lenOfSprint) {		
+	function timeLeft(endDate, lenOfSprint) {
 		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), vm.tomorrow);
 		var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
 		vm.sprintsLeft = sprintsLeft;
