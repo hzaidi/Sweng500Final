@@ -5,7 +5,6 @@
 		'firebase',
 		'ngResource',
 		'ngSanitize',
-		'ngAnimate',
 		'templates-preload',
 		'ngDialog',
 		'toastr',
