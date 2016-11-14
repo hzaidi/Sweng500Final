@@ -38,7 +38,7 @@ controller: function ($scope, $filter, $interval, dashboardSvc, programIncrement
 	function timeLeft(endDate, lenOfSprint) {
 		var numDaysLeft = dateHelp.daysLeft(new Date(endDate), vm.tomorrow);
 		var sprintsLeft = Math.ceil(dateHelp.weeksLeft(new Date(endDate), new Date())/lenOfSprint);
-		vm.sprintsLeft = sprintsLeft;
+		vm.sprintsLeft = sprintsLeft <= 0 ? 0 : sprintsLeft;
 		vm.daysLeft = numDaysLeft <= 0 ? 0 : numDaysLeft;
 		if(numDaysLeft <= 0) { $interval.cancel(calculateSummaryTimer); }
 	}
